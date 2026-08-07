@@ -90,3 +90,11 @@ Registros en orden cronológico (más reciente abajo).
 - D21: outline `04_PLANTILLA.md` aprobado.  
 - S7 confirmado.  
 - Siguiente: redacción incremental; DevOps/Genius cuando Jonathan aporte material.
+
+---
+
+## 2026-08-07 — Repo en GitHub
+
+- Repositorio: https://github.com/jasgidp/PMDD  
+- Rama: `main`  
+- Incluye materiales del curso + `contexto/` (sin `.venv` ni `_extract`).
