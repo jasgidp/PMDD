@@ -15,7 +15,7 @@ Contenido mínimo (enunciado E6):
 3. Espina de pescado (roles, formatos, ciclos) y por qué  
 4. Valor diferencial frente a metodologías actuales  
 
-Tras feedback de clase → actualizar este archivo y/o `PPT_CORREGIDA.md`.
+Tras feedback de clase → actualizar la **Parte II** de este mismo archivo (`PRESENTACION.md`).
 
 ---
 
@@ -114,4 +114,4 @@ Instrucción del enunciado: *“Adicionar la ppt corregida con las observaciones
 
 ## Contenido corregido
 
-*Copiar/adaptar desde `PPT_SOCIALIZACION.md` tras el feedback; no sobrescribir la versión de socialización sin dejar trazabilidad en `09_BITACORA.md`.*
+*Copiar/adaptar desde la Parte I (socialización) tras el feedback; no sobrescribir la Parte I sin dejar trazabilidad en `GESTION_PROYECTO.md` § Bitácora.*

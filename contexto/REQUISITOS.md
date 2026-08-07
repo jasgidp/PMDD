@@ -64,7 +64,7 @@ Espina: Ciclo, Colaboración, Artefactos, Uso recomendado, Madurez, Flexibilidad
 
 ## 6. Rúbrica
 
-Pesos 40% / 60% + checklist de contenidos. Sin sub-pesos. Ver `03_RUBRICA.md`.
+Pesos 40% / 60% + checklist de contenidos. Sin sub-pesos. Ver **Parte D** de este archivo.
 
 ---
 
@@ -87,7 +87,7 @@ Orden de autores; canal LMS; nombre de metodología (aplazado); detalle industri
 
 **Última actualización:** 2026-08-07
 
-La ficha consolidada está en `FICHA_DE_REQUISITOS.md`.
+La ficha consolidada está en la **Parte A** de este mismo archivo.
 
 ---
 

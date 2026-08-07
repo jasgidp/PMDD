@@ -1,7 +1,8 @@
 # BORRADOR MAESTRO — Entregable en construcción
 
-**Estado:** estructura alineada al Reto #1; sin redacción académica aún.  
+**Estado:** estructura alineada al Reto #1; §III.B DevOps en borrador sanitizado.  
 **Dominio:** Realidad aumentada (Equipo 2).  
+**Outline:** `PLANTILLA_PAPER.md` · **Fuentes:** `FUENTES.md` · **Gestión:** `GESTION_PROYECTO.md`  
 **Citas:** `[@Clave]` hasta el ensamblado.
 
 ---

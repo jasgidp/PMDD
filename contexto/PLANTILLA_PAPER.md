@@ -4,7 +4,7 @@
 **Última actualización:** 2026-08-07  
 **Base de formato:** `formato-presentacion-documentos-ieee-es.doc`  
 **Base teórica de la espina:** `A taxonomy of design methods process models (1).pdf` [@Ceret2013]  
-**Contenido obligatorio:** enunciado Reto #1 (ver `01_INSTRUCCIONES.md` E3–E7)
+**Contenido obligatorio:** enunciado Reto #1 (ver `REQUISITOS.md` Parte B, ítems E3–E7)
 
 > **Fase 4: APROBADO** (2026-08-07). Se puede redactar sección por sección según este outline.
 
@@ -95,4 +95,5 @@ Luego: PPT corregida adjunta al paper (60%).
 
 ## Aprobación Fase 4
 
-Responde si apruebas este outline, o indica cambios de secciones/extensión/orden antes de redactar.
+**Estado: APROBADO** (2026-08-07). Outline vigente para redacción incremental.  
+Cambios de secciones/extensión/orden → actualizar este archivo + decisión en `GESTION_PROYECTO.md`.

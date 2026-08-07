@@ -41,5 +41,6 @@
 | Archivo | Uso |
 |---------|-----|
 | `A taxonomy of design methods process models (1).pdf` | Espina [= @Ceret2013] |
-| `formato-presentacion-documentos-ieee-es.doc` | Formato |
-| Enunciado Reto #1 | Requisitos |
+| `formato-presentacion-documentos-ieee-es.doc` | Formato IEEE |
+| Enunciado Reto #1 | Texto en `REQUISITOS.md` Parte B (no hay PDF en el repo) |
+| `Ejemplo formato IEEE diligenciado.pdf` | Ejemplo visual de entrega |

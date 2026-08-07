@@ -17,7 +17,7 @@ Archivo operativo del equipo. Al integrar texto nuevo: actualizar **Estado** + *
 | Autores / afiliación | Equipo | pendiente | 0 | — | Orden autores [FALTA]; EAFIT + curso **ok** |
 | Abstract (EN) | por asignar | pendiente | 0 / ~150–200 | — | Redactar en inglés |
 | Índice de Términos | por asignar | pendiente | 0 | — | Keywords |
-| I. Introducción | por asignar | pendiente | 0 / ~300–450 | — | Aprobar outline Fase 4 |
+| I. Introducción | por asignar | pendiente | 0 / ~300–450 | — | Redactar (outline ya aprobado) |
 | II. Dominio AR | Quinnie | pendiente | 0 / ~450–650 | — | Texto + fuentes |
 | III.A GenIA (IA gen. general) | Jose Manuel Carvajal | pendiente | 0 / ~200–350 | — | Él aporta contenido |
 | III.B DevOps | Jonathan Sandoval | borrador sanitizado | ver maestro | [@Bass2015] [@Jabbari2016] [@Vaquero2020] | Detalle industrial solo en `privado/` |
@@ -27,7 +27,7 @@ Archivo operativo del equipo. Al integrar texto nuevo: actualizar **Estado** + *
 | Conclusión | Equipo | pendiente | 0 / ~150–250 | — | Tras cuerpo |
 | Referencias | Equipo | borrador catálogo | ver `FUENTES.md` | [@Ceret2013] | Fuentes AR/enfoques |
 
-## PPT (versionada en `/contexto/`)
+## PPT (versionada en `PRESENTACION.md`)
 
 | Artefacto | Archivo | Estado | Qué falta |
 |-----------|---------|--------|-----------|
@@ -69,10 +69,11 @@ Archivo operativo del equipo. Al integrar texto nuevo: actualizar **Estado** + *
 | D17 | DevOps: caso industrial de augmentación en tiempo real (detalle **solo** en `contexto/privado/`) | 2026-08-07 | Usuario |
 | D23 | §III.B: versión completa en privado; versión sanitizada en borrador público | 2026-08-07 | Usuario |
 | D24 | Información del empleador / infra interna **no se versiona** (`.gitignore` → `contexto/privado/`) | 2026-08-07 | Usuario |
-| D18 | Versionar la **PPT en `/contexto/`** | 2026-08-07 | Usuario |
+| D18 | Versionar la **PPT** en `PRESENTACION.md` | 2026-08-07 | Usuario |
 | D19 | No hay rúbrica analítica con sub-pesos **aún** (solo 40/60 + checklist) | 2026-08-07 | Usuario |
 | D20 | Los **cuatro** enfoques van al paper (GenIA, DevOps, EDA, Progressive Delivery) | 2026-08-07 | Usuario |
-| D21 | Outline de `04_PLANTILLA.md` **aprobado** (Fase 4) | 2026-08-07 | Usuario |
+| D21 | Outline de `PLANTILLA_PAPER.md` **aprobado** (Fase 4) | 2026-08-07 | Usuario |
+| D25 | Estructura de `contexto/` consolidada (7 archivos públicos + `privado/`) | 2026-08-07 | Usuario |
 
 ---
 
@@ -148,6 +149,7 @@ Archivo operativo del equipo. Al integrar texto nuevo: actualizar **Estado** + *
 
 ## 4. Bitácora
 
+> **Nota de estructura (D25):** desde la consolidación, la memoria pública vive en 7 archivos + `privado/`. Entradas antiguas de esta bitácora pueden nombrar `00_`–`09_`, `FICHA_*` o `PPT_*`; ese contenido ya está en `REQUISITOS.md`, `PLANTILLA_PAPER.md`, `FUENTES.md`, `GESTION_PROYECTO.md` y `PRESENTACION.md`.
 
 Registros en orden cronológico (más reciente abajo).
 
@@ -219,7 +221,7 @@ Registros en orden cronológico (más reciente abajo).
 - Trabajo en MD; conversión IEEE al final.
 - Fechas: no priorizar (D14). Nombre metodología: aplazado (D15).
 - GenIA = IA generativa general (Jose Manuel). DevOps = caso industrial (luego en `privado/`).
-- PPT versionada: `PPT_SOCIALIZACION.md`, `PPT_CORREGIDA.md`.
+- PPT versionada (hoy: `PRESENTACION.md` Partes I y II; antes `PPT_SOCIALIZACION.md` / `PPT_CORREGIDA.md`).
 - Sin rúbrica analítica extra aún (D19).
 
 **Huecos mínimos restantes (entonces):** orden autores; S7; outline Fase 4.
@@ -229,7 +231,7 @@ Registros en orden cronológico (más reciente abajo).
 ## 2026-08-07 — Aprobación Fase 4 + 4 enfoques
 
 - D20: los 4 enfoques van al paper.  
-- D21: outline `04_PLANTILLA.md` aprobado.  
+- D21: outline `PLANTILLA_PAPER.md` aprobado (antes `04_PLANTILLA.md`).  
 - S7 confirmado.  
 - Siguiente: redacción incremental; DevOps con caso industrial restringido.
 
@@ -273,3 +275,17 @@ Registros en orden cronológico (más reciente abajo).
 - Eliminados los `00`–`09`, ficha suelta y PPTs separados (contenido preservado en los nuevos).
 - `privado/III_B_DEVOPS_GENIUS.md` ampliado (checklist E4 + lenguaje principiante).
 - Protocolo de ingesta confirmado en `LEEME_EQUIPO.md`.
+
+---
+
+## 2026-08-07 — READMEs + referencias a la estructura nueva
+
+**Clasificación:** documentación / mapa del repo.
+
+**Qué se hizo**
+- Creados `README.md` (raíz), `contexto/README.md` y actualizado `privado/README.md`.
+- Corregidas referencias rotas a `01_INSTRUCCIONES`, `03_RUBRICA`, `04_PLANTILLA`, `FICHA_*`, `PPT_*`, `09_BITACORA`.
+- D25: estructura consolidada documentada.
+- Bitácora histórica anotada para no confundir nombres viejos con archivos actuales.
+
+**Archivos:** `README.md`, `contexto/README.md`, `LEEME_EQUIPO.md`, `REQUISITOS.md`, `PLANTILLA_PAPER.md`, `PRESENTACION.md`, `GESTION_PROYECTO.md`, `privado/README.md`.

@@ -40,6 +40,8 @@ Ver detalle en `PLANTILLA_PAPER.md`. Resumen:
 
 ## Archivos (organización acotada)
 
+También: [`README.md`](../README.md) (raíz del repo) y [`README.md`](README.md) (esta carpeta).
+
 | Archivo | Para qué |
 |---------|----------|
 | `LEEME_EQUIPO.md` | Este mapa + reglas del equipo |
@@ -50,6 +52,8 @@ Ver detalle en `PLANTILLA_PAPER.md`. Resumen:
 | `GESTION_PROYECTO.md` | Estado + decisiones + glosario + bitácora |
 | `PRESENTACION.md` | PPT socialización + PPT corregida |
 | `privado/` | **Solo local (gitignored):** detalle industrial — no subir |
+
+**Ya no existen** (contenido fusionado): `00_`–`09_*.md`, `FICHA_DE_REQUISITOS.md`, `PPT_SOCIALIZACION.md`, `PPT_CORREGIDA.md`.
 
 ## Protocolo permanente (cada vez que llegue texto o un cambio)
 
