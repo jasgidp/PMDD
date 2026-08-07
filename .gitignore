@@ -17,3 +17,8 @@ Thumbs.db
 
 # macOS
 *.swp
+
+# --- Información industrial / empleador: NO publicar ---
+contexto/privado/
+**/GeniusRepositories/
+/tmp/genius-ar-probe/

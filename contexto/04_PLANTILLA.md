@@ -57,7 +57,7 @@ Por cada enfoque (subsecciones A–D), checklist E4:
 | Subsección | Enfoque | Responsable |
 |------------|---------|-------------|
 | III.A | GenIA (IA generativa, sentido amplio) | Jose Manuel Carvajal |
-| III.B | DevOps (ángulo Genius DevOps — material pendiente) | Jonathan Sandoval |
+| III.B | DevOps (caso industrial sanitizado) | Jonathan Sandoval — borrador en maestro; detalle en `privado/` |
 | III.C | Event Driven Architecture | Lina Ballesteros |
 | III.D | Progressive Delivery | Alejandro Ríos |
 

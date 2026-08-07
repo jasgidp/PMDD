@@ -8,7 +8,8 @@
 | Promote | Process Models Taxonomy for Enlightening choices | [@Ceret2013] | Base teórica de la espina |
 | AR / Realidad aumentada | Dominio del Equipo 2: Realidad aumentada (*Augmented Reality*) | Asignación equipo | Primera mención: “realidad aumentada (AR)” |
 | GenIA | IA generativa en sentido amplio (no un marco propietario del curso, salvo que Jose Manuel precise otro) | Usuario 2026-08-07 | Contenido: Jose Manuel Carvajal |
-| DevOps (Genius) | Prácticas DevOps según el contexto **Genius** que documente Jonathan; no inventar | Usuario 2026-08-07 | Investigación **después** de cerrar contexto y recibir material |
+| DevOps | Enfoque CI/CD + colaboración dev/ops; caso industrial de augmentación en tiempo real documentado solo en `privado/` | [@Bass2015] [@Jabbari2016] | No publicar detalle de empleador en repo público |
+| Augmentación (broadcast) | Superposición de gráficos sobre video en tiempo real (matiz vs AR móvil) | Notas en `privado/` | Usar con cuidado en el paper |
 | Universidad EAFIT | Afiliación institucional del equipo | Usuario | Pie IEEE |
 | PMDD / Procesos Modernos de Desarrollo de Software | Nombre del curso | Usuario (ortografía corregida: Software) | Afiliación |
 | EDA / Event Driven Architecture | Arquitectura orientada a eventos | Equipo (Lina) | Expandir en primera mención |

@@ -24,7 +24,9 @@
 | D14 | Fechas del enunciado: no priorizar / “no importan” para la gestión asistida | 2026-08-07 | Usuario |
 | D15 | Nombre de la metodología: **aplazar** hasta construir el trabajo | 2026-08-07 | Usuario |
 | D16 | GenIA = **IA generativa en general**; contenido a cargo de Jose Manuel | 2026-08-07 | Usuario |
-| D17 | DevOps: enfocar en lo que hace el **DevOps de Genius**; investigar cuando Jonathan pase material (después de cerrar contexto) | 2026-08-07 | Usuario |
+| D17 | DevOps: caso industrial de augmentación en tiempo real (detalle **solo** en `contexto/privado/`) | 2026-08-07 | Usuario |
+| D23 | §III.B: versión completa en privado; versión sanitizada en borrador público | 2026-08-07 | Usuario |
+| D24 | Información del empleador / infra interna **no se versiona** (`.gitignore` → `contexto/privado/`) | 2026-08-07 | Usuario |
 | D18 | Versionar la **PPT en `/contexto/`** | 2026-08-07 | Usuario |
 | D19 | No hay rúbrica analítica con sub-pesos **aún** (solo 40/60 + checklist) | 2026-08-07 | Usuario |
 | D20 | Los **cuatro** enfoques van al paper (GenIA, DevOps, EDA, Progressive Delivery) | 2026-08-07 | Usuario |
@@ -43,7 +45,7 @@
 | S5 | Sin biografías IEEE de revista | Vigente |
 | S6 | Año 2026 de las fechas del enunciado | Irrelevante para gestión (D14); se deja anotado en 02 |
 | S7 | Los cuatro enfoques entran en el paper | **Confirmado** (D20) |
-| S8 | SUPUESTO: “Genius” (DevOps) es un contexto concreto que Jonathan documentará; no inventar prácticas Genius sin su material | Vigente |
+| S8 | SUPUESTO: el caso industrial de augmentación broadcast (detalle en `privado/`) es transferible al dominio AR del curso con el matiz broadcast ≠ AR móvil | Vigente |
 
 ---
 
@@ -58,6 +60,7 @@
 ## Preguntas aún abiertas (mínimas)
 
 1. **Orden de autores** en el paper.  
-2. Canal LMS concreto (opcional; no bloquea el MD).  
-3. Material **Genius DevOps** (Jonathan; siguiente fase).  
-4. Nombre de la metodología (aplazado a propósito, D15).
+2. Canal LMS concreto (opcional).  
+3. Nombre de la metodología (aplazado, D15).  
+4. ¿Acortar §III.B sanitizado?  
+5. En la entrega final al profesor: ¿usar versión sanitizada o la de `privado/` (solo local)?

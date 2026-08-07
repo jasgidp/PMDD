@@ -44,8 +44,13 @@ Tras feedback de clase → actualizar este archivo y/o `PPT_CORREGIDA.md`.
 ### Diapositiva B1 — GenIA (Jose Manuel)
 *[pendiente]*
 
-### Diapositiva B2 — DevOps / Genius DevOps (Jonathan)
-*[pendiente — esperar material Genius]*
+### Diapositiva B2 — DevOps (Jonathan)
+
+- **DevOps:** commit→prod con calidad [@Bass2015] [@Jabbari2016]
+- **Caso industrial (privado):** augmentación en tiempo real sobre video deportivo + dual pipeline código/contenido
+- **Transferencia a AR:** CI/CD, contenedores, RC/staging, QA multi-rol [@Vaquero2020]
+- **Detalle empleador:** solo en `contexto/privado/` (no publicar)
+- **Por qué:** operar software + contenido gráfico de forma repetible
 
 ### Diapositiva B3 — Event Driven Architecture (Lina)
 *[pendiente]*

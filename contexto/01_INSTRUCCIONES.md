@@ -93,7 +93,7 @@ La ficha consolidada está en `FICHA_DE_REQUISITOS.md`.
 | Fechas: no importan para la gestión del asistente | Usuario |
 | Nombre de la metodología: decidir después | Usuario |
 | GenIA = IA generativa en general (Jose Manuel) | Usuario |
-| DevOps = ángulo **Genius DevOps** (material e investigación después) | Usuario |
+| DevOps = caso industrial de augmentación (detalle en `privado/`, no público) | Usuario |
 | PPT versionada en `/contexto/` | Usuario |
 | Sin rúbrica analítica con sub-pesos aún | Usuario |
 

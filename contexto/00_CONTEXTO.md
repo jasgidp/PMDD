@@ -25,7 +25,7 @@ Profesor(es) y evaluadores — Universidad EAFIT, curso Procesos Modernos de Des
 ## Alcance (dentro)
 
 - Dominio: Realidad aumentada.  
-- Enfoques: GenIA (IA generativa), DevOps (ángulo Genius — material pendiente), Event Driven Architecture, Progressive Delivery.  
+- Enfoques: GenIA (IA generativa), DevOps (caso industrial de augmentación en tiempo real — detalle en `privado/`), Event Driven Architecture, Progressive Delivery.  
 - Espina: Céret et al. 2013.  
 - Trabajo interno en **Markdown**; conversión IEEE al final.  
 - Abstract en **inglés**; cuerpo en español.  

@@ -13,7 +13,7 @@
 | I. Introducción | por asignar | pendiente | 0 / ~300–450 | — | Aprobar outline Fase 4 |
 | II. Dominio AR | Quinnie | pendiente | 0 / ~450–650 | — | Texto + fuentes |
 | III.A GenIA (IA gen. general) | Jose Manuel Carvajal | pendiente | 0 / ~200–350 | — | Él aporta contenido |
-| III.B DevOps (Genius) | Jonathan Sandoval | pendiente | 0 / ~200–350 | — | Esperar material Genius; luego investigar |
+| III.B DevOps | Jonathan Sandoval | borrador sanitizado | ver maestro | [@Bass2015] [@Jabbari2016] [@Vaquero2020] | Detalle industrial solo en `privado/` |
 | III.C Event Driven Architecture | Lina Ballesteros | pendiente | 0 / ~200–350 | — | Texto + fuentes |
 | III.D Progressive Delivery | Alejandro Ríos | pendiente | 0 / ~200–350 | — | Texto + fuentes |
 | IV. Espina (6 ejes) + valor diferencial | Equipo | pendiente | 0 / ~700–900 | [@Ceret2013] | Definir roles/formatos/ciclos |

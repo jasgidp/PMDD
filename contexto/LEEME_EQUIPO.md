@@ -23,7 +23,7 @@ Trabajamos en **Markdown** y al final convertimos a formato IEEE.
 2. Dominio AR (estado actual) — **Quinnie**  
 3. Enfoques (los 4 van al paper):  
    - GenIA — **Jose Manuel**  
-   - DevOps (ángulo Genius) — **Jonathan**  
+   - DevOps — **Jonathan** (detalle industrial en `contexto/privado/`, gitignored)  
    - Event Driven Architecture — **Lina**  
    - Progressive Delivery — **Alejandro**  
 4. Espina de pescado (Ciclo, Colaboración, Artefactos, Uso recomendado, Madurez, Flexibilidad) + valor diferencial — **equipo**  
@@ -48,7 +48,7 @@ Base de la espina: PDF `A taxonomy of design methods process models (1).pdf` (C�
 | `02_CONDICIONES_ENTREGA.md` | Formato y reglas |
 | `03_RUBRICA.md` | 40/60 + checklist |
 | `04_PLANTILLA.md` | Outline aprobado |
-| `05_FUENTES.md` | Bibliografía viva |
+| `05_FUENTES.md` | Bibliografía viva (pública) |
 | `06_ESTADO_ENTREGABLE.md` | Quién / qué falta |
 | `07_DECISIONES_Y_SUPUESTOS.md` | Decisiones del equipo |
 | `08_GLOSARIO.md` | Términos unificados |
@@ -56,6 +56,7 @@ Base de la espina: PDF `A taxonomy of design methods process models (1).pdf` (C�
 | `BORRADOR_MAESTRO.md` | Paper en construcción |
 | `PPT_SOCIALIZACION.md` | Diapositivas |
 | `PPT_CORREGIDA.md` | PPT post-feedback |
+| `privado/` | **Solo local (gitignored):** detalle industrial del empleador — no subir |
 
 ## Pendiente de decidir
 

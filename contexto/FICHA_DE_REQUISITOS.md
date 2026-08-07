@@ -69,5 +69,5 @@ Español (cuerpo); IEEE; no inventar; DevOps y GenIA obligatorios entre enfoques
 
 ## 8. Ambiguidades restantes
 
-Orden de autores; si los 4 enfoques van todos al paper (S7); canal LMS concreto (no bloquea MD); nombre de metodología (aplazado a propósito); material Genius DevOps (fase siguiente).
+Orden de autores; canal LMS; nombre de metodología (aplazado); detalle industrial DevOps solo en `privado/`.
 

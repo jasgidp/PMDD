@@ -63,24 +63,17 @@ Registros en orden cronológico (más reciente abajo).
 
 ## 2026-08-07 — Cierre parcial de contexto (respuestas usuario)
 
-**Clasificación:** condiciones de entrega + afiliación + Abstract + flujo MD + PPT en contexto + alcance GenIA/DevOps Genius.
+**Clasificación:** condiciones de entrega + afiliación + Abstract + flujo MD + PPT + alcance GenIA/DevOps.
 
 **Qué se añadió/cambió**
 - Abstract en inglés; afiliación Universidad EAFIT / Procesos Modernos de Desarrollo de Software.
 - Trabajo en MD; conversión IEEE al final.
 - Fechas: no priorizar (D14). Nombre metodología: aplazado (D15).
-- GenIA = IA generativa general (Jose Manuel). DevOps = ángulo Genius (material luego).
+- GenIA = IA generativa general (Jose Manuel). DevOps = caso industrial (luego en `privado/`).
 - PPT versionada: `PPT_SOCIALIZACION.md`, `PPT_CORREGIDA.md`.
 - Sin rúbrica analítica extra aún (D19).
 
-**Archivos tocados**
-- `02_CONDICIONES_ENTREGA.md`, `00_CONTEXTO.md`, `03_RUBRICA.md`, `04_PLANTILLA.md`, `06_ESTADO_ENTREGABLE.md`, `07_DECISIONES_Y_SUPUESTOS.md`, `08_GLOSARIO.md`, `FICHA_DE_REQUISITOS.md`, `BORRADOR_MAESTRO.md`, `PPT_SOCIALIZACION.md` (nuevo), `PPT_CORREGIDA.md` (nuevo), `09_BITACORA.md`
-
-**Sin contradicciones** con lo ya acordado.
-
-**Afirmaciones [SIN FUENTE VERIFICADA]:** ninguna de contenido Genius/DevOps (explícitamente no investigar aún).
-
-**Huecos mínimos restantes:** orden autores; S7 (4 enfoques); aprobación outline Fase 4; material Genius.
+**Huecos mínimos restantes (entonces):** orden autores; S7; outline Fase 4.
 
 ---
 
@@ -89,7 +82,15 @@ Registros en orden cronológico (más reciente abajo).
 - D20: los 4 enfoques van al paper.  
 - D21: outline `04_PLANTILLA.md` aprobado.  
 - S7 confirmado.  
-- Siguiente: redacción incremental; DevOps/Genius cuando Jonathan aporte material.
+- Siguiente: redacción incremental; DevOps con caso industrial restringido.
+
+---
+
+## 2026-08-07 — Sección III.B DevOps (borrador)
+
+- Definición académica [@Bass2015] [@Jabbari2016]; puente AR [@Vaquero2020].
+- Checklist E4 cubierto.
+- Detalle del caso industrial **no** queda en archivos públicos (ver entrada de privacidad).
 
 ---
 
@@ -98,3 +99,19 @@ Registros en orden cronológico (más reciente abajo).
 - Repositorio: https://github.com/jasgidp/PMDD  
 - Rama: `main`  
 - Incluye materiales del curso + `contexto/` (sin `.venv` ni `_extract`).
+
+---
+
+## 2026-08-07 — Sondeo industrial (augmentación) + reescritura III.B
+
+- Notas y versión completa movidas después a `contexto/privado/` (gitignored).
+- Matiz: augmentación broadcast ≠ AR móvil.
+
+---
+
+## 2026-08-07 — Privacidad: industria → gitignore
+
+- Añadido `contexto/privado/` al `.gitignore`.
+- Detalle industrial (notas, §III.B completo, fuentes internas) solo en `privado/`.
+- Borrador público / PPT / glosario / fuentes: **sanitizados**.
+- D24: esa información no se versiona ni se publica en el remoto.
