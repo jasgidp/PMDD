@@ -1,0 +1,19 @@
+# Python
+.venv/
+__pycache__/
+*.pyc
+
+# Extracciones auxiliares (no material del curso)
+_extract/
+
+# Git anidado vacío / basura local
+Untitled/
+.DS_Store
+Thumbs.db
+
+# Word lock files
+~$*
+*.tmp
+
+# macOS
+*.swp
