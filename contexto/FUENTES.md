@@ -1,4 +1,5 @@
-# 05 — Bibliografía viva y verificación
+# FUENTES — bibliografía viva (pública)
+
 
 **Última actualización:** 2026-08-07 (sección DevOps)
 

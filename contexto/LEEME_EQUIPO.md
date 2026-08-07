@@ -8,57 +8,76 @@
 
 La carpeta `contexto/` es la **única fuente de verdad** del trabajo. Lo que no esté escrito ahí no cuenta como acordado.
 
+## Resumen del proyecto
+
+Construir una **metodología de software** para AR, con cuatro enfoques (GenIA, DevOps, Event Driven Architecture, Progressive Delivery), anclada en la espina/taxonomía Céret et al. (Ciclo, Colaboración, Artefactos, Uso recomendado, Madurez, Flexibilidad).  
+Abstract del paper: **inglés**. Cuerpo: **español**. Trabajo en Markdown → IEEE al final.
+
+| Persona | Rol |
+|---------|-----|
+| Quinnie | Dominio AR |
+| Jose Manuel Carvajal | GenIA |
+| Jonathan Sandoval | DevOps (detalle industrial solo en `privado/`) |
+| Lina Ballesteros | Event Driven Architecture |
+| Alejandro Ríos | Progressive Delivery |
+
 ## Qué entregar
 
 | Entregable | Peso | Qué es |
 |------------|------|--------|
-| Socialización (PPT) | 40% | Dominio, enfoques + por qué, espina (roles/formatos/ciclos), valor diferencial |
+| Socialización (PPT) | 40% | Dominio, enfoques + por qué, espina, valor diferencial |
 | Paper IEEE + PPT corregida | 60% | Lo mismo, refinado |
-
-Trabajamos en **Markdown** y al final convertimos a formato IEEE.
 
 ## Estructura del paper (aprobada)
 
+Ver detalle en `PLANTILLA_PAPER.md`. Resumen:
+
 1. Introducción  
-2. Dominio AR (estado actual) — **Quinnie**  
-3. Enfoques (los 4 van al paper):  
-   - GenIA — **Jose Manuel**  
-   - DevOps — **Jonathan** (detalle industrial en `contexto/privado/`, gitignored)  
-   - Event Driven Architecture — **Lina**  
-   - Progressive Delivery — **Alejandro**  
-4. Espina de pescado (Ciclo, Colaboración, Artefactos, Uso recomendado, Madurez, Flexibilidad) + valor diferencial — **equipo**  
+2. Dominio AR — **Quinnie**  
+3. Enfoques (los 4): GenIA, DevOps, EDA, Progressive Delivery  
+4. Espina de pescado + valor diferencial — **equipo**  
 5. Conclusión + Referencias  
 
-Base de la espina: PDF `A taxonomy of design methods process models (1).pdf` (Céret et al.).
-
-## Cómo aportar texto
-
-1. Escribe tu sección (no reescribas la de otro sin pedirlo).  
-2. Pásala al chat / al repo para integrarla en `BORRADOR_MAESTRO.md`.  
-3. Toda fuente debe ser **real y verificable** (priorizar papers/libros/actas).  
-4. Citas provisionales: `[@AutorAño]`.  
-5. Abstract del paper: **inglés**. Cuerpo: **español**.
-
-## Archivos clave en `contexto/`
+## Archivos (organización acotada)
 
 | Archivo | Para qué |
 |---------|----------|
-| `00_CONTEXTO.md` | Resumen del proyecto |
-| `01_INSTRUCCIONES.md` | Enunciado literal |
-| `02_CONDICIONES_ENTREGA.md` | Formato y reglas |
-| `03_RUBRICA.md` | 40/60 + checklist |
-| `04_PLANTILLA.md` | Outline aprobado |
-| `05_FUENTES.md` | Bibliografía viva (pública) |
-| `06_ESTADO_ENTREGABLE.md` | Quién / qué falta |
-| `07_DECISIONES_Y_SUPUESTOS.md` | Decisiones del equipo |
-| `08_GLOSARIO.md` | Términos unificados |
-| `09_BITACORA.md` | Historial de cambios |
+| `LEEME_EQUIPO.md` | Este mapa + reglas del equipo |
+| `REQUISITOS.md` | Enunciado literal + condiciones + rúbrica + ficha |
+| `PLANTILLA_PAPER.md` | Outline IEEE aprobado |
 | `BORRADOR_MAESTRO.md` | Paper en construcción |
-| `PPT_SOCIALIZACION.md` | Diapositivas |
-| `PPT_CORREGIDA.md` | PPT post-feedback |
-| `privado/` | **Solo local (gitignored):** detalle industrial del empleador — no subir |
+| `FUENTES.md` | Bibliografía viva (pública) |
+| `GESTION_PROYECTO.md` | Estado + decisiones + glosario + bitácora |
+| `PRESENTACION.md` | PPT socialización + PPT corregida |
+| `privado/` | **Solo local (gitignored):** detalle industrial — no subir |
+
+## Protocolo permanente (cada vez que llegue texto o un cambio)
+
+**Sí: cada cambio se refleja en contexto.** Flujo fijo:
+
+1. **Clasificar** qué es (requisito, fuente, texto de sección, decisión…).  
+2. **Repartir** al archivo que toca:  
+   - requisito/rúbrica/fecha → `REQUISITOS.md`  
+   - outline → `PLANTILLA_PAPER.md`  
+   - prosa del paper → `BORRADOR_MAESTRO.md`  
+   - cita → `FUENTES.md` (o `privado/` si es industrial)  
+   - estado/decisión/término → `GESTION_PROYECTO.md`  
+   - diapositivas → `PRESENTACION.md`  
+3. **Actualizar bitácora** (sección Bitácora en `GESTION_PROYECTO.md`).  
+4. **Actualizar estado** de la sección en `GESTION_PROYECTO.md`.  
+5. Reportar en el chat: archivos tocados, contradicciones, [SIN FUENTE], huecos.
+
+No reescribir texto de un compañero sin pedirlo.  
+Citas provisionales: `[@AutorAño]`. Fuentes reales y verificables.
+
+## Cómo aportar texto
+
+1. Escribe tu sección.  
+2. Pásala al chat / al repo para integrarla en `BORRADOR_MAESTRO.md`.  
+3. Revisa el checklist de tu parte en `REQUISITOS.md` (rúbrica).
 
 ## Pendiente de decidir
 
 - Orden de autores  
-- Nombre de la metodología (cuando armemos la espina)
+- Nombre de la metodología (cuando armemos la espina)  
+- En la entrega final: ¿versión sanitizada o detalle de `privado/` solo local?

@@ -1,4 +1,5 @@
-# 04 — Plantilla / estructura del documento
+# PLANTILLA_PAPER — outline IEEE aprobado (Fase 4)
+
 
 **Última actualización:** 2026-08-07  
 **Base de formato:** `formato-presentacion-documentos-ieee-es.doc`  
