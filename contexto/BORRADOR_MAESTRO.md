@@ -45,7 +45,21 @@ Quinnie; Jose Manuel Carvajal; Jonathan Sandoval; Lina Ballesteros; Alejandro R�
 
 ### A. GenIA
 *Responsable: Jose Manuel Carvajal.*  
-*[pendiente]*
+
+La Inteligencia Artificial Generativa (GenIA) utiliza modelos capaces de generar contenido nuevo a partir de patrones aprendidos de grandes volúmenes de datos. En Genius Sports, este enfoque se relaciona directamente con GeniusIQ, plataforma de datos e inteligencia artificial que combina grandes volúmenes de datos deportivos con IA y aprendizaje automático para análisis del juego, experiencias personalizadas, generación automatizada de contenido y augmentación de transmisiones. [@GeniusSportsIQ]
+
+En ingeniería de software, GenIA puede apoyar diferentes etapas del ciclo de vida: generación de requisitos e historias de usuario, diseño de componentes y arquitecturas, programación, creación de pruebas, documentación y mantenimiento. En el caso de Genius Sports, esto puede aprovechar sus APIs de datos deportivos, que proporcionan información sobre partidos, jugadores, estadísticas y eventos en tiempo real. [@GeniusSportsAPI]
+
+Para la ejecución de proyectos se propone un proceso iterativo y controlado: identificar el problema, preparar y validar los datos, diseñar la solución, construir un MVP, evaluar sus resultados y posteriormente desplegar y monitorear. Para información deportiva actualizada se propone RAG (Retrieval-Augmented Generation), recuperando información de fuentes autorizadas antes de generar la respuesta y evaluando posteriormente la calidad del sistema. [@GoogleRAG]
+
+Las principales técnicas propuestas son prompt engineering, few-shot prompting, RAG, human-in-the-loop, generación estructurada, guardrails, evaluación automática/humana y versionamiento de prompts. Como herramientas pueden utilizarse Python, Java o TypeScript, servicios de IA, frameworks de integración, bases de datos vectoriales, Git, Docker y herramientas de observabilidad; estas corresponden a alternativas de la propuesta y no a tecnologías confirmadas públicamente como infraestructura interna de Genius Sports.
+
+En cuanto al modelado, GenIA no requiere un lenguaje exclusivo. Se propone utilizar UML, BPMN, C4 Model, ERD, OpenAPI y JSON Schema para representar procesos, arquitectura, datos, APIs y estructura de las respuestas generadas. Los métodos complementarios incluyen Agile, Scrum/Kanban, DevOps, MLOps, DevSecOps, Design Thinking, Lean Startup, TDD y AI Risk Management.
+
+Se toma como referencia el AI Risk Management Framework de NIST, particularmente su perfil para GenIA, para gestionar riesgos relacionados con seguridad, privacidad, sesgos, propiedad intelectual, información incorrecta y otros riesgos propios de estos sistemas. [@NISTGenAI]
+
+Se elige GenIA porque permite aprovechar los datos deportivos de Genius Sports para generar contenido, análisis y experiencias personalizadas, al mismo tiempo que puede apoyar la productividad de los equipos de ingeniería. Su adopción debe ser gradual y acompañada de datos confiables, evaluación, trazabilidad, seguridad y supervisión humana.
+
 
 ### B. DevOps
 *Responsable: Jonathan Sandoval.*  
