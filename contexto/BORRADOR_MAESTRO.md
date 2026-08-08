@@ -77,7 +77,14 @@ Se elige DevOps porque el dominio AR exige iterar con seguridad operativa sobre 
 
 ### C. Event Driven Architecture
 *Responsable: Lina Ballesteros.*  
-*[pendiente]*
+La Arquitectura Orientada a Eventos (Event-Driven Architecture, EDA) es un estilo arquitectónico en el que componentes desacoplados producen, reciben y procesan eventos de forma asíncrona. Un evento representa un cambio de estado o un hecho relevante, y la comunicación suele seguir un modelo productor–consumidor mediante canales o buses de eventos. Este desacoplamiento permite que los componentes evolucionen de forma más independiente y favorece la modularidad, la escalabilidad y la integración de sistemas distribuidos [@Cabane2024].
+
+En ingeniería de software, EDA afecta decisiones de diseño, calidad, despliegue y observabilidad. Puede combinarse con microservicios y patrones como DDD/CQRS, pero su adopción debe evaluarse por contexto: la evidencia empírica muestra que no garantiza mejores tiempos de respuesta ni menor consumo de recursos frente a una arquitectura monolítica [@Cabane2024]. Por ello, se propone un proceso iterativo: identificar eventos del dominio y sus productores/consumidores; definir contratos y reglas de procesamiento; implementar el flujo; validar funcionalidad, latencia, throughput y resiliencia; desplegar; y monitorear. CEPEDALoCo muestra un ciclo similar apoyado en procesamiento de eventos complejos, brokers, APIs y pruebas sobre flujos reales [@RosaBilbao2023].
+
+Como técnicas se proponen publicación/suscripción, Event Streaming y Complex Event Processing (CEP). Entre las herramientas posibles están Apache Kafka, RabbitMQ, Azure Service Bus, Node-RED y motores CEP. Para modelado, EDA no posee un único lenguaje estándar; se proponen diagramas UML de secuencia y componentes, modelos de eventos y contratos AsyncAPI en JSON/YAML. AsyncAPI permite describir APIs orientadas a mensajes de forma legible por máquina y agnóstica al protocolo [@AsyncAPI]. Como métodos se proponen el diseño orientado a contratos de eventos, el modelado de patrones CEP y la validación iterativa mediante pruebas de integración, rendimiento y resiliencia.
+
+EDA se selecciona para realidad aumentada porque las experiencias distribuidas y colaborativas requieren reaccionar a cambios de interacción, sesión y estado compartido. SARA demuestra una arquitectura AR colaborativa donde servicios y clientes intercambian y procesan eventos para actualizar sesiones y elementos aumentados [@Vaquero2020]. Además, Oberhauser muestra que flujos EDA pueden visualizarse y analizarse en entornos inmersivos con Kafka y RabbitMQ, reforzando su aplicabilidad al ecosistema XR [@Oberhauser2023].
+
 
 ### D. Human-Centered Design (HCD)
 *Responsable: Alejandro Ríos.*
