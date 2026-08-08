@@ -22,7 +22,7 @@ Archivo operativo del equipo. Al integrar texto nuevo: actualizar **Estado** + *
 | III.A GenIA (IA gen. general) | Jose Manuel Carvajal | pendiente | 0 / ~200–350 | — | Él aporta contenido |
 | III.B DevOps | Jonathan Sandoval | borrador sanitizado | ver maestro | [@Bass2015] [@Jabbari2016] [@Vaquero2020] | Detalle industrial solo en `privado/` |
 | III.C Event Driven Architecture | Lina Ballesteros | pendiente | 0 / ~200–350 | — | Texto + fuentes |
-| III.D Progressive Delivery | Alejandro Ríos | pendiente | 0 / ~200–350 | — | Texto + fuentes |
+| III.D Human-Centered Design (HCD) | Alejandro Ríos | borrador integrado | ~450 / ~200–350 | [@ISO9241210] [@Seffah2005] [@Ferre2005] [@Graser2024] [@Nielsen1994] [@Paterno2000] [@OMG-IFML] | Verificar páginas de [@Ferre2005], [@Nielsen1994], [@Paterno2000]; recortar si excede |
 | IV. Espina (6 ejes) + valor diferencial | Equipo | pendiente | 0 / ~700–900 | [@Ceret2013] | Definir roles/formatos/ciclos |
 | Conclusión | Equipo | pendiente | 0 / ~150–250 | — | Tras cuerpo |
 | Referencias | Equipo | borrador catálogo | ver `FUENTES.md` | [@Ceret2013] | Fuentes AR/enfoques |
@@ -54,7 +54,7 @@ Archivo operativo del equipo. Al integrar texto nuevo: actualizar **Estado** + *
 | D2 | Citas provisionales `[@Clave]`; IEEE al ensamblar | 2026-08-07 | Usuario |
 | D3 | No redactar paper completo hasta aprobar outline Fase 4 | 2026-08-07 | Protocolo |
 | D4 | Dominio = **Realidad aumentada** (Equipo 2) | 2026-08-07 | Equipo |
-| D5 | Enfoques = GenIA, DevOps, EDA, Progressive Delivery | 2026-08-07 | Enunciado + equipo |
+| D5 | Enfoques = GenIA, DevOps, EDA, **HCD** *(sustituye Progressive Delivery, ver D26)* | 2026-08-07 | Enunciado + equipo |
 | D6 | Espina = 6 ejes Céret et al. | 2026-08-07 | Enunciado + usuario |
 | D7 | Referencias por **orden de aparición** | 2026-08-07 | Usuario |
 | D8 | Digital.ai / Gartner = **solo apoyo** | 2026-08-07 | Usuario |
@@ -71,9 +71,10 @@ Archivo operativo del equipo. Al integrar texto nuevo: actualizar **Estado** + *
 | D24 | Información del empleador / infra interna **no se versiona** (`.gitignore` → `contexto/privado/`) | 2026-08-07 | Usuario |
 | D18 | Versionar la **PPT** en `PRESENTACION.md` | 2026-08-07 | Usuario |
 | D19 | No hay rúbrica analítica con sub-pesos **aún** (solo 40/60 + checklist) | 2026-08-07 | Usuario |
-| D20 | Los **cuatro** enfoques van al paper (GenIA, DevOps, EDA, Progressive Delivery) | 2026-08-07 | Usuario |
+| D20 | Los **cuatro** enfoques van al paper (GenIA, DevOps, EDA, **HCD**) | 2026-08-07 | Usuario |
 | D21 | Outline de `PLANTILLA_PAPER.md` **aprobado** (Fase 4) | 2026-08-07 | Usuario |
 | D25 | Estructura de `contexto/` consolidada (7 archivos públicos + `privado/`) | 2026-08-07 | Usuario |
+| D26 | **Progressive Delivery se descarta**; Alejandro Ríos pasa a **Human-Centered Design (HCD)**. Motivo: HCD tiene literatura AR específica y normalización ISO, y cubre la validación con usuarios —que la evidencia señala como déficit del dominio [@Graser2024]—; Progressive Delivery quedaba sin respaldo bibliográfico propio en AR. Siguen siendo 4 enfoques, cumple la rúbrica. | 2026-08-07 | Equipo (Alejandro) |
 
 ---
 
@@ -127,7 +128,7 @@ Archivo operativo del equipo. Al integrar texto nuevo: actualizar **Estado** + *
 | Universidad EAFIT | Afiliación institucional del equipo | Usuario | Pie IEEE |
 | PMDD / Procesos Modernos de Desarrollo de Software | Nombre del curso | Usuario (ortografía corregida: Software) | Afiliación |
 | EDA / Event Driven Architecture | Arquitectura orientada a eventos | Equipo (Lina) | Expandir en primera mención |
-| Progressive Delivery | Entrega progresiva (técnicas de despliegue gradual / controlado) | Equipo (Alejandro) | Definición académica pendiente de fuente |
+| HCD / Human-Centered Design | Diseño centrado en el humano; normalizado en ISO 9241-210 | Equipo (Alejandro) | Expandir en primera mención. Sustituye a Progressive Delivery (D26) |
 | Metodología de SW | Forma de trabajo / método que el equipo va a proponer (primera aproximación) | Enunciado | Distinguir de “método”/“modelo de proceso” según [@Ceret2013] cuando haga falta |
 | Ciclo | Eje 1 espina / Axis Cycle | [@Ceret2013] + enunciado | |
 | Colaboración | Eje 2 / Collaboration | idem | Incluye roles |
@@ -192,7 +193,7 @@ Registros en orden cronológico (más reciente abajo).
 
 **Qué se integró**
 - Reto #1: Dominio, Enfoque y Espina de Pescado; paper IEEE; socialización 40% / paper 60%.
-- Dominio: Realidad aumentada (Quinnie). Enfoques: GenIA, DevOps (Jonathan), EDA, Progressive Delivery.
+- Dominio: Realidad aumentada (Quinnie). Enfoques: GenIA, DevOps (Jonathan), EDA, Progressive Delivery. *(Nota posterior: Progressive Delivery sustituido por HCD — ver D26 y entrada de bitácora del 2026-08-07.)*
 - Espina = 6 ejes; referencia `A taxonomy…pdf` [@Ceret2013].
 - Fechas: sábado próximo (socialización); miércoles 12 ago (paper + PPT corregida).
 - Refs por aparición; ~4 pp. base no norma; Digital.ai/Gartner solo apoyo; no alucinar; fuentes académicas prioritarias.
@@ -289,3 +290,30 @@ Registros en orden cronológico (más reciente abajo).
 - Bitácora histórica anotada para no confundir nombres viejos con archivos actuales.
 
 **Archivos:** `README.md`, `contexto/README.md`, `LEEME_EQUIPO.md`, `REQUISITOS.md`, `PLANTILLA_PAPER.md`, `PRESENTACION.md`, `GESTION_PROYECTO.md`, `privado/README.md`.
+
+---
+
+## 2026-08-07 — Cambio de enfoque: Progressive Delivery → HCD + §III.D redactada
+
+**Clasificación:** decisión de alcance + prosa de sección + fuentes.
+
+**Qué se hizo**
+- **D26:** se descarta Progressive Delivery; Alejandro Ríos asume **Human-Centered Design (HCD)**. Siguen siendo 4 enfoques (mínimo de la rúbrica cumplido: DevOps y GenIA + 2).
+- Actualizadas todas las referencias al enfoque en los archivos de contexto (roster, outline, rúbrica, PPT, cola de fuentes, glosario).
+- Redactada **§III.D HCD** en `BORRADOR_MAESTRO.md`: qué es, relación con IS, ejecución, técnicas/herramientas, lenguajes de modelado, métodos, y razón de elección.
+- Añadida la **tabla de aporte a los 6 ejes** de la espina al final de §III.D, como insumo para §IV.
+- Añadidas **7 fuentes** a `FUENTES.md`.
+- Añadido a `PLANTILLA_PAPER.md` §IV el desglose de los **34 sub-ejes** de [@Ceret2013], extraídos del PDF del repo.
+
+**Fuentes nuevas:** `[@ISO9241210]`, `[@Seffah2005]`, `[@Ferre2005]`, `[@Graser2024]`, `[@Nielsen1994]`, `[@Paterno2000]`, `[@OMG-IFML]`.
+
+**Verificación:** `[@Graser2024]` confirmada contra arXiv — autores (S. Graser, F. Kirschenlohr, S. Böhm), título, fecha y publicación en actas CENTRIC 2024 (Venecia, pp. 23–40). Se cita la versión de actas, no el preprint.
+
+**Huecos / pendientes**
+- ⚠️ Falta confirmar número de página exacto en `[@Ferre2005]`, `[@Nielsen1994]` y `[@Paterno2000]` antes del ensamblado IEEE.
+- §III.D quedó en ~450 palabras contra un objetivo de 200–350: hay que recortar o renegociar el objetivo con el equipo.
+- §IV sigue pendiente: falta el insumo de espina de los otros tres enfoques para consolidar.
+
+**Contradicción resuelta:** el repo asignaba Progressive Delivery a Alejandro Ríos en 7 archivos mientras el acuerdo del equipo era HCD. Queda alineado.
+
+**Archivos:** `LEEME_EQUIPO.md`, `REQUISITOS.md`, `PLANTILLA_PAPER.md`, `BORRADOR_MAESTRO.md`, `FUENTES.md`, `PRESENTACION.md`, `GESTION_PROYECTO.md`.

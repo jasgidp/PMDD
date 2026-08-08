@@ -10,7 +10,7 @@ La carpeta `contexto/` es la **única fuente de verdad** del trabajo. Lo que no 
 
 ## Resumen del proyecto
 
-Construir una **metodología de software** para AR, con cuatro enfoques (GenIA, DevOps, Event Driven Architecture, Progressive Delivery), anclada en la espina/taxonomía Céret et al. (Ciclo, Colaboración, Artefactos, Uso recomendado, Madurez, Flexibilidad).  
+Construir una **metodología de software** para AR, con cuatro enfoques (GenIA, DevOps, Event Driven Architecture, Human-Centered Design), anclada en la espina/taxonomía Céret et al. (Ciclo, Colaboración, Artefactos, Uso recomendado, Madurez, Flexibilidad).  
 Abstract del paper: **inglés**. Cuerpo: **español**. Trabajo en Markdown → IEEE al final.
 
 | Persona | Rol |
@@ -19,7 +19,7 @@ Abstract del paper: **inglés**. Cuerpo: **español**. Trabajo en Markdown → I
 | Jose Manuel Carvajal | GenIA |
 | Jonathan Sandoval | DevOps (detalle industrial solo en `privado/`) |
 | Lina Ballesteros | Event Driven Architecture |
-| Alejandro Ríos | Progressive Delivery |
+| Alejandro Ríos | Human-Centered Design (HCD) |
 
 ## Qué entregar
 
@@ -34,7 +34,7 @@ Ver detalle en `PLANTILLA_PAPER.md`. Resumen:
 
 1. Introducción  
 2. Dominio AR — **Quinnie**  
-3. Enfoques (los 4): GenIA, DevOps, EDA, Progressive Delivery  
+3. Enfoques (los 4): GenIA, DevOps, EDA, HCD  
 4. Espina de pescado + valor diferencial — **equipo**  
 5. Conclusión + Referencias  
 

@@ -60,7 +60,7 @@ Tras feedback de clase → actualizar la **Parte II** de este mismo archivo (`PR
 ### Diapositiva B3 — Event Driven Architecture (Lina)
 *[pendiente]*
 
-### Diapositiva B4 — Progressive Delivery (Alejandro)
+### Diapositiva B4 — Human-Centered Design (Alejandro)
 *[pendiente]*
 
 ### Diapositiva B5 — Por qué estos enfoques

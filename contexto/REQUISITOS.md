@@ -158,7 +158,7 @@ La ficha consolidada está en la **Parte A** de este mismo archivo.
   - GenIA — Jose Manuel Carvajal  
   - DevOps — Jonathan Sandoval  
   - Event Driven Architecture — Lina Ballesteros  
-  - Progressive Delivery — Alejandro Ríos  
+  - Human-Centered Design (HCD) — Alejandro Ríos  
 
 ---
 
@@ -287,7 +287,7 @@ Estos ítems funcionan como criterios de cumplimiento del enunciado (sin sub-pes
 | Principios de diseño/arquitectura | Principales principios seguidos | E3 | |
 | Ciclo de vida | Ciclo para llegar a soluciones | E3 | |
 
-### B. Enfoques (mín. 2; **incluir DevOps y GenIA**; el equipo además: EDA, Progressive Delivery)
+### B. Enfoques (mín. 2; **incluir DevOps y GenIA**; el equipo además: EDA, HCD)
 
 | Criterio (por cada enfoque) | Qué exige | Origen | ¿Dónde se cumple? |
 |-----------------------------|-----------|--------|-------------------|
