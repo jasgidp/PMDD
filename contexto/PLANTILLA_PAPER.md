@@ -49,7 +49,7 @@ Cubrir checklist E3:
 - **Fuentes:** artículos/libros AR + SE; Digital.ai/Gartner solo si aportan y se declara apoyo.
 
 ### III. Enfoques seleccionados y razón de elección (~1.0–1.3 p.)
-Mínimo cubrir **DevOps** y **GenIA**; el equipo incluye también **EDA** y **Progressive Delivery**.
+Mínimo cubrir **DevOps** y **GenIA**; el equipo incluye también **EDA** y **Human-Centered Design (HCD)**.
 
 Por cada enfoque (subsecciones A–D), checklist E4:
 - Qué es; relación con IS; ejecución de proyectos; técnicas/herramientas; lenguajes de modelado; métodos.
@@ -60,7 +60,7 @@ Por cada enfoque (subsecciones A–D), checklist E4:
 | III.A | GenIA (IA generativa, sentido amplio) | Jose Manuel Carvajal |
 | III.B | DevOps (caso industrial sanitizado) | Jonathan Sandoval — borrador en maestro; detalle en `privado/` |
 | III.C | Event Driven Architecture | Lina Ballesteros |
-| III.D | Progressive Delivery | Alejandro Ríos |
+| III.D | Human-Centered Design (HCD) | Alejandro Ríos |
 
 **Fuentes:** peer-reviewed / libros / actas IEEE-ACM; estándares si aplican.
 
@@ -75,6 +75,24 @@ Anclar cada eje en [@Ceret2013] (definición/gradación) y **definir lo seleccio
 6. Flexibilidad  
 
 Incluir **valor diferencial** frente a metodologías actuales del dominio.
+
+#### Sub-ejes de [@Ceret2013] (extraídos del PDF del repo)
+
+Usar el vocabulario y las gradaciones del autor en vez de descripciones vagas.
+
+| Eje | Sub-ejes |
+|-----|----------|
+| 1. Cycle | Increment · Iteration · Cycle duration · Parallelism · Backwards · Approach · Focus *(activities / product / decision / context oriented)* |
+| 2. Collaboration | Internal collaboration *(roles)* · External collaboration *(roles)* |
+| 3. Artifacts | Quantity · Formalization |
+| 4. Recommended use | Project size · Team size · Risks · Requirements maturity · Applications types · Team expertise |
+| 5. Maturity | Validation · Diffusion · Formalization of the process model · Metrics |
+| 6. Flexibility | Variability · Distensibility · Completeness |
+
+**Detalle útil al redactar:**
+- *Increment* se gradúa en **7 niveles**, desde «sin incremento» hasta «entregas en menos de 1 mes».
+- *Iteration* se gradúa por alcance: **local** (pocas tareas), **regional** (subconjunto importante), **global** (todo el proceso), más las combinaciones.
+- El paper **ya clasifica Spiral, RAD y XP** en estos ejes: la línea base para el **valor diferencial** no hay que construirla, ya está publicada.
 
 ### V. Conclusión (~0.25–0.35 p.)
 - Síntesis; limitaciones de esta “primera aproximación”; siguiente refinamiento post-feedback.
