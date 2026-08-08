@@ -22,7 +22,7 @@ Archivo operativo del equipo. Al integrar texto nuevo: actualizar **Estado** + *
 | III.A GenIA (IA gen. general) | Jose Manuel Carvajal | pendiente | 0 / ~200–350 | — | Él aporta contenido |
 | III.B DevOps | Jonathan Sandoval | borrador sanitizado | ver maestro | [@Bass2015] [@Jabbari2016] [@Vaquero2020] | Detalle industrial solo en `privado/` |
 | III.C Event Driven Architecture | Lina Ballesteros | pendiente | 0 / ~200–350 | — | Texto + fuentes |
-| III.D Human-Centered Design (HCD) | Alejandro Ríos | borrador integrado | ~450 / ~200–350 | [@ISO9241210] [@Seffah2005] [@Ferre2005] [@Graser2024] [@Nielsen1994] [@Paterno2000] [@OMG-IFML] | Verificar páginas de [@Ferre2005], [@Nielsen1994], [@Paterno2000]; recortar si excede |
+| III.D Human-Centered Design (HCD) | Alejandro Ríos | **redactada** | 343 / ~200–350 ✅ | [@ISO9241210] [@Seffah2005] [@Ferre2005] [@Graser2024] [@Nielsen1994] [@Paterno2000] [@OMG-IFML] | Fuentes verificadas; extensión dentro de objetivo. Pendiente: consolidar aporte en §IV |
 | IV. Espina (6 ejes) + valor diferencial | Equipo | pendiente | 0 / ~700–900 | [@Ceret2013] | Definir roles/formatos/ciclos |
 | Conclusión | Equipo | pendiente | 0 / ~150–250 | — | Tras cuerpo |
 | Referencias | Equipo | borrador catálogo | ver `FUENTES.md` | [@Ceret2013] | Fuentes AR/enfoques |
@@ -317,3 +317,22 @@ Registros en orden cronológico (más reciente abajo).
 **Contradicción resuelta:** el repo asignaba Progressive Delivery a Alejandro Ríos en 7 archivos mientras el acuerdo del equipo era HCD. Queda alineado.
 
 **Archivos:** `LEEME_EQUIPO.md`, `REQUISITOS.md`, `PLANTILLA_PAPER.md`, `BORRADOR_MAESTRO.md`, `FUENTES.md`, `PRESENTACION.md`, `GESTION_PROYECTO.md`.
+
+---
+
+## 2026-08-07 — §III.D: cita faltante, compresión y cierre de fuentes
+
+**Clasificación:** corrección de sección + fuentes.
+
+**Qué se hizo**
+- **Corregido:** `[@Picardi2024]` figuraba en `FUENTES.md` sin citarse en la prosa. En IEEE las referencias se numeran por orden de aparición, así que una fuente no citada no puede numerarse. Se integró en el párrafo de razón de elección.
+- **Comprimida §III.D de 483 a 343 palabras**, dentro del objetivo de 200–350. Se mantienen las seis preguntas de la rúbrica y las ocho citas. Lo recortado fue redundancia de redacción, no contenido: enumeración completa de los seis principios ISO y desglose por fase de las técnicas.
+- **Fuentes cerradas:** confirmadas páginas de `[@Ferre2005]` (pp. 173–200) y `[@Nielsen1994]` (pp. 25–62), y edición de `[@Paterno2000]` (1.ª ed., 2000). Sin marcas pendientes.
+- `[@ISO9241210]` reformateada al estilo IEEE de normas (sin la organización como autor).
+
+**Pendiente para el equipo**
+- Fijar criterio único de formato para normas y especificaciones: `[@OMG-IFML]` todavía lleva la organización como autor, `[@ISO9241210]` ya no.
+- Confirmar el DOI de `[@Picardi2024]`: se derivó del patrón MDPI, la página devolvió 403.
+- **§IV sigue vacía.** Es lo único que el profesor pidió explícitamente para llegar a clase con una propuesta. Falta el insumo de espina de GenIA, DevOps y EDA.
+
+**Archivos:** `BORRADOR_MAESTRO.md`, `GESTION_PROYECTO.md`.
