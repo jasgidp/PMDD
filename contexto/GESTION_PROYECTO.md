@@ -21,7 +21,7 @@ Archivo operativo del equipo. Al integrar texto nuevo: actualizar **Estado** + *
 | II. Dominio AR | Quinnie | borrador externo | ver `estado-arte-realidad-aumentada/` | ver PDF/TeX | Integrar prosa a `BORRADOR_MAESTRO.md` + fuentes a `FUENTES.md` |
 | III.A GenIA (IA gen. general) | Jose Manuel Carvajal | pendiente | 0 / ~200–350 | — | Él aporta contenido |
 | III.B DevOps | Jonathan Sandoval | borrador sanitizado | ver maestro | [@Bass2015] [@Jabbari2016] [@Vaquero2020] | Detalle industrial solo en `privado/` |
-| III.C Event Driven Architecture | Lina Ballesteros | pendiente | 0 / ~200–350 | — | Texto + fuentes |
+| III.C Event Driven Architecture | Lina Ballesteros | redactada | 334 / ~200–350 ✅ | [@Cabane2024] [@RosaBilbao2023] [@Vaquero2020] [@Oberhauser2023] [@AsyncAPI] | Pendiente feedback de socialización |
 | III.D Human-Centered Design (HCD) | Alejandro Ríos | **redactada** | 343 / ~200–350 ✅ | [@ISO9241210] [@Seffah2005] [@Ferre2005] [@Graser2024] [@Nielsen1994] [@Paterno2000] [@OMG-IFML] | Fuentes verificadas; extensión dentro de objetivo. Pendiente: consolidar aporte en §IV |
 | IV. Espina (6 ejes) + valor diferencial | Equipo | pendiente | 0 / ~700–900 | [@Ceret2013] | Definir roles/formatos/ciclos |
 | Conclusión | Equipo | pendiente | 0 / ~150–250 | — | Tras cuerpo |

@@ -58,7 +58,34 @@ Tras feedback de clase → actualizar la **Parte II** de este mismo archivo (`PR
 - **Por qué:** operar software + contenido gráfico de forma repetible
 
 ### Diapositiva B3 — Event Driven Architecture (Lina)
-*[pendiente]*
+
+**Título:**
+EDA — Reaccionar a eventos sin acoplar componentes
+
+Evento
+
+↓
+
+Producer
+
+↓
+
+Event Bus / Broker
+
+↓
+
+Render AR / Analítica IA / Estado Compartido
+
+
+- Comunicación asíncrona productor–consumidor.
+- Desacoplamiento entre componentes y equipos.
+- Kafka / RabbitMQ / CEP / AsyncAPI.
+-- Aplicable a AR distribuida y colaborativa.
+- No se adopta por defecto: se valida con métricas.
+
+**Por qué EDA en AR:**
+Interacciones, tracking y cambios de sesión pueden convertirse en eventos consumidos independientemente por renderizado, colaboración, analítica u otros servicios.
+
 
 ### Diapositiva B4 — Human-Centered Design (Alejandro)
 *[pendiente]*
