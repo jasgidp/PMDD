@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Estado del Arte en Realidad Aumentada — Preview IEEE</title>
+<style>
+  :root {
+    --page-w: 8.5in;
+    --col-gap: 0.25in;
+    --text: #111;
+    --muted: #444;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: #e8e8e8;
+    color: var(--text);
+    font-family: "Times New Roman", Times, "Nimbus Roman", serif;
+    line-height: 1.15;
+  }
+  .toolbar {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: #1a1a1a;
+    color: #fff;
+    padding: 10px 16px;
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    justify-content: space-between;
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 13px;
+  }
+  .toolbar span { opacity: 0.85; }
+  .toolbar button {
+    background: #fff;
+    color: #111;
+    border: 0;
+    border-radius: 6px;
+    padding: 6px 12px;
+    cursor: pointer;
+    font-weight: 600;
+  }
+  .sheet {
+    width: var(--page-w);
+    margin: 24px auto;
+    background: #fff;
+    box-shadow: 0 8px 28px rgba(0,0,0,0.18);
+    padding: 0.75in 0.75in 0.9in;
+  }
+  h1.title {
+    font-size: 14pt;
+    font-weight: 700;
+    text-align: center;
+    margin: 0 0 10px;
+    line-height: 1.25;
+  }
+  .authors {
+    text-align: center;
+    font-size: 10pt;
+    margin-bottom: 14px;
+  }
+  .authors .name { font-weight: 700; }
+  .authors .aff { font-size: 9pt; color: var(--muted); }
+  .abstract, .keywords {
+    font-size: 9pt;
+    margin: 0 0 10px;
+    text-align: justify;
+  }
+  .abstract b, .keywords b { font-style: italic; }
+  .columns {
+    column-count: 2;
+    column-gap: var(--col-gap);
+    column-rule: none;
+    font-size: 10pt;
+    text-align: justify;
+    hyphens: auto;
+  }
+  h2 {
+    font-size: 10pt;
+    font-weight: 700;
+    margin: 12px 0 6px;
+    break-after: avoid;
+    text-transform: none;
+  }
+  h3 {
+    font-size: 10pt;
+    font-weight: 700;
+    font-style: italic;
+    margin: 8px 0 4px;
+    break-after: avoid;
+  }
+  p { margin: 0 0 7px; }
+  ol, ul { margin: 0 0 8px 1.1em; padding: 0; }
+  li { margin-bottom: 4px; }
+  em { font-style: italic; }
+  .refs {
+    font-size: 8pt;
+    margin-top: 10px;
+  }
+  .refs h2 { font-size: 10pt; }
+  .refs ol {
+    list-style: none;
+    margin-left: 1.4em;
+    counter-reset: bib;
+  }
+  .refs li {
+    counter-increment: bib;
+    margin-bottom: 5px;
+    text-indent: -1.4em;
+    padding-left: 0;
+  }
+  .refs li::before {
+    content: "[" counter(bib) "] ";
+    font-weight: 700;
+  }
+  .cite { font-size: 8pt; vertical-align: super; }
+  .note {
+    font-size: 9pt;
+    margin-top: 8px;
+  }
+  @media print {
+    body { background: #fff; }
+    .toolbar { display: none; }
+    .sheet {
+      margin: 0;
+      box-shadow: none;
+      width: auto;
+    }
+  }
+  @media (max-width: 900px) {
+    .sheet { width: 100%; margin: 0; padding: 20px; }
+    .columns { column-count: 1; }
+  }
+</style>
+</head>
+<body>
+  <div class="toolbar">
+    <span>Preview IEEE Conference · Estado del Arte en RA</span>
+    <button onclick="window.print()">Imprimir / Guardar PDF</button>
+  </div>
+
+  <article class="sheet">
+    <h1 class="title">Estado del Arte en Realidad Aumentada:<br>Definición, Desarrollo, Metodologías, Arquitectura y Ciclo de Vida</h1>
+    <div class="authors">
+      <div class="name">Autor</div>
+      <div class="aff">Documento de estado del arte · Formato IEEE Conference</div>
+    </div>
+
+    <p class="abstract"><b>Abstract—</b>Este documento presenta un estado del arte de la Realidad Aumentada (RA) orientado a responder cinco preguntas de investigación: qué es y cuál es su estado de desarrollo; cómo se abordan los proyectos; qué metodologías se emplean; cuáles son los principios de diseño y arquitectura predominantes; y qué ciclo de vida se sigue para construir soluciones. Se sintetiza evidencia de encuestas clásicas y contemporáneas, marcos de arquitectura de referencia y propuestas de desarrollo y evaluación centradas en el usuario.</p>
+    <p class="keywords"><b>Keywords—</b>Realidad aumentada, estado del arte, metodología de desarrollo, arquitectura de software, ciclo de vida, diseño centrado en el usuario</p>
+
+    <div class="columns">
+      <h2>I. Qué es la Realidad Aumentada y cuál es su estado de desarrollo</h2>
+
+      <h3>A. Definición y delimitación conceptual</h3>
+      <p>La Realidad Aumentada (RA) se define clásicamente como un sistema que <em>(i)</em> combina objetos reales y virtuales en un entorno real, <em>(ii)</em> opera de forma interactiva y en tiempo real, y <em>(iii)</em> registra (alinea) objetos reales y virtuales en tres dimensiones<span class="cite">[1]</span>. Esta definición es tecnológicamente agnóstica: no se restringe a un tipo particular de visualizador (p.&nbsp;ej., HMD) ni al sentido de la vista<span class="cite">[3]</span>.</p>
+      <p>Milgram y Kishino situaron la RA dentro del <em>continuum</em> realidad–virtualidad de la Realidad Mixta (RM), donde el entorno predominante es el mundo real y este se enriquece con contenido generado por computador; el extremo opuesto es la Realidad Virtual (RV) y, entre ambos, aparece la Virtualidad Aumentada<span class="cite">[2]</span>. Billinghurst, Clark y Lee consolidaron esta base conceptual en un estudio amplio de HCI, reafirmando el papel de la RA como interfaz espacial que superpone información digital al entorno físico<span class="cite">[4]</span>.</p>
+
+      <h3>B. Estado de desarrollo</h3>
+      <p>El campo evolucionó desde prototipos de laboratorio hacia plataformas móviles y <em>wearables</em> de uso más amplio. Azuma<span class="cite">[1]</span> identificó tempranamente el registro, la latencia y la sensorización como problemas centrales. La actualización de 2001 documentó avances en <em>tracking</em>, despliegues móviles y displays, sin resolver por completo la alineación estable en entornos no controlados<span class="cite">[3]</span>.</p>
+      <p>Los meta-análisis de ISMAR muestran el desplazamiento temático del área: Zhou <em>et al.</em> sintetizaron la primera década con foco en <em>tracking</em>, interacción y display<span class="cite">[5]</span>; Kim <em>et al.</em> reportaron, para 2008–2017, un aumento marcado de evaluación y <em>rendering</em>, junto con el auge de RA móvil y reconstrucción 3D<span class="cite">[6]</span>. En años recientes, Goh <em>et al.</em> observan que la investigación en RA <em>wearable</em> se orienta a adopción masiva, ética, accesibilidad, avatares/<em>embodiment</em> y agentes virtuales inteligentes, además de retos persistentes en display, tracking e interacción<span class="cite">[7]</span>.</p>
+      <p>En paralelo, revisiones técnicas recientes sistematizan tecnologías de tracking, herramientas de desarrollo, displays, RA colaborativa y preocupaciones de seguridad<span class="cite">[8]</span>. Devagiri <em>et al.</em> ofrecen un panorama consolidado de 2024: tecnologías habilitadoras y potenciadoras, matriz de hardware comercial, capacidades de software y un conjunto de guías de desarrollo desde la ideación hasta el despliegue<span class="cite">[9]</span>. En conjunto, el estado actual puede caracterizarse como <em>madurez parcial</em>: la RA es viable comercialmente en móviles y en nichos industriales/educativos, mientras que la RA óptica <em>see-through</em> “indistinguible” y la adopción generalizada siguen siendo desafíos abiertos<span class="cite">[7],[9]</span>.</p>
+
+      <h2>II. Cómo se abordan los proyectos en el contexto de RA</h2>
+      <p>Los proyectos de RA suelen abordarse como sistemas socio-técnicos en los que hardware (cámara, IMU, HMD, dispositivo móvil), software (<em>tracking</em>, renderizado, gestión de escena) y contenido (modelos 3D, anotaciones, reglas de interacción) deben co-diseñarse<span class="cite">[10],[9]</span>.</p>
+      <p>En la práctica, el abordaje típico incluye:</p>
+      <ol>
+        <li><strong>Delimitación del caso de uso y contexto de uso:</strong> dominio, usuarios, entorno físico y restricciones de seguridad<span class="cite">[14],[12]</span>.</li>
+        <li><strong>Selección de plataforma y modalidad de display:</strong> RA móvil (<em>handheld</em>), HMD óptico o por video, o configuraciones colaborativas heterogéneas<span class="cite">[8],[9]</span>.</li>
+        <li><strong>Elección de la estrategia de anclaje espacial:</strong> marcadores fiduciales, SLAM/<em>markerless</em>, localización visual-inercial o mapas previos<span class="cite">[6],[8]</span>.</li>
+        <li><strong>Diseño de la interfaz espacial e interacción:</strong> gestos, voz, mirada, tangibles o híbridos, cuidando carga cognitiva y coherencia real–virtual<span class="cite">[19],[18]</span>.</li>
+        <li><strong>Implementación iterativa y evaluación con usuarios:</strong> prototipado temprano y métricas de efectividad, eficiencia y satisfacción en contexto<span class="cite">[14],[16]</span>.</li>
+      </ol>
+      <p>En RA colaborativa, el abordaje se amplía a dimensiones de espacio, tiempo, simetría de roles y de tecnología, y modalidades de entrada/salida, lo que exige decisiones explícitas de arquitectura multi-usuario y <em>awareness</em> compartido<span class="cite">[11],[12]</span>.</p>
+
+      <h2>III. Metodologías utilizadas</h2>
+      <p>No existe una única metodología estándar universal para RA; la literatura converge en la combinación de marcos de desarrollo multimedia/software con diseño centrado en el humano (HCD) y evaluación específica de usabilidad en RA.</p>
+
+      <h3>A. Ciclos de desarrollo multimedia adaptados</h3>
+      <p>Roedavan <em>et al.</em> proponen un marco basado en el <em>Multimedia Development Life Cycle</em> (MDLC) adaptado a RA, estructurado en capas de fase, etapa de desarrollo y componentes. En producción distinguen núcleo (<em>tracking</em> y anclaje), visual (contenido y renderizado) e interacción; en postproducción enfatizan evaluación de compatibilidad, desempeño y usabilidad<span class="cite">[13]</span>.</p>
+
+      <h3>B. Diseño centrado en el usuario</h3>
+      <p>ISO 9241-210 provee el marco general de HCD para sistemas interactivos—comprensión del contexto, especificación de requisitos, producción de soluciones y evaluación—aplicable a RA como sistema interactivo espacial<span class="cite">[15]</span>. NIST IR&nbsp;8422 operacionaliza este enfoque para RA mediante un marco de evaluación de usabilidad en cinco componentes: alcance, usuarios y contexto, escenarios/tareas, métricas y medidas<span class="cite">[14]</span>.</p>
+
+      <h3>C. Evaluación HCI específica de RA</h3>
+      <p>Dünser y Billinghurst argumentan que los métodos HCI tradicionales deben adaptarse porque la RA introduce factores de registro espacial, confort, carga cognitiva y acoplamiento con el entorno físico<span class="cite">[16]</span>. Trabajos previos del mismo grupo plantean la aplicación explícita de principios HCI al diseño de sistemas RA<span class="cite">[17]</span>. Endsley <em>et al.</em> aportan heurísticas de diseño orientadas a interacciones dinámicas en entornos aumentados<span class="cite">[18]</span>.</p>
+      <p>En síntesis, las metodologías predominantes son: <strong>(a)</strong> ciclos iterativos tipo MDLC/ágil adaptados a componentes RA; <strong>(b)</strong> HCD/ISO&nbsp;9241-210; y <strong>(c)</strong> evaluación heurística y empírica específica de RA.</p>
+
+      <h2>IV. Principios de diseño y arquitectura</h2>
+
+      <h3>A. Principios de diseño</h3>
+      <p>Kourouthanassis <em>et al.</em> enfatizan utilidad contextual, interacción natural, gestión de la atención y coherencia entre capas real y virtual<span class="cite">[19]</span>. Endsley <em>et al.</em> formalizan heurísticas para interacciones dinámicas, advirtiendo que omitir usabilidad incrementa errores y erosiona la confianza del usuario<span class="cite">[18]</span>. Dünser <em>et al.</em> recomiendan trasladar principios HCI (visibilidad del estado del sistema, correspondencia con el mundo real, control del usuario, prevención de errores, etc.) al dominio espacial de la RA<span class="cite">[17]</span>.</p>
+      <p>Principios recurrentes en la literatura:</p>
+      <ul>
+        <li>Registro espacial estable y baja latencia percibida.</li>
+        <li>Claridad de la información aumentada sin ocluir indebidamente el entorno relevante.</li>
+        <li>Interacción alineada con capacidades del dispositivo y del usuario.</li>
+        <li>Consideración de confort, seguridad, privacidad y continuidad ante interrupciones.</li>
+        <li>Soporte a <em>awareness</em> y coordinación en escenarios colaborativos<span class="cite">[12]</span>.</li>
+      </ul>
+
+      <h3>B. Arquitectura de sistemas</h3>
+      <p>Reicher <em>et al.</em> formularon una arquitectura de referencia destacando atributos como latencia de tracking/renderizado, operación inalámbrica, múltiples dispositivos de tracking, reutilización e integración de componentes<span class="cite">[20]</span>. MacWilliams <em>et al.</em> complementaron con un catálogo de patrones de diseño para RA<span class="cite">[21]</span>.</p>
+      <p>A nivel industrial/estándar, ETSI GS ARF&nbsp;003 especifica una arquitectura funcional de referencia con bloques lógicos interconectados por puntos de referencia y despliegue en dispositivo, nube o híbrido<span class="cite">[22]</span>. Schmalstieg y Höllerer sistematizan la arquitectura típica como acoplamiento de visión por computador, gráficos, tracking, visualización e interacción 3D<span class="cite">[10]</span>.</p>
+      <p>Esquemáticamente, las arquitecturas de RA suelen descomponerse en: <em>captura/sensado</em>, <em>tracking y mapeo del mundo</em>, <em>modelo del entorno/contexto</em>, <em>lógica de aplicación</em>, <em>renderizado/presentación</em> e <em>interacción</em>, con requisitos transversales de tiempo real y baja latencia extremo a extremo<span class="cite">[20],[22]</span>.</p>
+
+      <h2>V. Ciclo de vida para llegar a soluciones en RA</h2>
+      <p>A partir de la convergencia entre MDLC adaptado<span class="cite">[13]</span>, guías de desarrollo contemporáneas<span class="cite">[9]</span> y HCD/evaluación de usabilidad<span class="cite">[15],[14]</span>, el ciclo de vida típico puede formularse así:</p>
+      <ol>
+        <li><strong>Ideación y análisis de contexto.</strong> Problema, usuarios, entorno, riesgos y valor de la aumentación<span class="cite">[9],[14]</span>.</li>
+        <li><strong>Especificación de requisitos.</strong> Funcionales y no funcionales (latencia, precisión, autonomía, privacidad, colaboración)<span class="cite">[20],[12]</span>.</li>
+        <li><strong>Diseño conceptual y arquitectónico.</strong> Display/plataforma, tracking, patrones y heurísticas de UI espacial<span class="cite">[21],[22],[18]</span>.</li>
+        <li><strong>Preparación de activos y prototipado.</strong> Modelos 3D, marcadores/mapas, interacciones<span class="cite">[13],[10]</span>.</li>
+        <li><strong>Implementación (núcleo, visual, interacción).</strong> Pipeline tracking–render–input<span class="cite">[13],[8]</span>.</li>
+        <li><strong>Evaluación iterativa.</strong> Pruebas técnicas y de usabilidad en contexto<span class="cite">[14],[16]</span>.</li>
+        <li><strong>Despliegue, operación y evolución.</strong> Publicación, monitoreo y mejora continua<span class="cite">[9]</span>.</li>
+      </ol>
+      <p>Este ciclo es inherentemente <strong>iterativo</strong>: los hallazgos de evaluación realimentan requisitos y diseño, en coherencia con ISO&nbsp;9241-210<span class="cite">[15]</span> y con la evidencia de que la madurez de RA depende tanto de avances técnicos como de calidad de experiencia de usuario<span class="cite">[6],[7]</span>.</p>
+
+      <p class="note"><strong>Nota de alcance—</strong>Este documento se limita al estado del arte orientado a las cinco preguntas formuladas. No desarrolla contribuciones experimentales propias ni una revisión sistemática exhaustiva de todos los subdominios de aplicación.</p>
+
+      <div class="refs">
+        <h2>References</h2>
+        <ol>
+          <li>R. T. Azuma, “A survey of augmented reality,” <em>Presence: Teleoperators and Virtual Environments</em>, vol. 6, no. 4, pp. 355–385, Aug. 1997.</li>
+          <li>P. Milgram and F. Kishino, “A taxonomy of mixed reality visual displays,” <em>IEICE Trans. Inf. &amp; Syst.</em>, vol. E77-D, no. 12, pp. 1321–1329, Dec. 1994.</li>
+          <li>R. Azuma <em>et al.</em>, “Recent advances in augmented reality,” <em>IEEE Comput. Graph. Appl.</em>, vol. 21, no. 6, pp. 34–47, Nov./Dec. 2001.</li>
+          <li>M. Billinghurst, A. Clark, and G. Lee, “A survey of augmented reality,” <em>Found. Trends Hum.–Comput. Interact.</em>, vol. 8, no. 2–3, pp. 73–272, 2015.</li>
+          <li>F. Zhou, H. B.-L. Duh, and M. Billinghurst, “Trends in augmented reality tracking, interaction and display: A review of ten years of ISMAR,” in <em>Proc. IEEE ISMAR</em>, 2008, pp. 193–202.</li>
+          <li>K. Kim <em>et al.</em>, “Revisiting trends in augmented reality research: A review of the 2nd decade of ISMAR (2008–2017),” <em>IEEE Trans. Vis. Comput. Graphics</em>, vol. 24, no. 11, pp. 2947–2962, Nov. 2018.</li>
+          <li>Y. Goh <em>et al.</em>, “Wearable augmented reality: Research trends and future directions from three major venues,” <em>IEEE Trans. Vis. Comput. Graphics</em>, 2023.</li>
+          <li>T. A. Syed <em>et al.</em>, “In-depth review of augmented reality…,” <em>Sensors</em>, vol. 23, no. 1, Art. no. 146, 2023.</li>
+          <li>J. S. Devagiri <em>et al.</em>, “The essentials: A comprehensive survey to get started in augmented reality,” <em>IEEE Access</em>, vol. 12, pp. 109012–109070, 2024.</li>
+          <li>D. Schmalstieg and T. Höllerer, <em>Augmented Reality: Principles and Practice</em>. Boston, MA, USA: Addison-Wesley, 2016.</li>
+          <li>M. Billinghurst and H. Kato, “Collaborative augmented reality,” <em>Commun. ACM</em>, vol. 45, no. 7, pp. 64–70, Jul. 2002.</li>
+          <li>M. Sereno <em>et al.</em>, “Collaborative work in augmented reality: A survey,” <em>IEEE Trans. Vis. Comput. Graphics</em>, vol. 28, no. 6, pp. 2530–2549, Jun. 2022.</li>
+          <li>R. Roedavan, A. Pudjoatmodjo, and Y. Sugiarto, “A framework for developing augmented reality applications based on the multimedia development life cycle (MDLC),” <em>J. Informatika dan Informasi Geografi</em>, vol. 16, no. 1, 2025.</li>
+          <li>Y.-Y. Cho, J. Sauer, and K. Choi, <em>Augmented Reality (AR) Usability Evaluation Framework</em> (NIST IR 8422). Gaithersburg, MD, USA: NIST, 2022.</li>
+          <li>ISO 9241-210:2019, <em>Ergonomics of human-system interaction—Part 210: Human-centred design for interactive systems</em>. Geneva, Switzerland: ISO, 2019.</li>
+          <li>A. Dünser and M. Billinghurst, “Evaluating augmented reality systems,” in <em>Handbook of Augmented Reality</em>, B. Furht, Ed. New York, NY, USA: Springer, 2011, pp. 289–307.</li>
+          <li>A. Dünser, R. Grasset, H. Seichter, and M. Billinghurst, “Applying HCI principles to AR systems design,” HIT Lab NZ, Univ. of Canterbury, Tech. Rep., 2007.</li>
+          <li>T. C. Endsley <em>et al.</em>, “Augmented reality design heuristics: Designing for dynamic interactions,” <em>Proc. Hum. Factors Ergon. Soc. Annu. Meet.</em>, vol. 61, no. 1, pp. 2100–2104, 2017.</li>
+          <li>P. E. Kourouthanassis, C. Boletsis, and G. Lekakos, “Demystifying the design of mobile augmented reality applications,” <em>Multimedia Tools Appl.</em>, vol. 74, pp. 1045–1066, 2015.</li>
+          <li>T. Reicher, A. MacWilliams, B. Bruegge, and G. Klinker, “Results of a study on software architectures for augmented reality systems,” Tech. Rep., Technische Univ. München / ARVIKA, 2003.</li>
+          <li>A. MacWilliams, T. Reicher, G. Klinker, and B. Bruegge, “Design patterns for augmented reality systems,” in <em>Proc. MIXER</em>, CEUR-WS, vol. 91, 2004.</li>
+          <li>ETSI, “Augmented Reality Framework (ARF); AR framework architecture,” ETSI GS ARF 003 V2.1.1, 2023.</li>
+        </ol>
+      </div>
+    </div>
+  </article>
+</body>
+</html>

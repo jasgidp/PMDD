@@ -1,0 +1,186 @@
+\documentclass[conference]{IEEEtran}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{cite}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{graphicx}
+\usepackage{url}
+\usepackage{hyperref}
+
+\begin{document}
+
+\title{Estado del Arte en Realidad Aumentada:\\
+Definici\'on, Desarrollo, Metodolog\'ias, Arquitectura y Ciclo de Vida}
+
+\author{
+\IEEEauthorblockN{Autor}
+\IEEEauthorblockA{Documento de estado del arte\\
+Formato IEEE Conference}
+}
+
+\maketitle
+
+\begin{abstract}
+Este documento presenta un estado del arte de la Realidad Aumentada (RA) orientado a responder cinco preguntas de investigaci\'on: qu\'e es y cu\'al es su estado de desarrollo; c\'omo se abordan los proyectos; qu\'e metodolog\'ias se emplean; cu\'ales son los principios de dise\~no y arquitectura predominantes; y qu\'e ciclo de vida se sigue para construir soluciones. Se sintetiza evidencia de encuestas cl\'asicas y contempor\'aneas, marcos de arquitectura de referencia y propuestas de desarrollo y evaluaci\'on centradas en el usuario.
+\end{abstract}
+
+\begin{IEEEkeywords}
+Realidad aumentada, estado del arte, metodolog\'ia de desarrollo, arquitectura de software, ciclo de vida, dise\~no centrado en el usuario
+\end{IEEEkeywords}
+
+\section{Qu\'e es la Realidad Aumentada y cu\'al es su estado de desarrollo}
+
+\subsection{Definici\'on y delimitaci\'on conceptual}
+La Realidad Aumentada (RA) se define cl\'asicamente como un sistema que \emph{(i)} combina objetos reales y virtuales en un entorno real, \emph{(ii)} opera de forma interactiva y en tiempo real, y \emph{(iii)} registra (alinea) objetos reales y virtuales en tres dimensiones~\cite{azuma1997survey}. Esta definici\'on es tecnol\'ogicamente agn\'ostica: no se restringe a un tipo particular de visualizador (p.~ej., HMD) ni al sentido de la vista~\cite{azuma2001recent}.
+
+Milgram y Kishino situaron la RA dentro del \emph{continuum} realidad--virtualidad de la Realidad Mixta (RM), donde el entorno predominante es el mundo real y este se enriquece con contenido generado por computador; el extremo opuesto es la Realidad Virtual (RV) y, entre ambos, aparece la Virtualidad Aumentada~\cite{milgram1994taxonomy}. Billinghurst, Clark y Lee consolidaron esta base conceptual en un estudio amplio de HCI, reafirmando el papel de la RA como interfaz espacial que superpone informaci\'on digital al entorno f\'isico~\cite{billinghurst2015survey}.
+
+\subsection{Estado de desarrollo}
+El campo evolucion\'o desde prototipos de laboratorio hacia plataformas m\'oviles y \emph{wearables} de uso m\'as amplio. Azuma~\cite{azuma1997survey} identific\'o tempranamente el registro, la latencia y la sensorizaci\'on como problemas centrales. La actualizaci\'on de 2001 document\'o avances en \emph{tracking}, despliegues m\'oviles y displays, sin resolver por completo la alineaci\'on estable en entornos no controlados~\cite{azuma2001recent}.
+
+Los meta-an\'alisis de ISMAR muestran el desplazamiento tem\'atico del \'area: Zhou \textit{et al.} sintetizaron la primera d\'ecada con foco en \emph{tracking}, interacci\'on y display~\cite{zhou2008trends}; Kim \textit{et al.} reportaron, para 2008--2017, un aumento marcado de evaluaci\'on y \emph{rendering}, junto con el auge de RA m\'ovil y reconstrucci\'on 3D~\cite{kim2018revisiting}. En a\~nos recientes, Goh \textit{et al.} observan que la investigaci\'on en RA \emph{wearable} se orienta a adopci\'on masiva, \'etica, accesibilidad, avatares/embodiment y agentes virtuales inteligentes, adem\'as de retos persistentes en display, tracking e interacci\'on~\cite{goh2023wearable}.
+
+En paralelo, revisiones t\'ecnicas recientes sistematizan tecnolog\'ias de tracking, herramientas de desarrollo, displays, RA colaborativa y preocupaciones de seguridad~\cite{syed2023indepth}. Devagiri \textit{et al.} ofrecen un panorama consolidado de 2024: tecnolog\'ias habilitadoras y potenciadoras, matriz de hardware comercial, capacidades de software y un conjunto de gu\'ias de desarrollo desde la ideaci\'on hasta el despliegue~\cite{devagiri2024essentials}. En conjunto, el estado actual puede caracterizarse como \emph{madurez parcial}: la RA es viable comercialmente en m\'oviles y en niches industriales/educativos, mientras que la RA óptica \emph{see-through} ``indistinguible'' y la adopci\'on generalizada siguen siendo desaf\'ios abiertos~\cite{goh2023wearable,devagiri2024essentials}.
+
+\section{C\'omo se abordan los proyectos en el contexto de RA}
+
+Los proyectos de RA suelen abordarse como sistemas socio-t\'ecnicos en los que hardware (c\'amara, IMU, HMD, dispositivo m\'ovil), software (\emph{tracking}, renderizado, gesti\'on de escena) y contenido (modelos 3D, anotaciones, reglas de interacci\'on) deben co-dise\~narse~\cite{schmalstieg2016principles,devagiri2024essentials}.
+
+En la pr\'actica, el abordaje t\'ipico incluye:
+\begin{enumerate}
+\item \textbf{Delimitaci\'on del caso de uso y contexto de uso}: dominio (mantenimiento, educaci\'on, medicina, colaboraci\'on, etc.), usuarios, entorno f\'isico y restricciones de seguridad~\cite{nist2022ar,sereno2022collaborative}.
+\item \textbf{Selecci\'on de plataforma y modalidad de display}: RA m\'ovil (\emph{handheld}), HMD \'optico o por video, o configuraciones colaborativas heterog\'eneas~\cite{syed2023indepth,devagiri2024essentials}.
+\item \textbf{Elecci\'on de la estrategia de anclaje espacial}: marcadores fiduciales, SLAM/\emph{markerless}, localizaci\'on visual-inercial o mapas previos del entorno~\cite{kim2018revisiting,syed2023indepth}.
+\item \textbf{Dise\~no de la interfaz espacial e interacci\'on}: gestos, voz, mirada, tangibles o h\'ibridos, cuidando carga cognitiva y coherencia real--virtual~\cite{kourouthanassis2015demystifying,endsley2017heuristics}.
+\item \textbf{Implementaci\'on iterativa y evaluaci\'on con usuarios}: prototipado temprano, pruebas de usabilidad y m\'etricas de efectividad, eficiencia y satisfacci\'on en contexto~\cite{nist2022ar,dunser2011evaluating}.
+\end{enumerate}
+
+En RA colaborativa, el abordaje se ampl\'ia a dimensiones de espacio, tiempo, simetr\'ia de roles y de tecnolog\'ia, y modalidades de entrada/salida, lo que exige decisiones expl\'icitas de arquitectura multi-usuario y awareness compartido~\cite{billinghurst2002collaborative,sereno2022collaborative}.
+
+\section{Metodolog\'ias utilizadas}
+
+No existe una \'unica metodolog\'ia est\'andar universal para RA; la literatura converge en la combinaci\'on de marcos de desarrollo multimedia/software con dise\~no centrado en el humano (HCD) y evaluaci\'on espec\'ifica de usabilidad en RA.
+
+\subsection{Ciclos de desarrollo multimedia adaptados}
+Roedavan \textit{et al.} proponen un marco basado en el \emph{Multimedia Development Life Cycle} (MDLC) adaptado a RA, estructurado en capas de fase, etapa de desarrollo y componentes. En producci\'on distinguen n\'ucleo (\emph{tracking} y anclaje), visual (contenido y renderizado) e interacci\'on; en postproducci\'on enfatizan evaluaci\'on de compatibilidad, desempe\~no y usabilidad~\cite{roedavan2025mdlc}.
+
+\subsection{Dise\~no centrado en el usuario}
+ISO 9241-210 provee el marco general de HCD para sistemas interactivos---comprensi\'on del contexto, especificaci\'on de requisitos, producci\'on de soluciones e evaluaci\'on---aplicable a RA como sistema interactivo espacial~\cite{iso9241_210}. NIST IR~8422 operacionaliza este enfoque para RA mediante un marco de evaluaci\'on de usabilidad en cinco componentes: alcance, usuarios y contexto, escenarios/tareas, m\'etricas y medidas~\cite{nist2022ar}.
+
+\subsection{Evaluaci\'on HCI espec\'ifica de RA}
+D\"unser y Billinghurst argumentan que los m\'etodos HCI tradicionales deben adaptarse porque la RA introduce factores de registro espacial, confort, carga cognitiva y acoplamiento con el entorno f\'isico~\cite{dunser2011evaluating}. Trabajos previos del mismo grupo plantean la aplicaci\'on expl\'icita de principios HCI al dise\~no de sistemas RA~\cite{dunser2007hci}. Endsley \textit{et al.} aportan heur\'isticas de dise\~no orientadas a interacciones din\'amicas en entornos aumentados~\cite{endsley2017heuristics}.
+
+En s\'intesis, las metodolog\'ias predominantes son: \textbf{(a)}~ciclos iterativos tipo MDLC/\'agil adaptados a componentes RA; \textbf{(b)}~HCD/ISO~9241-210; y \textbf{(c)}~evaluaci\'on heur\'istica y emp\'irica espec\'ifica de RA.
+
+\section{Principios de dise\~no y arquitectura}
+
+\subsection{Principios de dise\~no}
+Kourouthanassis \textit{et al.} desmitifican el dise\~no de aplicaciones de RA m\'ovil y enfatizan criterios de utilidad contextual, interacci\'on natural, gesti\'on de la atenci\'on y coherencia entre capas real y virtual~\cite{kourouthanassis2015demystifying}. Endsley \textit{et al.} formalizan heur\'isticas para interacciones din\'amicas, advirtiendo que omitir usabilidad en el dise\~no incrementa errores y erosiona la confianza del usuario~\cite{endsley2017heuristics}. D\"unser \textit{et al.} recomiendan trasladar principios HCI (visibilidad del estado del sistema, correspondencia con el mundo real, control del usuario, prevenci\'on de errores, etc.) al dominio espacial de la RA~\cite{dunser2007hci}.
+
+Principios recurrentes en la literatura:
+\begin{itemize}
+\item Registro espacial estable y baja latencia percibida.
+\item Claridad de la informaci\'on aumentada sin ocluir indebidamente el entorno relevante.
+\item Interacci\'on alineada con capacidades del dispositivo y del usuario.
+\item Consideraci\'on de confort, seguridad, privacidad y continuidad ante interrupciones.
+\item Soporte a awareness y coordinaci\'on en escenarios colaborativos~\cite{sereno2022collaborative}.
+\end{itemize}
+
+\subsection{Arquitectura de sistemas}
+Reicher \textit{et al.} formularon una arquitectura de referencia para sistemas RA a partir del estudio de implementaciones existentes, destacando atributos de calidad como latencia de tracking/renderizado, operaci\'on inal\'ambrica, m\'ultiples dispositivos de tracking, reutilizaci\'on e integraci\'on de componentes~\cite{reicher2003architecture}. MacWilliams \textit{et al.} complementaron este trabajo con un cat\'alogo de patrones de dise\~no para RA (espec\'ificos del dominio y adaptaciones de patrones generales), orientado a un vocabulario compartido de decisiones arquitect\'onicas~\cite{macwilliams2004patterns}.
+
+A nivel industrial/est\'andar, ETSI GS ARF~003 especifica una arquitectura funcional de referencia para componentes, sistemas y servicios de RA, con bloques l\'ogicos interconectados por puntos de referencia y despliegue posible en dispositivo, nube o de forma h\'ibrida~\cite{etsi_arf003}. Schmalstieg y H\"ollerer sistematizan la arquitectura t\'ipica como acoplamiento de visi\'on por computador, gr\'aficos, tracking, visualizaci\'on e interacci\'on 3D~\cite{schmalstieg2016principles}.
+
+De manera esquem\'atica, las arquitecturas de RA suelen descomponerse en: \emph{captura/sensado}, \emph{tracking y mapeo del mundo}, \emph{modelo del entorno/contexto}, \emph{l\'ogica de aplicaci\'on}, \emph{renderizado/presentaci\'on} e \emph{interacci\'on}, con requisitos transversales de tiempo real y baja latencia extremo a extremo~\cite{reicher2003architecture,etsi_arf003}.
+
+\section{Ciclo de vida para llegar a soluciones en RA}
+
+A partir de la convergencia entre MDLC adaptado~\cite{roedavan2025mdlc}, gu\'ias de desarrollo contempor\'aneas~\cite{devagiri2024essentials} y HCD/evaluaci\'on de usabilidad~\cite{iso9241_210,nist2022ar}, el ciclo de vida t\'ipico de una soluci\'on RA puede formularse as\'i:
+
+\begin{enumerate}
+\item \textbf{Ideaci\'on y an\'alisis de contexto.} Definir problema, usuarios, entorno f\'isico, riesgos y valor de la aumentaci\'on frente a alternativas no-RA~\cite{devagiri2024essentials,nist2022ar}.
+\item \textbf{Especificaci\'on de requisitos.} Requisitos funcionales (qu\'e se aumenta, c\'omo se interact\'ua) y no funcionales (latencia, precisi\'on de registro, autonom\'ia, privacidad, colaboraci\'on)~\cite{reicher2003architecture,sereno2022collaborative}.
+\item \textbf{Dise\~no conceptual y arquitect\'onico.} Selecci\'on de display/plataforma, estrategia de tracking, patrones arquitect\'onicos y principios/heur\'isticas de UI espacial~\cite{macwilliams2004patterns,etsi_arf003,endsley2017heuristics}.
+\item \textbf{Preparaci\'on de activos y prototipado.} Modelos 3D, marcadores/mapas, interacciones; prototipos de fidelidad creciente~\cite{roedavan2025mdlc,schmalstieg2016principles}.
+\item \textbf{Implementaci\'on (n\'ucleo, visual, interacci\'on).} Integraci\'on del pipeline de tracking--render--input sobre el \emph{framework} elegido~\cite{roedavan2025mdlc,syed2023indepth}.
+\item \textbf{Evaluaci\'on iterativa.} Pruebas t\'ecnicas (precisi\'on, FPS, compatibilidad) y de usabilidad con usuarios reales en contexto, con m\'etricas expl\'icitas~\cite{nist2022ar,dunser2011evaluating}.
+\item \textbf{Despliegue, operaci\'on y evoluci\'on.} Publicaci\'on en dispositivos objetivo, monitoreo de desempe\~no en campo, actualizaci\'on de mapas/contenido y mejora continua~\cite{devagiri2024essentials}.
+\end{enumerate}
+
+Este ciclo es inherentemente \textbf{iterativo}: los hallazgos de evaluaci\'on realimentan requisitos y dise\~no, en coherencia con ISO~9241-210~\cite{iso9241_210} y con la evidencia de que la madurez de RA depende tanto de avances t\'ecnicos como de calidad de experiencia de usuario~\cite{kim2018revisiting,goh2023wearable}.
+
+\section*{Nota de alcance}
+Este documento se limita al estado del arte orientado a las cinco preguntas formuladas. No desarrolla contribuciones experimentales propias ni una revisi\'on sistem\'atica exhaustiva de todos los subdominios de aplicaci\'on.
+
+\begin{thebibliography}{00}
+
+\bibitem{azuma1997survey}
+R.~T. Azuma, ``A survey of augmented reality,'' \emph{Presence: Teleoperators and Virtual Environments}, vol.~6, no.~4, pp.~355--385, Aug.~1997, doi: 10.1162/pres.1997.6.4.355.
+
+\bibitem{milgram1994taxonomy}
+P.~Milgram and F.~Kishino, ``A taxonomy of mixed reality visual displays,'' \emph{IEICE Trans. Inf.\ \& Syst.}, vol.~E77-D, no.~12, pp.~1321--1329, Dec.~1994.
+
+\bibitem{azuma2001recent}
+R.~Azuma \textit{et al.}, ``Recent advances in augmented reality,'' \emph{IEEE Comput.\ Graph.\ Appl.}, vol.~21, no.~6, pp.~34--47, Nov./Dec.~2001, doi: 10.1109/38.963459.
+
+\bibitem{billinghurst2015survey}
+M.~Billinghurst, A.~Clark, and G.~Lee, ``A survey of augmented reality,'' \emph{Found.\ Trends Hum.--Comput.\ Interact.}, vol.~8, no.~2--3, pp.~73--272, 2015, doi: 10.1561/1100000049.
+
+\bibitem{zhou2008trends}
+F.~Zhou, H.~B.-L. Duh, and M.~Billinghurst, ``Trends in augmented reality tracking, interaction and display: A review of ten years of ISMAR,'' in \emph{Proc.\ IEEE ISMAR}, 2008, pp.~193--202, doi: 10.1109/ISMAR.2008.4637362.
+
+\bibitem{kim2018revisiting}
+K.~Kim, M.~Billinghurst, G.~Bruder, H.~B.-L. Duh, and G.~F. Welch, ``Revisiting trends in augmented reality research: A review of the 2nd decade of ISMAR (2008--2017),'' \emph{IEEE Trans.\ Vis.\ Comput.\ Graphics}, vol.~24, no.~11, pp.~2947--2962, Nov.~2018, doi: 10.1109/TVCG.2018.2868591.
+
+\bibitem{goh2023wearable}
+Y.~Goh \textit{et al.}, ``Wearable augmented reality: Research trends and future directions from three major venues,'' \emph{IEEE Trans.\ Vis.\ Comput.\ Graphics}, 2023, doi: 10.1109/TVCG.2023.3320231.
+
+\bibitem{syed2023indepth}
+T.~A. Syed \textit{et al.}, ``In-depth review of augmented reality: Tracking technologies, development tools, AR displays, collaborative AR, and security concerns,'' \emph{Sensors}, vol.~23, no.~1, Art.~no.~146, 2023, doi: 10.3390/s23010146.
+
+\bibitem{devagiri2024essentials}
+J.~S. Devagiri \textit{et al.}, ``The essentials: A comprehensive survey to get started in augmented reality,'' \emph{IEEE Access}, vol.~12, pp.~109012--109070, 2024, doi: 10.1109/ACCESS.2024.3438944.
+
+\bibitem{schmalstieg2016principles}
+D.~Schmalstieg and T.~H\"ollerer, \emph{Augmented Reality: Principles and Practice}. Boston, MA, USA: Addison-Wesley, 2016.
+
+\bibitem{billinghurst2002collaborative}
+M.~Billinghurst and H.~Kato, ``Collaborative augmented reality,'' \emph{Commun.\ ACM}, vol.~45, no.~7, pp.~64--70, Jul.~2002, doi: 10.1145/514236.514265.
+
+\bibitem{sereno2022collaborative}
+M.~Sereno, X.~Wang, L.~Besan\c{c}on, M.~J. McGuffin, and T.~Isenberg, ``Collaborative work in augmented reality: A survey,'' \emph{IEEE Trans.\ Vis.\ Comput.\ Graphics}, vol.~28, no.~6, pp.~2530--2549, Jun.~2022, doi: 10.1109/TVCG.2020.3032761.
+
+\bibitem{roedavan2025mdlc}
+R.~Roedavan, A.~Pudjoatmodjo, and Y.~Sugiarto, ``A framework for developing augmented reality applications based on the multimedia development life cycle (MDLC),'' \emph{J.\ Informatika dan Informasi Geografi}, vol.~16, no.~1, 2025, doi: 10.36982/jiig.v16i1.5183.
+
+\bibitem{nist2022ar}
+Y.-Y. Cho, J.~Sauer, and K.~Choi, \emph{Augmented Reality (AR) Usability Evaluation Framework} (NIST IR 8422). Gaithersburg, MD, USA: Nat.\ Inst.\ Standards Technol., 2022.
+
+\bibitem{iso9241_210}
+ISO 9241-210:2019, \emph{Ergonomics of human-system interaction---Part 210: Human-centred design for interactive systems}. Geneva, Switzerland: ISO, 2019.
+
+\bibitem{dunser2011evaluating}
+A.~D\"unser and M.~Billinghurst, ``Evaluating augmented reality systems,'' in \emph{Handbook of Augmented Reality}, B.~Furht, Ed. New York, NY, USA: Springer, 2011, pp.~289--307, doi: 10.1007/978-1-4614-0064-6\_13.
+
+\bibitem{dunser2007hci}
+A.~D\"unser, R.~Grasset, H.~Seichter, and M.~Billinghurst, ``Applying HCI principles to AR systems design,'' HIT Lab NZ, Univ.\ of Canterbury, Tech.\ Rep., 2007.
+
+\bibitem{endsley2017heuristics}
+T.~C. Endsley \textit{et al.}, ``Augmented reality design heuristics: Designing for dynamic interactions,'' \emph{Proc.\ Hum.\ Factors Ergon.\ Soc.\ Annu.\ Meet.}, vol.~61, no.~1, pp.~2100--2104, 2017, doi: 10.1177/1541931213602007.
+
+\bibitem{kourouthanassis2015demystifying}
+P.~E. Kourouthanassis, C.~Boletsis, and G.~Lekakos, ``Demystifying the design of mobile augmented reality applications,'' \emph{Multimedia Tools Appl.}, vol.~74, pp.~1045--1066, 2015, doi: 10.1007/s11042-013-1710-7.
+
+\bibitem{reicher2003architecture}
+T.~Reicher, A.~MacWilliams, B.~Bruegge, and G.~Klinker, ``Results of a study on software architectures for augmented reality systems,'' Tech.\ Rep., Technische Univ.\ M\"unchen / ARVIKA, 2003.
+
+\bibitem{macwilliams2004patterns}
+A.~MacWilliams, T.~Reicher, G.~Klinker, and B.~Bruegge, ``Design patterns for augmented reality systems,'' in \emph{Proc.\ MIXER}, CEUR-WS, vol.~91, 2004.
+
+\bibitem{etsi_arf003}
+ETSI, ``Augmented Reality Framework (ARF); AR framework architecture,'' ETSI GS ARF 003 V2.1.1, 2023.
+
+\end{thebibliography}
+
+\end{document}

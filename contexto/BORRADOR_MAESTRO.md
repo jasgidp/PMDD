@@ -37,7 +37,9 @@ Quinnie; Jose Manuel Carvajal; Jonathan Sandoval; Lina Ballesteros; Alejandro R�
 
 *Responsable: Quinnie. Checklist: qué es; estado; cómo se abordan proyectos; metodologías; principios diseño/arquitectura; ciclo de vida.*
 
-*[pendiente]*
+> **Borrador externo (2026-08-11):** estado del arte en [`estado-arte-realidad-aumentada/`](../estado-arte-realidad-aumentada/) (`estado_arte_RA.pdf`, `estado_arte_RA.tex`, `preview_IEEE.html`). Pendiente integrar prosa aquí y fuentes en `FUENTES.md`.
+
+*[pendiente de integración a Markdown]*
 
 ---
 

@@ -7,7 +7,7 @@ Archivo operativo del equipo. Al integrar texto nuevo: actualizar **Estado** + *
 ## 1. Estado del entregable
 
 
-**Última actualización:** 2026-08-07
+**Última actualización:** 2026-08-11
 
 ## Paper IEEE (60%) — trabajo en Markdown → convertir al final
 
@@ -18,7 +18,7 @@ Archivo operativo del equipo. Al integrar texto nuevo: actualizar **Estado** + *
 | Abstract (EN) | por asignar | pendiente | 0 / ~150–200 | — | Redactar en inglés |
 | Índice de Términos | por asignar | pendiente | 0 | — | Keywords |
 | I. Introducción | por asignar | pendiente | 0 / ~300–450 | — | Redactar (outline ya aprobado) |
-| II. Dominio AR | Quinnie | pendiente | 0 / ~450–650 | — | Texto + fuentes |
+| II. Dominio AR | Quinnie | borrador externo | ver `estado-arte-realidad-aumentada/` | ver PDF/TeX | Integrar prosa a `BORRADOR_MAESTRO.md` + fuentes a `FUENTES.md` |
 | III.A GenIA (IA gen. general) | Jose Manuel Carvajal | pendiente | 0 / ~200–350 | — | Él aporta contenido |
 | III.B DevOps | Jonathan Sandoval | borrador sanitizado | ver maestro | [@Bass2015] [@Jabbari2016] [@Vaquero2020] | Detalle industrial solo en `privado/` |
 | III.C Event Driven Architecture | Lina Ballesteros | pendiente | 0 / ~200–350 | — | Texto + fuentes |
@@ -336,3 +336,20 @@ Registros en orden cronológico (más reciente abajo).
 - **§IV sigue vacía.** Es lo único que el profesor pidió explícitamente para llegar a clase con una propuesta. Falta el insumo de espina de GenIA, DevOps y EDA.
 
 **Archivos:** `BORRADOR_MAESTRO.md`, `GESTION_PROYECTO.md`.
+
+---
+
+## 2026-08-11 — Estado del arte AR (Quinnie) subido al repo
+
+**Clasificación:** artefacto de sección / dominio AR.
+
+**Qué se hizo**
+- Se añadió la carpeta `estado-arte-realidad-aumentada/` con el estado del arte de Quinnie (PDF IEEE, fuente `.tex` y preview HTML).
+- §II en `BORRADOR_MAESTRO.md` queda apuntando a ese material hasta integrar la prosa en Markdown.
+- Estado de **II. Dominio AR** pasa a *borrador externo*.
+
+**Huecos / pendientes**
+- Integrar el contenido al `BORRADOR_MAESTRO.md` (§II) y registrar citas en `FUENTES.md`.
+- Ajustar extensión al objetivo de ~450–650 palabras del paper.
+
+**Archivos:** `estado-arte-realidad-aumentada/*`, `BORRADOR_MAESTRO.md`, `GESTION_PROYECTO.md`, `README.md`.

@@ -25,6 +25,10 @@ PMDD/
 │   ├── GESTION_PROYECTO.md            ← estado, decisiones, glosario, bitácora
 │   ├── PRESENTACION.md                ← PPT socialización + corregida
 │   └── privado/                       ← SOLO LOCAL (gitignored)
+├── estado-arte-realidad-aumentada/    ← estado del arte AR (Quinnie)
+│   ├── estado_arte_RA.pdf
+│   ├── estado_arte_RA.tex
+│   └── preview_IEEE.html
 ├── formato-presentacion-documentos-ieee-es.doc
 ├── A taxonomy of design methods process models (1).pdf
 ├── Ejemplo formato IEEE diligenciado.pdf
