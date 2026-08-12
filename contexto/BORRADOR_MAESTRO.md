@@ -1,6 +1,6 @@
 # BORRADOR MAESTRO — Entregable en construcción
 
-**Estado:** §II Dominio AR (versión completa, Quinnie), §III.B DevOps, §III.C EDA, §III.D HCD y §IV en borrador.  
+**Estado:** Título, Abstract, Índice e Introducción (Quinnie); §II Dominio AR (versión completa, Quinnie); §III.B DevOps, §III.C EDA, §III.D HCD y §IV en borrador.  
 **Dominio:** Realidad aumentada (Equipo 2).  
 **Outline:** `PLANTILLA_PAPER.md` · **Fuentes:** `FUENTES.md` · **Gestión:** `GESTION_PROYECTO.md`  
 **Citas:** `[@Clave]` hasta el ensamblado.
@@ -9,27 +9,41 @@
 
 ## Título
 
-*[pendiente — AR + metodología / espina de pescado]*
+Primera aproximación a una metodología de desarrollo de software para realidad aumentada basada en taxonomía de procesos
 
 ## Autores
 
 *[pendiente — orden por confirmar]*  
 Universidad EAFIT — Procesos Modernos de Desarrollo de Software  
-Quinnie; Jose Manuel Carvajal; Jonathan Sandoval; Lina Ballesteros; Alejandro Ríos
+Quinnie Nastasja Villarreal Aragon; Jose Manuel Carvajal; Jonathan Sandoval; Lina Ballesteros; Alejandro Ríos
 
 ## Abstract (English)
 
-*[pending — no references]*
+*Responsable: Quinnie Nastasja Villarreal Aragon. Sin citas (IEEE).*
+
+Augmented reality (AR) systems combine real and virtual objects in real time with spatial registration, yet software projects in this domain still lack a consolidated development methodology that jointly addresses technical delivery, event-driven collaboration, and explicit user validation. This paper reviews the current state of AR—definition and maturity, how projects are approached, prevailing methods, design and architecture principles, and a typical life cycle—and examines four complementary software-engineering approaches: generative artificial intelligence (GenAI), DevOps, event-driven architecture (EDA), and human-centered design (HCD). Building on the process-model taxonomy of Céret et al., the team proposes a first methodological approximation for AR software work. The proposal defines decisions along six axes—cycle, collaboration, artifacts, recommended use, maturity, and flexibility—including two independent return gates (user evaluation and performance), mixed artifact formalization with an explicit boundary criterion, declared limits of applicability, and configurable variability (HCD and DevOps mandatory; EDA and GenAI conditional). The contribution is positioned as an unvalidated first approximation relative to consolidated process models such as Spiral, RAD, and XP, and is intended as a structured baseline for subsequent empirical validation and refinement.
 
 ## Índice de Términos
 
-*[pendiente]*
+*Responsable: Quinnie Nastasja Villarreal Aragon. Orden alfabético (inglés, alineado al Abstract).*
+
+Augmented reality, DevOps, event-driven architecture, generative AI, human-centered design, process models, process taxonomy, software methodology
 
 ---
 
 ## I. Introducción
 
-*[pendiente]*
+*Responsable: Quinnie Nastasja Villarreal Aragon.*
+
+La realidad aumentada (AR) se caracteriza por combinar objetos reales y virtuales de forma interactiva, en tiempo real y con registro espacial tridimensional [@Azuma1997]. El dominio ha pasado de prototipos de laboratorio a despliegues móviles e industriales con madurez parcial: es viable en nichos concretos, pero persisten retos de tracking, interacción, evaluación con usuarios y coordinación de sistemas socio-técnicos [@Azuma2001], [@Goh2023], [@Graser2024]. En la práctica, los equipos deben co-diseñar hardware, pipelines de tracking y renderizado, contenido gráfico y reglas de interacción [@Schmalstieg2016], [@Devagiri2024].
+
+El problema que motiva este trabajo no es solo técnico. Aunque existen guías de arquitectura, ciclos multimedia adaptados y marcos de evaluación de usabilidad para AR, sigue siendo limitada una **metodología de desarrollo de software** que integre de forma explícita la entrega continua de software y contenido, la reacción a eventos en experiencias distribuidas o colaborativas, y la validación reiterada con usuarios —dimensión que la evidencia identifica como déficit del dominio [@Vaquero2020], [@Graser2024]. Sin esa integración, las decisiones sobre ciclo, roles, artefactos, límites de uso y madurez del proceso quedan fragmentadas entre enfoques parciales.
+
+Este artículo propone una **primera aproximación metodológica** para el desarrollo de software en realidad aumentada. Como marco para estructurar esas decisiones se adopta la taxonomía de modelos de proceso de Céret et al., que organiza el diseño de metodologías en seis ejes: ciclo, colaboración, artefactos, uso recomendado, madurez y flexibilidad [@Ceret2013]. Sobre ese andamiaje se combinan cuatro enfoques de ingeniería de software: inteligencia artificial generativa (GenIA), para apoyar productividad y generación controlada cuando hay datos confiables; DevOps, para entrega repetible de software y contenido; arquitectura orientada a eventos (EDA), para experiencias AR distribuidas y en tiempo real; y diseño centrado en el humano (HCD), para elevar la evaluación con usuarios a fase de primera clase.
+
+La propuesta resultante define: un ciclo incremental con dos compuertas de retorno independientes (evaluación con usuarios y pruebas de latencia/resiliencia); más de cinco roles internos más dos roles externos formales; formalización mixta de artefactos con criterio declarado; límites explícitos de uso y de no-uso; madurez declarada como primera aproximación no validada; y variabilidad configurable (HCD y DevOps obligatorios; EDA y GenIA condicionales). El valor diferencial se discute frente a Spiral, RAD y XP según las clasificaciones ya publicadas en [@Ceret2013].
+
+El resto del artículo se organiza así: la Sección II presenta el estado del dominio AR; la Sección III desarrolla los cuatro enfoques y la razón de su elección; la Sección IV define la propuesta metodológica sobre los seis ejes y su valor diferencial; y la Sección V cierra con síntesis, limitaciones y trabajo futuro.
 
 ---
 

@@ -7,17 +7,17 @@ Archivo operativo del equipo. Al integrar texto nuevo: actualizar **Estado** + *
 ## 1. Estado del entregable
 
 
-**Última actualización:** 2026-08-11
+**Última actualización:** 2026-08-12
 
 ## Paper IEEE (60%) — trabajo en Markdown → convertir al final
 
 | Sección | Responsable | Estado | Palabras actuales vs objetivo | Fuentes usadas | Qué falta |
 |---------|-------------|--------|-------------------------------|----------------|-----------|
-| Título | Equipo | pendiente | 0 | — | Incluir AR; nombre metodología **aplazado** |
-| Autores / afiliación | Equipo | pendiente | 0 | — | Orden autores [FALTA]; EAFIT + curso **ok** |
-| Abstract (EN) | por asignar | pendiente | 0 / ~150–200 | — | Redactar en inglés |
-| Índice de Términos | por asignar | pendiente | 0 | — | Keywords |
-| I. Introducción | por asignar | pendiente | 0 / ~300–450 | — | Redactar (outline ya aprobado) |
+| Título | Quinnie Nastasja Villarreal Aragon | **redactado** | 1 título | — | Alineado a taxonomía de procesos (sin “espina de pescado” / Ishikawa). Nombre propio de metodología sigue aplazado (D15) |
+| Autores / afiliación | Equipo | parcial | — | — | Orden autores [FALTA]; nombre completo de Quinnie **ok**; EAFIT + curso **ok** |
+| Abstract (EN) | Quinnie Nastasja Villarreal Aragon | **redactado** | ~175 / ~150–200 ✅ | — (sin citas) | Justificación por necesidad del dominio |
+| Índice de Términos | Quinnie Nastasja Villarreal Aragon | **redactado** | 8 términos | — | Confirmar idioma EN vs ES al ensamblar IEEE |
+| I. Introducción | Quinnie Nastasja Villarreal Aragon | **redactada** | ~420 / ~300–450 ✅ | [@Azuma1997] [@Azuma2001] [@Goh2023] [@Graser2024] [@Schmalstieg2016] [@Devagiri2024] [@Ceret2013] [@Vaquero2020] | Versión B fijada (necesidad del dominio); Reto fuera del paper |
 | II. Dominio AR | Quinnie | **redactada (versión completa)** | ~1300 / outline orientaba 450–650 | 21 fuentes AR + [@ISO9241210] | Autora validó y restauró prosa completa del PDF; PDF/TeX quedan como respaldo |
 | III.A GenIA (IA gen. general) | Jose Manuel Carvajal | pendiente | 0 / ~200–350 | — | Él aporta contenido |
 | III.B DevOps | Jonathan Sandoval | borrador sanitizado | ver maestro | [@Bass2015] [@Jabbari2016] [@Vaquero2020] | Detalle industrial solo en `privado/` |
@@ -34,7 +34,7 @@ Archivo operativo del equipo. Al integrar texto nuevo: actualizar **Estado** + *
 | Socialización (40%) | `PRESENTACION.md` Parte I | esqueleto | Contenido de diapositivas |
 | PPT corregida (anexa al 60%) | `PRESENTACION.md` Parte II | pendiente | Feedback de clase |
 
-**Progreso paper:** 0 % redactado. **Outline Fase 4:** aprobado. **4 enfoques:** confirmados en el paper.
+**Progreso paper:** encabezado + §I–§IV en borrador (falta conclusión y refs IEEE). **Outline Fase 4:** aprobado. **4 enfoques:** confirmados en el paper.
 
 
 ---
@@ -432,3 +432,38 @@ Registros en orden cronológico (más reciente abajo).
 **Observación tras `pull` (commit `22f3564`):** §II se restauró a la versión completa del estado del arte y ahora mide **~1352 palabras** frente al objetivo de 450–650 registrado en el estado. El paper completo va en **~3589 palabras**. Se respeta la decisión de quien restauró, pero conviene confirmarla: con esa extensión §II ocupa cerca del 38 % del cuerpo y el objetivo de ~4 páginas IEEE queda comprometido.
 
 **Archivos:** `BORRADOR_MAESTRO.md`, `GESTION_PROYECTO.md`.
+
+---
+
+## 2026-08-12 — Título, Abstract, Índice e Introducción (Quinnie)
+
+**Clasificación:** prosa de encabezado + §I + asignación de responsable.
+
+**Qué se hizo**
+- Tras `git pull` (fast-forward a `865403c`), Quinnie Nastasja Villarreal Aragon asume y **redacta** título, Abstract (EN), Índice de Términos e Introducción.
+- Título descriptivo sin bautizar la metodología (respeta D15).
+- Abstract ~181 palabras en inglés, sin citas; resume dominio, cuatro enfoques, espina/seis ejes y valor diferencial.
+- Índice de términos en inglés (alineado al Abstract), orden alfabético.
+- Introducción ~426 palabras: problema AR, objetivo Reto #1, mapa de secciones y citas introductorias ya fichadas.
+- Nombre completo de Quinnie actualizado en la línea de autores del borrador.
+
+**Huecos**
+- Orden de autores sigue abierto.
+- Conclusión y lista IEEE de referencias: pendientes.
+- Confirmar con el equipo si el título o las *keywords* deben pasar a español al ensamblar.
+
+**Archivos:** `BORRADOR_MAESTRO.md`, `GESTION_PROYECTO.md`, `LEEME_EQUIPO.md`, `PLANTILLA_PAPER.md`.
+
+---
+
+## 2026-08-12 — Fijar Versión B (justificación por necesidad del dominio)
+
+**Clasificación:** cierre de redacción de encabezado + §I.
+
+**Qué se hizo**
+- Se elimina la Versión A (justificación por Reto) del borrador maestro; el Reto #1 queda **fuera del paper**.
+- Queda solo la Versión B: problema del dominio → propuesta metodológica (alineado al ejemplo IEEE diligenciado de IoT).
+- Título actualizado: *…basada en taxonomía de procesos* (sin “espina de pescado”).
+- Abstract e Índice sin variantes de comparación.
+
+**Archivos:** `BORRADOR_MAESTRO.md`, `GESTION_PROYECTO.md`, `PLANTILLA_PAPER.md`.

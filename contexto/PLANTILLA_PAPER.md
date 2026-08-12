@@ -1,7 +1,7 @@
 # PLANTILLA_PAPER — outline IEEE aprobado (Fase 4)
 
 
-**Última actualización:** 2026-08-07  
+**Última actualización:** 2026-08-12  
 **Base de formato:** `formato-presentacion-documentos-ieee-es.doc`  
 **Base teórica de la espina:** `A taxonomy of design methods process models (1).pdf` [@Ceret2013]  
 **Contenido obligatorio:** enunciado Reto #1 (ver `REQUISITOS.md` Parte B, ítems E3–E7)
@@ -16,28 +16,30 @@
 
 ### Título
 - Incluir dominio (Realidad aumentada) + idea de metodología/espina.
-- **Estado:** pendiente de redacción exacta.
+- **Estado:** redactado (Quinnie) — *Primera aproximación a una metodología de desarrollo de software para realidad aumentada basada en taxonomía de procesos*. Evita “espina de pescado” en el título (ambigüedad con Ishikawa). Nombre propio de metodología aplazado (D15).
 
 ### Autores (orden por definir)
-- Quinnie; Jose Manuel Carvajal; Jonathan Sandoval; Lina Ballesteros; Alejandro Ríos.
+- Quinnie Nastasja Villarreal Aragon; Jose Manuel Carvajal; Jonathan Sandoval; Lina Ballesteros; Alejandro Ríos.
 - Afiliación: **Universidad EAFIT**, curso **Procesos Modernos de Desarrollo de Software**.
 
 ### Resumen (Abstract)
-- Dominio AR; enfoques; propuesta de metodología vía espina; sin citas.
+- Dominio AR; enfoques; propuesta de metodología vía taxonomía de procesos; sin citas.
 - Idioma: **inglés**.
+- **Estado:** redactado (Quinnie) en `BORRADOR_MAESTRO.md` — justificación por necesidad del dominio.
 
 ### Índice de Términos
-- Candidatos: realidad aumentada, DevOps, GenIA, metodología, espina de pescado / taxonomía de procesos… (ordenar alfabéticamente al cerrar).
+- Redactado (Quinnie): Augmented reality, DevOps, event-driven architecture, generative AI, human-centered design, process models, process taxonomy, software methodology.
 
 ---
 
 ## Outline propuesto (contenido)
 
-### I. Introducción (~0.4–0.5 p.)
-- Problema: necesidad de metodología SW para AR.
-- Objetivo del paper / Reto #1.
+### I. Introducción (~0.4–0.5 p.) — *Quinnie*
+- Problema: necesidad de metodología SW para AR (no justificación por Reto del curso).
+- Objetivo del paper / propuesta metodológica.
 - Enfoques del equipo y mapa del artículo.
 - **Fuentes:** introductorias AR peer-reviewed; [@Ceret2013] mención.
+- **Estado:** redactada (Versión B fijada) en `BORRADOR_MAESTRO.md`.
 
 ### II. Dominio: Realidad aumentada — estado actual (~0.6–0.8 p.) — *Quinnie*
 Cubrir checklist E3:

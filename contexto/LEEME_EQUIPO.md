@@ -15,7 +15,7 @@ Abstract del paper: **inglés**. Cuerpo: **español**. Trabajo en Markdown → I
 
 | Persona | Rol |
 |---------|-----|
-| Quinnie | Dominio AR |
+| Quinnie Nastasja Villarreal Aragon | Dominio AR (§II); Título, Abstract (EN), Índice de Términos, Introducción |
 | Jose Manuel Carvajal | GenIA |
 | Jonathan Sandoval | DevOps (detalle industrial solo en `privado/`) |
 | Lina Ballesteros | Event Driven Architecture |
