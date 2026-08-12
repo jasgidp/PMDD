@@ -124,19 +124,6 @@ Este ciclo es inherentemente **iterativo**: los hallazgos de evaluación realime
 
 > **Nota de alcance:** este apartado se limita al estado del arte orientado a las cinco preguntas del checklist del dominio. No desarrolla contribuciones experimentales propias ni una revisión sistemática exhaustiva de todos los subdominios de aplicación.
 
-
-*Insumo para §IV — aporte de EDA a los seis ejes [@Ceret2013]* (sincronizado desde el Google Doc):
-
-| Eje | Aporte de Event-Driven Architecture |
-|-----|-------------------------------------|
-| Ciclo | EDA no impone por sí misma un ciclo de desarrollo. Para la metodología se propone un ciclo incremental e iterativo, con iteraciones locales o regionales sobre flujos de eventos y retorno (*backwards*) cuando las pruebas de integración, latencia o resiliencia no cumplan los objetivos. Una vez estabilizados los contratos, productores y consumidores pueden desarrollarse parcialmente en paralelo. |
-| Colaboración | Se proponen como roles internos: arquitecto de software/eventos, desarrollador AR, desarrollador backend/eventos, QA orientado a integración y rendimiento y DevOps. La coordinación entre equipos se basa en contratos compartidos de eventos, reduciendo las dependencias directas entre productores y consumidores. |
-| Artefactos | Catálogo de eventos, esquema de cada evento, matriz productor–consumidor, diagramas UML de secuencia/componentes, especificación AsyncAPI y resultados de pruebas de latencia, throughput y errores. La formalización es **media-alta**, porque los contratos deben poder ser interpretados de manera consistente por equipos distintos. |
-| Uso recomendado | Recomendado para experiencias AR distribuidas, colaborativas o en tiempo real, especialmente cuando existen múltiples productores y consumidores de información. **No** se recomienda introducir EDA por defecto en aplicaciones AR pequeñas, locales y con pocas interacciones entre componentes, debido a la complejidad adicional que genera. |
-| Madurez | **Media-alta** en ingeniería de software general, debido a su adopción industrial, brokers consolidados y literatura existente; sin embargo, su aplicación específicamente documentada en AR es menor. Por ello, la metodología exige evaluar el enfoque mediante métricas antes de adoptarlo como decisión definitiva. |
-| Flexibilidad | **Alta.** Permite agregar o modificar consumidores sin alterar necesariamente al productor y admite diferentes brokers, protocolos y mecanismos de procesamiento. Esta flexibilidad exige versionamiento y gobernanza de contratos para evitar incompatibilidades. |
-
-
 ---
 
 ## III. Enfoques seleccionados y razón de elección
@@ -204,6 +191,18 @@ En ingeniería de software, EDA afecta decisiones de diseño, calidad, despliegu
 Como técnicas se proponen publicación/suscripción, Event Streaming y Complex Event Processing (CEP). Entre las herramientas posibles están Apache Kafka, RabbitMQ, Azure Service Bus, Node-RED y motores CEP. Para modelado, EDA no posee un único lenguaje estándar; se proponen diagramas UML de secuencia y componentes, modelos de eventos y contratos AsyncAPI en JSON/YAML. AsyncAPI permite describir APIs orientadas a mensajes de forma legible por máquina y agnóstica al protocolo [@AsyncAPI]. Como métodos se proponen el diseño orientado a contratos de eventos, el modelado de patrones CEP y la validación iterativa mediante pruebas de integración, rendimiento y resiliencia.
 
 EDA se selecciona para realidad aumentada porque las experiencias distribuidas y colaborativas requieren reaccionar a cambios de interacción, sesión y estado compartido. SARA demuestra una arquitectura AR colaborativa donde servicios y clientes intercambian y procesan eventos para actualizar sesiones y elementos aumentados [@Vaquero2020]. Además, Oberhauser muestra que flujos EDA pueden visualizarse y analizarse en entornos inmersivos con Kafka y RabbitMQ, reforzando su aplicabilidad al ecosistema XR [@Oberhauser2023].
+
+*Insumo para §IV — aporte de EDA a los seis ejes [@Ceret2013]* (sincronizado desde el Google Doc):
+
+| Eje | Aporte de Event-Driven Architecture |
+|-----|-------------------------------------|
+| Ciclo | EDA no impone por sí misma un ciclo de desarrollo. Para la metodología se propone un ciclo incremental e iterativo, con iteraciones locales o regionales sobre flujos de eventos y retorno (*backwards*) cuando las pruebas de integración, latencia o resiliencia no cumplan los objetivos. Una vez estabilizados los contratos, productores y consumidores pueden desarrollarse parcialmente en paralelo. |
+| Colaboración | Se proponen como roles internos: arquitecto de software/eventos, desarrollador AR, desarrollador backend/eventos, QA orientado a integración y rendimiento y DevOps. La coordinación entre equipos se basa en contratos compartidos de eventos, reduciendo las dependencias directas entre productores y consumidores. |
+| Artefactos | Catálogo de eventos, esquema de cada evento, matriz productor–consumidor, diagramas UML de secuencia/componentes, especificación AsyncAPI y resultados de pruebas de latencia, throughput y errores. La formalización es **media-alta**, porque los contratos deben poder ser interpretados de manera consistente por equipos distintos. |
+| Uso recomendado | Recomendado para experiencias AR distribuidas, colaborativas o en tiempo real, especialmente cuando existen múltiples productores y consumidores de información. **No** se recomienda introducir EDA por defecto en aplicaciones AR pequeñas, locales y con pocas interacciones entre componentes, debido a la complejidad adicional que genera. |
+| Madurez | **Media-alta** en ingeniería de software general, debido a su adopción industrial, brokers consolidados y literatura existente; sin embargo, su aplicación específicamente documentada en AR es menor. Por ello, la metodología exige evaluar el enfoque mediante métricas antes de adoptarlo como decisión definitiva. |
+| Flexibilidad | **Alta.** Permite agregar o modificar consumidores sin alterar necesariamente al productor y admite diferentes brokers, protocolos y mecanismos de procesamiento. Esta flexibilidad exige versionamiento y gobernanza de contratos para evitar incompatibilidades. |
+
 
 
 ### D. Human-Centered Design (HCD)
