@@ -23,7 +23,7 @@ Archivo operativo del equipo. Al integrar texto nuevo: actualizar **Estado** + *
 | III.B DevOps | Jonathan Sandoval | borrador sanitizado | ver maestro | [@Bass2015] [@Jabbari2016] [@Vaquero2020] | Detalle industrial solo en `privado/` |
 | III.C Event Driven Architecture | Lina Ballesteros | redactada | 334 / ~200–350 ✅ | [@Cabane2024] [@RosaBilbao2023] [@Vaquero2020] [@Oberhauser2023] [@AsyncAPI] | Pendiente feedback de socialización |
 | III.D Human-Centered Design (HCD) | Alejandro Ríos | **redactada** | 343 / ~200–350 ✅ | [@ISO9241210] [@Seffah2005] [@Ferre2005] [@Graser2024] [@Nielsen1994] [@Paterno2000] [@OMG-IFML] | Fuentes verificadas; extensión dentro de objetivo. Pendiente: consolidar aporte en §IV |
-| IV. Espina (6 ejes) + valor diferencial | Equipo | pendiente | 0 / ~700–900 | [@Ceret2013] | Definir roles/formatos/ciclos |
+| IV. Espina (6 ejes) + valor diferencial | Equipo | **redactada** | 916 / ~700–900 ✅ | [@Ceret2013] | Validar tablas derivadas de GenIA y DevOps |
 | Conclusión | Equipo | pendiente | 0 / ~150–250 | — | Tras cuerpo |
 | Referencias | Equipo | borrador catálogo | ver `FUENTES.md` | [@Ceret2013] | Fuentes AR/enfoques |
 
@@ -353,3 +353,55 @@ Registros en orden cronológico (más reciente abajo).
 - Ajustar extensión al objetivo de ~450–650 palabras del paper.
 
 **Archivos:** `estado-arte-realidad-aumentada/*`, `BORRADOR_MAESTRO.md`, `GESTION_PROYECTO.md`, `README.md`.
+
+---
+
+## 2026-08-11 — §IV redactada sobre la base del remoto
+
+**Clasificación:** prosa de sección + consolidación.
+
+**Contexto:** se hizo `pull` antes de integrar. Se priorizó el contenido del remoto: §III.C EDA quedó con **la versión que subió Lina** (se descartó la copia que se había sincronizado desde el Doc), y §II conserva el puntero de Quinnie al estado del arte en LaTeX.
+
+**Qué se hizo**
+- **Redactada §IV completa** (916 palabras): seis ejes consolidados + §IV.G valor diferencial.
+- **Derivadas** las tablas de espina de **GenIA** y **DevOps** desde su propia prosa, marcadas como *pendientes de validación por su autor*. Sin las cuatro no se podía consolidar §IV.
+- **Sincronizada** al repo la tabla de espina de **EDA**, que Lina tenía en el Google Doc pero no en su versión del repo.
+- La comparación de §IV.G usa **las clasificaciones reales de [@Ceret2013]** para Spiral, RAD y XP, extraídas del PDF. **No se compara contra Scrum: el paper no lo clasifica**, y hacerlo exigiría clasificación propia.
+
+**Decisiones de metodología fijadas en §IV**
+- Ciclo incremental (entregas 1–3 meses), iteración local y regional, **dos compuertas de retorno** independientes: usuario y rendimiento.
+- Más de cinco roles internos + **dos roles externos formales** (usuario final, responsable de datos).
+- Formalización **mixta con criterio declarado**: se formaliza lo que cruza frontera entre equipos.
+- Límites de uso declarados, incluyendo **cuándo no aplicarla**.
+- Madurez: **primera aproximación no validada**, declarada, con indicadores por eje.
+- Variabilidad: HCD y DevOps obligatorios; EDA y GenIA condicionales.
+
+**Huecos**
+- ⚠️ §II sigue **sin integrar a Markdown**: la prosa de Quinnie vive en `estado-arte-realidad-aumentada/estado_arte_RA.tex` y sus fuentes no están en `FUENTES.md`.
+- ⚠️ Fuentes de §III.C (EDA) sin fichar en `FUENTES.md`.
+- ⚠️ Fuentes de §III.A (GenIA): 4 de 7 son corporativas (IBM, Microsoft, PwC, blog de Google Cloud) y no cumplen la política académica de `REQUISITOS.md` §5.
+- ⚠️ §III.B DevOps está en el repo pero **no en el Google Doc**.
+- Título, abstract (EN), índice de términos, introducción, conclusión y referencias: pendientes.
+
+**Archivos:** `BORRADOR_MAESTRO.md`, `GESTION_PROYECTO.md`.
+
+---
+
+## 2026-08-11 — Integración de §II (dominio AR) desde LaTeX a Markdown
+
+**Clasificación:** integración de sección + fuentes.
+
+**Qué se hizo**
+- **Integrada §II** al borrador maestro desde `estado-arte-realidad-aumentada/estado_arte_RA.tex`. Se **condensó de 1295 a 665 palabras** para ajustar al objetivo de 450–650, conservando **todas** las citas del original y las cinco preguntas de la rúbrica (qué es y estado; cómo se abordan proyectos; metodologías; principios de diseño y arquitectura; ciclo de vida). ⚠️ **Pendiente de validación por Quinnie.**
+- **Fichadas 21 fuentes nuevas** en `FUENTES.md` con claves normalizadas al estilo del equipo (`azuma1997survey` → `[@Azuma1997]`, etc.). El `.tex` conserva sus claves originales; el mapeo queda registrado aquí.
+- **[@ISO9241210] reutilizada**: ya existía por §III.D (HCD). Es la primera fuente compartida entre dos secciones — al numerar por orden de aparición lleva **un solo número**.
+
+**Observación de calidad:** las 22 fuentes de §II son académicas (revistas IEEE/ACM, actas, libros, normas ISO/NIST/ETSI). Es la sección **mejor respaldada** del paper.
+
+**Huecos**
+- El `.tex` sigue como fuente paralela: decidir si §II se ensambla desde el Markdown (recomendado, D13) o desde el `.tex`. **No mantener ambos.**
+- El abstract y las *keywords* del `.tex` de Quinnie pueden servir de base para el abstract del paper (pendiente, en inglés) y el índice de términos.
+- ⚠️ Fuentes de §III.C (EDA) sin fichar.
+- ⚠️ Fuentes de §III.A (GenIA): 4 de 7 corporativas, no cumplen `REQUISITOS.md` §5.
+
+**Archivos:** `BORRADOR_MAESTRO.md`, `FUENTES.md`, `GESTION_PROYECTO.md`.

@@ -35,11 +35,34 @@ Quinnie; Jose Manuel Carvajal; Jonathan Sandoval; Lina Ballesteros; Alejandro R�
 
 ## II. Dominio: realidad aumentada — estado actual
 
-*Responsable: Quinnie. Checklist: qué es; estado; cómo se abordan proyectos; metodologías; principios diseño/arquitectura; ciclo de vida.*
+*Responsable: Quinnie.*
+*Condensado desde el estado del arte completo en [`estado-arte-realidad-aumentada/`](../estado-arte-realidad-aumentada/) (1295 → ~570 palabras, objetivo §II 450–650). Se conservan todas las citas del original. **Pendiente de validación por su autora.***
 
-> **Borrador externo (2026-08-11):** estado del arte en [`estado-arte-realidad-aumentada/`](../estado-arte-realidad-aumentada/) (`estado_arte_RA.pdf`, `estado_arte_RA.tex`, `preview_IEEE.html`). Pendiente integrar prosa aquí y fuentes en `FUENTES.md`.
+### A. Qué es y su estado de desarrollo
 
-*[pendiente de integración a Markdown]*
+La Realidad Aumentada (RA) se define clásicamente como un sistema que combina objetos reales y virtuales en un entorno real, opera de forma interactiva y en tiempo real, y registra objetos reales y virtuales en tres dimensiones [@Azuma1997]. La definición es agnóstica a la tecnología: no se restringe a un visualizador particular ni al sentido de la vista [@Azuma2001]. Milgram y Kishino la sitúan en el *continuum* realidad–virtualidad de la Realidad Mixta [@Milgram1994]; Billinghurst et al. consolidan esa base como interfaz espacial [@Billinghurst2015].
+
+El campo evolucionó de prototipos de laboratorio a plataformas móviles y *wearables*. Los meta-análisis de ISMAR muestran el desplazamiento temático: de *tracking*, interacción y display en la primera década [@Zhou2008] a un aumento de evaluación y *rendering* entre 2008 y 2017 [@Kim2018]. La investigación reciente en RA *wearable* se orienta a adopción masiva, ética, accesibilidad y agentes virtuales [@Goh2023]; revisiones técnicas sistematizan tracking, herramientas, displays y seguridad [@Syed2023], [@Devagiri2024]. El estado actual puede caracterizarse como **madurez parcial**: viable comercialmente en móviles y en nichos industriales y educativos, con la RA óptica *see-through* indistinguible y la adopción generalizada aún como desafíos abiertos [@Goh2023], [@Devagiri2024].
+
+### B. Cómo se abordan los proyectos
+
+Los proyectos de RA se abordan como sistemas socio-técnicos en los que hardware, software y contenido deben co-diseñarse [@Schmalstieg2016], [@Devagiri2024]. El abordaje típico incluye delimitar el caso y el contexto de uso [@NIST2022], [@Sereno2022]; seleccionar plataforma y modalidad de display [@Syed2023]; elegir la estrategia de anclaje espacial —marcadores fiduciales, SLAM, localización visual-inercial o mapas previos— [@Kim2018]; diseñar la interfaz espacial cuidando carga cognitiva y coherencia real–virtual [@Kourouthanassis2015], [@Endsley2017]; e implementar de forma iterativa con evaluación con usuarios [@Dunser2011]. En RA colaborativa se añaden dimensiones de espacio, tiempo y simetría de roles y tecnología, que exigen decisiones explícitas de arquitectura multiusuario y *awareness* compartido [@Billinghurst2002], [@Sereno2022].
+
+### C. Metodologías utilizadas
+
+No existe una metodología estándar universal para RA; la literatura converge en combinar marcos de desarrollo multimedia con diseño centrado en el humano y evaluación específica de usabilidad. Roedavan et al. adaptan el *Multimedia Development Life Cycle* (MDLC) a RA, distinguiendo núcleo, visual e interacción en producción y evaluación de compatibilidad, desempeño y usabilidad en postproducción [@Roedavan2025]. ISO 9241-210 aporta el marco general de HCD [@ISO9241210] y NIST IR 8422 lo operacionaliza para RA en cinco componentes: alcance, usuarios y contexto, escenarios, métricas y medidas [@NIST2022]. Dünser y Billinghurst argumentan que los métodos HCI tradicionales deben adaptarse por el registro espacial, el confort y la carga cognitiva propios de la RA [@Dunser2011], [@Dunser2007].
+
+### D. Principios de diseño y arquitectura
+
+Los principios recurrentes son: registro espacial estable y baja latencia percibida; claridad de la información sin ocluir el entorno relevante; interacción alineada con las capacidades del dispositivo y del usuario; y consideración de confort, seguridad y privacidad [@Kourouthanassis2015], [@Endsley2017], [@Dunser2007], [@Sereno2022].
+
+En arquitectura, Reicher et al. formularon una arquitectura de referencia destacando latencia de tracking y renderizado, operación inalámbrica y reutilización de componentes [@Reicher2003]; MacWilliams et al. aportaron un catálogo de patrones de diseño para RA [@MacWilliams2004]. A nivel de estándar, ETSI GS ARF 003 especifica una arquitectura funcional de referencia con despliegue en dispositivo, nube o híbrido [@ETSI-ARF003]. Esquemáticamente, las arquitecturas se descomponen en captura y sensado, tracking y mapeo del mundo, modelo del entorno, lógica de aplicación, renderizado e interacción, con requisitos transversales de tiempo real y baja latencia extremo a extremo [@Reicher2003], [@ETSI-ARF003].
+
+### E. Ciclo de vida
+
+De la convergencia entre MDLC adaptado [@Roedavan2025], guías contemporáneas [@Devagiri2024] y HCD con evaluación de usabilidad [@ISO9241210], [@NIST2022], el ciclo típico comprende: ideación y análisis de contexto; especificación de requisitos funcionales y no funcionales (latencia, precisión de registro, autonomía, privacidad); diseño conceptual y arquitectónico; preparación de activos y prototipado; implementación del pipeline *tracking–render–input*; evaluación iterativa técnica y de usabilidad en contexto; y despliegue, operación y evolución.
+
+El ciclo es **inherentemente iterativo**: los hallazgos de evaluación realimentan requisitos y diseño, en coherencia con ISO 9241-210 [@ISO9241210] y con la evidencia de que la madurez de la RA depende tanto de avances técnicos como de la calidad de la experiencia de usuario [@Kim2018], [@Goh2023].
 
 ---
 
@@ -62,6 +85,17 @@ Se toma como referencia el AI Risk Management Framework de NIST, particularmente
 
 Se elige GenIA porque permite aprovechar los datos deportivos de Genius Sports para generar contenido, análisis y experiencias personalizadas, al mismo tiempo que puede apoyar la productividad de los equipos de ingeniería. Su adopción debe ser gradual y acompañada de datos confiables, evaluación, trazabilidad, seguridad y supervisión humana.
 
+> ⚠️ *Tabla **derivada por el equipo** a partir de la prosa de esta sección, para poder consolidar §IV. **Pendiente de validación por su autor.***
+
+| Eje | Aporte de GenIA |
+|-----|-----------------|
+| Ciclo | Ciclo iterativo y controlado: identificar el problema, preparar y validar datos, diseñar la solución, construir un MVP, evaluar resultados, desplegar y monitorear. La evaluación precede al despliegue y puede devolver el proceso a la preparación de datos. |
+| Colaboración | Exige **supervisión humana** (*human-in-the-loop*) como control permanente, no como revisión final. La adopción es gradual y acompañada de trazabilidad. |
+| Artefactos | Prompts versionados, conjuntos de datos validados, evaluaciones automáticas y humanas, MVP, y salidas con generación estructurada bajo *guardrails*. Modelado con UML, BPMN, C4 Model, ERD, OpenAPI y JSON Schema. |
+| Uso recomendado | Indicado cuando existen datos confiables y actualizados sobre los que apoyar la generación (p. ej. mediante RAG). Requiere gestión explícita de riesgos de seguridad, privacidad, sesgos y propiedad intelectual. |
+| Madurez | **Emergente.** Los marcos de gestión de riesgo son recientes; se toma como referencia el AI Risk Management Framework de NIST en su perfil para GenIA. |
+| Flexibilidad | **Alta.** No requiere un lenguaje de modelado exclusivo y se combina con Agile, Scrum/Kanban, DevOps, MLOps, DevSecOps, Design Thinking, Lean Startup y TDD. |
+
 
 ### B. DevOps
 *Responsable: Jonathan Sandoval.*  
@@ -76,6 +110,17 @@ Para el dominio AR del curso se declara el matiz: el referente es *realtime augm
 Técnicas/herramientas típicas del enfoque: CI/CD, contenedores, registros de imágenes, IaC, secretos, observabilidad y pruebas automatizadas (incl. escenarios costosos de simulación). Lenguajes de modelado/especificación: YAML de pipelines, diagramas de flujo de aplicación, IaC y esquemas JSON de artefactos de contenido. Métodos: entrega continua con RC, commits convencionales, QA operacional previo a producción.
 
 Se elige DevOps porque el dominio AR exige iterar con seguridad operativa sobre software y contenido; el referente industrial de augmentación en tiempo real aporta un modelo concreto transferible al ciclo de vida AR del equipo.
+
+> ⚠️ *Tabla **derivada por el equipo** a partir de la prosa de esta sección, para poder consolidar §IV. **Pendiente de validación por su autor.***
+
+| Eje | Aporte de DevOps / DevSecOps |
+|-----|------------------------------|
+| Ciclo | Entrega continua: cada cambio dispara un pipeline (lint, build, test, release, deploy). Promoción por **candidatos de versión** y ambientes escalonados (desarrollo → *staging* → producción), con caminos de excepción documentados. |
+| Colaboración | **QA multi-rol** antes de producción: operaciones, ingeniería y contenido firman por separado. Responsabilidad compartida entre quien desarrolla y quien opera. |
+| Artefactos | Especificaciones de pipeline en YAML, imágenes de contenedor en registro, infraestructura como código, esquemas JSON de artefactos de contenido y diagramas de flujo de aplicación. Formalización **alta**: son ejecutables, no documentación. |
+| Uso recomendado | Indicado cuando hay que entregar **software y contenido** de forma repetible y operable, y cuando el sistema debe permanecer disponible mientras se actualiza. |
+| Madurez | **Alta.** Amplia adopción industrial y literatura consolidada sobre definiciones y prácticas [@Jabbari2016], además de tratamiento desde la arquitectura [@Bass2015]. |
+| Flexibilidad | **Alta.** Plantillas de plataforma reutilizables evitan reinventar el despliegue en cada iniciativa, y los caminos excepcionales (*hotfix*, *one-off*, solo-configuración) están previstos y registrados. |
 
 ### C. Event Driven Architecture
 *Responsable: Lina Ballesteros.*  
@@ -116,30 +161,63 @@ Se elige HCD porque hay evidencia de una brecha entre lo que ofrece y lo que el 
 
 ## IV. Espina de pescado y propuesta metodológica
 
-*Base: [@Ceret2013]. Definir roles, formatos, ciclos y justificación; valor diferencial.*
+*Base: [@Ceret2013]. Cada eje consolida el aporte de los cuatro enfoques y fija la decisión de la metodología propuesta, usando las gradaciones del autor.*
 
 ### A. Ciclo
-*[pendiente]*
+
+Los cuatro enfoques coinciden en la iteración pero difieren en qué la dispara: HCD retorna desde la evaluación con usuarios; EDA desde las pruebas de latencia y resiliencia; GenIA desde la evaluación previa al despliegue; DevOps aporta entrega continua con candidatos de versión y promoción por ambientes.
+
+Se propone un ciclo **incremental con gran número de entregas** (1–3 meses en la escala de [@Ceret2013]), con **iteración local y regional** —local sobre el flujo de eventos y el prototipo de interacción, regional sobre el conjunto experiencia–datos— y **retorno explícito obligatorio**. La decisión clave es que existen **dos compuertas de retorno independientes**: la evaluación con usuarios y las pruebas de latencia y resiliencia. Cualquiera de las dos devuelve el proceso a fases anteriores. Esto responde a una carencia concreta: RAD menciona procedimientos de validación pero no especifica qué debe hacerse cuando una etapa no se valida [@Ceret2013].
 
 ### B. Colaboración
-*[pendiente]*
+
+HCD incorpora al usuario como rol externo formal; DevOps aporta QA multi-rol con firmas separadas; EDA coordina mediante contratos de eventos compartidos; GenIA exige supervisión humana permanente.
+
+Se proponen roles internos —arquitecto de eventos, desarrollador AR, desarrollador backend, ingeniero DevOps y especialista en experiencia de usuario— y **dos roles externos formales**: el usuario final y el responsable de los datos. Son más de cinco roles, el mismo grado que RAD [@Ceret2013], pero con una diferencia sustantiva: RAD centra la coordinación en identificar equipos paralelos y verificar su no-redundancia, sin detallar cómo trabajan juntos [@Ceret2013]. Aquí la coordinación se ancla en **dos artefactos de lectura obligatoria** para todos los roles: el contrato de eventos y el informe de evaluación con usuarios.
 
 ### C. Artefactos
-*[pendiente]*
+
+Es el eje donde los enfoques tensionan: EDA y DevOps empujan hacia formalización alta —contratos, esquemas, pipelines ejecutables—; HCD aporta artefactos deliberadamente semi-formales; GenIA añade prompts versionados y salidas estructuradas.
+
+Se propone **formalización mixta y declarada por artefacto**. Obligatoriamente formales: el contrato de eventos (AsyncAPI o JSON Schema), la especificación de pipeline y el informe de evaluación con métricas. Deliberadamente semi-formales: los artefactos de exploración de la experiencia. La posición es intermedia entre XP, que no recomienda artefactos no ejecutables por considerarlos inútiles [@Ceret2013], y RAD, que propone alrededor de treinta clases de artefactos no ejecutables solo en su fase de inicialización [@Ceret2013]. El criterio de decisión es explícito: se formaliza lo que cruza una frontera entre equipos; se deja semi-formal lo que sirve para explorar.
 
 ### D. Uso recomendado
-*[pendiente]*
+
+Recomendada para proyectos de realidad aumentada **distribuidos o en tiempo real**, con múltiples productores y consumidores de datos, equipo multidisciplinario de entre cinco y quince personas, y **madurez de requisitos baja** —condición característica del dominio.
+
+**No recomendada** para aplicaciones AR pequeñas, locales y con pocas interacciones entre componentes, donde EDA añade complejidad sin retorno, ni para proyectos con requisitos cerrados y contexto de uso conocido, donde el peso de HCD no se justifica. Declarar los límites es en sí un aporte: RAD está clasificado como *sin información específica sobre el tamaño de proyecto esperado* y con *mención vaga del tipo de aplicación* [@Ceret2013].
 
 ### E. Madurez
-*[pendiente]*
+
+La madurez es desigual: HCD y DevOps son altos —normalización internacional y adopción industrial—; EDA es medio-alto en general pero con escasa documentación específica en AR; GenIA es emergente.
+
+En consecuencia, la metodología se declara **primera aproximación no validada**: sin difusión y sin validación empírica. Se propone medirla mediante indicadores por eje —frecuencia de entrega, número de retornos disparados por cada compuerta, cobertura de contratos versionados y resultados de evaluación con usuarios—. Reconocer la ausencia y acompañarla de un mecanismo de medición la separa del modelo Spiral, que no sugiere ninguna forma de validación [@Ceret2013].
 
 ### F. Flexibilidad
-*[pendiente]*
+
+Los cuatro aportan variabilidad: HCD admite al menos cuatro modelos de proceso; EDA admite distintos brokers y protocolos; DevOps prevé caminos de excepción; GenIA no exige un lenguaje exclusivo.
+
+Se propone **variabilidad explícita por enfoque**: HCD y DevOps son **obligatorios** en toda instancia de la metodología; EDA es **condicional**, se activa solo si el proyecto es distribuido o de tiempo real; GenIA es **condicional**, se activa solo si existen datos confiables sobre los que apoyar la generación. Esta configurabilidad la aleja de los modelos de procedimiento fijo: [@Ceret2013] recoge que modelos como el Waterfall, el Spiral o el modelo en V pueden considerarse procedimientos fijos, y que esa fijeza dificulta adaptarlos a condiciones locales; el Spiral, en particular, no sugiere ninguna variante.
 
 ### G. Valor diferencial frente a metodologías actuales
-*[pendiente]*
 
----
+La comparación usa los mismos ejes y gradaciones con que [@Ceret2013] clasifica tres modelos de proceso consolidados. No se compara contra Scrum porque el paper no lo clasifica; hacerlo exigiría una clasificación propia que excede esta primera aproximación.
+
+| Eje / sub-eje | Spiral | RAD | XP | **Propuesta** |
+|---|---|---|---|---|
+| Incremento | Desarrollo incremental, una entrega final | Número medio (3–6 meses) | Número muy grande | **Grande (1–3 meses)** |
+| Iteración | Global | Global y regional | Regional y local | **Local y regional** |
+| Retorno (*backwards*) | — | Menciona validación, no define qué hacer si falla | — | **Dos compuertas explícitas de retorno** |
+| Roles | — | Más de cinco | Cliente diario; usuarios definen historias | **Más de cinco + dos roles externos formales** |
+| Artefactos | Solo artefactos formalizados | ~30 clases no ejecutables en inicialización | No recomienda no ejecutables | **Mixta, con criterio declarado** |
+| Tamaño de proyecto | Grandes, sin procedimiento de evaluación | Sin información específica | — | **Declarado: 5–15 personas, con límites de no-uso** |
+| Validación | No sugiere ninguna | — | — | **Ausencia declarada + indicadores por eje** |
+| Difusión | — | — | Muy bien difundido | **Nula (primera aproximación)** |
+| Variabilidad | No sugiere variantes | — | — | **Explícita: dos enfoques obligatorios, dos condicionales** |
+
+Tres diferencias concentran el valor de la propuesta. **Primero**, el retorno explícito con dos compuertas independientes —usuario y rendimiento— frente a modelos que validan sin definir la consecuencia de no validar. **Segundo**, la declaración de límites de uso, incluyendo cuándo *no* aplicarla, frente a modelos que no informan sobre tamaño o tipo de aplicación. **Tercero**, la variabilidad configurable por enfoque, frente a procedimientos fijos difíciles de adaptar a condiciones locales.
+
+La debilidad, declarada sin atenuantes, es la madurez: frente a XP —muy bien difundido [@Ceret2013]— esta propuesta no tiene difusión ni validación empírica. Es precisamente lo que el mecanismo de medición del eje Madurez busca empezar a corregir.
 
 ## V. Conclusión
 
