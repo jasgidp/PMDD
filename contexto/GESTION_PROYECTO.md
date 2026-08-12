@@ -422,3 +422,13 @@ Registros en orden cronológico (más reciente abajo).
 - `estado-arte-realidad-aumentada/` sigue como respaldo paralelo al Markdown (fuente de verdad del paper: `BORRADOR_MAESTRO.md`).
 
 **Archivos:** `BORRADOR_MAESTRO.md`, `GESTION_PROYECTO.md`.
+
+---
+
+## 2026-08-11 — Tabla de espina de EDA sincronizada
+
+**Qué se hizo:** insertada al final de §III.C la tabla *Aporte de EDA a los seis ejes*, que Lina tenía en el Google Doc pero no había llegado al borrador maestro. **Ya están las cuatro tablas** (GenIA, DevOps, EDA, HCD), que es lo que §IV consolida.
+
+**Observación tras `pull` (commit `22f3564`):** §II se restauró a la versión completa del estado del arte y ahora mide **~1352 palabras** frente al objetivo de 450–650 registrado en el estado. El paper completo va en **~3589 palabras**. Se respeta la decisión de quien restauró, pero conviene confirmarla: con esa extensión §II ocupa cerca del 38 % del cuerpo y el objetivo de ~4 páginas IEEE queda comprometido.
+
+**Archivos:** `BORRADOR_MAESTRO.md`, `GESTION_PROYECTO.md`.
