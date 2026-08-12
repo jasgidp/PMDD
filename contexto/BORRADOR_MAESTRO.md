@@ -1,6 +1,6 @@
 # BORRADOR MAESTRO — Entregable en construcción
 
-**Estado:** estructura alineada al Reto #1; §III.B DevOps y §III.D HCD en borrador.  
+**Estado:** §II Dominio AR (versión completa, Quinnie), §III.B DevOps, §III.C EDA, §III.D HCD y §IV en borrador.  
 **Dominio:** Realidad aumentada (Equipo 2).  
 **Outline:** `PLANTILLA_PAPER.md` · **Fuentes:** `FUENTES.md` · **Gestión:** `GESTION_PROYECTO.md`  
 **Citas:** `[@Clave]` hasta el ensamblado.
@@ -35,34 +35,94 @@ Quinnie; Jose Manuel Carvajal; Jonathan Sandoval; Lina Ballesteros; Alejandro R�
 
 ## II. Dominio: realidad aumentada — estado actual
 
-*Responsable: Quinnie.*
-*Condensado desde el estado del arte completo en [`estado-arte-realidad-aumentada/`](../estado-arte-realidad-aumentada/) (1295 → ~570 palabras, objetivo §II 450–650). Se conservan todas las citas del original. **Pendiente de validación por su autora.***
+*Responsable: Quinnie.*  
+*Versión completa alineada al estado del arte en [`estado-arte-realidad-aumentada/`](../estado-arte-realidad-aumentada/). Sustituye la condensación previa (~570 palabras) tras validación de la autora.*
 
-### A. Qué es y su estado de desarrollo
+### A. Qué es la Realidad Aumentada y cuál es su estado de desarrollo
 
-La Realidad Aumentada (RA) se define clásicamente como un sistema que combina objetos reales y virtuales en un entorno real, opera de forma interactiva y en tiempo real, y registra objetos reales y virtuales en tres dimensiones [@Azuma1997]. La definición es agnóstica a la tecnología: no se restringe a un visualizador particular ni al sentido de la vista [@Azuma2001]. Milgram y Kishino la sitúan en el *continuum* realidad–virtualidad de la Realidad Mixta [@Milgram1994]; Billinghurst et al. consolidan esa base como interfaz espacial [@Billinghurst2015].
+#### Definición y delimitación conceptual
 
-El campo evolucionó de prototipos de laboratorio a plataformas móviles y *wearables*. Los meta-análisis de ISMAR muestran el desplazamiento temático: de *tracking*, interacción y display en la primera década [@Zhou2008] a un aumento de evaluación y *rendering* entre 2008 y 2017 [@Kim2018]. La investigación reciente en RA *wearable* se orienta a adopción masiva, ética, accesibilidad y agentes virtuales [@Goh2023]; revisiones técnicas sistematizan tracking, herramientas, displays y seguridad [@Syed2023], [@Devagiri2024]. El estado actual puede caracterizarse como **madurez parcial**: viable comercialmente en móviles y en nichos industriales y educativos, con la RA óptica *see-through* indistinguible y la adopción generalizada aún como desafíos abiertos [@Goh2023], [@Devagiri2024].
+La Realidad Aumentada (RA) se define clásicamente como un sistema que *(i)* combina objetos reales y virtuales en un entorno real, *(ii)* opera de forma interactiva y en tiempo real, y *(iii)* registra (alinea) objetos reales y virtuales en tres dimensiones [@Azuma1997]. Esta definición es tecnológicamente agnóstica: no se restringe a un tipo particular de visualizador (p. ej., HMD) ni al sentido de la vista [@Azuma2001].
 
-### B. Cómo se abordan los proyectos
+Milgram y Kishino situaron la RA dentro del *continuum* realidad–virtualidad de la Realidad Mixta (RM), donde el entorno predominante es el mundo real y este se enriquece con contenido generado por computador; el extremo opuesto es la Realidad Virtual (RV) y, entre ambos, aparece la Virtualidad Aumentada [@Milgram1994]. Billinghurst, Clark y Lee consolidaron esta base conceptual en un estudio amplio de HCI, reafirmando el papel de la RA como interfaz espacial que superpone información digital al entorno físico [@Billinghurst2015].
 
-Los proyectos de RA se abordan como sistemas socio-técnicos en los que hardware, software y contenido deben co-diseñarse [@Schmalstieg2016], [@Devagiri2024]. El abordaje típico incluye delimitar el caso y el contexto de uso [@NIST2022], [@Sereno2022]; seleccionar plataforma y modalidad de display [@Syed2023]; elegir la estrategia de anclaje espacial —marcadores fiduciales, SLAM, localización visual-inercial o mapas previos— [@Kim2018]; diseñar la interfaz espacial cuidando carga cognitiva y coherencia real–virtual [@Kourouthanassis2015], [@Endsley2017]; e implementar de forma iterativa con evaluación con usuarios [@Dunser2011]. En RA colaborativa se añaden dimensiones de espacio, tiempo y simetría de roles y tecnología, que exigen decisiones explícitas de arquitectura multiusuario y *awareness* compartido [@Billinghurst2002], [@Sereno2022].
+#### Estado de desarrollo
+
+El campo evolucionó desde prototipos de laboratorio hacia plataformas móviles y *wearables* de uso más amplio. Azuma [@Azuma1997] identificó tempranamente el registro, la latencia y la sensorización como problemas centrales. La actualización de 2001 documentó avances en *tracking*, despliegues móviles y displays, sin resolver por completo la alineación estable en entornos no controlados [@Azuma2001].
+
+Los meta-análisis de ISMAR muestran el desplazamiento temático del área: Zhou et al. sintetizaron la primera década con foco en *tracking*, interacción y display [@Zhou2008]; Kim et al. reportaron, para 2008–2017, un aumento marcado de evaluación y *rendering*, junto con el auge de RA móvil y reconstrucción 3D [@Kim2018]. En años recientes, Goh et al. observan que la investigación en RA *wearable* se orienta a adopción masiva, ética, accesibilidad, avatares/*embodiment* y agentes virtuales inteligentes, además de retos persistentes en display, tracking e interacción [@Goh2023].
+
+En paralelo, revisiones técnicas recientes sistematizan tecnologías de tracking, herramientas de desarrollo, displays, RA colaborativa y preocupaciones de seguridad [@Syed2023]. Devagiri et al. ofrecen un panorama consolidado de 2024: tecnologías habilitadoras y potenciadoras, matriz de hardware comercial, capacidades de software y un conjunto de guías de desarrollo desde la ideación hasta el despliegue [@Devagiri2024]. En conjunto, el estado actual puede caracterizarse como *madurez parcial*: la RA es viable comercialmente en móviles y en niches industriales/educativos, mientras que la RA óptica *see-through* “indistinguible” y la adopción generalizada siguen siendo desafíos abiertos [@Goh2023], [@Devagiri2024].
+
+### B. Cómo se abordan los proyectos en el contexto de RA
+
+Los proyectos de RA suelen abordarse como sistemas socio-técnicos en los que hardware (cámara, IMU, HMD, dispositivo móvil), software (*tracking*, renderizado, gestión de escena) y contenido (modelos 3D, anotaciones, reglas de interacción) deben co-diseñarse [@Schmalstieg2016], [@Devagiri2024].
+
+En la práctica, el abordaje típico incluye:
+
+1. **Delimitación del caso de uso y contexto de uso:** dominio (mantenimiento, educación, medicina, colaboración, etc.), usuarios, entorno físico y restricciones de seguridad [@NIST2022], [@Sereno2022].
+2. **Selección de plataforma y modalidad de display:** RA móvil (*handheld*), HMD óptico o por video, o configuraciones colaborativas heterogéneas [@Syed2023], [@Devagiri2024].
+3. **Elección de la estrategia de anclaje espacial:** marcadores fiduciales, SLAM/*markerless*, localización visual-inercial o mapas previos del entorno [@Kim2018], [@Syed2023].
+4. **Diseño de la interfaz espacial e interacción:** gestos, voz, mirada, tangibles o híbridos, cuidando carga cognitiva y coherencia real–virtual [@Kourouthanassis2015], [@Endsley2017].
+5. **Implementación iterativa y evaluación con usuarios:** prototipado temprano, pruebas de usabilidad y métricas de efectividad, eficiencia y satisfacción en contexto [@NIST2022], [@Dunser2011].
+
+En RA colaborativa, el abordaje se amplía a dimensiones de espacio, tiempo, simetría de roles y de tecnología, y modalidades de entrada/salida, lo que exige decisiones explícitas de arquitectura multi-usuario y *awareness* compartido [@Billinghurst2002], [@Sereno2022].
 
 ### C. Metodologías utilizadas
 
-No existe una metodología estándar universal para RA; la literatura converge en combinar marcos de desarrollo multimedia con diseño centrado en el humano y evaluación específica de usabilidad. Roedavan et al. adaptan el *Multimedia Development Life Cycle* (MDLC) a RA, distinguiendo núcleo, visual e interacción en producción y evaluación de compatibilidad, desempeño y usabilidad en postproducción [@Roedavan2025]. ISO 9241-210 aporta el marco general de HCD [@ISO9241210] y NIST IR 8422 lo operacionaliza para RA en cinco componentes: alcance, usuarios y contexto, escenarios, métricas y medidas [@NIST2022]. Dünser y Billinghurst argumentan que los métodos HCI tradicionales deben adaptarse por el registro espacial, el confort y la carga cognitiva propios de la RA [@Dunser2011], [@Dunser2007].
+No existe una única metodología estándar universal para RA; la literatura converge en la combinación de marcos de desarrollo multimedia/software con diseño centrado en el humano (HCD) y evaluación específica de usabilidad en RA.
+
+#### Ciclos de desarrollo multimedia adaptados
+
+Roedavan et al. proponen un marco basado en el *Multimedia Development Life Cycle* (MDLC) adaptado a RA, estructurado en capas de fase, etapa de desarrollo y componentes. En producción distinguen núcleo (*tracking* y anclaje), visual (contenido y renderizado) e interacción; en postproducción enfatizan evaluación de compatibilidad, desempeño y usabilidad [@Roedavan2025].
+
+#### Diseño centrado en el usuario
+
+ISO 9241-210 provee el marco general de HCD para sistemas interactivos —comprensión del contexto, especificación de requisitos, producción de soluciones y evaluación— aplicable a RA como sistema interactivo espacial [@ISO9241210]. NIST IR 8422 operacionaliza este enfoque para RA mediante un marco de evaluación de usabilidad en cinco componentes: alcance, usuarios y contexto, escenarios/tareas, métricas y medidas [@NIST2022].
+
+#### Evaluación HCI específica de RA
+
+Dünser y Billinghurst argumentan que los métodos HCI tradicionales deben adaptarse porque la RA introduce factores de registro espacial, confort, carga cognitiva y acoplamiento con el entorno físico [@Dunser2011]. Trabajos previos del mismo grupo plantean la aplicación explícita de principios HCI al diseño de sistemas RA [@Dunser2007]. Endsley et al. aportan heurísticas de diseño orientadas a interacciones dinámicas en entornos aumentados [@Endsley2017].
+
+En síntesis, las metodologías predominantes son: **(a)** ciclos iterativos tipo MDLC/ágil adaptados a componentes RA; **(b)** HCD/ISO 9241-210; y **(c)** evaluación heurística y empírica específica de RA.
 
 ### D. Principios de diseño y arquitectura
 
-Los principios recurrentes son: registro espacial estable y baja latencia percibida; claridad de la información sin ocluir el entorno relevante; interacción alineada con las capacidades del dispositivo y del usuario; y consideración de confort, seguridad y privacidad [@Kourouthanassis2015], [@Endsley2017], [@Dunser2007], [@Sereno2022].
+#### Principios de diseño
 
-En arquitectura, Reicher et al. formularon una arquitectura de referencia destacando latencia de tracking y renderizado, operación inalámbrica y reutilización de componentes [@Reicher2003]; MacWilliams et al. aportaron un catálogo de patrones de diseño para RA [@MacWilliams2004]. A nivel de estándar, ETSI GS ARF 003 especifica una arquitectura funcional de referencia con despliegue en dispositivo, nube o híbrido [@ETSI-ARF003]. Esquemáticamente, las arquitecturas se descomponen en captura y sensado, tracking y mapeo del mundo, modelo del entorno, lógica de aplicación, renderizado e interacción, con requisitos transversales de tiempo real y baja latencia extremo a extremo [@Reicher2003], [@ETSI-ARF003].
+Kourouthanassis et al. desmitifican el diseño de aplicaciones de RA móvil y enfatizan criterios de utilidad contextual, interacción natural, gestión de la atención y coherencia entre capas real y virtual [@Kourouthanassis2015]. Endsley et al. formalizan heurísticas para interacciones dinámicas, advirtiendo que omitir usabilidad en el diseño incrementa errores y erosiona la confianza del usuario [@Endsley2017]. Dünser et al. recomiendan trasladar principios HCI (visibilidad del estado del sistema, correspondencia con el mundo real, control del usuario, prevención de errores, etc.) al dominio espacial de la RA [@Dunser2007].
 
-### E. Ciclo de vida
+Principios recurrentes en la literatura:
 
-De la convergencia entre MDLC adaptado [@Roedavan2025], guías contemporáneas [@Devagiri2024] y HCD con evaluación de usabilidad [@ISO9241210], [@NIST2022], el ciclo típico comprende: ideación y análisis de contexto; especificación de requisitos funcionales y no funcionales (latencia, precisión de registro, autonomía, privacidad); diseño conceptual y arquitectónico; preparación de activos y prototipado; implementación del pipeline *tracking–render–input*; evaluación iterativa técnica y de usabilidad en contexto; y despliegue, operación y evolución.
+- Registro espacial estable y baja latencia percibida.
+- Claridad de la información aumentada sin ocluir indebidamente el entorno relevante.
+- Interacción alineada con capacidades del dispositivo y del usuario.
+- Consideración de confort, seguridad, privacidad y continuidad ante interrupciones.
+- Soporte a *awareness* y coordinación en escenarios colaborativos [@Sereno2022].
 
-El ciclo es **inherentemente iterativo**: los hallazgos de evaluación realimentan requisitos y diseño, en coherencia con ISO 9241-210 [@ISO9241210] y con la evidencia de que la madurez de la RA depende tanto de avances técnicos como de la calidad de la experiencia de usuario [@Kim2018], [@Goh2023].
+#### Arquitectura de sistemas
+
+Reicher et al. formularon una arquitectura de referencia para sistemas RA a partir del estudio de implementaciones existentes, destacando atributos de calidad como latencia de tracking/renderizado, operación inalámbrica, múltiples dispositivos de tracking, reutilización e integración de componentes [@Reicher2003]. MacWilliams et al. complementaron este trabajo con un catálogo de patrones de diseño para RA (específicos del dominio y adaptaciones de patrones generales), orientado a un vocabulario compartido de decisiones arquitectónicas [@MacWilliams2004].
+
+A nivel industrial/estándar, ETSI GS ARF 003 especifica una arquitectura funcional de referencia para componentes, sistemas y servicios de RA, con bloques lógicos interconectados por puntos de referencia y despliegue posible en dispositivo, nube o de forma híbrida [@ETSI-ARF003]. Schmalstieg y Höllerer sistematizan la arquitectura típica como acoplamiento de visión por computador, gráficos, tracking, visualización e interacción 3D [@Schmalstieg2016].
+
+De manera esquemática, las arquitecturas de RA suelen descomponerse en: *captura/sensado*, *tracking y mapeo del mundo*, *modelo del entorno/contexto*, *lógica de aplicación*, *renderizado/presentación* e *interacción*, con requisitos transversales de tiempo real y baja latencia extremo a extremo [@Reicher2003], [@ETSI-ARF003].
+
+### E. Ciclo de vida para llegar a soluciones en RA
+
+A partir de la convergencia entre MDLC adaptado [@Roedavan2025], guías de desarrollo contemporáneas [@Devagiri2024] y HCD/evaluación de usabilidad [@ISO9241210], [@NIST2022], el ciclo de vida típico de una solución RA puede formularse así:
+
+1. **Ideación y análisis de contexto.** Definir problema, usuarios, entorno físico, riesgos y valor de la aumentación frente a alternativas no-RA [@Devagiri2024], [@NIST2022].
+2. **Especificación de requisitos.** Requisitos funcionales (qué se aumenta, cómo se interactúa) y no funcionales (latencia, precisión de registro, autonomía, privacidad, colaboración) [@Reicher2003], [@Sereno2022].
+3. **Diseño conceptual y arquitectónico.** Selección de display/plataforma, estrategia de tracking, patrones arquitectónicos y principios/heurísticas de UI espacial [@MacWilliams2004], [@ETSI-ARF003], [@Endsley2017].
+4. **Preparación de activos y prototipado.** Modelos 3D, marcadores/mapas, interacciones; prototipos de fidelidad creciente [@Roedavan2025], [@Schmalstieg2016].
+5. **Implementación (núcleo, visual, interacción).** Integración del *pipeline* de tracking–render–input sobre el *framework* elegido [@Roedavan2025], [@Syed2023].
+6. **Evaluación iterativa.** Pruebas técnicas (precisión, FPS, compatibilidad) y de usabilidad con usuarios reales en contexto, con métricas explícitas [@NIST2022], [@Dunser2011].
+7. **Despliegue, operación y evolución.** Publicación en dispositivos objetivo, monitoreo de desempeño en campo, actualización de mapas/contenido y mejora continua [@Devagiri2024].
+
+Este ciclo es inherentemente **iterativo**: los hallazgos de evaluación realimentan requisitos y diseño, en coherencia con ISO 9241-210 [@ISO9241210] y con la evidencia de que la madurez de RA depende tanto de avances técnicos como de calidad de experiencia de usuario [@Kim2018], [@Goh2023].
+
+> **Nota de alcance:** este apartado se limita al estado del arte orientado a las cinco preguntas del checklist del dominio. No desarrolla contribuciones experimentales propias ni una revisión sistemática exhaustiva de todos los subdominios de aplicación.
 
 ---
 

@@ -18,7 +18,7 @@ Archivo operativo del equipo. Al integrar texto nuevo: actualizar **Estado** + *
 | Abstract (EN) | por asignar | pendiente | 0 / ~150–200 | — | Redactar en inglés |
 | Índice de Términos | por asignar | pendiente | 0 | — | Keywords |
 | I. Introducción | por asignar | pendiente | 0 / ~300–450 | — | Redactar (outline ya aprobado) |
-| II. Dominio AR | Quinnie | borrador externo | ver `estado-arte-realidad-aumentada/` | ver PDF/TeX | Integrar prosa a `BORRADOR_MAESTRO.md` + fuentes a `FUENTES.md` |
+| II. Dominio AR | Quinnie | **redactada (versión completa)** | ~1300 / outline orientaba 450–650 | 21 fuentes AR + [@ISO9241210] | Autora validó y restauró prosa completa del PDF; PDF/TeX quedan como respaldo |
 | III.A GenIA (IA gen. general) | Jose Manuel Carvajal | pendiente | 0 / ~200–350 | — | Él aporta contenido |
 | III.B DevOps | Jonathan Sandoval | borrador sanitizado | ver maestro | [@Bass2015] [@Jabbari2016] [@Vaquero2020] | Detalle industrial solo en `privado/` |
 | III.C Event Driven Architecture | Lina Ballesteros | redactada | 334 / ~200–350 ✅ | [@Cabane2024] [@RosaBilbao2023] [@Vaquero2020] [@Oberhauser2023] [@AsyncAPI] | Pendiente feedback de socialización |
@@ -405,3 +405,20 @@ Registros en orden cronológico (más reciente abajo).
 - ⚠️ Fuentes de §III.A (GenIA): 4 de 7 corporativas, no cumplen `REQUISITOS.md` §5.
 
 **Archivos:** `BORRADOR_MAESTRO.md`, `FUENTES.md`, `GESTION_PROYECTO.md`.
+
+---
+
+## 2026-08-11 — §II restaurada a versión completa del estado del arte (Quinnie)
+
+**Clasificación:** validación de autora + prosa de sección.
+
+**Qué se hizo**
+- Quinnie validó §II y **reemplazó la condensación** (~570–665 palabras) por la **versión completa** alineada a `estado-arte-realidad-aumentada/` (mismas cinco subsecciones del PDF/TeX, con subapartados de definición, metodologías HCD/MDLC/HCI y arquitectura).
+- Se mantienen las claves de cita ya fichadas en `FUENTES.md` (`[@Azuma1997]`, `[@NIST2022]`, `[@ETSI-ARF003]`, etc.).
+- Estado de **II. Dominio AR** pasa a *redactada (versión completa)*. El objetivo orientativo de 450–650 queda **superado a propósito** por decisión de la responsable de dominio.
+
+**Huecos**
+- El paper crece en páginas respecto a la base ~4 pp.; el equipo puede rebalancear otras secciones si hace falta.
+- `estado-arte-realidad-aumentada/` sigue como respaldo paralelo al Markdown (fuente de verdad del paper: `BORRADOR_MAESTRO.md`).
+
+**Archivos:** `BORRADOR_MAESTRO.md`, `GESTION_PROYECTO.md`.
