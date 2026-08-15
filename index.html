@@ -1,0 +1,1949 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>RA · Metodología — Equipo 2 EAFIT</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Sora:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+
+    :root {
+      --bg: #0a0f12;
+      --ink: #eaf1f4;
+      --ink-2: #c3d2d8;
+      --muted: #8ba0a9;
+      --faint: #63757d;
+      --line: rgba(255,255,255,0.07);
+      --line-2: rgba(255,255,255,0.12);
+      --surface-1: rgba(255,255,255,0.028);
+      --surface-2: rgba(255,255,255,0.055);
+      --teal: #3fd6c3;
+      --teal-ink: #6fe3d4;
+      --teal-dim: rgba(63,214,195,0.12);
+      --amber: #eeb185;
+      --amber-dim: rgba(238,177,133,0.14);
+      --genia: #7ba6f5;
+      --devops: #3fd6c3;
+      --eda: #eeb185;
+      --hcd: #8fdcc3;
+      --panel: #101a1f;
+      --radius: 16px;
+      --radius-sm: 10px;
+      --font-display: "Fraunces", Georgia, serif;
+      --font-ui: "Sora", system-ui, sans-serif;
+
+      --t-display: clamp(2rem, 3.5vw, 3.05rem);
+      --t-h2: clamp(1.2rem, 1.9vw, 1.55rem);
+      --t-body: clamp(0.92rem, 1.15vw, 1.06rem);
+      --t-small: clamp(0.82rem, 1.02vw, 0.94rem);
+      --t-label: clamp(0.64rem, 0.78vw, 0.72rem);
+
+      --s1: 0.4rem;
+      --s2: 0.7rem;
+      --s3: 1.1rem;
+      --s4: 1.6rem;
+      --s5: 2.3rem;
+
+      --motif-genia: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240' viewBox='0 0 240 240'%3E%3Cg fill='none' stroke='rgb(123,166,245)' stroke-width='1.6'%3E%3Ccircle cx='40' cy='50' r='6'/%3E%3Ccircle cx='120' cy='30' r='5'/%3E%3Ccircle cx='200' cy='60' r='7'/%3E%3Ccircle cx='70' cy='120' r='5'/%3E%3Ccircle cx='160' cy='140' r='6'/%3E%3Ccircle cx='30' cy='190' r='5'/%3E%3Ccircle cx='140' cy='210' r='7'/%3E%3Ccircle cx='210' cy='170' r='5'/%3E%3Cline x1='40' y1='50' x2='120' y2='30'/%3E%3Cline x1='120' y1='30' x2='200' y2='60'/%3E%3Cline x1='40' y1='50' x2='70' y2='120'/%3E%3Cline x1='70' y1='120' x2='160' y2='140'/%3E%3Cline x1='200' y1='60' x2='160' y2='140'/%3E%3Cline x1='70' y1='120' x2='30' y2='190'/%3E%3Cline x1='160' y1='140' x2='140' y2='210'/%3E%3Cline x1='160' y1='140' x2='210' y2='170'/%3E%3C/g%3E%3C/svg%3E");
+      --motif-devops: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240' viewBox='0 0 240 240'%3E%3Cg fill='none' stroke='rgb(63,214,195)' stroke-width='2'%3E%3Ccircle cx='120' cy='120' r='85' stroke-dasharray='10 8' opacity='0.8'/%3E%3Ccircle cx='120' cy='35' r='7' fill='rgb(63,214,195)' stroke='none'/%3E%3Ccircle cx='190' cy='75' r='6' fill='rgb(63,214,195)' stroke='none'/%3E%3Ccircle cx='190' cy='165' r='6' fill='rgb(63,214,195)' stroke='none'/%3E%3Ccircle cx='120' cy='205' r='7' fill='rgb(63,214,195)' stroke='none'/%3E%3Ccircle cx='50' cy='165' r='6' fill='rgb(63,214,195)' stroke='none'/%3E%3Ccircle cx='50' cy='75' r='6' fill='rgb(63,214,195)' stroke='none'/%3E%3Cpath d='M160 45l14 8-6 15' stroke='rgb(63,214,195)' stroke-width='2.5'/%3E%3C/g%3E%3C/svg%3E");
+      --motif-eda: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240' viewBox='0 0 240 240'%3E%3Cg fill='none' stroke='rgb(238,177,133)'%3E%3Ccircle cx='120' cy='120' r='18' stroke-width='2'/%3E%3Ccircle cx='120' cy='120' r='42' stroke-width='1.5' opacity='0.7'/%3E%3Ccircle cx='120' cy='120' r='66' stroke-width='1.2' opacity='0.5'/%3E%3Ccircle cx='120' cy='120' r='90' stroke-width='1' opacity='0.3'/%3E%3Ccircle cx='120' cy='30' r='6' fill='rgb(238,177,133)' stroke='none'/%3E%3Ccircle cx='205' cy='150' r='6' fill='rgb(238,177,133)' stroke='none'/%3E%3Ccircle cx='45' cy='170' r='6' fill='rgb(238,177,133)' stroke='none'/%3E%3Cline x1='120' y1='60' x2='120' y2='30' stroke-dasharray='4 4'/%3E%3Cline x1='150' y1='140' x2='198' y2='152' stroke-dasharray='4 4'/%3E%3Cline x1='95' y1='140' x2='52' y2='165' stroke-dasharray='4 4'/%3E%3C/g%3E%3C/svg%3E");
+      --motif-hcd: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240' viewBox='0 0 240 240'%3E%3Cg fill='none' stroke='rgb(143,220,195)'%3E%3Ccircle cx='120' cy='90' r='28' stroke-width='2'/%3E%3Cpath d='M55 200c8-42 38-64 65-64s57 22 65 64' stroke-width='2'/%3E%3Ccircle cx='120' cy='130' r='95' stroke-width='1' stroke-dasharray='3 6' opacity='0.5'/%3E%3C/g%3E%3C/svg%3E");
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    /* deck type scales with viewport height so the preview and a 1920x1080
+       projection have identical proportions (16px at 1080px tall and above) */
+    html { font-size: clamp(11px, 1.85vh, 20px); }
+
+    html, body {
+      height: 100%;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--font-ui);
+      overflow: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      background:
+        radial-gradient(1100px 620px at 8% -12%, rgba(63,214,195,0.10), transparent 60%),
+        radial-gradient(900px 520px at 108% 108%, rgba(238,177,133,0.05), transparent 55%),
+        #0a0f12;
+    }
+
+    a { color: var(--teal-ink); text-decoration: none; }
+    a:hover { color: var(--ink); }
+
+    .deck { height: 100vh; width: 100vw; position: relative; }
+
+.slide {
+  position: absolute;
+  inset: 0;
+  padding: clamp(1.4rem, 2.6vw, 2.9rem) clamp(1.6rem, 3.4vw, 3.4rem) clamp(3.2rem, 5vh, 4.6rem);
+  display: none;
+  flex-direction: column;
+  justify-content: space-between; /* Mantiene topbar arriba y centra la stage */
+  gap: var(--s2);
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.45s ease, transform 0.45s ease;
+}
+
+    .slide.active { display: flex; opacity: 1; transform: none; }
+
+    /* —— header —— */
+    .topbar {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: var(--s4);
+      flex-wrap: wrap;
+      padding-bottom: var(--s2);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .eyebrow {
+      font-size: var(--t-label);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--faint);
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+    }
+
+    .slide-title {
+      font-family: var(--font-display);
+      font-size: var(--t-display);
+      font-weight: 700;
+      line-height: 1.02;
+      letter-spacing: -0.015em;
+      max-width: 20ch;
+    }
+
+    .meta {
+      color: var(--muted);
+      font-size: var(--t-small);
+      text-align: right;
+      max-width: 44ch;
+      line-height: 1.5;
+    }
+
+    .slide[data-slide="0"] .meta { max-width: none; white-space: nowrap; }
+
+    .stage { 
+  flex: 1; 
+  min-height: 0; 
+  display: grid; 
+  gap: var(--s3); 
+  align-content: center; /* Centra el contenido en pantallas grandes */
+  margin: auto 0;       /* Balancea el espacio vertical */
+}
+    /* —— slide 1 —— */
+    .s1-stage {
+      grid-template-columns: 1.08fr 1fr;
+      grid-template-rows: auto 1fr auto;
+      column-gap: var(--s4);
+      align-items: stretch;
+    }
+
+    .s1-stage > .continuum { grid-column: 1 / -1; }
+
+    .s1-left, .s1-right {
+      display: flex;
+      flex-direction: column;
+      gap: var(--s2);
+      min-height: 0;
+    }
+
+    .s1-left > * { flex: 0 0 auto; }
+
+    .s1-left { justify-content: flex-start; }
+
+    @media (max-width: 820px) {
+      .s1-stage { grid-template-columns: 1fr; grid-template-rows: auto auto auto auto; }
+      .s1-right .panel { position: static; height: auto; }
+      .s1-panels { min-height: 16rem; }
+      .stage { overflow: auto; }
+      .slide-title { max-width: none; }
+      .meta { text-align: left; }
+      .topbar { align-items: flex-start; }
+    }
+
+    /* section labels — the only structural marker, no boxes needed */
+    .continuum-label {
+      font-size: var(--t-label);
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--faint);
+      font-weight: 600;
+      margin-bottom: var(--s2);
+    }
+
+    /* —— reality continuum: one rail, one highlighted node —— */
+    .continuum { position: relative; padding: 0; }
+
+    .continuum-track {
+      display: grid;
+      grid-template-columns: 1fr 1.25fr 1fr;
+      gap: 0;
+      align-items: stretch;
+      position: relative;
+      padding-top: 0.9rem;
+    }
+
+    .continuum-track::before {
+      content: "";
+      position: absolute;
+      left: 8%;
+      right: 8%;
+      top: 0.9rem;
+      height: 2px;
+      background: linear-gradient(90deg, rgba(255,255,255,0.14), var(--teal) 50%, rgba(238,177,133,0.5));
+      border-radius: 99px;
+    }
+
+    .c-node {
+      position: relative;
+      text-align: center;
+      padding: 0.95rem 0.75rem 0;
+      background: none;
+      border: 0;
+    }
+
+    .c-node::before {
+      content: "";
+      position: absolute;
+      top: -4px;
+      left: 50%;
+      width: 9px;
+      height: 9px;
+      margin-left: -4.5px;
+      border-radius: 50%;
+      background: #26343a;
+      border: 2px solid rgba(255,255,255,0.22);
+    }
+
+    .c-node strong {
+      display: block;
+      font-family: var(--font-display);
+      font-size: clamp(1.1rem, 1.7vw, 1.42rem);
+      font-weight: 700;
+      color: var(--ink-2);
+      margin-bottom: 0.18rem;
+    }
+
+    .c-node span { font-size: var(--t-small); color: var(--faint); }
+
+    .c-node.ra::before {
+      background: var(--teal);
+      border-color: rgba(63,214,195,0.28);
+      width: 13px; height: 13px; margin-left: -6.5px; top: -6px;
+      box-shadow: 0 0 0 5px rgba(63,214,195,0.10);
+    }
+
+    .c-node.ra strong { color: var(--teal-ink); font-size: clamp(1.3rem, 2.1vw, 1.75rem); }
+    .c-node.ra span { color: var(--ink-2); }
+
+    /* —— flow rows (arquitectura / ciclo) —— */
+    .pipeline, .cycle {
+      border: 0;
+      border-radius: var(--radius);
+      padding: var(--s2) var(--s3);
+      background: var(--surface-1);
+      display: flex;
+      flex-direction: column;
+      gap: var(--s2);
+      min-height: 0;
+    }
+
+    .pipeline-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(6.4rem, 1fr));
+      gap: 0.3rem 0.15rem;
+      align-items: stretch;
+    }
+
+    .cycle .pipeline-row { grid-template-columns: repeat(auto-fit, minmax(6.4rem, 1fr)); }
+
+    .pipe-unit { display: flex; align-items: center; gap: 0.2rem; min-width: 0; }
+    .pipe-unit .pipe-chip { flex: 1 1 auto; min-width: 0; }
+
+    .pipe-chip {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.38rem;
+      text-align: center;
+      padding: 0.52rem 0.5rem;
+      border-radius: var(--radius-sm);
+      background: var(--surface-2);
+      border: 0;
+      font-size: var(--t-small);
+      font-weight: 600;
+      color: var(--ink-2);
+      white-space: nowrap;
+      overflow: visible;
+    }
+
+    .pipe-chip svg { flex: 0 0 auto; color: var(--teal); opacity: 0.9; }
+
+    .pipe-arrow {
+      color: rgba(255,255,255,0.22);
+      font-size: 0.85rem;
+      flex: 0 0 auto;
+      width: 1rem;
+      text-align: center;
+    }
+
+    .pipeline h4 {
+      font-size: var(--t-small);
+      font-weight: 600;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: 0.1rem;
+    }
+
+    .pipeline h4::before {
+      content: "";
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--teal);
+      flex: 0 0 auto;
+    }
+
+    /* —— pills / tabs —— */
+    .detail-row { display: flex; flex-wrap: wrap; gap: 0.35rem; align-items: stretch; }
+
+    .pill {
+      appearance: none;
+      border: 1px solid var(--line-2);
+      background: var(--surface-2);
+      color: var(--ink-2);
+      font: inherit;
+      font-size: var(--t-small);
+      font-weight: 600;
+      padding: 0.45rem 0.85rem;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: color 0.18s, background 0.18s;
+    }
+
+    .pill:hover { color: var(--ink); border-color: rgba(63,214,195,0.45); }
+    .pill[aria-expanded="true"] {
+      background: var(--teal-dim);
+      border-color: rgba(63,214,195,0.55);
+      color: var(--teal-ink);
+    }
+
+    /* —— content panels —— */
+    .panel {
+  display: none;
+  border: 0;
+  border-radius: var(--radius);
+  background: var(--surface-1);
+  padding: var(--s3); /* Aumenta ligeramente el padding interno para aprovechar mejor el espacio */
+  max-height: 100%;
+  overflow: auto;
+  animation: rise 0.28s ease;
+}
+
+    .panel.open { display: block; }
+
+    .s1-right .detail-row { flex: 0 0 auto; padding-bottom: 0.1rem; }
+    .s1-panels { 
+  position: relative; 
+  flex: 1; 
+  min-height: 22rem; /* Garantiza una altura mínima adecuada para las tarjetas */
+}
+
+
+    .s1-right .panel {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: auto;
+      margin-top: 0;
+      height: auto;
+      max-height: 100%;
+    }
+
+    .panel h3 {
+      font-family: var(--font-display);
+      font-size: var(--t-h2);
+      font-weight: 700;
+      margin-bottom: var(--s2);
+      color: var(--ink);
+      letter-spacing: -0.01em;
+    }
+
+    .panel ul, .panel ol {
+      padding-left: 1.1rem;
+      display: grid;
+      gap: 0.32rem;
+      font-size: var(--t-body);
+      line-height: 1.45;
+      color: var(--ink-2);
+    }
+
+    .panel p {
+      font-size: var(--t-body);
+      line-height: 1.5;
+      color: var(--ink-2);
+      margin-bottom: var(--s2);
+    }
+
+    .sources { margin-top: var(--s2); font-size: 0.7rem; color: var(--faint); line-height: 1.4; }
+
+    .panel.panel-fill.open { display: flex; flex-direction: column; justify-content: flex-start; gap: var(--s3); }
+
+    /* —— mini card grid —— */
+    .mini-cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0 1.4rem; }
+
+    .mini-card {
+      display: flex;
+      gap: 0.7rem;
+      align-items: flex-start;
+      border: 0;
+      border-radius: 0;
+      padding: 0.5rem 0;
+      background: none;
+      border-top: 1px solid var(--line);
+    }
+
+    .mini-cards .mini-card:nth-child(1),
+    .mini-cards .mini-card:nth-child(2) { border-top: 0; }
+
+    .mini-icon {
+      width: 1.85rem;
+      height: 1.85rem;
+      border-radius: 8px;
+      display: grid;
+      place-items: center;
+      flex: 0 0 auto;
+      background: none;
+      color: var(--teal);
+      margin-left: -0.25rem;
+    }
+
+    .mini-card b {
+      display: block;
+      font-size: var(--t-body);
+      font-weight: 600;
+      margin-bottom: 0.12rem;
+      color: var(--ink);
+    }
+
+    .mini-card span {
+      font-size: var(--t-small);
+      color: var(--muted);
+      line-height: 1.42;
+      display: block;
+    }
+
+    /* —— stepper —— */
+    .stepper { display: flex; flex-direction: column; gap: 0.1rem; }
+
+    .step-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      padding: 0.42rem 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .stepper .step-item:first-child { border-top: 0; }
+
+    .step-num {
+      width: 1.35rem;
+      height: 1.35rem;
+      border-radius: 50%;
+      background: none;
+      color: var(--teal);
+      display: grid;
+      place-items: center;
+      font-size: 0.7rem;
+      font-weight: 700;
+      flex: 0 0 auto;
+      border: 1px solid rgba(63,214,195,0.35);
+      margin-top: 0.12rem;
+    }
+
+    .step-item p { font-size: var(--t-body); color: var(--ink-2); line-height: 1.4; margin: 0; }
+
+    /* —— chips —— */
+    .source-chips { display: flex; flex-wrap: wrap; gap: 0.32rem; }
+    .source-chip {
+      font-size: 0.68rem;
+      padding: 0.26rem 0.55rem;
+      border-radius: 999px;
+      background: var(--surface-2);
+      color: var(--muted);
+    }
+
+    /* —— references —— */
+    .refs-panel { max-height: min(46vh, 420px); }
+
+    .cite-group-title {
+      font-size: var(--t-label);
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--faint);
+      font-weight: 700;
+      margin: 0.75rem 0 0.25rem;
+    }
+
+    .cite-group-title:first-of-type { margin-top: 0.1rem; }
+
+    .panel .cite-list, .cite-list {
+      list-style: decimal;
+      padding-left: 1.3rem;
+      margin-top: 0.2rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(24rem, 1fr));
+      gap: 0.25rem 2rem;
+    }
+
+    .cite-list li { font-size: 0.75rem; line-height: 1.45; color: var(--muted); }
+    .cite-list li::marker { color: var(--faint); font-weight: 600; }
+    .cite-list em { font-style: italic; color: var(--ink-2); }
+
+    /* —— quad card previews —— */
+    .quad-preview-row { display: flex; flex-direction: column; gap: 0.25rem; margin-top: 0.35rem; }
+
+    .quad-preview-label {
+      font-size: var(--t-label);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--faint);
+    }
+
+    .quad-preview-chips { display: flex; flex-wrap: wrap; align-items: center; gap: 0.28rem; }
+
+    .quad-preview-chip {
+      font-size: 0.7rem;
+      font-weight: 600;
+      padding: 0.22rem 0.5rem;
+      border-radius: 7px;
+      background: var(--surface-2);
+      border: 0;
+      color: var(--muted);
+    }
+
+    .quad-preview-arrow { color: rgba(255,255,255,0.25); font-size: 0.66rem; }
+
+    /* —— definition callout —— */
+    .quote-box {
+      border: 0;
+      border-left: 2px solid var(--teal);
+      background: none;
+      border-radius: 0;
+      padding: 0.1rem 0 0.1rem 1.15rem;
+      font-size: var(--t-body);
+      line-height: 1.5;
+      color: var(--ink);
+    }
+
+    .quote-box strong { color: var(--teal-ink); }
+
+    .quote-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.35rem; }
+    .quote-list li { padding-left: 0; position: relative; font-size: clamp(0.94rem, 1.2vw, 1.12rem); line-height: 1.3; }
+    .quote-list li::before { display: none; }
+
+    /* —— footer references toggle —— */
+    .refs-toggle { grid-column: 1 / -1; position: relative; }
+    .refs-toggle > .detail-row { opacity: 0.75; }
+    .refs-toggle > .detail-row:hover { opacity: 1; }
+
+    .refs-toggle .refs-panel {
+      position: fixed;
+      top: auto;
+      bottom: 4.6rem;
+      left: clamp(1.8rem, 3.6vw, 3.4rem);
+      right: clamp(1.8rem, 3.6vw, 3.4rem);
+      margin-top: 0;
+      max-height: min(56vh, 520px);
+      overflow-y: auto;
+      background: var(--panel);
+      border: 1px solid var(--line-2);
+      box-shadow: 0 30px 80px rgba(0,0,0,0.6);
+      z-index: 60;
+    }
+
+    /* —— approach switcher —— */
+    .approach-switch { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+
+    .switch-btn {
+      appearance: none;
+      border: 1px solid var(--line-2);
+      background: var(--surface-2);
+      color: var(--muted);
+      font: inherit;
+      font-size: var(--t-small);
+      font-weight: 600;
+      padding: 0.34rem 0.75rem;
+      border-radius: 999px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      transition: color 0.2s, background 0.2s;
+    }
+
+    .switch-btn:hover { color: var(--ink); border-color: rgba(255,255,255,0.28); }
+    .switch-btn .dot { width: 0.45rem; height: 0.45rem; border-radius: 50%; background: var(--sc, var(--teal)); flex: 0 0 auto; opacity: 0.5; }
+    .switch-btn.active {
+      color: var(--ink);
+      background: color-mix(in srgb, var(--sc, var(--teal)) 16%, transparent);
+      border-color: color-mix(in srgb, var(--sc, var(--teal)) 55%, transparent);
+    }
+    .switch-btn.active .dot { opacity: 1; }
+
+    /* —— mini flow —— */
+    .mini-flow { display: flex; flex-wrap: wrap; align-items: center; gap: 0.28rem; margin-top: 0.2rem; }
+
+    .mini-flow-chip {
+      padding: 0.26rem 0.55rem;
+      border-radius: 8px;
+      background: var(--surface-2);
+      border: 0;
+      font-size: var(--t-small);
+      font-weight: 600;
+      color: var(--ink-2);
+    }
+
+    .mini-flow-arrow { color: rgba(255,255,255,0.25); font-size: 0.75rem; flex: 0 0 auto; }
+    .mini-note { margin-top: 0.4rem; font-size: var(--t-small); color: var(--faint); line-height: 1.4; }
+
+    /* —— tags —— */
+    .tag-group { display: flex; flex-wrap: wrap; gap: 0.28rem; }
+    .tag-group + .tag-group { margin-top: 0.3rem; }
+
+    .tag-chip {
+      padding: 0.24rem 0.55rem;
+      border-radius: 999px;
+      background: var(--surface-2);
+      border: 0;
+      font-size: var(--t-small);
+      font-weight: 600;
+      color: var(--muted);
+    }
+
+    /* —— axis rows —— */
+    .axis-list { display: flex; flex-direction: column; gap: 0.1rem; }
+
+    .axis-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.6rem;
+      font-size: var(--t-body);
+      color: var(--ink-2);
+      line-height: 1.4;
+      padding: 0.42rem 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .axis-list .axis-row:first-child { border-top: 0; }
+
+    .axis-dot { width: 0.5rem; height: 0.5rem; border-radius: 50%; flex: 0 0 auto; margin-top: 0.45rem; }
+    .axis-row svg { flex: 0 0 auto; margin-top: 0.2rem; }
+    .axis-row-icon { flex: 0 0 auto; display: inline-flex; margin-top: 0.15rem; }
+    .axis-row.good svg { color: var(--teal); }
+    .axis-row.bad svg { color: var(--amber); }
+
+    /* —— slide 2 —— */
+    .s2-stage { grid-template-rows: 1fr auto; }
+    .slide[data-slide="1"] .meta { text-align: right; }
+
+    .quads {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: repeat(2, 1fr);
+      gap: var(--s3);
+      min-height: 0;
+    }
+
+    @media (max-width: 800px) {
+      .quads { grid-template-columns: 1fr; grid-template-rows: none; overflow: auto; }
+    }
+
+    .quad {
+      position: relative;
+      isolation: isolate;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: var(--s4);
+      background: var(--surface-1);
+      cursor: pointer;
+      text-align: left;
+      color: inherit;
+      font: inherit;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: var(--s2);
+      transition: transform 0.22s ease, border-color 0.22s, background 0.22s;
+      min-height: 0;
+    }
+
+    .quad::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-repeat: no-repeat;
+      background-position: 112% 122%;
+      background-size: 58%;
+      opacity: 0.3;
+      z-index: -2;
+      transition: transform 0.35s ease, opacity 0.35s ease;
+    }
+
+    .quad::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(160deg, rgba(10,15,18,0.2) 0%, rgba(10,15,18,0.72) 62%, rgba(10,15,18,0.88) 100%);
+      z-index: -1;
+    }
+
+    .quad:hover::before { transform: scale(1.06); opacity: 0.5; }
+    .quad:hover { transform: translateY(-3px); background: var(--surface-2); border-color: var(--line-2); }
+
+    .quad[data-key="genia"]::before  { background-image: var(--motif-genia); }
+    .quad[data-key="devops"]::before { background-image: var(--motif-devops); }
+    .quad[data-key="eda"]::before    { background-image: var(--motif-eda); }
+    .quad[data-key="hcd"]::before    { background-image: var(--motif-hcd); }
+
+    .quad.active { box-shadow: 0 14px 36px rgba(0,0,0,0.3); }
+    .quad[data-key="genia"].active { border-color: rgba(123,166,245,0.6); }
+    .quad[data-key="devops"].active { border-color: rgba(63,214,195,0.6); }
+    .quad[data-key="eda"].active { border-color: rgba(238,177,133,0.6); }
+    .quad[data-key="hcd"].active { border-color: rgba(143,220,195,0.6); }
+
+    .quad-top { display: flex; align-items: center; gap: 0.8rem; }
+
+    .quad-icon {
+      width: 2.4rem;
+      height: 2.4rem;
+      border-radius: 11px;
+      display: grid;
+      place-items: center;
+      flex: 0 0 auto;
+    }
+
+    .quad[data-key="genia"] .quad-icon { background: rgba(123,166,245,0.14); color: var(--genia); }
+    .quad[data-key="devops"] .quad-icon { background: var(--teal-dim); color: var(--devops); }
+    .quad[data-key="eda"] .quad-icon { background: var(--amber-dim); color: var(--eda); }
+    .quad[data-key="hcd"] .quad-icon { background: rgba(143,220,195,0.14); color: var(--hcd); }
+
+    .quad h3 {
+      font-family: var(--font-display);
+      font-size: clamp(1.35rem, 2.3vw, 1.85rem);
+      font-weight: 700;
+      line-height: 1.05;
+      letter-spacing: -0.015em;
+    }
+
+    .quad p { color: var(--muted); font-size: var(--t-body); line-height: 1.45; max-width: 46ch; }
+
+    .hint {
+      font-size: var(--t-label);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--faint);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: color 0.2s;
+    }
+
+    .hint::after { content: "→"; letter-spacing: 0; }
+    .quad:hover .hint { color: var(--teal-ink); }
+
+    .drawer {
+      display: none;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--panel);
+      padding: var(--s3);
+      max-height: min(34vh, 320px);
+      overflow: auto;
+      animation: rise 0.28s ease;
+    }
+
+    .drawer.open { display: block; }
+
+    /* —— E4 grid —— */
+    .e4-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.55rem; }
+
+    @media (max-width: 900px) { .e4-grid { grid-template-columns: 1fr 1fr; } }
+
+    .e4-item {
+      border: 0;
+      border-radius: var(--radius-sm);
+      padding: 0.7rem 0.8rem;
+      background: var(--surface-1);
+    }
+
+    .e4-item b {
+      display: block;
+      font-size: var(--t-label);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--faint);
+      margin-bottom: 0.3rem;
+      font-weight: 700;
+    }
+
+    .e4-item span { font-size: var(--t-small); line-height: 1.45; color: var(--ink-2); }
+
+    .eda-flow {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+      align-items: center;
+      border: 0;
+      border-radius: var(--radius-sm);
+      background: var(--amber-dim);
+      padding: 0.55rem 0.8rem;
+      font-size: var(--t-small);
+      font-weight: 600;
+      color: var(--ink-2);
+    }
+
+    .eda-flow i {
+      font-style: normal;
+      padding: 0.3rem 0.55rem;
+      border-radius: 8px;
+      background: rgba(0,0,0,0.28);
+    }
+
+    .reason { margin-top: 0.55rem; display: grid; grid-template-columns: 1fr 1fr; gap: 0.55rem; }
+
+    .reason > div {
+      border-radius: var(--radius-sm);
+      padding: 0.7rem 0.85rem;
+      border: 0;
+      font-size: var(--t-small);
+      line-height: 1.45;
+      color: var(--ink-2);
+    }
+
+    .reason .aport { background: rgba(63,214,195,0.08); }
+    .reason .uso { background: rgba(238,177,133,0.08); }
+
+    .reason strong {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: var(--t-label);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 0.3rem;
+      color: var(--faint);
+    }
+
+    /* —— expand overlay —— */
+    .expand-overlay {
+      position: absolute;
+      z-index: 25;
+      overflow: hidden;
+      border: 1px solid var(--line-2);
+      border-radius: var(--radius);
+      background: #0d151a;
+      box-shadow: 0 30px 90px rgba(0,0,0,0.6);
+      display: flex;
+      flex-direction: column;
+      will-change: top, left, width, height;
+      transition:
+        top 0.44s cubic-bezier(0.22,0.61,0.36,1),
+        left 0.44s cubic-bezier(0.22,0.61,0.36,1),
+        width 0.44s cubic-bezier(0.22,0.61,0.36,1),
+        height 0.44s cubic-bezier(0.22,0.61,0.36,1),
+        border-radius 0.44s ease;
+    }
+
+    .expand-overlay.full { border-radius: 0; }
+
+    .expand-overlay[data-key="genia"]  { border-color: rgba(123,166,245,0.45); }
+    .expand-overlay[data-key="devops"] { border-color: rgba(63,214,195,0.45); }
+    .expand-overlay[data-key="eda"]    { border-color: rgba(238,177,133,0.45); }
+    .expand-overlay[data-key="hcd"]    { border-color: rgba(143,220,195,0.45); }
+
+    .expand-overlay::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-repeat: no-repeat;
+      background-position: 100% 100%;
+      background-size: 42%;
+      opacity: 0.14;
+      z-index: 0;
+    }
+
+    .expand-overlay::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(170deg, rgba(10,15,18,0.4) 0%, rgba(10,15,18,0.9) 60%);
+      z-index: 0;
+    }
+
+    .expand-overlay[data-key="genia"]::before  { background-image: var(--motif-genia); }
+    .expand-overlay[data-key="devops"]::before { background-image: var(--motif-devops); }
+    .expand-overlay[data-key="eda"]::before    { background-image: var(--motif-eda); }
+    .expand-overlay[data-key="hcd"]::before    { background-image: var(--motif-hcd); }
+
+    .expand-inner {
+      position: flex-start;
+      z-index: 1;
+      flex: 1;
+      min-height: 0;
+      overflow: auto;
+      padding: clamp(1.4rem, 3vw, 2.6rem) clamp(1.8rem, 4vw, 3.4rem);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: var(--s3);
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 0.3s ease 0.16s, transform 0.3s ease 0.16s;
+    }
+
+    .expand-overlay.full .expand-inner { opacity: 1; transform: none; }
+
+    .expand-head { display: flex; align-items: center; gap: 0.95rem; }
+    .expand-head .quad-icon { width: 2.9rem; height: 2.9rem; }
+
+    .expand-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.7rem, 3.6vw, 2.7rem);
+      font-weight: 700;
+      line-height: 1.02;
+      letter-spacing: -0.015em;
+    }
+
+    .expand-close { margin-left: auto; flex: 0 0 auto; }
+    .expand-inner .e4-grid { grid-template-columns: repeat(2, 1fr); gap: 0.6rem 1rem; }
+
+    @media (max-width: 760px) { .expand-inner .e4-grid { grid-template-columns: 1fr; } }
+
+    .expand-inner .e4-item { padding: 0.8rem 0.95rem; display: flex; align-items: flex-start; gap: 0.7rem; }
+
+    .expand-inner .e4-item .e4-ic {
+      width: 1.8rem;
+      height: 1.8rem;
+      border-radius: 8px;
+      display: grid;
+      place-items: center;
+      flex: 0 0 auto;
+      background: rgba(255,255,255,0.05);
+    }
+
+    .expand-inner .e4-item b { display: block; margin-bottom: 0.25rem; }
+    .expand-inner .e4-item span { font-size: var(--t-small); }
+    .expand-inner .reason { margin-top: 0.2rem; }
+
+    /* —— slide 3 —— */
+    .s3-stage {
+      grid-template-columns: 1.4fr 1fr;
+      grid-template-rows: 1fr auto;
+      column-gap: var(--s4);
+      align-items: stretch;
+    }
+
+    @media (max-width: 820px) { .s3-stage { grid-template-columns: 1fr; } }
+
+    .fish-wrap {
+      position: relative;
+      overflow: hidden;
+      border: 0;
+      border-radius: var(--radius);
+      background: var(--surface-1);
+      padding: var(--s3);
+      display: grid;
+      place-items: center;
+      min-height: 0;
+    }
+
+    .fish-wrap .meta {
+      position: absolute;
+      top: var(--s3);
+      left: var(--s4);
+      text-align: left;
+      font-size: var(--t-label);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--faint);
+      max-width: 32ch;
+    }
+
+    .fish-wrap::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(rgba(255,255,255,0.05) 1px, transparent 1px);
+      background-size: 26px 26px;
+      pointer-events: none;
+    }
+
+    .fish-wrap svg { position: relative; width: 100%; height: auto; max-height: min(54vh, 470px); }
+
+    .engine-legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.3rem 1.1rem;
+      font-size: var(--t-small);
+      padding: 0.1rem 0;
+    }
+
+    .engine-legend span { display: flex; align-items: center; gap: 0.4rem; font-weight: 600; }
+    .engine-legend svg { flex: 0 0 auto; }
+
+    .bone { cursor: pointer; transition: opacity 0.2s; }
+    .bone:hover .bone-hit, .bone.active .bone-hit { fill: rgba(63,214,195,0.12); }
+    .bone text { font-family: var(--font-ui); font-size: 13px; font-weight: 600; fill: var(--ink-2); }
+    .bone:hover text, .bone.active text { fill: var(--ink); }
+
+    .side-col { display: flex; flex-direction: column; gap: var(--s3); min-height: 0; }
+
+    .diff {
+      border: 0;
+      border-left: 2px solid var(--amber);
+      border-radius: 0;
+      padding: 0.2rem 0 0.2rem 1.2rem;
+      background: none;
+    }
+
+    .diff h3 {
+      font-family: var(--font-display);
+      font-size: var(--t-h2);
+      font-weight: 700;
+      margin-bottom: 0.4rem;
+      color: var(--ink);
+      letter-spacing: -0.01em;
+    }
+
+    .diff p { font-size: var(--t-body); line-height: 1.55; color: var(--ink-2); }
+    .diff strong { color: var(--amber); font-weight: 600; }
+
+    .axis-panel {
+      display: none;
+      border: 0;
+      border-radius: var(--radius);
+      background: var(--surface-1);
+      padding: var(--s3) var(--s4);
+      flex: 1;
+      min-height: 0;
+      overflow: auto;
+      animation: rise 0.28s ease;
+    }
+
+    .axis-panel.open { display: flex; flex-direction: column; justify-content: center; }
+
+    .axis-panel h3 {
+      font-family: var(--font-display);
+      color: var(--ink);
+      margin-bottom: var(--s2);
+      font-size: var(--t-h2);
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+
+    .axis-panel p { font-size: var(--t-body); line-height: 1.5; color: var(--muted); }
+
+    /* —— nav —— */
+    .nav {
+      position: fixed;
+      left: 50%;
+      bottom: 1.1rem;
+      transform: translateX(-50%);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      z-index: 40;
+      padding: 0.3rem 0.5rem;
+      border-radius: 999px;
+      background: rgba(12,18,22,0.7);
+      border: 1px solid var(--line);
+      backdrop-filter: blur(12px);
+    }
+
+    .nav button {
+      appearance: none;
+      border: 1px solid transparent;
+      background: transparent;
+      color: var(--muted);
+      width: 2rem;
+      height: 2rem;
+      border-radius: 999px;
+      cursor: pointer;
+      font-size: 1.05rem;
+      transition: color 0.18s, background 0.18s;
+    }
+
+    .nav button:hover { background: rgba(255,255,255,0.06); color: var(--ink); border-color: var(--line-2); }
+
+    .dots { display: flex; gap: 0.32rem; }
+    .dot {
+      width: 0.42rem;
+      height: 0.42rem;
+      border-radius: 99px;
+      background: rgba(255,255,255,0.2);
+      border: 0;
+      cursor: pointer;
+      padding: 0;
+      transition: width 0.25s ease, background 0.25s ease;
+    }
+    .dot.on { background: var(--teal); width: 1.35rem; }
+
+    .fs-hint {
+      position: fixed;
+      top: 0.9rem;
+      right: 1.1rem;
+      font-size: var(--t-label);
+      color: rgba(139,160,169,0.45);
+      z-index: 30;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: none; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .slide, .panel, .drawer, .axis-panel { transition: none; animation: none; }
+    }
+  
+  </style>
+  <template id="__bundler_thumbnail" data-bg-color="#0a0f12">
+    <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+      <rect width="1200" height="800" fill="#0a0f12"/>
+      <line x1="220" y1="400" x2="980" y2="400" stroke="#3fd6c3" stroke-width="14" stroke-linecap="round"/>
+      <circle cx="320" cy="400" r="20" fill="#26343a" stroke="#8ba0a9" stroke-width="8"/>
+      <circle cx="600" cy="400" r="42" fill="#3fd6c3"/>
+      <circle cx="880" cy="400" r="20" fill="#26343a" stroke="#eeb185" stroke-width="8"/>
+      <text x="600" y="290" fill="#eaf1f4" font-family="Georgia, serif" font-size="112" font-weight="700" text-anchor="middle">RA</text>
+    </svg>
+  </template>
+</head>
+<body>
+  <div class="fs-hint">← → · Espacio · F pantalla completa</div>
+
+  <div class="deck" id="deck">
+    <!-- ================= SLIDE 1 ================= -->
+    <section class="slide active" data-slide="0" aria-label="Dominio RA">
+      <header class="topbar">
+        <div>
+          <div class="eyebrow">Equipo 2 · EAFIT</div>
+          <h1 class="slide-title">Realidad aumentada</h1>
+        </div>
+        <p class="meta">Primera aproximación metodológica basada en taxonomía de procesos<br />Quinnie · Manuel · Jonathan · Lina · Alejandro</p>
+      </header>
+
+      <div class="stage s1-stage">
+        <div class="continuum" aria-label="Continuo de realidad mixta">
+          <div class="continuum-label">Continuo RM | Realidad → virtualidad</div>
+          <div class="continuum-track">
+            <div class="c-node"><strong>Mundo real</strong><span>Entorno físico</span></div>
+            <div class="c-node ra"><strong>RA</strong><span>Real enriquecido con digital</span></div>
+            <div class="c-node"><strong>RV</strong><span>Entorno sintético</span></div>
+          </div>
+        </div>
+
+        <div class="s1-left">
+          <div class="pipeline" aria-label="Arquitectura en capas">
+            <div class="continuum-label">Arquitectura típica</div>
+          
+            <div class="pipeline-row">
+              <span class="pipe-unit"><div class="pipe-chip"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7l2-3h4l2 3"/><circle cx="12" cy="13.5" r="3.2"/></svg>Captura</div><span class="pipe-arrow">→</span></span>
+              <span class="pipe-unit"><div class="pipe-chip"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="2.4" fill="currentColor" stroke="none"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg>Tracking</div><span class="pipe-arrow">→</span></span>
+              <span class="pipe-unit"><div class="pipe-chip"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9L12 3z"/><path d="M4 7.5L12 12l8-4.5M12 12v9"/></svg>Modelo</div><span class="pipe-arrow">→</span></span>
+              <span class="pipe-unit"><div class="pipe-chip"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M9 9h6v6H9z"/></svg>Lógica</div><span class="pipe-arrow">→</span></span>
+              <span class="pipe-unit"><div class="pipe-chip"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 15l5-5 4 4 5-6 4 5"/></svg>Render</div><span class="pipe-arrow">→</span></span>
+              <span class="pipe-unit"><div class="pipe-chip"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 12l2 2 4-5"/><circle cx="12" cy="12" r="9"/></svg>Interacción</div></span>
+            </div>
+            <h4>Tiempo real y baja latencia E2E</h4>
+          </div>
+          <div class="cycle" aria-label="Ciclo de vida">
+            <div class="continuum-label">Ciclo de vida · iterativo, 7 pasos</div>
+            <div class="pipeline-row" role="img" aria-label="Ideación, Requisitos, Diseño, Prototipo, Implementación, Evaluación, Deploy — vuelve a Ideación">
+              <span class="pipe-unit"><div class="pipe-chip">1 Ideación</div><span class="pipe-arrow">→</span></span>
+              <span class="pipe-unit"><div class="pipe-chip">2 Requisitos</div><span class="pipe-arrow">→</span></span>
+              <span class="pipe-unit"><div class="pipe-chip">3 Diseño</div><span class="pipe-arrow">→</span></span>
+              <span class="pipe-unit"><div class="pipe-chip">4 Prototipo</div><span class="pipe-arrow">→</span></span>
+              <span class="pipe-unit"><div class="pipe-chip">5 Impl.</div><span class="pipe-arrow">→</span></span>
+              <span class="pipe-unit"><div class="pipe-chip">6 Eval.</div><span class="pipe-arrow">→</span></span>
+              <span class="pipe-unit"><div class="pipe-chip">7 Deploy</div><span class="pipe-arrow" title="Vuelve a Ideación">↺</span></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="s1-right">
+          <div class="detail-row" id="s1-pills" role="toolbar" aria-label="Detalle dominio">
+            <button class="pill" data-panel="def" aria-expanded="true">Qué es · estado</button>
+            <button class="pill" data-panel="abordaje" aria-expanded="false">Abordaje</button>
+            <button class="pill" data-panel="metodos" aria-expanded="false">Metodologías</button>
+            <button class="pill" data-panel="principios" aria-expanded="false">Principios</button>
+          </div>
+
+          <div class="s1-panels">
+          <div class="panel panel-fill open" id="panel-def">
+            <div class="quote-box">
+              <ul class="quote-list">
+                <li>Combina objetos reales y virtuales en un entorno real</li>
+                <li>Interactúa en tiempo real</li>
+                <li>Registra (alinea) objetos reales y virtuales en 3D</li>
+              </ul>
+            </div>
+            <div class="mini-cards">
+              <div class="mini-card">
+                <div class="mini-icon"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="7" width="18" height="13" rx="2"/><circle cx="12" cy="13.5" r="3.2"/></svg></div>
+                <div><b>De laboratorio a producto</b><span>Hoy en móviles y wearables</span></div>
+              </div>
+              <div class="mini-card">
+                <div class="mini-icon"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 6h16M4 12h16M4 18h10"/></svg></div>
+                <div><b>ISMAR</b><span>tracking → interacción → display → evaluación →  rendering</span></div>
+              </div>
+              <div class="mini-card">
+                <div class="mini-icon"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 11h1v6h1"/></svg></div>
+                <div><b>Retos hoy</b><span>Adopción, ética, accesibilidad; display, tracking e interacción</span></div>
+              </div>
+              <div class="mini-card">
+                <div class="mini-icon"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 12l2 2 4-5"/><circle cx="12" cy="12" r="9"/></svg></div>
+                <div><b>Viabilidad</b><span>Móvil e industria/educación; see-through “indistinguible”</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="panel panel-fill" id="panel-abordaje">
+            <h3>Cómo se abordan proyectos</h3>
+            <p>Sistemas socio-técnicos: hardware + software + contenido.</p>
+            <div class="stepper">
+              <div class="step-item"><span class="step-num">1</span><p>Caso de uso y contexto</p></div>
+              <div class="step-item"><span class="step-num">2</span><p>Plataforma / display (móvil, HMD, colaborativo)</p></div>
+              <div class="step-item"><span class="step-num">3</span><p>Anclaje espacial (marcadores, SLAM, VIO…)</p></div>
+              <div class="step-item"><span class="step-num">4</span><p>Interfaz espacial e interacción</p></div>
+              <div class="step-item"><span class="step-num">5</span><p>Implementación iterativa + evaluación con usuarios</p></div>
+            </div>
+          </div>
+          <div class="panel panel-fill" id="panel-metodos">
+            <h3>Metodologías (no hay una única estándar)</h3>
+            <div class="mini-cards">
+              <div class="mini-card">
+                <div class="mini-icon"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 5.5A2.5 2.5 0 016.5 3H20v15.5A2.5 2.5 0 0117.5 21H4V5.5z"/><path d="M4 18.5A2.5 2.5 0 016.5 16H20"/></svg></div>
+                <div><b>MDLC adaptado a RA</b><span>Ciclo de vida de desarrollo multimedia ajustado a RA</span></div>
+              </div>
+              <div class="mini-card">
+                <div class="mini-icon"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="3.2"/><path d="M5 19c1.5-3.5 4-5 7-5s5.5 1.5 7 5"/></svg></div>
+                <div><b>HCD / ISO 9241-210</b><span>+ usabilidad RA</span></div>
+              </div>
+              <div class="mini-card">
+                <div class="mini-icon"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 12l2 2 4-5"/><circle cx="12" cy="12" r="9"/></svg></div>
+                <div><b>HCI / evaluación específica</b><span>Métodos propios de evaluación de RA</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="panel panel-fill" id="panel-principios">
+            <h3>Principios de diseño</h3>
+            <div class="mini-cards">
+              <div class="mini-card">
+                <div class="mini-icon"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><circle cx="12" cy="12" r="8"/></svg></div>
+                <div><b>Registro espacial</b><span>Estable, baja latencia percibida</span></div>
+              </div>
+              <div class="mini-card">
+                <div class="mini-icon"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="2.6"/></svg></div>
+                <div><b>Claridad visual</b><span>Aumento sin ocluir lo relevante</span></div>
+              </div>
+              <div class="mini-card">
+                <div class="mini-icon"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="6" width="8" height="12" rx="1.5"/><path d="M15 8h6M15 12h6M15 16h4"/></svg></div>
+                <div><b>Interacción</b><span>Alineada a dispositivo y usuario</span></div>
+              </div>
+              <div class="mini-card">
+                <div class="mini-icon"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l7 3.5v5c0 5-3 8-7 9.5-4-1.5-7-4.5-7-9.5v-5L12 3z"/></svg></div>
+                <div><b>Confort y seguridad</b><span>Privacidad y continuidad</span></div>
+              </div>
+              <div class="mini-card">
+                <div class="mini-icon"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="8" cy="9" r="3"/><circle cx="17" cy="9" r="3"/><path d="M2 20c0-3 2.5-5 6-5s6 2 6 5M13 20c0-2.5 1.8-4.2 4.5-4.2S22 17.5 22 20"/></svg></div>
+                <div><b>Awareness</b><span>Coordinación en escenarios colaborativos</span></div>
+              </div>
+            </div>
+          </div>
+          </div>
+        </div>
+
+        <div class="refs-toggle">
+          <div class="detail-row">
+            <button class="pill refs-open" aria-expanded="false">Referencias</button>
+          </div>
+          <div class="panel refs-panel">
+            <h3>Referencias · dominio RA</h3>
+            <ol class="cite-list">
+              <li>R. T. Azuma, "A survey of augmented reality," <em>Presence</em>, 1997.</li>
+              <li>R. Azuma et al., "Recent advances in augmented reality," <em>IEEE CG&amp;A</em>, 2001.</li>
+              <li>P. Milgram and F. Kishino, "A taxonomy of mixed reality visual displays," <em>IEICE</em>, 1994.</li>
+              <li>M. Billinghurst, A. Clark, and G. Lee, "A survey of augmented reality," <em>Found. Trends HCI</em>, 2015.</li>
+              <li>F. Zhou et al., "Trends in AR tracking, interaction and display," <em>IEEE ISMAR</em>, 2008.</li>
+              <li>K. Kim et al., "Revisiting trends in AR research (2008–2017)," <em>IEEE TVCG</em>, 2018.</li>
+              <li>Y. Goh et al., "Wearable augmented reality…," <em>IEEE TVCG</em>, 2023.</li>
+              <li>T. A. Syed et al., "In-depth review of augmented reality…," <em>Sensors</em>, 2023.</li>
+              <li>J. S. Devagiri et al., "The essentials… get started in AR," <em>IEEE Access</em>, 2024.</li>
+              <li>D. Schmalstieg and T. Höllerer, <em>Augmented Reality: Principles and Practice</em>, 2016.</li>
+              <li>M. Billinghurst and H. Kato, "Collaborative augmented reality," <em>CACM</em>, 2002.</li>
+              <li>M. Sereno et al., "Collaborative work in augmented reality," <em>IEEE TVCG</em>, 2022.</li>
+              <li>R. Roedavan et al., "A framework… MDLC," <em>JIIG</em>, 2025.</li>
+              <li>Y.-Y. Cho et al., <em>AR Usability Evaluation Framework</em> (NIST IR 8422), 2022.</li>
+              <li>ISO 9241-210:2019, <em>Human-centred design for interactive systems</em>.</li>
+              <li>A. Dünser and M. Billinghurst, "Evaluating AR systems," in <em>Handbook of AR</em>, 2011.</li>
+              <li>A. Dünser et al., "Applying HCI principles to AR systems design," 2007.</li>
+              <li>T. C. Endsley et al., "AR design heuristics…," <em>HFES</em>, 2017.</li>
+              <li>P. E. Kourouthanassis et al., "Demystifying the design of mobile AR…," <em>MTA</em>, 2015.</li>
+              <li>T. Reicher et al., "Software architectures for AR systems," 2003.</li>
+              <li>A. MacWilliams et al., "Design patterns for AR systems," <em>MIXER</em>, 2004.</li>
+              <li>ETSI GS ARF 003, <em>AR framework architecture</em>, 2023.</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= SLIDE 2 ================= -->
+    <section class="slide" data-slide="1" aria-label="Enfoques">
+      <header class="topbar">
+        <div>
+          <div class="eyebrow">Equipo 2 · EAFIT</div>
+          <h1 class="slide-title">Cuatro enfoques</h1>
+        </div>
+        <p class="meta">GenIA · DevOps · EDA · HCD<br />Toca una tarjeta para ver el E4 completo</p>
+      </header>
+
+      <div class="stage s2-stage">
+        <div class="quads" id="quads">
+          <button class="quad" data-key="genia" type="button">
+            <div class="quad-top">
+              <div class="quad-icon" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3v3M12 18v3M3 12h3M18 12h3"/><circle cx="12" cy="12" r="4"/><path d="M7.5 7.5l1.5 1.5M15 15l1.5 1.5M16.5 7.5L15 9M9 15l-1.5 1.5"/></svg>
+              </div>
+              <h3>GenIA</h3>
+            </div>
+            <p>Modelos que generan contenido nuevo a partir de patrones en grandes volúmenes de datos.</p>
+            <span class="hint">Abrir E4</span>
+          </button>
+
+          <button class="quad" data-key="devops" type="button">
+            <div class="quad-top">
+              <div class="quad-icon" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 12h4l2-6 4 12 2-6h4"/><circle cx="5" cy="18" r="2"/><circle cx="19" cy="18" r="2"/></svg>
+              </div>
+              <h3>DevOps</h3>
+            </div>
+            <p>Acorta el tiempo cambio → producción con calidad: colaboración, automatización y CI/CD.</p>
+            <span class="hint">Abrir E4</span>
+          </button>
+
+          <button class="quad" data-key="eda" type="button">
+            <div class="quad-top">
+              <div class="quad-icon" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="6" r="2.5"/><circle cx="18" cy="18" r="2.5"/><path d="M8.5 11.2L15.2 7.2M8.5 12.8L15.2 16.8"/></svg>
+              </div>
+              <h3>EDA</h3>
+            </div>
+            <p>Eventos asíncronos entre componentes desacoplados (productor–consumidor vía bus).</p>
+            <span class="hint">Abrir E4</span>
+          </button>
+
+          <button class="quad" data-key="hcd" type="button">
+            <div class="quad-top">
+              <div class="quad-icon" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="3.2"/><path d="M5 19c1.5-3.5 4-5 7-5s5.5 1.5 7 5"/></svg>
+              </div>
+              <h3>HCD</h3>
+            </div>
+            <p>Diseño centrado en usuarios y contexto; normalizado en ISO 9241-210.</p>
+            <span class="hint">Abrir E4</span>
+          </button>
+        </div>
+
+        <div class="refs-toggle">
+          <div class="detail-row">
+            <button class="pill refs-open" aria-expanded="false">Referencias</button>
+          </div>
+          <div class="panel refs-panel">
+            <h3>Referencias · cuatro enfoques</h3>
+            <div class="cite-group-title">GenIA</div>
+            <ol class="cite-list" start="23">
+              <li>NIST, <em>AI Risk Management Framework: Generative Artificial Intelligence Profile</em>.</li>
+              <li>Google, <em>Retrieval-Augmented Generation (RAG)</em> — documentación / guía.</li>
+            </ol>
+            <div class="cite-group-title">DevOps</div>
+            <ol class="cite-list" start="25">
+              <li>L. Bass, I. Weber, and L. Zhu, <em>DevOps: A Software Architect's Perspective</em>, 2015.</li>
+              <li>R. Jabbari et al., "What is DevOps? A systematic mapping study…," <em>XP Workshops</em>, 2016.</li>
+              <li>D. Vaquero-Melchor et al., "SARA: … collaborative augmented reality," <em>Appl. Sci.</em>, 2020.</li>
+            </ol>
+            <div class="cite-group-title">EDA</div>
+            <ol class="cite-list" start="28">
+              <li>H. Cabane and K. Farias, "On the impact of event-driven architecture…," <em>FGCS</em>, 2024.</li>
+              <li>J. Rosa-Bilbao et al., "CEPEDALoCo…," <em>Internet of Things</em>, 2023.</li>
+              <li>R. Oberhauser, "VR-EDStream+EDA…," <em>eKNOW</em>, 2023.</li>
+              <li>AsyncAPI Initiative, <em>AsyncAPI Specification v3.x</em>.</li>
+            </ol>
+            <div class="cite-group-title">HCD</div>
+            <ol class="cite-list" start="32">
+              <li>ISO 9241-210:2019 (también dominio).</li>
+              <li>A. Seffah et al., Eds., <em>Human-Centered Software Engineering</em>, 2005.</li>
+              <li>X. Ferre et al., "Which, when and how usability techniques…," 2005.</li>
+              <li>S. Graser et al., "UX evaluation of AR: a systematic literature review," <em>CENTRIC</em>, 2024.</li>
+              <li>A. Picardi and G. Caruso, "User-centered evaluation framework… AR," <em>MTI</em>, 2024.</li>
+              <li>J. Nielsen, "Heuristic evaluation," 1994.</li>
+              <li>F. Paternò, <em>Model-Based Design…</em> (ConcurTaskTrees), 2000.</li>
+              <li>OMG, <em>IFML 1.0</em>, 2015.</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= SLIDE 3 ================= -->
+    <section class="slide" data-slide="2" aria-label="Espina y valor diferencial">
+      <header class="topbar">
+        <div>
+          <div class="eyebrow">Equipo 2 · EAFIT</div>
+          <h1 class="slide-title">Espina de pescado</h1>
+        </div>
+      </header>
+
+      <div class="stage s3-stage">
+        <div class="fish-wrap">
+          <p class="meta">Primera aproximación metodológica para SW en RA<br /></p>
+          <svg viewBox="0 0 720 360" role="img" aria-label="Diagrama de espina de pescado con seis ejes">
+            <!-- spine -->
+            <line x1="70" y1="180" x2="600" y2="180" stroke="#2ec4b6" stroke-width="6" stroke-linecap="round"/>
+            <polygon points="600,180 655,155 655,205" fill="#2ec4b6"/>
+            <text x="40" y="186" fill="#9aafb8" font-family="Sora,sans-serif" font-size="12" font-weight="700">RA</text>
+            <text x="668" y="186" fill="#e8a87c" font-family="Sora,sans-serif" font-size="11" font-weight="700">Método</text>
+
+            <!-- bones top -->
+            <g class="bone" data-axis="ciclo">
+              <rect class="bone-hit" x="140" y="40" width="150" height="120" rx="8" fill="transparent"/>
+              <line x1="180" y1="180" x2="230" y2="70" stroke="#9aafb8" stroke-width="3"/>
+              <circle cx="230" cy="70" r="7" fill="#2ec4b6"/>
+              <text x="242" y="66">Ciclo</text>
+            </g>
+            <g class="bone" data-axis="artefactos">
+              <rect class="bone-hit" x="300" y="40" width="160" height="120" rx="8" fill="transparent"/>
+              <line x1="320" y1="180" x2="370" y2="70" stroke="#9aafb8" stroke-width="3"/>
+              <circle cx="370" cy="70" r="7" fill="#2ec4b6"/>
+              <text x="382" y="66">Artefactos</text>
+            </g>
+            <g class="bone" data-axis="madurez">
+              <rect class="bone-hit" x="460" y="40" width="140" height="120" rx="8" fill="transparent"/>
+              <line x1="460" y1="180" x2="510" y2="70" stroke="#9aafb8" stroke-width="3"/>
+              <circle cx="510" cy="70" r="7" fill="#2ec4b6"/>
+              <text x="522" y="66">Madurez</text>
+            </g>
+
+            <!-- bones bottom -->
+            <g class="bone" data-axis="colaboracion">
+              <rect class="bone-hit" x="140" y="200" width="170" height="120" rx="8" fill="transparent"/>
+              <line x1="200" y1="180" x2="250" y2="290" stroke="#9aafb8" stroke-width="3"/>
+              <circle cx="250" cy="290" r="7" fill="#e8a87c"/>
+              <text x="262" y="294">Colaboración</text>
+            </g>
+            <g class="bone" data-axis="uso">
+              <rect class="bone-hit" x="300" y="200" width="180" height="120" rx="8" fill="transparent"/>
+              <line x1="340" y1="180" x2="390" y2="290" stroke="#9aafb8" stroke-width="3"/>
+              <circle cx="390" cy="290" r="7" fill="#e8a87c"/>
+              <text x="402" y="294">Uso recomendado</text>
+            </g>
+            <g class="bone" data-axis="flexibilidad">
+              <rect class="bone-hit" x="460" y="200" width="160" height="120" rx="8" fill="transparent"/>
+              <line x1="480" y1="180" x2="530" y2="290" stroke="#9aafb8" stroke-width="3"/>
+              <circle cx="530" cy="290" r="7" fill="#e8a87c"/>
+              <text x="542" y="294">Flexibilidad</text>
+            </g>
+          </svg>
+        </div>
+
+        <div class="side-col">
+          <div class="diff">
+            <h3>Valor diferencial</h3>
+            <p>Frente a Spiral / RAD / XP [@Ceret2013]: límites de uso explícitos, <strong>dos compuertas de retorno</strong> (usuario + performance) y variabilidad fijo/condicional. Integra DevOps + EDA + GenIA + HCD en un andamiaje de 6 ejes.</p>
+          </div>
+          <div class="engine-legend" aria-hidden="true">
+            <span style="color:var(--genia)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3v3M12 18v3M3 12h3M18 12h3"/><circle cx="12" cy="12" r="4"/><path d="M7.5 7.5l1.5 1.5M15 15l1.5 1.5M16.5 7.5L15 9M9 15l-1.5 1.5"/></svg>GenIA</span>
+            <span style="color:var(--devops)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 12h4l2-6 4 12 2-6h4"/><circle cx="5" cy="18" r="2"/><circle cx="19" cy="18" r="2"/></svg>DevOps</span>
+            <span style="color:var(--eda)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="6" r="2.5"/><circle cx="18" cy="18" r="2.5"/><path d="M8.5 11.2L15.2 7.2M8.5 12.8L15.2 16.8"/></svg>EDA</span>
+            <span style="color:var(--hcd)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="3.2"/><path d="M5 19c1.5-3.5 4-5 7-5s5.5 1.5 7 5"/></svg>HCD</span>
+          </div>
+          <div class="axis-panel open" id="axis-panel">
+            <h3>Toca una espina</h3>
+            <p>Cada eje consolida el aporte de los cuatro enfoques. Selecciona Ciclo, Colaboración, Artefactos, Uso, Madurez o Flexibilidad.</p>
+          </div>
+        </div>
+
+        <div class="refs-toggle">
+          <div class="detail-row">
+            <button class="pill refs-open" aria-expanded="false">Referencias</button>
+          </div>
+          <div class="panel refs-panel">
+            <h3>Referencias · espina / propuesta</h3>
+            <ol class="cite-list" start="40">
+              <li>E. Céret et al., "A taxonomy of design methods process models," <em>Inf. Softw. Technol.</em>, 2013. doi:10.1016/j.infsof.2012.11.002</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <nav class="nav" aria-label="Navegación de diapositivas">
+    <button type="button" id="prev" aria-label="Anterior">‹</button>
+    <div class="dots" id="dots"></div>
+    <button type="button" id="next" aria-label="Siguiente">›</button>
+  </nav>
+
+  <script>
+    const approaches = {
+      genia: {
+        title: "GenIA",
+        color: "#5b8def",
+        e4: [
+          ["Qué es", "Modelos que generan contenido nuevo a partir de patrones aprendidos; apoya requisitos, diseño, código, pruebas, documentación y mantenimiento."],
+          ["Relación con IS", "Apoya etapas del ciclo de vida; no sustituye ingeniería — exige datos, evaluación, trazabilidad y supervisión humana."],
+          ["Ejecución", { type: "flow", steps: ["Problema", "Validar datos", "Diseñar", "MVP", "Evaluar", "Desplegar/Monitorear"], note: "RAG + evaluación de calidad en cada paso" }],
+          ["Técnicas / herramientas", { type: "tags", groups: [["Prompt engineering", "RAG", "Guardrails", "HITL", "Eval auto/humana", "NIST AI RMF"], ["Python", "TypeScript", "Java", "DBs vectoriales", "Git", "Docker"]] }],
+          ["Modelado", { type: "tags", groups: [["UML", "BPMN", "C4", "ERD", "OpenAPI", "JSON Schema"]], note: "Sin lenguaje de modelado exclusivo" }],
+          ["Métodos", { type: "tags", groups: [["Agile / Scrum-Kanban", "MLOps / DevSecOps", "Design Thinking", "Lean Startup", "TDD", "AI Risk Management"]] }]
+        ],
+        aport: "Ciclo Problema→Datos→MVP→Evaluación→Despliegue; HITL permanente; adopción gradual.",
+        uso: "Datos confiables y actualizados · RAG · gestión de riesgos; productividad con control.",
+        startNum: 23,
+        fullSources: [
+          "NIST, <em>AI Risk Management Framework: Generative Artificial Intelligence Profile</em>.",
+          "Google, <em>Retrieval-Augmented Generation (RAG)</em> — documentación / guía."
+        ]
+      },
+      devops: {
+        title: "DevOps",
+        color: "#2ec4b6",
+        e4: [
+          ["Qué es", "Acorta el tiempo entre un cambio y su operación en producción, manteniendo calidad, vía colaboración dev–ops, automatización y entrega continua."],
+          ["Relación con IS", "Prácticas CI/CD, IaC y monitoreo que condicionan arquitectura y operación."],
+          ["Ejecución", { type: "flow", steps: ["Lint", "Build", "Test", "Release", "Deploy"], note: "Referente: práctica cotidiana en Genius Sports (augmentación broadcast). RC + staging/producción; dual pipeline código + contenido (sin citar infra interna)." }],
+          ["Técnicas / herramientas", { type: "tags", groups: [["CI/CD", "IaC", "Contenedores", "Observabilidad"], ["GitLab CI", "GitHub Actions", "Docker/Kubernetes", "Terraform", "Prometheus/Grafana"]] }],
+          ["Modelado", { type: "tags", groups: [["YAML de pipelines", "Diagramas de flujo", "IaC", "Esquemas JSON de artefactos"]] }],
+          ["Métodos", { type: "tags", groups: [["Entrega continua con RC", "Commits convencionales", "QA operacional previo a producción"]] }]
+        ],
+        aport: "Ciclos más cortos y repetibles; menos fricción dev/ops; calidad en el pipeline.",
+        uso: "Iterar con seguridad operativa sobre software y contenido gráfico (tiempo real, componentes heterogéneos).",
+        startNum: 25,
+        fullSources: [
+          "L. Bass, I. Weber, and L. Zhu, <em>DevOps: A Software Architect's Perspective</em>, 2015.",
+          "R. Jabbari et al., \"What is DevOps? A systematic mapping study…,\" <em>XP Workshops</em>, 2016.",
+          "D. Vaquero-Melchor et al., \"SARA: … collaborative augmented reality,\" <em>Appl. Sci.</em>, 2020."
+        ]
+      },
+      eda: {
+        title: "Event Driven Architecture",
+        color: "#e8a87c",
+        showFlow: true,
+        e4: [
+          ["Qué es", "Componentes desacoplados producen, reciben y procesan eventos de forma asíncrona (productor–consumidor vía bus/broker)."],
+          ["Relación con IS", "Afecta diseño, calidad, despliegue y observabilidad; combinable con microservicios/DDD-CQRS; no garantiza por sí sola mejor latencia — evaluar por contexto."],
+          ["Ejecución", { type: "flow", steps: ["Identificar eventos", "Contratos", "Implementar", "Validar latencia/resiliencia", "Desplegar", "Monitorear"], note: "Productores y consumidores se definen desde el inicio" }],
+          ["Técnicas / herramientas", { type: "tags", groups: [["Publish/Subscribe", "Event Streaming", "CEP"], ["Kafka", "RabbitMQ", "Azure Service Bus", "Node-RED", "AsyncAPI"]] }],
+          ["Modelado", { type: "tags", groups: [["UML secuencia/componentes", "Modelos de eventos", "AsyncAPI (JSON/YAML)"]] }],
+          ["Métodos", { type: "tags", groups: [["Diseño orientado a contratos", "Patrones CEP", "Validación iterativa"]] }]
+        ],
+        aport: "Escalabilidad, modularidad y reacción rápida ante cambios del sistema.",
+        uso: "Experiencias distribuidas, colaborativas y en tiempo real.",
+        startNum: 28,
+        fullSources: [
+          "H. Cabane and K. Farias, \"On the impact of event-driven architecture…,\" <em>FGCS</em>, 2024.",
+          "J. Rosa-Bilbao et al., \"CEPEDALoCo…,\" <em>Internet of Things</em>, 2023.",
+          "R. Oberhauser, \"VR-EDStream+EDA…,\" <em>eKNOW</em>, 2023.",
+          "AsyncAPI Initiative, <em>AsyncAPI Specification v3.x</em>."
+        ]
+      },
+      hcd: {
+        title: "Human-Centered Design",
+        color: "#7dcfb6",
+        e4: [
+          ["Qué es", "Diseño de sistemas interactivos centrado en usuarios, necesidades y contexto; ISO 9241-210 (6 principios + 4 actividades cíclicas)."],
+          ["Relación con IS", "Human-Centered Software Engineering: usabilidad en el ciclo de vida, no cosmética final; NFR medible con retorno a etapas anteriores."],
+          ["Ejecución", { type: "flow", steps: ["Entender contexto", "Especificar requisitos", "Producir soluciones", "Evaluar", "Iterar"], note: "Retorno explícito a etapas anteriores si no cumple" }],
+          ["Técnicas / herramientas", { type: "tags", groups: [["Entrevistas contextuales", "Personas y escenarios", "Prototipado", "Pruebas de usabilidad", "Heurísticas"], ["SUS", "NASA-TLX"]] }],
+          ["Modelado", { type: "tags", groups: [["ConcurTaskTrees", "IFML"]], note: "+ personas, journeys y storyboards en la práctica" }],
+          ["Métodos", { type: "tags", groups: [["Prototipado de fidelidad creciente", "Evaluación heurística y empírica", "Retorno explícito desde evaluación"]] }]
+        ],
+        aport: "Usabilidad como requisito medible; evaluación que puede devolver el diseño a etapas anteriores.",
+        uso: "Requisitos inmaduros y contexto de uso incierto — típico de RA; déficit de métricas/validación de usuario.",
+        startNum: 32,
+        fullSources: [
+          "ISO 9241-210:2019 (también dominio).",
+          "A. Seffah et al., Eds., <em>Human-Centered Software Engineering</em>, 2005.",
+          "X. Ferre et al., \"Which, when and how usability techniques…,\" 2005.",
+          "S. Graser et al., \"UX evaluation of AR: a systematic literature review,\" <em>CENTRIC</em>, 2024.",
+          "A. Picardi and G. Caruso, \"User-centered evaluation framework… AR,\" <em>MTI</em>, 2024.",
+          "J. Nielsen, \"Heuristic evaluation,\" 1994.",
+          "F. Paternò, <em>Model-Based Design…</em> (ConcurTaskTrees), 2000.",
+          "OMG, <em>IFML 1.0</em>, 2015."
+        ]
+      }
+    };
+
+    const axes = {
+      ciclo: {
+        title: "Ciclo",
+        items: [
+          { tag: "base", text: "Incremental, con dos compuertas de retorno" },
+          { tag: "hcd", text: "Compuerta 1 · validación con usuarios" },
+          { tag: "eda", text: "Compuerta 2 · latencia y resiliencia" },
+          { tag: "genia", text: "Evalúa antes de desplegar" },
+          { tag: "devops", text: "RC + promoción por ambientes" }
+        ]
+      },
+      colaboracion: {
+        title: "Colaboración",
+        items: [
+          { tag: "hcd", text: "Usuario como rol externo" },
+          { tag: "devops", text: "QA multi-rol" },
+          { tag: "eda", text: "Contratos de eventos" },
+          { tag: "genia", text: "HITL permanente" }
+        ]
+      },
+      artefactos: {
+        title: "Artefactos",
+        items: [
+          { tag: "devops", text: "Pipelines y esquemas formales" },
+          { tag: "eda", text: "Contratos de eventos formales" },
+          { tag: "hcd", text: "Artefactos semi-formales (personas, journeys)" },
+          { tag: "genia", text: "Prompts y datasets" }
+        ]
+      },
+      uso: {
+        title: "Uso recomendado",
+        items: [
+          { tag: "good", text: "Entrega frecuente" },
+          { tag: "good", text: "Componentes heterogéneos" },
+          { tag: "good", text: "Incertidumbre de requisitos" },
+          { tag: "bad", text: "No usar en AR pequeña/local (EDA de más)" },
+          { tag: "bad", text: "No usar con requisitos cerrados y contexto conocido (HCD de más)" }
+        ]
+      },
+      madurez: {
+        title: "Madurez",
+        items: [
+          { tag: "hcd", text: "Madurez alta" },
+          { tag: "devops", text: "Madurez alta" },
+          { tag: "eda", text: "Madurez media-alta (menos documentada en AR)" },
+          { tag: "genia", text: "Emergente" }
+        ]
+      },
+      flexibilidad: {
+        title: "Flexibilidad",
+        items: [
+          { tag: "hcd", text: "Obligatorio" },
+          { tag: "devops", text: "Obligatorio" },
+          { tag: "eda", text: "Condicional" },
+          { tag: "genia", text: "Condicional" }
+        ]
+      }
+    };
+
+    const approachIcons = {
+      genia: '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3v3M12 18v3M3 12h3M18 12h3"/><circle cx="12" cy="12" r="4"/><path d="M7.5 7.5l1.5 1.5M15 15l1.5 1.5M16.5 7.5L15 9M9 15l-1.5 1.5"/></svg>',
+      devops: '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 12h4l2-6 4 12 2-6h4"/><circle cx="5" cy="18" r="2"/><circle cx="19" cy="18" r="2"/></svg>',
+      eda: '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="6" r="2.5"/><circle cx="18" cy="18" r="2.5"/><path d="M8.5 11.2L15.2 7.2M8.5 12.8L15.2 16.8"/></svg>',
+      hcd: '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="3.2"/><path d="M5 19c1.5-3.5 4-5 7-5s5.5 1.5 7 5"/></svg>'
+    };
+
+    function axisItemsHTML(items) {
+      return `<div class="axis-list">${items
+        .map((it) => {
+          if (it.tag === "good") return `<div class="axis-row good"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12l5 5L20 7"/></svg><span>${it.text}</span></div>`;
+          if (it.tag === "bad") return `<div class="axis-row bad"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 6l12 12M18 6L6 18"/></svg><span>${it.text}</span></div>`;
+          const color = it.tag === "base" ? "var(--muted)" : `var(--${it.tag})`;
+          const icon = approachIcons[it.tag];
+          const marker = icon
+            ? `<span class="axis-row-icon" style="color:${color}">${icon}</span>`
+            : `<i class="axis-dot" style="background:${color}"></i>`;
+          return `<div class="axis-row">${marker}<span>${it.text}</span></div>`;
+        })
+        .join("")}</div>`;
+    }
+
+    const slides = [...document.querySelectorAll(".slide")];
+    let index = 0;
+    const dots = document.getElementById("dots");
+
+    slides.forEach((_, i) => {
+      const b = document.createElement("button");
+      b.className = "dot" + (i === 0 ? " on" : "");
+      b.type = "button";
+      b.setAttribute("aria-label", "Ir a diapositiva " + (i + 1));
+      b.addEventListener("click", () => go(i));
+      dots.appendChild(b);
+    });
+
+    function go(i) {
+      if (typeof closeExpand === "function") closeExpand();
+      index = (i + slides.length) % slides.length;
+      slides.forEach((s, n) => s.classList.toggle("active", n === index));
+      [...dots.children].forEach((d, n) => d.classList.toggle("on", n === index));
+    }
+
+    document.getElementById("prev").addEventListener("click", () => go(index - 1));
+    document.getElementById("next").addEventListener("click", () => go(index + 1));
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowRight" || e.key === " " || e.key === "PageDown") {
+        e.preventDefault();
+        go(index + 1);
+      } else if (e.key === "ArrowLeft" || e.key === "PageUp") {
+        e.preventDefault();
+        go(index - 1);
+      } else if (e.key === "f" || e.key === "F") {
+        if (!document.fullscreenElement) document.documentElement.requestFullscreen?.();
+        else document.exitFullscreen?.();
+      } else if (e.key === "Escape") {
+        closeS1Panels();
+        closeDrawer();
+        closeRefs();
+      }
+    });
+
+    /* Slide 1 panels */
+    const s1Pills = document.querySelectorAll("#s1-pills .pill");
+    function selectS1(key) {
+      s1Pills.forEach((p) => p.setAttribute("aria-expanded", p.dataset.panel === key ? "true" : "false"));
+      document
+        .querySelectorAll(".slide[data-slide='0'] .panel")
+        .forEach((p) => p.classList.toggle("open", p.id === "panel-" + key));
+    }
+    function closeS1Panels() {
+      selectS1("def");
+    }
+    s1Pills.forEach((btn) => {
+      btn.addEventListener("click", () => selectS1(btn.dataset.panel));
+    });
+    selectS1("def");
+
+    /* Slide 2 — expand a card to full screen from its clicked position (FLIP) */
+    const slide2 = document.querySelector(".slide[data-slide='1']");
+    const quads = document.querySelectorAll(".quad");
+    let overlay = null;
+    let originQuad = null;
+
+    /* Give each closed card a small preview of what's inside (fills the empty space, teases content) */
+    function quadPreviewHTML(a) {
+      const exec = a.e4.find(([k]) => k === "Ejecución")?.[1];
+      const tech = a.e4.find(([k]) => k === "Técnicas / herramientas")?.[1];
+      let html = "";
+      if (exec && exec.type === "flow") {
+        const steps = exec.steps.slice(0, 4);
+        const more = exec.steps.length > steps.length ? '<span class="quad-preview-arrow">…</span>' : "";
+        html += `<div class="quad-preview-row"><span class="quad-preview-label">Ejecución</span><div class="quad-preview-chips">${steps
+          .map((s, i) => `<span class="quad-preview-chip">${s}</span>${i < steps.length - 1 ? '<span class="quad-preview-arrow">→</span>' : ""}`)
+          .join("")}${more}</div></div>`;
+      }
+      if (tech && tech.type === "tags") {
+        const tags = tech.groups[0].slice(0, 4);
+        html += `<div class="quad-preview-row"><span class="quad-preview-label">Técnicas</span><div class="quad-preview-chips">${tags
+          .map((t) => `<span class="quad-preview-chip">${t}</span>`)
+          .join("")}</div></div>`;
+      }
+      return html;
+    }
+
+    quads.forEach((q) => {
+      const a = approaches[q.dataset.key];
+      const hint = q.querySelector(".hint");
+      const preview = document.createElement("div");
+      preview.innerHTML = quadPreviewHTML(a);
+      while (preview.firstChild) hint.before(preview.firstChild);
+    });
+
+    const e4Icons = {
+      "Qué es": '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 11h1v6h1"/></svg>',
+      "Relación con IS": '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 15l6-6M10 6l1-1a3.5 3.5 0 015 5l-1 1M14 18l-1 1a3.5 3.5 0 01-5-5l1-1"/></svg>',
+      "Ejecución": '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 3l14 9-14 9V3z"/></svg>',
+      "Técnicas / herramientas": '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14.7 6.3a4 4 0 00-5.4 5.4L4 17v3h3l5.3-5.3a4 4 0 005.4-5.4l-2.6 2.6-2-2z"/></svg>',
+      "Modelado": '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l8 4.5-8 4.5-8-4.5L12 3z"/><path d="M4 12l8 4.5 8-4.5M4 16.5L12 21l8-4.5"/></svg>',
+      "Métodos": '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 6h16M4 12h16M4 18h10"/><circle cx="20" cy="18" r="1.6" fill="currentColor" stroke="none"/></svg>'
+    };
+
+    function renderE4Value(val) {
+      if (typeof val === "string") return `<span>${val}</span>`;
+      if (val.type === "flow") {
+        const chips = val.steps
+          .map((s, i) => `<span class="mini-flow-chip">${s}</span>${i < val.steps.length - 1 ? '<span class="mini-flow-arrow">→</span>' : ""}`)
+          .join("");
+        return `<div class="mini-flow">${chips}</div>${val.note ? `<div class="mini-note">${val.note}</div>` : ""}`;
+      }
+      if (val.type === "tags") {
+        const groups = val.groups.map((g) => `<div class="tag-group">${g.map((t) => `<span class="tag-chip">${t}</span>`).join("")}</div>`).join("");
+        return `${groups}${val.note ? `<div class="mini-note">${val.note}</div>` : ""}`;
+      }
+      return "";
+    }
+
+    function switchRowHTML(activeKey) {
+      return `<div class="approach-switch" role="tablist" aria-label="Cambiar de enfoque">
+        ${Object.keys(approaches)
+          .map((k) => `<button type="button" class="switch-btn${k === activeKey ? " active" : ""}" data-switch="${k}" style="--sc:${approaches[k].color}"><span class="dot"></span>${approaches[k].title === "Event Driven Architecture" ? "EDA" : approaches[k].title === "Human-Centered Design" ? "HCD" : approaches[k].title}</button>`)
+          .join("")}
+      </div>`;
+    }
+
+    function approachHTML(quad, key) {
+      const a = approaches[key];
+      const icon = quad.querySelector(".quad-icon").outerHTML;
+      const flow = a.showFlow
+        ? `<div class="eda-flow" aria-hidden="true"><i>Producer</i> → <i>Event bus</i> → <i>Render AR</i> · <i>Analítica</i> · <i>Estado</i></div>`
+        : "";
+      return `
+        <div class="expand-inner">
+          ${switchRowHTML(key)}
+          <div class="expand-head">
+            ${icon}
+            <h2 class="expand-title" style="color:${a.color}">${a.title}</h2>
+            <button type="button" class="pill expand-close" aria-label="Cerrar">Cerrar ✕</button>
+          </div>
+          ${flow}
+          <div class="e4-grid">
+            ${a.e4.map(([k, v]) => `<div class="e4-item"><div class="e4-ic" style="color:${a.color}">${e4Icons[k] || ""}</div><div><b>${k}</b>${renderE4Value(v)}</div></div>`).join("")}
+          </div>
+          <div class="reason">
+            <div class="aport"><strong><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12l5 5L20 7"/></svg>Aporta</strong>${a.aport}</div>
+            <div class="uso"><strong><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9L12 3z"/></svg>Uso en RA</strong>${a.uso}</div>
+          </div>
+          <div class="refs-toggle">
+            <div class="detail-row">
+              <button type="button" class="pill refs-open" aria-expanded="false">Referencias</button>
+            </div>
+            <div class="panel refs-panel">
+              <h3>Referencias · ${a.title}</h3>
+              <ol class="cite-list" start="${a.startNum}">${a.fullSources.map((c) => `<li>${c}</li>`).join("")}</ol>
+            </div>
+          </div>
+        </div>`;
+    }
+
+    function switchApproach(key) {
+      if (!overlay || overlay.dataset.key === key) return;
+      const newQuad = document.querySelector(`.quad[data-key="${key}"]`);
+      if (originQuad) originQuad.classList.remove("active");
+      originQuad = newQuad;
+      originQuad.classList.add("active");
+      overlay.dataset.key = key;
+      overlay.innerHTML = approachHTML(newQuad, key);
+      overlay.querySelector(".expand-close").addEventListener("click", closeExpand);
+    }
+
+    document.addEventListener("click", (e) => {
+      const sb = e.target.closest(".switch-btn");
+      if (!sb) return;
+      switchApproach(sb.dataset.switch);
+    });
+
+    function frameFromQuad(quad) {
+      const s = slide2.getBoundingClientRect();
+      const q = quad.getBoundingClientRect();
+      return {
+        top: q.top - s.top,
+        left: q.left - s.left,
+        width: q.width,
+        height: q.height,
+      };
+    }
+
+    function openExpand(quad) {
+      if (overlay) return;
+      const key = quad.dataset.key;
+      originQuad = quad;
+      const f = frameFromQuad(quad);
+
+      overlay = document.createElement("div");
+      overlay.className = "expand-overlay";
+      overlay.dataset.key = key;
+      overlay.style.top = f.top + "px";
+      overlay.style.left = f.left + "px";
+      overlay.style.width = f.width + "px";
+      overlay.style.height = f.height + "px";
+      overlay.innerHTML = approachHTML(quad, key);
+      slide2.appendChild(overlay);
+      quad.classList.add("active");
+
+      overlay.querySelector(".expand-close").addEventListener("click", closeExpand);
+
+      // commit the start frame, then animate to fill the whole slide (FLIP)
+      void overlay.offsetWidth;
+      overlay.classList.add("full");
+      overlay.style.top = "0px";
+      overlay.style.left = "0px";
+      overlay.style.width = "100%";
+      overlay.style.height = "100%";
+    }
+
+    function closeExpand() {
+      if (!overlay) return;
+      const o = overlay;
+      overlay = null;
+      const f = frameFromQuad(originQuad);
+      o.classList.remove("full");
+      o.style.top = f.top + "px";
+      o.style.left = f.left + "px";
+      o.style.width = f.width + "px";
+      o.style.height = f.height + "px";
+      const done = () => {
+        o.remove();
+        if (originQuad) originQuad.classList.remove("active");
+      };
+      o.addEventListener("transitionend", done, { once: true });
+      setTimeout(done, 650);
+    }
+
+    function closeDrawer() {
+      closeExpand();
+    }
+
+    quads.forEach((q) => q.addEventListener("click", () => openExpand(q)));
+
+    /* Slide 3 fishbone */
+    const axisPanel = document.getElementById("axis-panel");
+    document.querySelectorAll(".bone").forEach((bone) => {
+      bone.addEventListener("click", () => {
+        document.querySelectorAll(".bone").forEach((b) => b.classList.remove("active"));
+        bone.classList.add("active");
+        const ax = axes[bone.dataset.axis];
+        axisPanel.classList.add("open");
+        axisPanel.innerHTML = `<h3>${ax.title}</h3>${axisItemsHTML(ax.items)}`;
+      });
+    });
+
+    function closeRefs() {
+      document.querySelectorAll(".refs-open[aria-expanded='true']").forEach((btn) => {
+        btn.setAttribute("aria-expanded", "false");
+        btn.closest(".refs-toggle")?.querySelector(".refs-panel")?.classList.remove("open");
+      });
+    }
+
+    /* Generic footer "Referencias" toggle, reused on every slide/card */
+    document.addEventListener("click", (e) => {
+      const btn = e.target.closest(".refs-open");
+      if (!btn) return;
+      const panel = btn.closest(".refs-toggle")?.querySelector(".refs-panel");
+      if (!panel) return;
+      const open = btn.getAttribute("aria-expanded") === "true";
+      btn.setAttribute("aria-expanded", String(!open));
+      panel.classList.toggle("open", !open);
+    });
+  </script>
+</body>
+</html>

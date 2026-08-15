@@ -1,0 +1,374 @@
+\documentclass[conference]{IEEEtran}
+\IEEEoverridecommandlockouts
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-noquoting]{babel}
+\usepackage{cite}
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage{array}
+\usepackage{textcomp}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true,linkcolor=black,citecolor=black,urlcolor=blue}
+% El cuerpo va en español; el abstract y las keywords en inglés (decisión D11).
+% Por eso se fuerzan los rótulos en inglés, como en el ejemplo del curso.
+\addto\captionsspanish{\renewcommand{\abstractname}{Abstract}}
+\renewcommand{\IEEEkeywordsname}{Index Terms}
+\begin{document}
+\title{Primera aproximación a una metodología de desarrollo de software para realidad aumentada basada en taxonomía de procesos}
+\author{
+\IEEEauthorblockN{Quinnie Villarreal Aragón, José Manuel Carvajal, Jonathan Sandoval, Lina Ballesteros, Alejandro Ríos}
+\IEEEauthorblockA{Universidad EAFIT\\
+Procesos Modernos de Desarrollo de Software\\
+Medellín, Colombia}
+}
+\maketitle
+
+\begin{abstract}
+Augmented reality (AR) systems combine real and virtual objects in real time with spatial registration, yet software projects in this domain still lack a consolidated development methodology that jointly addresses technical delivery, event-driven collaboration, and explicit user validation. This paper reviews the current state of AR---definition and maturity, how projects are approached, prevailing methods, design and architecture principles, and a typical life cycle---and examines four complementary software-engineering approaches: generative artificial intelligence (GenAI), DevOps, event-driven architecture (EDA), and human-centered design (HCD). Building on the process-model taxonomy of Céret et al., the team proposes a first methodological approximation for AR software work. The proposal defines decisions along six axes---cycle, collaboration, artifacts, recommended use, maturity, and flexibility---including two independent return gates (user evaluation and performance), mixed artifact formalization with an explicit boundary criterion, declared limits of applicability, and configurable variability (HCD and DevOps mandatory; EDA and GenAI conditional). The contribution is positioned as an unvalidated first approximation relative to consolidated process models such as Spiral, RAD, and XP, and is intended as a structured baseline for subsequent empirical validation and refinement.\\
+\end{abstract}
+
+\begin{IEEEkeywords}
+Augmented reality, DevOps, event-driven architecture, generative AI, human-centered design, process models, process taxonomy, software methodology
+\end{IEEEkeywords}
+
+\section{Introducción}
+
+La realidad aumentada (RA; en inglés, \textit{augmented reality}, AR --- ambas siglas se emplean indistintamente en este artículo) se caracteriza por combinar objetos reales y virtuales de forma interactiva, en tiempo real y con registro espacial tridimensional \cite{Azuma1997}. El dominio ha pasado de prototipos de laboratorio a despliegues móviles e industriales con madurez parcial: es viable en nichos concretos, pero persisten retos de tracking, interacción, evaluación con usuarios y coordinación de sistemas socio-técnicos \cite{Azuma2001,Goh2023,Graser2024}. En la práctica, los equipos deben co-diseñar hardware, pipelines de tracking y renderizado, contenido gráfico y reglas de interacción \cite{Schmalstieg2016,Devagiri2024}.
+
+El problema que motiva este trabajo no es solo técnico. Aunque existen guías de arquitectura, ciclos multimedia adaptados y marcos de evaluación de usabilidad para RA, sigue siendo limitada una \textbf{metodología de desarrollo de software} que integre de forma explícita la entrega continua de software y contenido, la reacción a eventos en experiencias distribuidas o colaborativas, y la validación reiterada con usuarios —dimensión que la evidencia identifica como déficit del dominio \cite{Vaquero2020,Graser2024}. Sin esa integración, las decisiones sobre ciclo, roles, artefactos, límites de uso y madurez del proceso quedan fragmentadas entre enfoques parciales.
+
+Este artículo propone una \textbf{primera aproximación metodológica} para el desarrollo de software en realidad aumentada. Como marco para estructurar esas decisiones se adopta la taxonomía de modelos de proceso de Céret et al., que organiza el diseño de metodologías en seis ejes: ciclo, colaboración, artefactos, uso recomendado, madurez y flexibilidad \cite{Ceret2013}. Sobre ese andamiaje se combinan cuatro enfoques de ingeniería de software: inteligencia artificial generativa (GenIA), para apoyar productividad y generación controlada cuando hay datos confiables; DevOps, para entrega repetible de software y contenido; arquitectura orientada a eventos (EDA), para experiencias RA distribuidas y en tiempo real; y diseño centrado en el humano (HCD), para elevar la evaluación con usuarios a fase de primera clase.
+
+La propuesta resultante define: un ciclo incremental con dos compuertas de retorno independientes (evaluación con usuarios y pruebas de latencia/resiliencia); más de cinco roles internos más dos roles externos formales; formalización mixta de artefactos con criterio declarado; límites explícitos de uso y de no-uso; madurez declarada como primera aproximación no validada; y variabilidad configurable (HCD y DevOps obligatorios; EDA y GenIA condicionales). El valor diferencial se discute frente a los modelos de proceso Spiral (modelo en espiral), RAD (\textit{Rapid Application Development}) y XP (\textit{Extreme Programming}), según las clasificaciones ya publicadas en \cite{Ceret2013}.
+
+El resto del artículo se organiza así: la Sección II presenta el estado del dominio RA; la Sección III desarrolla los cuatro enfoques y la razón de su elección; la Sección IV define la propuesta metodológica sobre los seis ejes y su valor diferencial; y la Sección V cierra con síntesis, limitaciones y trabajo futuro.
+
+\section{Dominio: realidad aumentada — estado actual}
+
+\subsection{Qué es la Realidad Aumentada y cuál es su estado de desarrollo}
+
+\subsubsection{Definición y delimitación conceptual}
+
+La Realidad Aumentada (RA) se define clásicamente como un sistema que \textit{(i)} combina objetos reales y virtuales en un entorno real, \textit{(ii)} opera de forma interactiva y en tiempo real, y \textit{(iii)} registra (alinea) objetos reales y virtuales en tres dimensiones \cite{Azuma1997}. Esta definición es tecnológicamente agnóstica: no se restringe a un tipo particular de visualizador (p. ej., un visor montado en la cabeza o \textit{head-mounted display}, HMD) ni al sentido de la vista \cite{Azuma2001}.
+
+Milgram y Kishino situaron la RA dentro del \textit{continuum} realidad–virtualidad de la Realidad Mixta (RM), donde el entorno predominante es el mundo real y este se enriquece con contenido generado por computador; el extremo opuesto es la Realidad Virtual (RV) y, entre ambos, aparece la Virtualidad Aumentada \cite{Milgram1994}. Billinghurst, Clark y Lee consolidaron esta base conceptual en un estudio amplio de interacción humano-computador (\textit{human-computer interaction}, HCI), reafirmando el papel de la RA como interfaz espacial que superpone información digital al entorno físico \cite{Billinghurst2015}.
+
+\subsubsection{Estado de desarrollo}
+
+El campo evolucionó desde prototipos de laboratorio hacia plataformas móviles y \textit{wearables} de uso más amplio. Azuma \cite{Azuma1997} identificó tempranamente el registro, la latencia y la sensorización como problemas centrales. La actualización de 2001 documentó avances en \textit{tracking}, despliegues móviles y displays, sin resolver por completo la alineación estable en entornos no controlados \cite{Azuma2001}.
+
+Los meta-análisis del \textit{International Symposium on Mixed and Augmented Reality} (ISMAR) muestran el desplazamiento temático del área: Zhou et al. sintetizaron la primera década con foco en \textit{tracking}, interacción y display \cite{Zhou2008}; Kim et al. reportaron, para 2008–2017, un aumento marcado de evaluación y \textit{rendering}, junto con el auge de RA móvil y reconstrucción 3D \cite{Kim2018}. En años recientes, Goh et al. observan que la investigación en RA \textit{wearable} se orienta a adopción masiva, ética, accesibilidad, avatares/\textit{embodiment} y agentes virtuales inteligentes, además de retos persistentes en display, tracking e interacción \cite{Goh2023}.
+
+En paralelo, revisiones técnicas recientes sistematizan tecnologías de tracking, herramientas de desarrollo, displays, RA colaborativa y preocupaciones de seguridad \cite{Syed2023}. Devagiri et al. ofrecen un panorama consolidado de 2024: tecnologías habilitadoras y potenciadoras, matriz de hardware comercial, capacidades de software y un conjunto de guías de desarrollo desde la ideación hasta el despliegue \cite{Devagiri2024}. En conjunto, el estado actual puede caracterizarse como \textit{madurez parcial}: la RA es viable comercialmente en móviles y en nichos industriales y educativos, mientras que la RA óptica \textit{see-through} ``indistinguible'' y la adopción generalizada siguen siendo desafíos abiertos \cite{Goh2023,Devagiri2024}.
+
+\subsection{Cómo se abordan los proyectos en el contexto de RA}
+
+Los proyectos de RA suelen abordarse como sistemas socio-técnicos en los que hardware (cámara, unidad de medición inercial ---IMU---, HMD, dispositivo móvil), software (\textit{tracking}, renderizado, gestión de escena) y contenido (modelos 3D, anotaciones, reglas de interacción) deben co-diseñarse \cite{Schmalstieg2016,Devagiri2024}.
+
+En la práctica, el abordaje típico incluye:
+
+\begin{enumerate}
+\item \textbf{Delimitación del caso de uso y contexto de uso:} dominio (mantenimiento, educación, medicina, colaboración, etc.), usuarios, entorno físico y restricciones de seguridad \cite{NIST2022,Sereno2022}.
+\item \textbf{Selección de plataforma y modalidad de display:} RA móvil (\textit{handheld}), HMD óptico o por video, o configuraciones colaborativas heterogéneas \cite{Syed2023,Devagiri2024}.
+\item \textbf{Elección de la estrategia de anclaje espacial:} marcadores fiduciales, localización y mapeo simultáneos (\textit{simultaneous localization and mapping}, SLAM) o \textit{markerless}, localización visual-inercial o mapas previos del entorno \cite{Kim2018,Syed2023}.
+\item \textbf{Diseño de la interfaz espacial e interacción:} gestos, voz, mirada, tangibles o híbridos, cuidando carga cognitiva y coherencia real–virtual \cite{Kourouthanassis2015,Endsley2017}.
+\item \textbf{Implementación iterativa y evaluación con usuarios:} prototipado temprano, pruebas de usabilidad y métricas de efectividad, eficiencia y satisfacción en contexto \cite{NIST2022,Dunser2011}.
+\end{enumerate}
+
+En RA colaborativa, el abordaje se amplía a dimensiones de espacio, tiempo, simetría de roles y de tecnología, y modalidades de entrada/salida, lo que exige decisiones explícitas de arquitectura multi-usuario y \textit{awareness} compartido \cite{Billinghurst2002,Sereno2022}.
+
+\subsection{Metodologías utilizadas}
+
+No existe una única metodología estándar universal para RA; la literatura converge en la combinación de marcos de desarrollo multimedia/software con diseño centrado en el humano (HCD) y evaluación específica de usabilidad en RA.
+
+\subsubsection{Ciclos de desarrollo multimedia adaptados}
+
+Roedavan et al. proponen un marco basado en el \textit{Multimedia Development Life Cycle} (MDLC) adaptado a RA, estructurado en capas de fase, etapa de desarrollo y componentes. En producción distinguen núcleo (\textit{tracking} y anclaje), visual (contenido y renderizado) e interacción; en postproducción enfatizan evaluación de compatibilidad, desempeño y usabilidad \cite{Roedavan2025}.
+
+\subsubsection{Diseño centrado en el usuario}
+
+ISO 9241-210 provee el marco general de HCD para sistemas interactivos —comprensión del contexto, especificación de requisitos, producción de soluciones y evaluación— aplicable a RA como sistema interactivo espacial \cite{ISO9241210}. El informe NIST IR 8422, del \textit{National Institute of Standards and Technology} (NIST), operacionaliza este enfoque para RA mediante un marco de evaluación de usabilidad en cinco componentes: alcance, usuarios y contexto, escenarios/tareas, métricas y medidas \cite{NIST2022}.
+
+\subsubsection{Evaluación HCI específica de RA}
+
+Dünser y Billinghurst argumentan que los métodos HCI tradicionales deben adaptarse porque la RA introduce factores de registro espacial, confort, carga cognitiva y acoplamiento con el entorno físico \cite{Dunser2011}. Trabajos previos del mismo grupo plantean la aplicación explícita de principios HCI al diseño de sistemas RA \cite{Dunser2007}. Endsley et al. aportan heurísticas de diseño orientadas a interacciones dinámicas en entornos aumentados \cite{Endsley2017}.
+
+En síntesis, las metodologías predominantes son: \textbf{(a)} ciclos iterativos tipo MDLC/ágil adaptados a componentes RA; \textbf{(b)} HCD/ISO 9241-210; y \textbf{(c)} evaluación heurística y empírica específica de RA.
+
+\subsection{Principios de diseño y arquitectura}
+
+\subsubsection{Principios de diseño}
+
+Kourouthanassis et al. desmitifican el diseño de aplicaciones de RA móvil y enfatizan criterios de utilidad contextual, interacción natural, gestión de la atención y coherencia entre capas real y virtual \cite{Kourouthanassis2015}. Endsley et al. formalizan heurísticas para interacciones dinámicas, advirtiendo que omitir usabilidad en el diseño incrementa errores y erosiona la confianza del usuario \cite{Endsley2017}. Dünser et al. recomiendan trasladar principios HCI (visibilidad del estado del sistema, correspondencia con el mundo real, control del usuario, prevención de errores, etc.) al dominio espacial de la RA \cite{Dunser2007}.
+
+Principios recurrentes en la literatura:
+
+\begin{itemize}
+\item Registro espacial estable y baja latencia percibida.
+\item Claridad de la información aumentada sin ocluir indebidamente el entorno relevante.
+\item Interacción alineada con capacidades del dispositivo y del usuario.
+\item Consideración de confort, seguridad, privacidad y continuidad ante interrupciones.
+\item Soporte a \textit{awareness} y coordinación en escenarios colaborativos \cite{Sereno2022}.
+\end{itemize}
+
+\subsubsection{Arquitectura de sistemas}
+
+Reicher et al. formularon una arquitectura de referencia para sistemas RA a partir del estudio de implementaciones existentes, destacando atributos de calidad como latencia de tracking/renderizado, operación inalámbrica, múltiples dispositivos de tracking, reutilización e integración de componentes \cite{Reicher2003}. MacWilliams et al. complementaron este trabajo con un catálogo de patrones de diseño para RA (específicos del dominio y adaptaciones de patrones generales), orientado a un vocabulario compartido de decisiones arquitectónicas \cite{MacWilliams2004}.
+
+A nivel industrial/estándar, la especificación ETSI GS ARF 003, del \textit{European Telecommunications Standards Institute} (ETSI), define una arquitectura funcional de referencia para componentes, sistemas y servicios de RA, con bloques lógicos interconectados por puntos de referencia y despliegue posible en dispositivo, nube o de forma híbrida \cite{ETSI-ARF003}. Schmalstieg y Höllerer sistematizan la arquitectura típica como acoplamiento de visión por computador, gráficos, tracking, visualización e interacción 3D \cite{Schmalstieg2016}.
+
+De manera esquemática, las arquitecturas de RA suelen descomponerse en: \textit{captura/sensado}, \textit{tracking y mapeo del mundo}, \textit{modelo del entorno/contexto}, \textit{lógica de aplicación}, \textit{renderizado/presentación} e \textit{interacción}, con requisitos transversales de tiempo real y baja latencia extremo a extremo \cite{Reicher2003,ETSI-ARF003}.
+
+\subsection{Ciclo de vida para llegar a soluciones en RA}
+
+A partir de la convergencia entre MDLC adaptado \cite{Roedavan2025}, guías de desarrollo contemporáneas \cite{Devagiri2024} y HCD/evaluación de usabilidad \cite{ISO9241210,NIST2022}, el ciclo de vida típico de una solución RA puede formularse así:
+
+\begin{enumerate}
+\item \textbf{Ideación y análisis de contexto.} Definir problema, usuarios, entorno físico, riesgos y valor de la aumentación frente a alternativas no-RA \cite{Devagiri2024,NIST2022}.
+\item \textbf{Especificación de requisitos.} Requisitos funcionales (qué se aumenta, cómo se interactúa) y no funcionales (latencia, precisión de registro, autonomía, privacidad, colaboración) \cite{Reicher2003,Sereno2022}.
+\item \textbf{Diseño conceptual y arquitectónico.} Selección de display/plataforma, estrategia de tracking, patrones arquitectónicos y principios/heurísticas de interfaz de usuario (UI) espacial \cite{MacWilliams2004,ETSI-ARF003,Endsley2017}.
+\item \textbf{Preparación de activos y prototipado.} Modelos 3D, marcadores/mapas, interacciones; prototipos de fidelidad creciente \cite{Roedavan2025,Schmalstieg2016}.
+\item \textbf{Implementación (núcleo, visual, interacción).} Integración del \textit{pipeline} de tracking–render–input sobre el \textit{framework} elegido \cite{Roedavan2025,Syed2023}.
+\item \textbf{Evaluación iterativa.} Pruebas técnicas (precisión, cuadros por segundo ---FPS---, compatibilidad) y de usabilidad con usuarios reales en contexto, con métricas explícitas \cite{NIST2022,Dunser2011}.
+\item \textbf{Despliegue, operación y evolución.} Publicación en dispositivos objetivo, monitoreo de desempeño en campo, actualización de mapas/contenido y mejora continua \cite{Devagiri2024}.
+\end{enumerate}
+
+Este ciclo es inherentemente \textbf{iterativo}: los hallazgos de evaluación realimentan requisitos y diseño, en coherencia con ISO 9241-210 \cite{ISO9241210} y con la evidencia de que la madurez de RA depende tanto de avances técnicos como de calidad de experiencia de usuario \cite{Kim2018,Goh2023}.
+
+\textbf{Nota de alcance:} este apartado se limita al estado del arte orientado a las cinco preguntas del checklist del dominio. No desarrolla contribuciones experimentales propias ni una revisión sistemática exhaustiva de todos los subdominios de aplicación.
+
+\section{Enfoques seleccionados y razón de elección}
+
+\subsection{Inteligencia artificial generativa (GenIA)}
+
+La inteligencia artificial generativa (GenIA) utiliza modelos capaces de generar contenido nuevo a partir de patrones aprendidos de grandes volúmenes de datos. Como referente de ejecución se toma la práctica industrial observada en el día a día de Genius Sports. Ese referente —de carácter profesional, no documentado aquí como fuente académica— corresponde a plataformas de datos e inteligencia artificial que combinan grandes volúmenes de datos deportivos con aprendizaje automático para análisis del juego, experiencias personalizadas, generación automatizada de contenido y augmentación de transmisiones. Por acuerdo de confidencialidad con el empleador, no se divulgan nombres de servicios internos, rutas ni configuraciones específicas: el referente se describe únicamente a nivel de prácticas.
+
+En ingeniería de software, GenIA puede apoyar diferentes etapas del ciclo de vida: generación de requisitos e historias de usuario, diseño de componentes y arquitecturas, programación, creación de pruebas, documentación y mantenimiento. En el referente industrial descrito, esa generación se apoya en interfaces de programación de aplicaciones (API) de datos deportivos que proporcionan información sobre partidos, jugadores, estadísticas y eventos en tiempo real.
+
+Para la ejecución de proyectos se propone un proceso iterativo y controlado: identificar el problema, preparar y validar los datos, diseñar la solución, construir un producto mínimo viable (MVP), evaluar sus resultados y posteriormente desplegar y monitorear. Para información actualizada se propone RAG (\textit{Retrieval-Augmented Generation}), que recupera información de fuentes autorizadas antes de generar la respuesta y permite evaluar posteriormente la calidad del sistema \cite{Lewis2020}.
+
+Las principales técnicas propuestas son prompt engineering, few-shot prompting, RAG, human-in-the-loop, generación estructurada, guardrails, evaluación automática/humana y versionamiento de prompts. Como herramientas pueden utilizarse Python, Java o TypeScript, servicios de IA, frameworks de integración, bases de datos vectoriales, Git, Docker y herramientas de observabilidad; estas corresponden a alternativas de la propuesta y no a tecnologías confirmadas del referente industrial.
+
+En cuanto al modelado, GenIA no requiere un lenguaje exclusivo. Se propone utilizar UML (\textit{Unified Modeling Language}), BPMN (\textit{Business Process Model and Notation}), C4 Model, ERD (diagrama entidad--relación), OpenAPI y JSON Schema para representar procesos, arquitectura, datos, APIs y estructura de las respuestas generadas. Los métodos complementarios incluyen Agile, Scrum/Kanban, DevOps, MLOps, DevSecOps, Design Thinking, Lean Startup, TDD (desarrollo guiado por pruebas) y AI Risk Management.
+
+Se toma como referencia el \textit{AI Risk Management Framework} de NIST, particularmente su perfil para IA generativa, para gestionar riesgos relacionados con seguridad, privacidad, sesgos, propiedad intelectual, información incorrecta y otros riesgos propios de estos sistemas \cite{NISTGenAI}.
+
+Se elige GenIA porque permite aprovechar datos de dominio —como los datos deportivos del referente industrial— para generar contenido, análisis y experiencias personalizadas, al mismo tiempo que puede apoyar la productividad de los equipos de ingeniería. Su adopción debe ser gradual y acompañada de datos confiables, evaluación, trazabilidad, seguridad y supervisión humana.
+
+\begin{table*}[!t]
+\centering
+\footnotesize
+\caption{Aporte de GenIA a los seis ejes}
+\begin{tabular}{p{0.13\textwidth}p{0.79\textwidth}}
+\hline
+\textbf{Eje} & \textbf{Aporte de GenIA} \\ \hline
+Ciclo & Ciclo iterativo y controlado: identificar el problema, preparar y validar datos, diseñar la solución, construir un MVP, evaluar resultados, desplegar y monitorear. La evaluación precede al despliegue y puede devolver el proceso a la preparación de datos. \\ \hline
+Colaboración & Exige \textbf{supervisión humana} (\textit{human-in-the-loop}) como control permanente, no como revisión final. La adopción es gradual y acompañada de trazabilidad. \\ \hline
+Artefactos & Prompts versionados, conjuntos de datos validados, evaluaciones automáticas y humanas, MVP, y salidas con generación estructurada bajo \textit{guardrails}. Modelado con UML, BPMN, C4 Model, ERD, OpenAPI y JSON Schema. \\ \hline
+Uso recomendado & Indicado cuando existen datos confiables y actualizados sobre los que apoyar la generación (p. ej. mediante RAG). Requiere gestión explícita de riesgos de seguridad, privacidad, sesgos y propiedad intelectual. \\ \hline
+Madurez & \textbf{Emergente.} Los marcos de gestión de riesgo son recientes; se toma como referencia el \textit{AI Risk Management Framework} de NIST en su perfil para IA generativa \cite{NISTGenAI}. \\ \hline
+Flexibilidad & \textbf{Alta.} No requiere un lenguaje de modelado exclusivo y se combina con Agile, Scrum/Kanban, DevOps, MLOps, DevSecOps, Design Thinking, Lean Startup y TDD. \\ \hline
+\end{tabular}
+\end{table*}
+
+\subsection{DevOps}
+
+DevOps es un enfoque de ingeniería de software que busca acortar el tiempo entre un cambio en el sistema y su operación en producción, manteniendo calidad, mediante colaboración entre desarrollo y operaciones, automatización y entrega continua \cite{Bass2015,Jabbari2016}. En la ingeniería de software, articula prácticas (integración y entrega continuas ---CI/CD---, infraestructura como código ---IaC---, monitoreo) que condicionan arquitectura y operación \cite{Bass2015,Jabbari2016}.
+
+Como referente de ejecución se toma la práctica industrial observada en el día a día de Genius Sports. Esa experiencia —no documentada aquí como paper académico, sino como referente profesional— se centra en \textbf{augmentación gráfica en tiempo real sobre video deportivo broadcast} (superposición de gráficos a partir de tracking y estado del juego): pipelines CI/CD con lint, build, test, release y deploy; contenedores e imágenes en registro cloud; promoción mediante candidatos de versión (\textit{release candidates}, RC) y ambientes de staging/producción; aseguramiento de calidad (QA) con roles de operaciones, ingeniería y contenido; y un \textbf{pipeline de contenido} que genera instrucciones de augmentación (artefactos tipados + manifiesto de plugins) además del pipeline de código. Al igual que en la Sección III-A, no se divulgan nombres de servicios internos, rutas ni configuraciones específicas.
+
+Para el dominio de realidad aumentada se declara el matiz: el referente es \textit{realtime augmentation} sobre video broadcast, no necesariamente AR móvil con \textit{headset}; aun así, comparte con AR la necesidad de entregar software y contenido gráfico de forma repetible. La literatura en AR colaborativa basada en microservicios refuerza la orquestación de componentes heterogéneos \cite{Vaquero2020}. Se propone transferir CI/CD, contenedores, promoción por ambientes, QA multi-rol y el dual pipeline \textbf{código + instrucciones/contenido} a la metodología AR.
+
+Técnicas/herramientas típicas del enfoque: CI/CD, contenedores, registros de imágenes, IaC, secretos, observabilidad y pruebas automatizadas (incl. escenarios costosos de simulación). Lenguajes de modelado/especificación: YAML de pipelines, diagramas de flujo de aplicación, IaC y esquemas JSON de artefactos de contenido. Métodos: entrega continua con RC, commits convencionales, QA operacional previo a producción.
+
+Se elige DevOps porque el dominio AR exige iterar con seguridad operativa sobre software y contenido; el referente industrial de augmentación en tiempo real aporta un modelo concreto transferible al ciclo de vida AR del equipo.
+
+\begin{table*}[!t]
+\centering
+\footnotesize
+\caption{Aporte de DevOps a los seis ejes}
+\begin{tabular}{p{0.13\textwidth}p{0.79\textwidth}}
+\hline
+\textbf{Eje} & \textbf{Aporte de DevOps} \\ \hline
+Ciclo & Entrega continua: cada cambio dispara un pipeline (lint, build, test, release, deploy). Promoción por \textbf{candidatos de versión} y ambientes escalonados (desarrollo → \textit{staging} → producción), con caminos de excepción documentados. \\ \hline
+Colaboración & \textbf{QA multi-rol} antes de producción: operaciones, ingeniería y contenido firman por separado. Responsabilidad compartida entre quien desarrolla y quien opera. \\ \hline
+Artefactos & Especificaciones de pipeline en YAML, imágenes de contenedor en registro, infraestructura como código, esquemas JSON de artefactos de contenido y diagramas de flujo de aplicación. Formalización \textbf{alta}: son ejecutables, no documentación. \\ \hline
+Uso recomendado & Indicado cuando hay que entregar \textbf{software y contenido} de forma repetible y operable, y cuando el sistema debe permanecer disponible mientras se actualiza. \\ \hline
+Madurez & \textbf{Alta.} Amplia adopción industrial y literatura consolidada sobre definiciones y prácticas \cite{Jabbari2016}, además de tratamiento desde la arquitectura \cite{Bass2015}. \\ \hline
+Flexibilidad & \textbf{Alta.} Plantillas de plataforma reutilizables evitan reinventar el despliegue en cada iniciativa, y los caminos excepcionales (\textit{hotfix}, \textit{one-off}, solo-configuración) están previstos y registrados. \\ \hline
+\end{tabular}
+\end{table*}
+
+\subsection{Arquitectura orientada a eventos (EDA)}
+
+La Arquitectura Orientada a Eventos (\textit{Event-Driven Architecture}, EDA) es un estilo arquitectónico en el que componentes desacoplados producen, reciben y procesan eventos de forma asíncrona. Un evento representa un cambio de estado o un hecho relevante, y la comunicación suele seguir un modelo productor–consumidor mediante canales o buses de eventos. Este desacoplamiento permite que los componentes evolucionen de forma más independiente y favorece la modularidad, la escalabilidad y la integración de sistemas distribuidos \cite{Cabane2024}.
+
+En ingeniería de software, EDA afecta decisiones de diseño, calidad, despliegue y observabilidad. Puede combinarse con microservicios y patrones como \textit{domain-driven design} (DDD) y \textit{command query responsibility segregation} (CQRS), pero su adopción debe evaluarse por contexto: la evidencia empírica muestra que no garantiza mejores tiempos de respuesta ni menor consumo de recursos frente a una arquitectura monolítica \cite{Cabane2024}. Por ello, se propone un proceso iterativo: identificar eventos del dominio y sus productores/consumidores; definir contratos y reglas de procesamiento; implementar el flujo; validar funcionalidad, latencia, throughput y resiliencia; desplegar; y monitorear. CEPEDALoCo muestra un ciclo similar apoyado en procesamiento de eventos complejos, brokers, APIs y pruebas sobre flujos reales \cite{RosaBilbao2023}.
+
+Como técnicas se proponen publicación/suscripción, Event Streaming y Complex Event Processing (CEP). Entre las herramientas posibles están Apache Kafka, RabbitMQ, Azure Service Bus, Node-RED y motores CEP. Para modelado, EDA no posee un único lenguaje estándar; se proponen diagramas UML de secuencia y componentes, modelos de eventos y contratos AsyncAPI en JSON/YAML. AsyncAPI permite describir APIs orientadas a mensajes de forma legible por máquina y agnóstica al protocolo \cite{AsyncAPI}. Como métodos se proponen el diseño orientado a contratos de eventos, el modelado de patrones CEP y la validación iterativa mediante pruebas de integración, rendimiento y resiliencia.
+
+EDA se selecciona para realidad aumentada porque las experiencias distribuidas y colaborativas requieren reaccionar a cambios de interacción, sesión y estado compartido. SARA demuestra una arquitectura AR colaborativa donde servicios y clientes intercambian y procesan eventos para actualizar sesiones y elementos aumentados \cite{Vaquero2020}. Además, Oberhauser muestra que flujos EDA pueden visualizarse y analizarse en entornos inmersivos con Kafka y RabbitMQ, reforzando su aplicabilidad al ecosistema de realidad extendida (XR) \cite{Oberhauser2023}.
+
+\begin{table*}[!t]
+\centering
+\footnotesize
+\caption{Aporte de la arquitectura orientada a eventos (EDA) a los seis ejes}
+\begin{tabular}{p{0.13\textwidth}p{0.79\textwidth}}
+\hline
+\textbf{Eje} & \textbf{Aporte de la arquitectura orientada a eventos} \\ \hline
+Ciclo & EDA no impone por sí misma un ciclo de desarrollo. Para la metodología se propone un ciclo incremental e iterativo, con iteraciones locales o regionales sobre flujos de eventos y retorno (\textit{backwards}) cuando las pruebas de integración, latencia o resiliencia no cumplan los objetivos. Una vez estabilizados los contratos, productores y consumidores pueden desarrollarse parcialmente en paralelo. \\ \hline
+Colaboración & Se proponen como roles internos: arquitecto de software/eventos, desarrollador AR, desarrollador backend/eventos, QA orientado a integración y rendimiento y DevOps. La coordinación entre equipos se basa en contratos compartidos de eventos, reduciendo las dependencias directas entre productores y consumidores. \\ \hline
+Artefactos & Catálogo de eventos, esquema de cada evento, matriz productor–consumidor, diagramas UML de secuencia/componentes, especificación AsyncAPI y resultados de pruebas de latencia, throughput y errores. La formalización es \textbf{media-alta}, porque los contratos deben poder ser interpretados de manera consistente por equipos distintos. \\ \hline
+Uso recomendado & Recomendado para experiencias AR distribuidas, colaborativas o en tiempo real, especialmente cuando existen múltiples productores y consumidores de información. \textbf{No} se recomienda introducir EDA por defecto en aplicaciones AR pequeñas, locales y con pocas interacciones entre componentes, debido a la complejidad adicional que genera. \\ \hline
+Madurez & \textbf{Media-alta} en ingeniería de software general, debido a su adopción industrial, brokers consolidados y literatura existente; sin embargo, su aplicación específicamente documentada en AR es menor. Por ello, la metodología exige evaluar el enfoque mediante métricas antes de adoptarlo como decisión definitiva. \\ \hline
+Flexibilidad & \textbf{Alta.} Permite agregar o modificar consumidores sin alterar necesariamente al productor y admite diferentes brokers, protocolos y mecanismos de procesamiento. Esta flexibilidad exige versionamiento y gobernanza de contratos para evitar incompatibilidades. \\ \hline
+\end{tabular}
+\end{table*}
+
+\subsection{Diseño centrado en el humano (HCD)}
+
+El Diseño Centrado en el Humano (HCD) es un enfoque de desarrollo de sistemas interactivos que busca hacerlos usables y útiles centrándose en los usuarios, sus necesidades y el contexto de uso. A diferencia de los demás enfoques del equipo, está \textbf{normalizado}: ISO 9241-210 fija seis principios —entre ellos la participación del usuario durante todo el desarrollo, la iteración y el equipo multidisciplinario— y cuatro actividades cíclicas: entender el contexto de uso, especificar requisitos, producir soluciones de diseño y evaluar contra los requisitos \cite{ISO9241210}.
+
+Su relación con la ingeniería de software se articula en la \textit{Human-Centered Software Engineering}, que integra la usabilidad en el ciclo de vida en lugar de tratarla como fase cosmética final \cite{Seffah2005}. Su aporte es convertir la usabilidad en requisitos no funcionales medibles y elevar la evaluación a fase de primera clase, con capacidad de retornar el diseño a etapas anteriores \cite{Ferre2005}.
+
+No responde a un único proceso sino a una familia de modelos —Star Life Cycle, ISO 13407, Usage-Centered Design y Usability Engineering Lifecycle— comparados por Ferre et al. \cite{Ferre2005}. Sus técnicas se distribuyen por fase: entrevistas contextuales y observación, personas y escenarios, prototipado de fidelidad creciente, y evaluación mediante pruebas de usabilidad, evaluación heurística \cite{Nielsen1994} e instrumentos como la \textit{System Usability Scale} (SUS) o el NASA-TLX (\textit{Task Load Index}).
+
+En lenguajes de modelado dispone de notaciones formales —ConcurTaskTrees para tareas \cite{Paterno2000} e IFML, estándar OMG para flujos de interacción \cite{OMG-IFML}— aunque la práctica industrial se apoya en artefactos semi-formales (personas, mapas de recorrido, storyboards). Esa asimetría entre notación disponible y notación usada es en sí un hallazgo para el eje \textbf{Artefactos}.
+
+Se elige HCD porque hay evidencia de una brecha entre lo que ofrece y lo que el dominio aplica: una revisión sistemática de 30 artículos filtrados de 498 concluye que \textbf{no existen métricas de experiencia específicas de AR} \cite{Graser2024}, y la investigación en AR ha desatendido la dimensión de usuario \cite{Picardi2024}. En AR el contexto de uso es variable y los requisitos inmaduros, condiciones donde HCD resulta más indicado. No se incorpora por completitud metodológica, sino por un déficit medido de validación con usuarios.
+
+\begin{table*}[!t]
+\centering
+\footnotesize
+\caption{Aporte de Human-Centered Design (HCD) a los seis ejes}
+\begin{tabular}{p{0.13\textwidth}p{0.79\textwidth}}
+\hline
+\textbf{Eje} & \textbf{Aporte de HCD} \\ \hline
+Ciclo & Iteración obligatoria con \textbf{retorno explícito} (\textit{backwards}): si la evaluación no satisface los requisitos, el proceso vuelve a contexto, requisitos o diseño \cite{ISO9241210}. Granularidad \textbf{local y regional}. \\ \hline
+Colaboración & \textbf{Usuario como rol externo formal} presente en todo el ciclo; equipo \textbf{multidisciplinario} (principio 6) \cite{ISO9241210}. \\ \hline
+Artefactos & Contexto de uso, personas, escenarios, prototipos e \textbf{informes de evaluación con métricas}. Formalización \textbf{mixta}: existen notaciones formales pero domina el artefacto semi-formal \cite{Paterno2000,OMG-IFML}. \\ \hline
+Uso recomendado & Indicado cuando la \textbf{madurez de requisitos es baja} y el contexto de uso es incierto — condición característica de AR \cite{Graser2024}. \\ \hline
+Madurez & \textbf{Alta.} Normalizado internacionalmente, con más de dos décadas de literatura \cite{ISO9241210,Seffah2005}. \\ \hline
+Flexibilidad & \textbf{Alta variabilidad:} al menos cuatro modelos de proceso conviven bajo el mismo marco \cite{Ferre2005}. \\ \hline
+\end{tabular}
+\end{table*}
+
+\section{Taxonomía de procesos y propuesta metodológica}
+
+Esta sección se construye sobre la taxonomía de \cite{Ceret2013}: cada eje consolida el aporte de los cuatro enfoques y fija la decisión de la metodología propuesta, empleando las gradaciones definidas por los autores.
+
+\subsection{Ciclo}
+
+Los cuatro enfoques coinciden en la iteración pero difieren en qué la dispara: HCD retorna desde la evaluación con usuarios; EDA desde las pruebas de latencia y resiliencia; GenIA desde la evaluación previa al despliegue; DevOps aporta entrega continua con candidatos de versión y promoción por ambientes.
+
+Se propone un ciclo \textbf{incremental con gran número de entregas} (1–3 meses en la escala de \cite{Ceret2013}), con \textbf{iteración local y regional} —local sobre el flujo de eventos y el prototipo de interacción, regional sobre el conjunto experiencia–datos— y \textbf{retorno explícito obligatorio}. La decisión clave es que existen \textbf{dos compuertas de retorno independientes}: la evaluación con usuarios y las pruebas de latencia y resiliencia. Cualquiera de las dos devuelve el proceso a fases anteriores. Esto responde a una carencia concreta: RAD menciona procedimientos de validación pero no especifica qué debe hacerse cuando una etapa no se valida \cite{Ceret2013}.
+
+\subsection{Colaboración}
+
+HCD incorpora al usuario como rol externo formal; DevOps aporta QA multi-rol con firmas separadas; EDA coordina mediante contratos de eventos compartidos; GenIA exige supervisión humana permanente.
+
+Se proponen roles internos —arquitecto de eventos, desarrollador AR, desarrollador backend, ingeniero DevOps y especialista en experiencia de usuario— y \textbf{dos roles externos formales}: el usuario final y el responsable de los datos. Son más de cinco roles, el mismo grado que RAD \cite{Ceret2013}, pero con una diferencia sustantiva: RAD centra la coordinación en identificar equipos paralelos y verificar su no-redundancia, sin detallar cómo trabajan juntos \cite{Ceret2013}. Aquí la coordinación se ancla en \textbf{dos artefactos de lectura obligatoria} para todos los roles: el contrato de eventos y el informe de evaluación con usuarios.
+
+\subsection{Artefactos}
+
+Es el eje donde los enfoques tensionan: EDA y DevOps empujan hacia formalización alta —contratos, esquemas, pipelines ejecutables—; HCD aporta artefactos deliberadamente semi-formales; GenIA añade prompts versionados y salidas estructuradas.
+
+Se propone \textbf{formalización mixta y declarada por artefacto}. Obligatoriamente formales: el contrato de eventos (AsyncAPI o JSON Schema), la especificación de pipeline y el informe de evaluación con métricas. Deliberadamente semi-formales: los artefactos de exploración de la experiencia. La posición es intermedia entre XP, que no recomienda artefactos no ejecutables por considerarlos inútiles \cite{Ceret2013}, y RAD, que propone alrededor de treinta clases de artefactos no ejecutables solo en su fase de inicialización \cite{Ceret2013}. El criterio de decisión es explícito: se formaliza lo que cruza una frontera entre equipos; se deja semi-formal lo que sirve para explorar.
+
+\subsection{Uso recomendado}
+
+Recomendada para proyectos de realidad aumentada \textbf{distribuidos o en tiempo real}, con múltiples productores y consumidores de datos, equipo multidisciplinario de entre cinco y quince personas, y \textbf{madurez de requisitos baja} —condición característica del dominio.
+
+\textbf{No recomendada} para aplicaciones AR pequeñas, locales y con pocas interacciones entre componentes, donde EDA añade complejidad sin retorno, ni para proyectos con requisitos cerrados y contexto de uso conocido, donde el peso de HCD no se justifica. Declarar los límites es en sí un aporte: RAD está clasificado como \textit{sin información específica sobre el tamaño de proyecto esperado} y con \textit{mención vaga del tipo de aplicación} \cite{Ceret2013}.
+
+\subsection{Madurez}
+
+La madurez es desigual: HCD y DevOps son altos —normalización internacional y adopción industrial—; EDA es medio-alto en general pero con escasa documentación específica en AR; GenIA es emergente.
+
+En consecuencia, la metodología se declara \textbf{primera aproximación no validada}: sin difusión y sin validación empírica. Se propone medirla mediante indicadores por eje —frecuencia de entrega, número de retornos disparados por cada compuerta, cobertura de contratos versionados y resultados de evaluación con usuarios—. Reconocer la ausencia y acompañarla de un mecanismo de medición la separa del modelo Spiral, que no sugiere ninguna forma de validación \cite{Ceret2013}.
+
+\subsection{Flexibilidad}
+
+Los cuatro aportan variabilidad: HCD admite al menos cuatro modelos de proceso; EDA admite distintos brokers y protocolos; DevOps prevé caminos de excepción; GenIA no exige un lenguaje exclusivo.
+
+Se propone \textbf{variabilidad explícita por enfoque}: HCD y DevOps son \textbf{obligatorios} en toda instancia de la metodología; EDA es \textbf{condicional}, se activa solo si el proyecto es distribuido o de tiempo real; GenIA es \textbf{condicional}, se activa solo si existen datos confiables sobre los que apoyar la generación. Esta configurabilidad la aleja de los modelos de procedimiento fijo: \cite{Ceret2013} recoge que modelos como el Waterfall, el Spiral o el modelo en V pueden considerarse procedimientos fijos, y que esa fijeza dificulta adaptarlos a condiciones locales; el Spiral, en particular, no sugiere ninguna variante.
+
+\subsection{Valor diferencial frente a metodologías actuales}
+
+La comparación usa los mismos ejes y gradaciones con que \cite{Ceret2013} clasifica tres modelos de proceso consolidados. No se compara contra Scrum porque el paper no lo clasifica; hacerlo exigiría una clasificación propia que excede esta primera aproximación.
+
+\begin{table*}[!t]
+\centering
+\footnotesize
+\caption{Valor diferencial frente a modelos de proceso consolidados}
+\begin{tabular}{p{0.14\textwidth}p{0.19\textwidth}p{0.19\textwidth}p{0.19\textwidth}p{0.19\textwidth}}
+\hline
+\textbf{Eje / sub-eje} & \textbf{Spiral} & \textbf{RAD} & \textbf{XP} & \textbf{Propuesta} \\ \hline
+Incremento & Desarrollo incremental, una entrega final & Número medio (3–6 meses) & Número muy grande & \textbf{Grande (1–3 meses)} \\ \hline
+Iteración & Global & Global y regional & Regional y local & \textbf{Local y regional} \\ \hline
+Retorno (\textit{backwards}) & n.\,i. & Menciona validación, no define qué hacer si falla & n.\,i. & \textbf{Dos compuertas explícitas de retorno} \\ \hline
+Roles & n.\,i. & Más de cinco & Cliente diario; usuarios definen historias & \textbf{Más de cinco + dos roles externos formales} \\ \hline
+Artefactos & Solo artefactos formalizados & Aprox. 30 clases no ejecutables en inicialización & No recomienda no ejecutables & \textbf{Mixta, con criterio declarado} \\ \hline
+Tamaño de proyecto & Grandes, sin procedimiento de evaluación & Sin información específica & n.\,i. & \textbf{Declarado: 5–15 personas, con límites de no-uso} \\ \hline
+Validación & No sugiere ninguna & n.\,i. & n.\,i. & \textbf{Ausencia declarada + indicadores por eje} \\ \hline
+Difusión & n.\,i. & n.\,i. & Muy bien difundido & \textbf{Nula (primera aproximación)} \\ \hline
+Variabilidad & No sugiere variantes & n.\,i. & n.\,i. & \textbf{Explícita: dos enfoques obligatorios, dos condicionales} \\ \hline
+\multicolumn{5}{p{0.92\textwidth}}{\vspace{2pt}\textit{n.\,i.}: sub-eje no informado para ese modelo en la clasificación publicada en \cite{Ceret2013}.} \\
+\end{tabular}
+\end{table*}
+
+Tres diferencias concentran el valor de la propuesta. \textbf{Primero}, el retorno explícito con dos compuertas independientes —usuario y rendimiento— frente a modelos que validan sin definir la consecuencia de no validar. \textbf{Segundo}, la declaración de límites de uso, incluyendo cuándo \textit{no} aplicarla, frente a modelos que no informan sobre tamaño o tipo de aplicación. \textbf{Tercero}, la variabilidad configurable por enfoque, frente a procedimientos fijos difíciles de adaptar a condiciones locales.
+
+La debilidad, declarada sin atenuantes, es la madurez: frente a XP —muy bien difundido \cite{Ceret2013}— esta propuesta no tiene difusión ni validación empírica. Es precisamente lo que el mecanismo de medición del eje Madurez busca empezar a corregir.
+
+\section{Conclusión}
+
+El estado del arte revisado indica que la realidad aumentada carece de una metodología que trate la entrega técnica, la reacción a eventos y la validación con usuarios como ejes de igual jerarquía y no como anexos opcionales. Frente a ese vacío, este trabajo propone una primera aproximación que articula GenIA, DevOps, EDA y HCD bajo los seis ejes de la taxonomía de Céret et al. \cite{Ceret2013}, sin subordinar ninguno de los cuatro a los demás. Tres decisiones concentran el aporte. La primera son las \textbf{dos compuertas de retorno independientes} —evaluación con usuarios y pruebas de latencia y resiliencia—, que delimitan no solo cuándo iterar sino con qué causa identificable, allí donde Spiral y RAD no definen qué hacer si una etapa no se valida. La segunda es la \textbf{formalización mixta con criterio declarado}: se formaliza lo que cruza frontera entre equipos y se deja semi-formal lo que sirve para explorar, posición intermedia entre XP, que descarta los artefactos no ejecutables, y RAD, que los multiplica sin criterio explícito. La tercera es la \textbf{variabilidad configurable} —HCD y DevOps obligatorios, EDA y GenIA condicionales—, junto con la declaración de los límites de no-uso, que ajusta el peso del proceso a la heterogeneidad del dominio en lugar de imponer un procedimiento fijo.
+
+A ello se suma un elemento que proviene del referente industrial de DevOps y que las metodologías genéricas no contemplan: la \textbf{dualidad de pipelines}. Tomando como referente la práctica de augmentación gráfica en tiempo real descrita en la Sección III-B, se propone tratar el pipeline de instrucciones de augmentación —artefactos tipados y manifiesto de plugins— como ciudadano de primera clase junto al pipeline de código, en el entendido de que en RA lo que se despliega no es solo software sino también contenido y experiencia. Esta propuesta se declara, sin atenuantes, como una \textbf{primera aproximación no validada}: no tiene difusión ni evidencia empírica, y su alcance es el de una línea base estructurada. Por eso se deja planteado un mecanismo de medición por eje —frecuencia de entrega, retornos disparados por cada compuerta, cobertura de contratos versionados y resultados de evaluación con usuarios—. El trabajo futuro no consiste en abrir nuevos frentes, sino en cerrar el abierto aquí: instrumentar la metodología en un caso real de RA distribuida, medir con los indicadores propuestos y contrastar los resultados frente a Spiral, RAD y XP en condiciones controladas.
+
+\begin{thebibliography}{99}
+\bibitem{Azuma1997} R. T. Azuma, "A survey of augmented reality," Presence: Teleoperators and Virtual Environments, vol. 6, no. 4, pp. 355–385, Aug. 1997, doi: 10.1162/pres.1997.6.4.355.
+\bibitem{Azuma2001} R. Azuma et al., "Recent advances in augmented reality," IEEE Comput. Graph. Appl., vol. 21, no. 6, pp. 34–47, Nov./Dec. 2001, doi: 10.1109/38.963459.
+\bibitem{Goh2023} Y. Goh et al., "Wearable augmented reality: Research trends and future directions from three major venues," IEEE Trans. Vis. Comput. Graphics, 2023, doi: 10.1109/TVCG.2023.3320231.
+\bibitem{Graser2024} S. Graser, F. Kirschenlohr, and S. Böhm, "User experience evaluation of augmented reality: A systematic literature review," in Proc. 17th Int. Conf. Advances in Human-oriented and Personalized Mechanisms, Technologies, and Services (CENTRIC 2024), Venice, Italy, 2024, pp. 23–40.
+\bibitem{Schmalstieg2016} D. Schmalstieg and T. Höllerer, Augmented Reality: Principles and Practice. Boston, MA, USA: Addison-Wesley, 2016.
+\bibitem{Devagiri2024} J. S. Devagiri et al., "The essentials: A comprehensive survey to get started in augmented reality," IEEE Access, vol. 12, pp. 109012–109070, 2024, doi: 10.1109/ACCESS.2024.3438944.
+\bibitem{Vaquero2020} D. Vaquero-Melchor, A. M. Bernardos, and L. Bergesio, ``SARA: A microservice-based architecture for cross-platform collaborative augmented reality,'' Appl. Sci., vol. 10, no. 6, Art. no. 2074, Mar. 2020.
+\bibitem{Ceret2013} E. Céret, S. Dupuy-Chessa, G. Calvary, A. Front, and D. Rieu, ``A taxonomy of design methods process models,'' Inf. Softw. Technol., vol. 55, no. 5, pp. 795–821, May 2013.
+\bibitem{Milgram1994} P. Milgram and F. Kishino, "A taxonomy of mixed reality visual displays," IEICE Trans. Inf. \& Syst., vol. E77-D, no. 12, pp. 1321–1329, Dec. 1994.
+\bibitem{Billinghurst2015} M. Billinghurst, A. Clark, and G. Lee, "A survey of augmented reality," Found. Trends Hum.–Comput. Interact., vol. 8, no. 2–3, pp. 73–272, 2015, doi: 10.1561/1100000049.
+\bibitem{Zhou2008} F. Zhou, H. B.-L. Duh, and M. Billinghurst, "Trends in augmented reality tracking, interaction and display: A review of ten years of ISMAR," in Proc. IEEE ISMAR, 2008, pp. 193–202, doi: 10.1109/ISMAR.2008.4637362.
+\bibitem{Kim2018} K. Kim, M. Billinghurst, G. Bruder, H. B.-L. Duh, and G. F. Welch, "Revisiting trends in augmented reality research: A review of the 2nd decade of ISMAR (2008–2017)," IEEE Trans. Vis. Comput. Graphics, vol. 24, no. 11, pp. 2947–2962, Nov. 2018, doi: 10.1109/TVCG.2018.2868591.
+\bibitem{Syed2023} T. A. Syed et al., "In-depth review of augmented reality: Tracking technologies, development tools, AR displays, collaborative AR, and security concerns," Sensors, vol. 23, no. 1, Art. no. 146, 2023, doi: 10.3390/s23010146.
+\bibitem{NIST2022} Y.-Y. Cho, J. Sauer, and K. Choi, Augmented Reality (AR) Usability Evaluation Framework (NIST IR 8422). Gaithersburg, MD, USA: Nat. Inst. Standards Technol., 2022.
+\bibitem{Sereno2022} M. Sereno, X. Wang, L. Besançon, M. J. McGuffin, and T. Isenberg, "Collaborative work in augmented reality: A survey," IEEE Trans. Vis. Comput. Graphics, vol. 28, no. 6, pp. 2530–2549, Jun. 2022, doi: 10.1109/TVCG.2020.3032761.
+\bibitem{Kourouthanassis2015} P. E. Kourouthanassis, C. Boletsis, and G. Lekakos, "Demystifying the design of mobile augmented reality applications," Multimedia Tools Appl., vol. 74, pp. 1045–1066, 2015, doi: 10.1007/s11042-013-1710-7.
+\bibitem{Endsley2017} T. C. Endsley et al., "Augmented reality design heuristics: Designing for dynamic interactions," Proc. Hum. Factors Ergon. Soc. Annu. Meet., vol. 61, no. 1, pp. 2100–2104, 2017, doi: 10.1177/1541931213602007.
+\bibitem{Dunser2011} A. Dünser and M. Billinghurst, "Evaluating augmented reality systems," in Handbook of Augmented Reality, B. Furht, Ed. New York, NY, USA: Springer, 2011, pp. 289–307, doi: 10.1007/978-1-4614-0064-6\_13.
+\bibitem{Billinghurst2002} M. Billinghurst and H. Kato, "Collaborative augmented reality," Commun. ACM, vol. 45, no. 7, pp. 64–70, Jul. 2002, doi: 10.1145/514236.514265.
+\bibitem{Roedavan2025} R. Roedavan, A. Pudjoatmodjo, and Y. Sugiarto, "A framework for developing augmented reality applications based on the multimedia development life cycle (MDLC)," J. Informatika dan Informasi Geografi, vol. 16, no. 1, 2025, doi: 10.36982/jiig.v16i1.5183.
+\bibitem{ISO9241210} International Organization for Standardization, Ergonomics of human-system interaction — Part 210: Human-centred design for interactive systems, ISO 9241-210:2019, Geneva, Switzerland, 2019.
+\bibitem{Dunser2007} A. Dünser, R. Grasset, H. Seichter, and M. Billinghurst, "Applying HCI principles to AR systems design," HIT Lab NZ, Univ. of Canterbury, Tech. Rep., 2007.
+\bibitem{Reicher2003} T. Reicher, A. MacWilliams, B. Bruegge, and G. Klinker, "Results of a study on software architectures for augmented reality systems," Tech. Rep., Technische Univ. München / ARVIKA, 2003.
+\bibitem{MacWilliams2004} A. MacWilliams, T. Reicher, G. Klinker, and B. Bruegge, "Design patterns for augmented reality systems," in Proc. MIXER, CEUR-WS, vol. 91, 2004.
+\bibitem{ETSI-ARF003} ETSI, "Augmented Reality Framework (ARF); AR framework architecture," ETSI GS ARF 003 V2.1.1, 2023.
+\bibitem{Lewis2020} P. Lewis et al., ``Retrieval-augmented generation for knowledge-intensive NLP tasks,'' in Advances in Neural Information Processing Systems (NeurIPS), vol. 33, 2020, pp. 9459–9474.
+\bibitem{NISTGenAI} National Institute of Standards and Technology, Artificial Intelligence Risk Management Framework: Generative Artificial Intelligence Profile, NIST AI 600-1. Gaithersburg, MD, USA: Nat. Inst. Standards Technol., Jul. 2024, doi: 10.6028/NIST.AI.600-1.
+\bibitem{Bass2015} L. Bass, I. Weber, and L. Zhu, DevOps: A Software Architect's Perspective. Upper Saddle River, NJ, USA: Addison-Wesley Professional, 2015.
+\bibitem{Jabbari2016} R. Jabbari, N. bin Ali, K. Petersen, and B. Tanveer, ``What is DevOps? A systematic mapping study on definitions and practices,'' in Proc. XP 2016 Scientific Workshops, Edinburgh, U.K., May 2016, Art. no. 12.
+\bibitem{Cabane2024} H. Cabane and K. Farias, ``On the impact of event-driven architecture on performance: An exploratory study,'' Future Gener. Comput. Syst., vol. 153, pp. 52–69, 2024.
+\bibitem{RosaBilbao2023} J. Rosa-Bilbao, J. Boubeta-Puig, and A. Rutle, ``CEPEDALoCo: An event-driven architecture for integrating complex event processing and blockchain through low-code,'' Internet Things, vol. 22, Art. no. 100802, 2023.
+\bibitem{AsyncAPI} AsyncAPI Initiative, AsyncAPI Specification, ver. 3.1.0.
+\bibitem{Oberhauser2023} R. Oberhauser, ``VR-EDStream+EDA: Immersively Visualizing and Animating Event and Data Streams and Event-Driven Architectures in Virtual Reality,'' in Proc. 15th Int. Conf. Information, Process, and Knowledge Management (eKNOW 2023), Venice, Italy, 2023, pp. 71–76.
+\bibitem{Seffah2005} A. Seffah, J. Gulliksen, and M. C. Desmarais, Eds., Human-Centered Software Engineering — Integrating Usability in the Software Development Lifecycle. Dordrecht, Netherlands: Springer, 2005.
+\bibitem{Ferre2005} X. Ferre, N. Juristo, and A. Moreno, "Which, when and how usability techniques and activities should be integrated," in Human-Centered Software Engineering, A. Seffah, J. Gulliksen, and M. C. Desmarais, Eds. Dordrecht, Netherlands: Springer, 2005, pp. 173–200.
+\bibitem{Nielsen1994} J. Nielsen, "Heuristic evaluation," in Usability Inspection Methods, J. Nielsen and R. L. Mack, Eds. New York, NY, USA: Wiley, 1994, pp. 25–62.
+\bibitem{Paterno2000} F. Paternò, Model-Based Design and Evaluation of Interactive Applications, 1st ed. London, U.K.: Springer, 2000.
+\bibitem{OMG-IFML} Object Management Group, Interaction Flow Modeling Language (IFML), Version 1.0, OMG Document formal/2015-02-05, 2015.
+\bibitem{Picardi2024} A. Picardi and G. Caruso, "User-centered evaluation framework to support the interaction design for augmented reality applications," Multimodal Technol. Interact., vol. 8, no. 5, Art. no. 41, 2024.
+\end{thebibliography}
+
+\end{document}
