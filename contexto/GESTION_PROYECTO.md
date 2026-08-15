@@ -31,7 +31,7 @@ Archivo operativo del equipo. Al integrar texto nuevo: actualizar **Estado** + *
 
 | Artefacto | Archivo | Estado | Qué falta |
 |-----------|---------|--------|-----------|
-| Socialización (40%) | `PRESENTACION.md` Parte I | esqueleto | Contenido de diapositivas |
+| Socialización (40%) | `PRESENTACION.md` + `presentacion/index.html` | HTML 3 slides visual (2026-08-14) | Ensayar en clase; feedback → Parte II |
 | PPT corregida (anexa al 60%) | `PRESENTACION.md` Parte II | pendiente | Feedback de clase |
 
 **Progreso paper:** encabezado + §I–§IV en borrador (falta conclusión y refs IEEE). **Outline Fase 4:** aprobado. **4 enfoques:** confirmados en el paper.
@@ -467,3 +467,44 @@ Registros en orden cronológico (más reciente abajo).
 - Abstract e Índice sin variantes de comparación.
 
 **Archivos:** `BORRADOR_MAESTRO.md`, `GESTION_PROYECTO.md`, `PLANTILLA_PAPER.md`.
+
+---
+
+## 2026-08-14 — Guion PPT socialización
+
+**Clasificación:** presentación / diapositivas.
+
+**Qué se hizo**
+- `PRESENTACION.md` Parte I reescrito como guion: por cada lámina, **En lámina** (texto de los compañeros) + **Hablar/cubrir** (checklist E3 dominio / E4 enfoques / E5–E6 espina).
+- Dominio (Quinnie): plantilla con definición corta + solo títulos de metodologías.
+- Enfoques: GenIA, DevOps, EDA, HCD en formato unificado (qué es / aporta / uso RA / técnicas / herramientas) + tabla E4.
+- Bloques espina y valor diferencial alineados al borrador §IV.
+
+**Archivos:** `PRESENTACION.md`, `GESTION_PROYECTO.md`.
+
+---
+
+## 2026-08-14 — PPT: E4 desde paper; Aporta/Uso → razón de elección
+
+**Clasificación:** presentación (ajuste de estructura).
+
+**Qué se hizo**
+- Dominio A1–A3 lleno desde §II con citas (Azuma, Milgram, NIST, MDLC, ETSI, etc.).
+- Cada enfoque B1–B4 sigue E4: qué es, relación IS, ejecución, técnicas/herramientas, modelado, métodos (desde §III).
+- “Aporta” y “Uso en RA” de los compañeros movidos a **B5 razón de elección**.
+- Técnicas/herramientas de los mensajes reutilizadas donde encajan en E4.
+
+**Archivos:** `PRESENTACION.md`, `GESTION_PROYECTO.md`.
+
+---
+
+## 2026-08-14 — Presentación HTML visual (3 slides)
+
+**Clasificación:** presentación / artefacto de socialización.
+
+**Qué se hizo**
+- Creado `presentacion/index.html`: exactamente 3 diapositivas fullscreen, tipografía Fraunces+Sora, diagramas (continuum RM, pipeline, ciclo, 4 cuadrantes, espina SVG).
+- Detalle E3/E4/refs en expandibles; razón de elección (Aporta/Uso) al abrir cada enfoque.
+- Enlace desde `PRESENTACION.md`; estado PPT actualizado.
+
+**Archivos:** `presentacion/index.html`, `PRESENTACION.md`, `GESTION_PROYECTO.md`.
