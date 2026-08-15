@@ -14,7 +14,7 @@
       --ink: #eaf1f4;
       --ink-2: #c3d2d8;
       --muted: #8ba0a9;
-      --faint: #63757d;
+      --faint: #7ecaed;
       --line: rgba(255,255,255,0.07);
       --line-2: rgba(255,255,255,0.12);
       --surface-1: rgba(255,255,255,0.028);
@@ -631,6 +631,26 @@
       color: var(--muted);
     }
 
+    /* —— compact maturity summary (icon + value, no repeated label) —— */
+    .maturity-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.3rem 1.1rem;
+      margin: 0.3rem 0 0.6rem;
+    }
+
+    .maturity-chip {
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-size: var(--t-body);
+      font-weight: 600;
+      color: var(--ink-2);
+    }
+
+    .maturity-ic { display: inline-flex; flex: 0 0 auto; }
+
     /* —— axis rows —— */
     .axis-list { display: flex; flex-direction: column; gap: 0.1rem; }
 
@@ -926,7 +946,23 @@
       letter-spacing: -0.015em;
     }
 
-    .expand-close { margin-left: auto; flex: 0 0 auto; }
+    .expand-close { flex: 0 0 auto; }
+
+    .expand-head-right {
+      margin-left: auto;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 0.35rem;
+    }
+
+    .referent-note {
+      font-size: var(--t-label);
+      color: var(--faint);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      cursor: default;
+    }
     .expand-inner .e4-grid { grid-template-columns: repeat(2, 1fr); gap: 0.6rem 1rem; }
 
     @media (max-width: 760px) { .expand-inner .e4-grid { grid-template-columns: 1fr; } }
@@ -949,7 +985,7 @@
 
     /* —— slide 3 —— */
     .s3-stage {
-      grid-template-columns: 1.4fr 1fr;
+      grid-template-columns: 1fr 1.15fr;
       grid-template-rows: 1fr auto;
       column-gap: var(--s4);
       align-items: stretch;
@@ -964,8 +1000,11 @@
       border-radius: var(--radius);
       background: var(--surface-1);
       padding: var(--s3);
-      display: grid;
-      place-items: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: var(--s2);
       min-height: 0;
     }
 
@@ -990,7 +1029,83 @@
       pointer-events: none;
     }
 
-    .fish-wrap svg { position: relative; width: 100%; height: auto; max-height: min(54vh, 470px); }
+    .fish-wrap svg { position: relative; width: 100%; height: auto; max-height: min(54vh, 470px); transition: max-height 0.3s ease; flex: 0 0 auto; }
+
+    .fish-wrap.show-phases svg { max-height: min(26vh, 210px); }
+
+    /* —— F1→F7 phase model with return gates, revealed under the fishbone —— */
+    .phase-diagram {
+      display: none;
+      width: 100%;
+      flex: 1;
+      min-height: 0;
+      overflow: auto;
+      position: relative;
+    }
+
+    .fish-wrap.show-phases .phase-diagram { display: block; animation: rise 0.28s ease; }
+
+    .pd-label {
+      font-size: var(--t-label);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--faint);
+      margin-bottom: var(--s2);
+    }
+
+    .pd-flow {
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      padding-left: 1.5rem;
+    }
+
+    .pd-flow::before {
+      content: "";
+      position: absolute;
+      left: 0.51rem;
+      top: 0.5rem;
+      bottom: 0.5rem;
+      width: 2px;
+      background: linear-gradient(180deg, var(--teal), rgba(255,255,255,0.08));
+    }
+
+    .pd-step {
+      position: relative;
+      display: flex;
+      align-items: baseline;
+      gap: 0.5rem;
+      padding: 0.2rem 0;
+    }
+
+    .pd-step::before {
+      content: "";
+      position: absolute;
+      left: -1.1rem;
+      top: 0.45rem;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--teal);
+    }
+
+    .pd-num { font-weight: 700; color: var(--teal-ink); font-size: var(--t-small); flex: 0 0 auto; }
+    .pd-name { font-size: var(--t-small); color: var(--ink-2); line-height: 1.3; }
+
+    .pd-gate {
+      position: relative;
+      margin: 0.15rem 0 0.15rem 0.9rem;
+      padding: 0.28rem 0.6rem;
+      border-left: 2px solid var(--amber);
+      background: var(--amber-dim);
+      border-radius: 0 8px 8px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.05rem;
+    }
+
+    .pd-gate-tag { font-size: var(--t-label); font-weight: 700; color: var(--amber); text-transform: uppercase; letter-spacing: 0.03em; }
+    .pd-gate-cond { font-size: var(--t-label); color: var(--faint); }
 
     .engine-legend {
       display: flex;
@@ -1029,6 +1144,36 @@
 
     .diff p { font-size: var(--t-body); line-height: 1.55; color: var(--ink-2); }
     .diff strong { color: var(--amber); font-weight: 600; }
+
+    .diff-list {
+      list-style: none;
+      padding: 0;
+      margin: 0.5rem 0 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .diff-list li {
+      padding-left: 1.1rem;
+      position: relative;
+      font-size: var(--t-body);
+      line-height: 1.42;
+      color: var(--ink-2);
+    }
+
+    .diff-list li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.55em;
+      width: 0.4rem;
+      height: 0.4rem;
+      border-radius: 50%;
+      background: var(--amber);
+    }
+
+    .diff-list strong { color: var(--amber); font-weight: 600; }
 
     .axis-panel {
       display: none;
@@ -1400,7 +1545,7 @@
               <li>S. Graser et al., "UX evaluation of AR: a systematic literature review," <em>CENTRIC</em>, 2024.</li>
               <li>A. Picardi and G. Caruso, "User-centered evaluation framework… AR," <em>MTI</em>, 2024.</li>
               <li>J. Nielsen, "Heuristic evaluation," 1994.</li>
-              <li>F. Paternò, <em>Model-Based Design…</em> (ConcurTaskTrees), 2000.</li>
+              <li>F. Paternò, <em>Model-Based Design…</em> (ConcurTaskTrees), 200f0.</li>
               <li>OMG, <em>IFML 1.0</em>, 2015.</li>
             </ol>
           </div>
@@ -1467,12 +1612,33 @@
               <text x="542" y="294">Flexibilidad</text>
             </g>
           </svg>
+
+          <div class="phase-diagram" id="phase-diagram" aria-hidden="true">
+            <div class="pd-flow">
+              <div class="pd-step"><span class="pd-num">F1</span><span class="pd-name">Concepto / Requisitos</span></div>
+              <div class="pd-step"><span class="pd-num">F2</span><span class="pd-name">Arquitectura y Contratos</span></div>
+              <div class="pd-step"><span class="pd-num">F3</span><span class="pd-name">Desarrollo Dual Pipeline (Código + Prompts/RAG)</span></div>
+              <div class="pd-gate g3"><span class="pd-gate-tag">G3 · Generación</span><span class="pd-gate-cond">Retorno si la IA alucina o falla</span></div>
+              <div class="pd-step"><span class="pd-num">F4</span><span class="pd-name">Integración de Overlays y Servicios</span></div>
+              <div class="pd-gate g1"><span class="pd-gate-tag">G1 · Rendimiento</span><span class="pd-gate-cond">Retorno si la latencia/FPS falla</span></div>
+              <div class="pd-step"><span class="pd-num">F5</span><span class="pd-name">Pruebas y Validación UX</span></div>
+              <div class="pd-gate g2"><span class="pd-gate-tag">G2 · UX/Usabilidad</span><span class="pd-gate-cond">Retorno si la experiencia es deficiente</span></div>
+              <div class="pd-step"><span class="pd-num">F6</span><span class="pd-name">Despliegue e Instrumentación</span></div>
+              <div class="pd-step"><span class="pd-num">F7</span><span class="pd-name">Monitoreo y Evolución Empírica</span></div>
+            </div>
+          </div>
         </div>
 
         <div class="side-col">
           <div class="diff">
             <h3>Valor diferencial</h3>
-            <p>Frente a Spiral / RAD / XP [@Ceret2013]: límites de uso explícitos, <strong>dos compuertas de retorno</strong> (usuario + performance) y variabilidad fijo/condicional. Integra DevOps + EDA + GenIA + HCD en un andamiaje de 6 ejes.</p>
+            <p>Frente a Spiral, RAD y XP — mismos ejes, comparación explícita:</p>
+            <ul class="diff-list">
+              <li><strong>Compuertas nominadas</strong> — G1 y G2*, G3 condicional; en qué fase se regresa </li>
+              <li><strong>Frontera declarada</strong> — se formaliza lo que cruza entre equipos o al producto</li>
+              <li><strong>Variabilidad configurable</strong> — HCD y DevOps obligatorios, EDA y GenIA condicionales</li>
+              <li><strong>Doble pipeline</strong> — código y contenido de augmentación, ambos de primera clase, con su propio versionado</li>
+            </ul>
           </div>
           <div class="engine-legend" aria-hidden="true">
             <span style="color:var(--genia)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3v3M12 18v3M3 12h3M18 12h3"/><circle cx="12" cy="12" r="4"/><path d="M7.5 7.5l1.5 1.5M15 15l1.5 1.5M16.5 7.5L15 9M9 15l-1.5 1.5"/></svg>GenIA</span>
@@ -1513,15 +1679,17 @@
         title: "GenIA",
         color: "#5b8def",
         e4: [
-          ["Qué es", "Modelos que generan contenido nuevo a partir de patrones aprendidos; apoya requisitos, diseño, código, pruebas, documentación y mantenimiento."],
+          ["Qué es", "Regla de oro: no es un bloque aislado de código, sino un flujo dinámico de contenido e instrucciones. Apoya requisitos, diseño, código, pruebas, documentación y mantenimiento."],
           ["Relación con IS", "Apoya etapas del ciclo de vida; no sustituye ingeniería — exige datos, evaluación, trazabilidad y supervisión humana."],
-          ["Ejecución", { type: "flow", steps: ["Problema", "Validar datos", "Diseñar", "MVP", "Evaluar", "Desplegar/Monitorear"], note: "RAG + evaluación de calidad en cada paso" }],
-          ["Técnicas / herramientas", { type: "tags", groups: [["Prompt engineering", "RAG", "Guardrails", "HITL", "Eval auto/humana", "NIST AI RMF"], ["Python", "TypeScript", "Java", "DBs vectoriales", "Git", "Docker"]] }],
+          ["Ejecución", { type: "flow", steps: ["Problema", "Validar datos", "Diseñar", "MVP", "Evaluar", "Desplegar/Monitorear"], note: "RAG fundamenta respuestas en datos reales; gobernanza NIST AI 600-1 para mitigar sesgos y alucinaciones" }],
+          ["Técnicas / herramientas", { type: "tags", groups: [["Prompt engineering", "RAG", "Guardrails", "HITL", "Eval auto/humana", "NIST AI 600-1"], ["Python", "TypeScript", "Java", "DBs vectoriales", "Git", "Docker"]] }],
           ["Modelado", { type: "tags", groups: [["UML", "BPMN", "C4", "ERD", "OpenAPI", "JSON Schema"]], note: "Sin lenguaje de modelado exclusivo" }],
           ["Métodos", { type: "tags", groups: [["Agile / Scrum-Kanban", "MLOps / DevSecOps", "Design Thinking", "Lean Startup", "TDD", "AI Risk Management"]] }]
         ],
         aport: "Ciclo Problema→Datos→MVP→Evaluación→Despliegue; HITL permanente; adopción gradual.",
         uso: "Datos confiables y actualizados · RAG · gestión de riesgos; productividad con control.",
+        referent: "Genius Sports",
+        referentNote: "Datos e IA deportiva, sin citar infra interna",
         startNum: 23,
         fullSources: [
           "NIST, <em>AI Risk Management Framework: Generative Artificial Intelligence Profile</em>.",
@@ -1534,13 +1702,15 @@
         e4: [
           ["Qué es", "Acorta el tiempo entre un cambio y su operación en producción, manteniendo calidad, vía colaboración dev–ops, automatización y entrega continua."],
           ["Relación con IS", "Prácticas CI/CD, IaC y monitoreo que condicionan arquitectura y operación."],
-          ["Ejecución", { type: "flow", steps: ["Lint", "Build", "Test", "Release", "Deploy"], note: "Referente: práctica cotidiana en Genius Sports (augmentación broadcast). RC + staging/producción; dual pipeline código + contenido (sin citar infra interna)." }],
+          ["Ejecución", { type: "flow", steps: ["Lint", "Build", "Test", "Release", "Deploy"], note: "RC + staging/producción; dual pipeline código + contenido." }],
           ["Técnicas / herramientas", { type: "tags", groups: [["CI/CD", "IaC", "Contenedores", "Observabilidad"], ["GitLab CI", "GitHub Actions", "Docker/Kubernetes", "Terraform", "Prometheus/Grafana"]] }],
           ["Modelado", { type: "tags", groups: [["YAML de pipelines", "Diagramas de flujo", "IaC", "Esquemas JSON de artefactos"]] }],
           ["Métodos", { type: "tags", groups: [["Entrega continua con RC", "Commits convencionales", "QA operacional previo a producción"]] }]
         ],
         aport: "Ciclos más cortos y repetibles; menos fricción dev/ops; calidad en el pipeline.",
         uso: "Iterar con seguridad operativa sobre software y contenido gráfico (tiempo real, componentes heterogéneos).",
+        referent: "Genius Sports",
+        referentNote: "Augmentación broadcast en tiempo real, sin citar infra interna",
         startNum: 25,
         fullSources: [
           "L. Bass, I. Weber, and L. Zhu, <em>DevOps: A Software Architect's Perspective</em>, 2015.",
@@ -1601,29 +1771,35 @@
       ciclo: {
         title: "Ciclo",
         items: [
-          { tag: "base", text: "Incremental, con dos compuertas de retorno" },
-          { tag: "hcd", text: "Compuerta 1 · validación con usuarios" },
-          { tag: "eda", text: "Compuerta 2 · latencia y resiliencia" },
-          { tag: "genia", text: "Evalúa antes de desplegar" },
+          { tag: "base", text: "Incremental, con tres compuertas de retorno" },
+          { tag: "eda", text: "G1 rendimiento — obligatoria: latencia, throughput y resiliencia" },
+          { tag: "hcd", text: "G2 experiencia de usuario — obligatoria: validación con usuarios" },
+          { tag: "genia", text: "G3 generación — condicional: solo si GenIA está activo" },
           { tag: "devops", text: "RC + promoción por ambientes" }
         ]
       },
       colaboracion: {
         title: "Colaboración",
         items: [
-          { tag: "hcd", text: "Usuario como rol externo" },
-          { tag: "devops", text: "QA multi-rol" },
-          { tag: "eda", text: "Contratos de eventos" },
-          { tag: "genia", text: "HITL permanente" }
-        ]
+          { tag: "base", text: "6 roles internos + 2 externos — mismo grado que RAD" },
+          { tag: "devops", text: "QA multi-rol; firmas separadas antes de producción" },
+          { tag: "eda", text: "Contrato de eventos compartido entre equipos" }
+        ],
+        roleGroups: [
+          [["ARQ", "Arquitecto de software/eventos"], ["DEV-RA", "Desarrollador RA"], ["DEV-SVC", "Desarrollador de servicios"]],
+          [["DEVOPS", "Ingeniero DevOps"], ["UX", "Especialista en experiencia de usuario"], ["QA", "QA de integración y rendimiento"]]
+        ],
+        externalRoles: [["USER", "Usuario final (participa en F1–F2)"], ["DATA", "Responsable de los datos (si GenIA activo)"]]
       },
       artefactos: {
         title: "Artefactos",
         items: [
-          { tag: "devops", text: "Pipelines y esquemas formales" },
+          { tag: "base", text: "Dual Pipeline en F3: código + contenido de augmentación" },
+          { tag: "base", text: "Frontera explícita: se formaliza lo que cruza entre equipos o entra al producto; lo exploratorio queda semi-formal" },
+          { tag: "devops", text: "Pipelines y esquemas formales, ejecutables" },
           { tag: "eda", text: "Contratos de eventos formales" },
           { tag: "hcd", text: "Artefactos semi-formales (personas, journeys)" },
-          { tag: "genia", text: "Prompts y datasets" }
+          { tag: "genia", text: "Prompts y datasets versionados" }
         ]
       },
       uso: {
@@ -1639,19 +1815,28 @@
       madurez: {
         title: "Madurez",
         items: [
-          { tag: "hcd", text: "Madurez alta" },
-          { tag: "devops", text: "Madurez alta" },
-          { tag: "eda", text: "Madurez media-alta (menos documentada en AR)" },
-          { tag: "genia", text: "Emergente" }
-        ]
+          { tag: "base", text: "Primera aproximación: sin validación empírica aún" }
+        ],
+        maturity: [
+          { tag: "hcd", value: "Alta" },
+          { tag: "devops", value: "Alta" },
+          { tag: "eda", value: "Media-alta" },
+          { tag: "genia", value: "Emergente" }
+        ],
+        validation: {
+          proceso: "Frecuencia de despliegue · incrementos validados · rebote por compuerta",
+          producto: "Defectos en producción · latencia percibida · puntuación SUS",
+          note: "Validación futura: estudio de caso múltiple en escenarios reales."
+        }
       },
       flexibilidad: {
         title: "Flexibilidad",
         items: [
-          { tag: "hcd", text: "Obligatorio" },
-          { tag: "devops", text: "Obligatorio" },
-          { tag: "eda", text: "Condicional" },
-          { tag: "genia", text: "Condicional" }
+          { tag: "hcd", text: "Obligatorio — admite al menos 4 modelos de proceso bajo el mismo marco" },
+          { tag: "devops", text: "Obligatorio — plantillas reutilizables + caminos de excepción (hotfix, one-off)" },
+          { tag: "eda", text: "Condicional — se activa con distribución de eventos multi-cliente o tiempo real" },
+          { tag: "genia", text: "Condicional — se activa con datos confiables; activa G3 y el rol de datos" },
+          { tag: "base", text: "Configurable, no fija — a diferencia de Waterfall, Spiral o el modelo en V" }
         ]
       }
     };
@@ -1813,7 +1998,10 @@
           <div class="expand-head">
             ${icon}
             <h2 class="expand-title" style="color:${a.color}">${a.title}</h2>
-            <button type="button" class="pill expand-close" aria-label="Cerrar">Cerrar ✕</button>
+            <div class="expand-head-right">
+              ${a.referent ? `<span class="referent-note" title="${a.referentNote || ""}">Referente: ${a.referent}</span>` : ""}
+              <button type="button" class="pill expand-close" aria-label="Cerrar">Cerrar ✕</button>
+            </div>
           </div>
           ${flow}
           <div class="e4-grid">
@@ -1917,13 +2105,50 @@
 
     /* Slide 3 fishbone */
     const axisPanel = document.getElementById("axis-panel");
+    const fishWrap = document.querySelector(".fish-wrap");
+
+    function roleChip([short, full]) {
+      return `<span class="tag-chip" title="${full}">${short}</span>`;
+    }
+
+    function roleGroupsHTML(ax) {
+      if (!ax.roleGroups) return "";
+      let html = `<div class="tag-group">${ax.roleGroups.flat().map(roleChip).join("")}</div>`;
+      if (ax.externalRoles) {
+        html += `<p class="mini-note">Roles externos</p><div class="tag-group">${ax.externalRoles.map(roleChip).join("")}</div>`;
+      }
+      return html;
+    }
+
+    function maturityHTML(ax) {
+      if (!ax.maturity) return "";
+      return `<div class="maturity-row">${ax.maturity
+        .map((m) => {
+          const color = `var(--${m.tag})`;
+          const icon = approachIcons[m.tag] || "";
+          return `<span class="maturity-chip"><span class="maturity-ic" style="color:${color}">${icon}</span>${m.value}</span>`;
+        })
+        .join("")}</div>`;
+    }
+
+    function validationHTML(ax) {
+      if (!ax.validation) return "";
+      return `<div class="reason">
+        <div class="aport"><strong>Instrumentación (proceso)</strong>${ax.validation.proceso}</div>
+        <div class="uso"><strong>Resultado (producto)</strong>${ax.validation.producto}</div>
+      </div>
+      <p class="mini-note">${ax.validation.note}</p>`;
+    }
+
     document.querySelectorAll(".bone").forEach((bone) => {
       bone.addEventListener("click", () => {
         document.querySelectorAll(".bone").forEach((b) => b.classList.remove("active"));
         bone.classList.add("active");
-        const ax = axes[bone.dataset.axis];
+        const key = bone.dataset.axis;
+        const ax = axes[key];
         axisPanel.classList.add("open");
-        axisPanel.innerHTML = `<h3>${ax.title}</h3>${axisItemsHTML(ax.items)}`;
+        axisPanel.innerHTML = `<h3>${ax.title}</h3>${axisItemsHTML(ax.items)}${maturityHTML(ax)}${roleGroupsHTML(ax)}${validationHTML(ax)}`;
+        fishWrap.classList.toggle("show-phases", key === "ciclo");
       });
     });
 
