@@ -306,21 +306,19 @@ La debilidad, declarada sin atenuantes, es la madurez: frente a XP —muy bien d
 
 *[pendiente]*
 
-1. Resolvemos un vacío metodológico real:  El estado del arte confirma que la RA carece de una metodología que integre entrega técnica, reacción a eventos y validación con usuarios como ejes de igual jerarquía, no como anexos opcionales. Con nuestra propuesta demostramos que es posible tejer estos tres frentes bajo un mismo marco de decisión, sin subordinar a ninguno a los otros. 
-
+1. Proponemos una respuesta a un vacío metodológico real: El estado del arte confirma que la RA carece de una metodología que integre entrega técnica, reacción a eventos y validación con usuarios como ejes de igual jerarquía, no como anexos opcionales. Con nuestra propuesta argumentamos que es posible tejer estos tres frentes bajo un mismo marco de decisión.
+ 
 2. Las dos compuertas de retorno son el corazón de la propuesta, no un detalle de diseño:  Al declarar evaluación de usuario y pruebas de latencia/resiliencia como gatillos independientes de retroceso, evidenciamos algo que ni Spiral ni RAD resuelven: qué hacer cuando una etapa no se valida. Esta es la diferencia entre iterar porque sí e iterar con una causa raíz identificable. 
-
+ 
 3. La formalización mixta con criterio declarado supera la falsa dicotomía formal/informal: Frente a XP, que descarta artefactos no ejecutables, y RAD, que los multiplica sin criterio, proponemos una regla simple y defendible: se formaliza lo que cruza frontera entre equipos, se deja semi-formal lo que sirve para explorar. Esto convierte una decisión típicamente arbitraria en una decisión trazable. 
 
-4. La variabilidad configurable —HCD y DevOps obligatorios, EDA y GenIA condicionales— responde directamente a la heterogeneidad del dominio: Un proyecto de RA educativa local no tiene las mismas exigencias que una experiencia colaborativa en tiempo real, y nuestra metodología es la única de las comparadas que ajusta su propio peso según ese contexto, en lugar de imponer un procedimiento fijo. 
+4. La variabilidad configurable —HCD y DevOps obligatorios, EDA y GenIA condicionales— responde directamente a la heterogeneidad del dominio: Un proyecto de RA educativa local no tiene las mismas exigencias que una experiencia colaborativa en tiempo real. De las tres metodologías con las que se comparó (Spiral, RAD, XP), la propuesta es la única que ajusta explícitamente su propio peso según ese contexto, en lugar de imponer un procedimiento fijo, una diferencia de diseño que, como el resto de la propuesta, aún no se ha probado en un caso real.
 
-5. Asumimos la inmadurez de la propuesta como punto de partida, no como debilidad oculta:  A diferencia de Spiral, que no sugiere ninguna forma de validación, nosotros acompañamos esta primera aproximación con indicadores concretos por eje-retornos disparados, cobertura de contratos, resultados de evaluación, dejando trazado el camino hacia la validación empírica que hoy nos falta. 
+5. Asumimos la inmadurez de la propuesta como punto de partida, no como debilidad oculta: A diferencia de Spiral, que no sugiere ninguna forma de validación, acompañamos esta primera aproximación con indicadores concretos por eje, retornos disparados, cobertura de contratos, resultados de evaluación, que dejan trazado el camino hacia la validación empírica que hoy nos falta.
 
 6. El trabajo futuro no es abrir más frentes, sino cerrar el que abrimos:  La prioridad inmediata es instrumentar la metodología en un caso real de RA distribuida, medir con los indicadores propuestos y contrastar los resultados contra Spiral, RAD y XP bajo condiciones controladas, el único camino para que esta propuesta deje de ser una aproximación y se convierta en evidencia. 
 
-7. La dualidad de pipelines —código y contenido— es la pieza que ninguna metodología genérica contempla:  Al tratar el pipeline de instrucciones de augmentación (artefactos tipados + manifiesto de plugins) como ciudadano de primera clase junto al pipeline de software, cerramos una brecha que ni Spiral, ni RAD, ni XP anticipan: en RA, lo que se despliega no es solo código, es experiencia. Ignorar esta dualidad es, en la práctica, ignorar la mitad del sistema. 
-
-8. La propuesta traduce cuatro cuerpos de conocimiento dispersos en una sola gramática de decisión:  GenIA, DevOps, EDA y HCD existen hoy como silos con literatura propia, comunidades propias y vocabularios propios; nuestro aporte no es inventar ninguno de los cuatro, sino demostrar que pueden convivir bajo los mismos seis ejes de Céret et al. sin perder su identidad técnica. Esa capacidad de traducción más que cualquier técnica individual es lo que hace escalable la metodología a nuevos enfoques que el dominio RA siga incorporando. 
+7. La propuesta traduce cuatro cuerpos de conocimiento dispersos en una sola gramática de decisión:  GenIA, DevOps, EDA y HCD existen hoy como silos con literatura propia, comunidades propias y vocabularios propios; nuestro aporte no es inventar ninguno de los cuatro, sino demostrar que pueden convivir bajo los mismos seis ejes de Céret et al. sin perder su identidad técnica. Esa capacidad de traducción más que cualquier técnica individual es lo que hace escalable la metodología a nuevos enfoques que el dominio RA siga incorporando. 
 
 ---
 
