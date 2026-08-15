@@ -1,7 +1,7 @@
 # FUENTES — bibliografía viva (pública)
 
 
-**Última actualización:** 2026-08-07 (sección DevOps)
+**Última actualización:** 2026-08-14 (sección GenIA: alta de [@Lewis2020] y [@NISTGenAI])
 
 **Política:** priorizar peer-review / libros / actas / normas. Digital.ai y Gartner = **solo apoyo**. Prohibido inventar.
 
@@ -48,6 +48,8 @@
 | [@RosaBilbao2023] | — | J. Rosa-Bilbao, J. Boubeta-Puig, and A. Rutle, “CEPEDALoCo: An event-driven architecture for integrating complex event processing and blockchain through low-code,” *Internet Things*, vol. 22, Art. no. 100802, 2023. | https://doi.org/10.1016/j.iot.2023.100802 | Artículo de revista | Sí | PDF ScienceDirect + DOI Elsevier verificados | §2.1 CEP; §4 arquitectura; §5.2–§5.5 caso de estudio | Complex Event Processing; patrones de eventos; message brokers; APIs; Kafka; Node-RED; procesamiento en tiempo real; modelado gráfico de flujos y eventos | Lina |
 | [@Oberhauser2023] | — | R. Oberhauser, “VR-EDStream+EDA: Immersively Visualizing and Animating Event and Data Streams and Event-Driven Architectures in Virtual Reality,” in *Proc. 15th Int. Conf. Information, Process, and Knowledge Management (eKNOW 2023)*, Venice, Italy, 2023, pp. 71–76. | https://www.hs-aalen.de/uploads/publication/file/11131/eKNOW23-VR-EDStreams_EDA_OberhauserCR1.pdf | Acta de congreso | Sí | PDF del repositorio de Aalen University + publicación eKNOW verificados | §III Solution; §IV Realization; §V Evaluation | Visualización de EDA en sistemas inmersivos; productores, consumidores, topics y flujos de eventos; integración con Kafka y RabbitMQ; puente EDA↔XR/VR | Lina |
 | [@AsyncAPI] | — | AsyncAPI Initiative, *AsyncAPI Specification*, ver. 3.1.0. | https://github.com/asyncapi/spec/blob/master/spec/asyncapi.md | Especificación técnica abierta | N/A (especificación) | Repositorio oficial AsyncAPI verificado | Introduction; Specification; Format | Especificación legible por máquina para APIs orientadas a mensajes; documentación de contratos asíncronos en JSON/YAML e independencia del protocolo | Lina |
+| [@Lewis2020] | — | P. Lewis et al., “Retrieval-augmented generation for knowledge-intensive NLP tasks,” in *Advances in Neural Information Processing Systems (NeurIPS)*, vol. 33, 2020, pp. 9459–9474. | https://doi.org/10.48550/arXiv.2005.11401 | Acta de congreso (NeurIPS) | Sí | Búsqueda web: dblp (conf/nips/LewisPPPKGKLYR020), arXiv 2005.11401 y Meta AI Research; autores, volumen 33 y pp. 9459–9474 coincidentes | Abstract | Definición de RAG: recuperar de fuentes autorizadas antes de generar (§III-A) | Jonathan (asistente, verificado web) |
+| [@NISTGenAI] | — | National Institute of Standards and Technology, *Artificial Intelligence Risk Management Framework: Generative Artificial Intelligence Profile*, NIST AI 600-1. Gaithersburg, MD, USA: Nat. Inst. Standards Technol., Jul. 2024. | https://doi.org/10.6028/NIST.AI.600-1 — PDF: https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf | Informe técnico / marco gubernamental | N/A (publicación oficial NIST) | Búsqueda web: publicado 26 jul. 2024 en respuesta a la EO 14110; extiende AI RMF 1.0 (GOVERN/MAP/MEASURE/MANAGE) con 12 categorías de riesgo de IA generativa | 12 categorías de riesgo (incl. Data Privacy, Harmful Bias, Information Integrity, Intellectual Property) | Gestión de riesgos de GenIA: seguridad, privacidad, sesgos, propiedad intelectual, información incorrecta (§III-A y tabla GenIA) | Jonathan (asistente, verificado web) |
 
 > **Notas industriales del empleador:** solo en `contexto/privado/` (gitignored). No versionar ni publicar paths, CI interna ni nombres de servicio propietarios.
 
@@ -61,7 +63,7 @@
 | Tema | Responsable | Estado |
 |------|-------------|--------|
 | Realidad aumentada — dominio completo | Quinnie | **Integrada**: 21 fuentes fichadas; [@ISO9241210] ya existía (compartida con §III.D) |
-| GenIA | Jose Manuel | Pendiente |
+| GenIA | Jose Manuel | Fichadas [@Lewis2020] y [@NISTGenAI]; referencias a Genius Sports reformuladas como referente profesional (sin cita) |
 | DevOps (caso industrial) | Jonathan | Borrador sanitizado en maestro; detalle en `privado/` (gitignored) |
 | Event Driven Architecture | Lina | Realizado |
 | Human-Centered Design (HCD) | Alejandro | **Integrado y verificado** (páginas y edición confirmadas 2026-08-07) |
