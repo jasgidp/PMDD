@@ -1,73 +1,71 @@
-# PAPER — Entregable 3: incorporar el modelo al paper
+# PAPER — Entregable 3: el modelo dentro del artículo
 
 **Vence:** domingo 30-ago-2026, 23:59.
-**Pide el enunciado:** *"Incorporar este modelo al paper, explicando **las interacciones, los ciclos y los
-artefactos** propuestos."*
+**Pide el enunciado:** *"Incorporar este modelo al paper, explicando las interacciones, los ciclos y los artefactos propuestos."*
 
-Fuente del texto: `MODELO_PROCESO.md`. Fuente del formato: paper final del Reto #1
-(`reto1/entrega-final/`, LaTeX en `reto1/paper/paper.tex`).
-
----
-
-## 1. Dónde va (decisión pendiente de confirmar por el equipo)
-
-**Opción recomendada:** nueva subsección **§IV-J "Modelo de proceso en SPEM 2.0"**, después de §IV-I
-(comparación frente a Spiral, RAD y XP) y antes de las conclusiones.
-
-Razón: §IV ya contiene toda la definición del método por ejes; el modelo SPEM es su **representación operativa**,
-no un tema nuevo. Alternativa: sección **V** propia si el texto supera ~1.200 palabras.
+**Versión vigente:** [`reto2/paper/pdms_reto2-2.pdf`](../paper/pdms_reto2-2.pdf) — 17 páginas.
+Versión anterior conservada: `ARCA_paper_v2_en_desarrollo.pdf`.
 
 ---
 
-## 2. Estructura propuesta de §IV-J (≈900–1.200 palabras + 1 figura)
+## 1. Estado: el entregable 3 está cubierto
 
-| Subapartado | Contenido | Palabras |
-|-------------|-----------|----------|
-| **1) Propósito y notación** | Por qué SPEM 2.0; qué símbolo representa qué (fase, iteración, tarea, rol, producto de trabajo, herramienta, concepto, patrón de proceso); qué se representa fuera del estándar (compuertas como rombo) y por qué | 150 |
-| **2) Los ciclos** | Las **tres cadencias anidadas**: CI/CD continua → microciclo de 2 semanas → incremento validado de 1–3 meses. Por qué el microciclo **no** recorre las siete fases (no es cascada en miniatura). Los seis elementos de control de cierre | 250 |
-| **3) Las interacciones** | Flujo F1→F7 + los **retornos**: quién detecta, quién registra la causa, quién decide el destino y a qué fase se vuelve. Tabla "qué falla → quién retoma → a dónde vuelve". La **doble cadena** de F5 y su punto de convergencia | 350 |
-| **4) Los artefactos** | Los productos de trabajo por fase y el **criterio de formalización de frontera**; los dos artefactos de lectura obligatoria (informe de evaluación con usuarios y contrato de frontera) como mecanismo real de coordinación | 250 |
-| **5) Actividades de soporte** | Los siete procesos transversales T1–T7 y por qué son transversales y no fases | 150 |
-| **6) Coste de coordinación y balance neto** | Respuesta al feedback: el método introduce un coste (compuertas, contratos, entregables, nueve roles) y la hipótesis falsable es que el beneficio lo supera. Añadir la tercera familia de indicadores y declarar la hipótesis (`MODELO_PROCESO.md` §10.3) | 200 |
-| **Figura** | Diagrama SPEM 2.0 completo, a **doble columna** (`figure*`), con leyenda de símbolos y pie explicativo | — |
+**El artículo está completo**, no es un borrador. Título: *ARCA: un modelo de proceso para el desarrollo de
+software en realidad aumentada con aseguramiento continuo de experiencia, rendimiento y derechos*.
 
----
+| Elemento | Estado |
+|---|---|
+| Secciones **I a X** | ✅ completas |
+| **9 figuras** | ✅ Fig. 1 espina · **Figs. 2–8: un fragmento SPEM por fase (F1…F7)** · Fig. 9 vista general del modelo |
+| **8 cuadros** (I–VIII) | ✅ |
+| **42 referencias** | ✅ |
 
-### Dónde tocar además de §IV-J
+Las tres cosas que el enunciado nombra están cubiertas y localizables:
 
-| Sección existente | Cambio |
-|-------------------|--------|
-| **§IV-F (Madurez)** | Añadir la familia de **coste de coordinación** a las dos familias de indicadores y enunciar el **balance neto** como hipótesis falsable |
-| **§V (Conclusiones)** | Reformular el trabajo futuro: no basta "instrumentar y contrastar"; hay que decir que se contrasta el **beneficio neto frente al coste de coordinación que el método introduce** |
-| **§IV-A (compuertas)** | Añadir la regla de no-sustituibilidad de G1 y G2 (`MODELO_PROCESO.md` §5) — es el diferencial que el profesor identificó |
+| Lo que pide el enunciado | Dónde está |
+|---|---|
+| **Los ciclos** | §V-B — las tres cadencias anidadas y su relación con las compuertas |
+| **Las interacciones** | §V-I — los tres planos superpuestos + la tabla de destinos de retorno por causa |
+| **Los artefactos** | §V-E y Cuadro II — con el tipado SPEM Artifact / Deliverable / Outcome |
 
----
+Y §V-C cumple ahora su promesa al pie de la letra: *"Cada fase se presenta con el fragmento del modelo SPEM 2.0
+que le corresponde **(Figs. 2–8)**"*.
 
-## 3. Reglas de coherencia (verificar antes de entregar)
-
-- [ ] Todo elemento del diagrama existe en el texto y viceversa — **cero elementos huérfanos**.
-- [ ] Los nombres de fases, roles, artefactos y compuertas son **idénticos** en paper, diagrama y presentación.
-- [ ] La condicionalidad (`*` EDA / GenIA) se explica en el pie de figura.
-- [ ] El Cuadro II del paper (fases, enfoques activos, salidas, compuertas) **no contradice** el diagrama.
-- [ ] La numeración de figuras se corrige: la espina es la Fig. 1, el modelo SPEM será la **Fig. 2**.
-- [ ] Lo que el profesor destacó del paper aparece **también** en la figura (cadencias, compuertas con rol, autoridad separada, transversales, criterio de frontera)
-- [ ] Las referencias nuevas (OMG SPEM 2.0) se añaden **al final** de la lista — el paper cita por orden de
-      aparición, así que revisar dónde cae la primera mención.
-
-## 4. Referencia nueva a añadir
-
-```
-[31] Object Management Group, Software & Systems Process Engineering Meta-Model Specification (SPEM),
-     Version 2.0, OMG Document formal/2008-04-01, Apr. 2008.
-```
-
-Fuente sugerida por el profesor en la guía de apoyo: https://www.omg.org/spec/SPEM/2.0
+> **Historial de este archivo.** Sus dos versiones anteriores planificaban redactar una §IV-J y luego señalaban
+> que faltaban las figuras. Ambas cosas quedaron resueltas por el propio equipo: el modelo vive en una **sección V
+> propia** —ubicación correcta— y las figuras ya están insertadas.
 
 ---
 
-## 5. Qué **no** hay que hacer
+## 2. Estructura de §V, para ubicarse rápido
 
-- No reescribir §II ni §III: el Reto #2 **evoluciona** el paper, no lo reemplaza.
-- No introducir en el diagrama elementos que el paper no sostenga con literatura.
+| Subsección | Contenido |
+|---|---|
+| V-A | Convenciones de modelado: elementos de SPEM 2.0 usados y marca `*` de condicionalidad |
+| V-B | Vista de ciclo de vida: tres cadencias y compuertas |
+| V-C | Recorrido fase por fase (V-C1…V-C7), cada una con su figura |
+| V-D | Roles y autoridad — Cuadro I: 11 roles con su decisión exclusiva |
+| V-E | Productos de trabajo — Cuadro II |
+| V-F | Métodos, técnicas y herramientas — Cuadro III |
+| V-G | Actividades de apoyo S1–S7 — Cuadro IV, alineadas con ISO/IEC/IEEE 12207:2017 |
+| V-H | Patrones de proceso reutilizables CP1–CP4 |
+| V-I | Interacciones entre planos + destinos de retorno |
+
+---
+
+## 3. Revisión final antes de enviar (checklist)
+
+- [ ] **Coherencia de nombres** entre el diagrama reorganizado, el paper y la presentación: fases, actividades
+      A1.1–A7.3, roles, compuertas G1/G2/G3, apoyos S1–S7, patrones CP1–CP4.
+- [ ] Las **Figs. 2–8** se leen a tamaño de impresión (texto de los iconos legible en una columna).
+- [ ] La **Fig. 9** va a doble columna (`figure*`) y su pie explica la marca `*` de condicionalidad.
+- [ ] Referencias cruzadas de figuras consecutivas y sin huecos.
+- [ ] La referencia a **OMG SPEM 2.0** está numerada (el texto la cita como [33]).
+- [ ] Ortografía y tildes en los pies de figura.
+
+## 4. Qué NO hay que hacer
+
+- No reescribir §II ni §III: dominio y enfoques están cerrados.
+- No añadir al diagrama elementos que el paper no sostenga con literatura.
 - No cambiar decisiones del modelo sin registrarlas en `GESTION_PROYECTO.md` **y** actualizar los tres
-  entregables (paper, diagrama, presentación) a la vez.
+  entregables a la vez (paper, diagrama y presentación).

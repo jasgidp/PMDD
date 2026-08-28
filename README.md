@@ -19,9 +19,15 @@ PMDD/
 │   ├── presentacion/                   ← v1 socialización · v2 corregida (HTML)
 │   ├── estado-arte-realidad-aumentada/
 │   └── apoyos/                         ← material del profesor
-└── reto2/                              ← Reto #2 — EN CURSO (vence 30-ago-2026)
+├── index.html                          ← PRESENTACIÓN (4 diapositivas) — ábrela en el navegador
+└── reto2/                              ← Reto #2 — ARCA (vence 30-ago-2026)
     ├── contexto/                       ← fuente de verdad del Reto #2  ← EMPIEZA AQUÍ
-    ├── diagrama/                       ← Diagrama-SPEM2.0-PMDS.drawio
+    ├── paper/
+    │   └── pdms_reto2-2.pdf            ← PAPER VIGENTE (I–X, 9 figuras, 42 refs)
+    ├── diagrama/
+    │   ├── Diagrama-SPEM2.0-ARCA.drawio    ← página General 4
+    │   └── arca-general4.svg               ← export que alimenta el visor del deck
+    ├── presentacion/                   (vacía: el deck vive en la raíz)
     └── apoyos/                         ← guía SPEM 2.0, plantilla, referencias
 ```
 

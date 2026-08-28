@@ -60,19 +60,19 @@
 
 El enunciado nombra **siete categorías**. Todas deben estar *"claramente visibles"* en el diagrama.
 
-| # | Elemento exigido | ¿Dónde vive en nuestro modelo? | Estado |
-|---|------------------|--------------------------------|--------|
-| R1 | **Secuencia de actividades** | F1→F7 con retornos por compuerta (`MODELO_PROCESO.md` §2) | ⚠️ fases sin tipificar ni rotular en el diagrama (G-01, G-03) |
-| R2 | **Roles** | 9 internos + 2 externos (§3) | ⚠️ falta *Responsable de los datos*; "GenIA" mal tipado como rol (G-06) |
-| R3 | **Métodos** | Ing. de métodos situacional; HCD/DevOps obligatorios, EDA/GenIA condicionales (§6) | ❌ no visible en el diagrama (G-04) |
-| R4 | **Técnicas** | Entrevistas contextuales, personas, Wizard of Oz, SUS, NASA-TLX, RAG, prompt eng., TDD, pub/sub, CEP, IaC… (§5) | ❌ diluidas dentro del nombre de las tareas (G-04) |
-| R5 | **Artefactos** | 20 productos de trabajo, formalización mixta (§4) | ⚠️ faltan 5 (informe de evaluación, backlog, evidencias de compuerta, release, telemetría) (G-08) |
-| R6 | **Herramientas** | 5 familias DevOps + Unity + Figma + Kafka/CEP + servicios IA (§7) | ✅ bien cubierto (31 nodos) |
-| R7 | **Actividades transversales / de soporte** | Gestión de derechos, config./versionado, riesgos de IA, observabilidad, planificación del microciclo, responsabilidad social (§8) | ❌ **ausentes como bloque transversal** (G-05) |
-| R8 | **Uso de SPEM 2.0** | Paleta del profesor (14 símbolos) | ⚠️ solo 4 de 14 símbolos usados (G-01, G-02, G-03) |
-| R9 | **Interacciones descritas** (Entregable 3) | `PAPER_SECCION_MODELO.md` | ❌ por redactar |
+| # | Elemento exigido | ¿Dónde vive? | Estado |
+|---|------------------|--------------|--------|
+| R1 | **Secuencia de actividades** | 7 fases con hitos M1–M4 y retornos por compuerta · paper §V-B y §V-C | ✅ |
+| R2 | **Roles** | 11 roles con decisión exclusiva · Cuadro I · diagrama | ✅ |
+| R3 | **Métodos** | Ingeniería de métodos situacional; HCD/DevOps obligatorios, EDA/GenIA condicionales · §IV-F | ✅ |
+| R4 | **Técnicas** | Paneles "Métodos y técnicas" por fase en el diagrama · Cuadro III | ✅ |
+| R5 | **Artefactos** | Tipados Artifact/Deliverable/Outcome · Cuadro II · 24 artefactos en el diagrama | ✅ |
+| R6 | **Herramientas** | Encadenadas `herramienta ⇢ rol → tarea` · Cuadro III | ✅ |
+| R7 | **Actividades transversales / de soporte** | Banda **S1–S7** alineada con ISO/IEC/IEEE 12207:2017 · Cuadro IV | ✅ |
+| R8 | **Uso de SPEM 2.0** | 13 de los 14 símbolos de la paleta + patrones **CP1–CP4** (Capability Patterns) · §V-A | ✅ |
+| R9 | **Interacciones descritas** | §V-I: tres planos + tabla de destinos de retorno · Figs. 2–9 | ✅ |
 
-Leyenda: ✅ cumple · ⚠️ parcial · ❌ falta. Detalle y plan de corrección en `AUDITORIA_DIAGRAMA.md`.
+Leyenda: ✅ cumple · ⚠️ parcial · ❌ falta. Las nueve quedaron cubiertas. El histórico de cómo se cerraron está en `AUDITORIA_DIAGRAMA.md`.
 
 ---
 

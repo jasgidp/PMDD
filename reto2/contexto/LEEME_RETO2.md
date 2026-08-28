@@ -15,12 +15,14 @@ Lo que no esté escrito aquí no cuenta como acordado.
 El Reto #2 **no es un trabajo nuevo**: es la formalización en SPEM 2.0 de la metodología ya publicada en el
 Reto #1. La fuente normativa del contenido es:
 
+- **Paper vigente (ARCA)** → [`reto2/paper/pdms_reto2-2.pdf`](../paper/pdms_reto2-2.pdf) — **es la fuente normativa**:
+  secciones I–X, 9 figuras, 8 cuadros, 42 referencias
 - **Paper final Reto #1** → [`reto1/entrega-final/Equipo2_2026_Metodologia_AR_EAFIT.pdf`](../../reto1/entrega-final/Equipo2_2026_Metodologia_AR_EAFIT.pdf)
-  (7 fases, 3 compuertas, 9 roles internos + 2 externos, doble cadena, formalización mixta, 6 ejes de Céret et al.)
+  (punto de partida; superado por el anterior)
 - **Diagrama del equipo** → [`reto2/diagrama/Diagrama-SPEM2.0-PMDS.drawio`](../diagrama/Diagrama-SPEM2.0-PMDS.drawio) — página **`General 3`** es la de trabajo; `General 2` se conserva como respaldo
 - **Feedback del profesor al Reto #1** → [`FEEDBACK_RETO1.md`](FEEDBACK_RETO1.md) (marca qué defender y qué corregir)
 
-Regla dura: **si el diagrama y el paper se contradicen, gana el paper** — salvo que el equipo registre
+Regla dura: **si el diagrama y el paper se contradicen, gana el paper (versión `pdms_reto2-2.pdf`)** — salvo que el equipo registre
 la decisión de cambio en `GESTION_PROYECTO.md` y actualice ambos.
 
 ## Mapa de archivos
@@ -34,8 +36,8 @@ la decisión de cambio en `GESTION_PROYECTO.md` y actualice ambos.
 | `SPEM_CONVENCIONES.md` | Notación SPEM 2.0 acordada: qué icono usa cada cosa y cómo se nombra |
 | `AUDITORIA_DIAGRAMA.md` | **Estado real del diagrama vs. lo que pide el enunciado** — brechas priorizadas (G-01…G-16) |
 | `ASIGNACION_EQUIPO.md` | Quién modela qué + formato uniforme de entrega de cada sección |
-| `PRESENTACION.md` | Entregables 1 y 2: 4 diapositivas + guion de 5 minutos |
-| `PAPER_SECCION_MODELO.md` | Entregable 3: cómo se incorpora el modelo al paper |
+| `PRESENTACION.md` | Entregables 1 y 2: 4 diapositivas + guion de 5 minutos (deck: `index.html` en la raíz) |
+| `PAPER_SECCION_MODELO.md` | Entregable 3: estado del paper y checklist de revisión final |
 | `GESTION_PROYECTO.md` | Estado, decisiones, bitácora del Reto #2 |
 
 ## Apoyos del profesor

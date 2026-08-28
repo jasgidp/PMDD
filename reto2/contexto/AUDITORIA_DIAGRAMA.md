@@ -5,7 +5,18 @@
 
 ---
 
-> ## ✅ ESTADO FINAL 2026-08-27 — página `General 4` de `Diagrama-SPEM2.0-ARCA.drawio`
+> ## ✅ CERRADO — página `General 4`, reorganizada por el equipo
+>
+> Las **18 brechas G-01…G-18 están cerradas** y el equipo reorganizó además el layout (el lienzo pasó de
+> 4250 a 3340 px de ancho y varios rótulos se movieron bajo su caja). El resultado se exportó a
+> `arca-general4.svg`, que es lo que muestra el visor de la diapositiva 4 y lo que alimenta las Figs. 2–9 del paper.
+>
+> **Único pendiente material:** el `.drawio` con ese layout reorganizado **no está en el repo** — la copia de
+> `reto2/diagrama/Diagrama-SPEM2.0-ARCA.drawio` tiene el layout anterior. Hay que guardarlo antes del sábado.
+>
+> <details><summary>Estado intermedio (antes de la reorganización)</summary>
+>
+> ## ESTADO 2026-08-27 — página `General 4` de `Diagrama-SPEM2.0-ARCA.drawio`
 >
 > **Cerradas las 18 brechas G-01…G-18.** El diagrama usa hoy **13 de los 14 símbolos SPEM 2.0** y cubre las
 > siete categorías del enunciado. Añadido además, desde el paper ARCA v2: actividades **A1.1–A7.3** con rol
@@ -13,6 +24,8 @@
 >
 > Pendientes de criterio humano: revisar el **trazado de las flechas** (estética) y decidir si se eliminan las
 > páginas de historial (`General`, `General 2`, `General 3`) y las cuatro páginas personales vacías antes de entregar.
+>
+> </details>
 >
 > <details><summary>Estado anterior (página General 3)</summary>
 >

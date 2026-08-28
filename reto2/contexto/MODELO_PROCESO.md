@@ -8,10 +8,11 @@ presentación o se escriba en el paper debe coincidir con este archivo.
 
 ---
 
-> ## ⚠️ FUENTE NORMATIVA ACTUALIZADA — 2026-08-27
+> ## ⚠️ FUENTE NORMATIVA — el paper manda sobre este archivo
 >
-> El paper evolucionó a **ARCA v2** (`reto2/paper/ARCA_paper_v2_en_desarrollo.pdf`). **Ese documento manda
-> sobre este archivo** en todo lo que se contradiga. Deltas frente a lo que está escrito más abajo:
+> Versión vigente: **`reto2/paper/pdms_reto2-2.pdf`** (17 pp., secciones I–X, 9 figuras, 8 cuadros,
+> 42 referencias). En todo lo que se contradiga, **gana el paper**. Deltas frente a lo escrito más abajo,
+> que sigue reflejando el Reto #1:
 >
 > | Cambio en v2 | Antes (Reto #1) |
 > |--------------|-----------------|
