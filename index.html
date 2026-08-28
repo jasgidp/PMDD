@@ -1,0 +1,3484 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ARCA · Modelo de proceso para RA — Equipo 2 EAFIT</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Sora:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+
+    :root {
+      --bg: #0a0f12;
+      --ink: #eaf1f4;
+      --ink-2: #c3d2d8;
+      --muted: #8ba0a9;
+      --faint: #7ecaed;
+      --line: rgba(255,255,255,0.07);
+      --line-2: rgba(255,255,255,0.12);
+      --surface-1: rgba(255,255,255,0.028);
+      --surface-2: rgba(255,255,255,0.055);
+      --teal: #3fd6c3;
+      --teal-ink: #6fe3d4;
+      --teal-dim: rgba(63,214,195,0.12);
+      --amber: #eeb185;
+      --amber-dim: rgba(238,177,133,0.14);
+      --genia: #7ba6f5;
+      --devops: #3fd6c3;
+      --eda: #eeb185;
+      --hcd: #8fdcc3;
+      --panel: #101a1f;
+      --radius: 16px;
+      --radius-sm: 10px;
+      --font-display: "Fraunces", Georgia, serif;
+      --font-ui: "Sora", system-ui, sans-serif;
+
+      --t-display: clamp(2rem, 3.5vw, 3.05rem);
+      --t-h2: clamp(1.2rem, 1.9vw, 1.55rem);
+      --t-body: clamp(0.92rem, 1.15vw, 1.06rem);
+      --t-small: clamp(0.82rem, 1.02vw, 0.94rem);
+      --t-label: clamp(0.64rem, 0.78vw, 0.72rem);
+
+      --s1: 0.4rem;
+      --s2: 0.7rem;
+      --s3: 1.1rem;
+      --s4: 1.6rem;
+      --s5: 2.3rem;
+
+      --motif-genia: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240' viewBox='0 0 240 240'%3E%3Cg fill='none' stroke='rgb(123,166,245)' stroke-width='1.6'%3E%3Ccircle cx='40' cy='50' r='6'/%3E%3Ccircle cx='120' cy='30' r='5'/%3E%3Ccircle cx='200' cy='60' r='7'/%3E%3Ccircle cx='70' cy='120' r='5'/%3E%3Ccircle cx='160' cy='140' r='6'/%3E%3Ccircle cx='30' cy='190' r='5'/%3E%3Ccircle cx='140' cy='210' r='7'/%3E%3Ccircle cx='210' cy='170' r='5'/%3E%3Cline x1='40' y1='50' x2='120' y2='30'/%3E%3Cline x1='120' y1='30' x2='200' y2='60'/%3E%3Cline x1='40' y1='50' x2='70' y2='120'/%3E%3Cline x1='70' y1='120' x2='160' y2='140'/%3E%3Cline x1='200' y1='60' x2='160' y2='140'/%3E%3Cline x1='70' y1='120' x2='30' y2='190'/%3E%3Cline x1='160' y1='140' x2='140' y2='210'/%3E%3Cline x1='160' y1='140' x2='210' y2='170'/%3E%3C/g%3E%3C/svg%3E");
+      --motif-devops: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240' viewBox='0 0 240 240'%3E%3Cg fill='none' stroke='rgb(63,214,195)' stroke-width='2'%3E%3Ccircle cx='120' cy='120' r='85' stroke-dasharray='10 8' opacity='0.8'/%3E%3Ccircle cx='120' cy='35' r='7' fill='rgb(63,214,195)' stroke='none'/%3E%3Ccircle cx='190' cy='75' r='6' fill='rgb(63,214,195)' stroke='none'/%3E%3Ccircle cx='190' cy='165' r='6' fill='rgb(63,214,195)' stroke='none'/%3E%3Ccircle cx='120' cy='205' r='7' fill='rgb(63,214,195)' stroke='none'/%3E%3Ccircle cx='50' cy='165' r='6' fill='rgb(63,214,195)' stroke='none'/%3E%3Ccircle cx='50' cy='75' r='6' fill='rgb(63,214,195)' stroke='none'/%3E%3Cpath d='M160 45l14 8-6 15' stroke='rgb(63,214,195)' stroke-width='2.5'/%3E%3C/g%3E%3C/svg%3E");
+      --motif-eda: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240' viewBox='0 0 240 240'%3E%3Cg fill='none' stroke='rgb(238,177,133)'%3E%3Ccircle cx='120' cy='120' r='18' stroke-width='2'/%3E%3Ccircle cx='120' cy='120' r='42' stroke-width='1.5' opacity='0.7'/%3E%3Ccircle cx='120' cy='120' r='66' stroke-width='1.2' opacity='0.5'/%3E%3Ccircle cx='120' cy='120' r='90' stroke-width='1' opacity='0.3'/%3E%3Ccircle cx='120' cy='30' r='6' fill='rgb(238,177,133)' stroke='none'/%3E%3Ccircle cx='205' cy='150' r='6' fill='rgb(238,177,133)' stroke='none'/%3E%3Ccircle cx='45' cy='170' r='6' fill='rgb(238,177,133)' stroke='none'/%3E%3Cline x1='120' y1='60' x2='120' y2='30' stroke-dasharray='4 4'/%3E%3Cline x1='150' y1='140' x2='198' y2='152' stroke-dasharray='4 4'/%3E%3Cline x1='95' y1='140' x2='52' y2='165' stroke-dasharray='4 4'/%3E%3C/g%3E%3C/svg%3E");
+      --motif-hcd: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240' viewBox='0 0 240 240'%3E%3Cg fill='none' stroke='rgb(143,220,195)'%3E%3Ccircle cx='120' cy='90' r='28' stroke-width='2'/%3E%3Cpath d='M55 200c8-42 38-64 65-64s57 22 65 64' stroke-width='2'/%3E%3Ccircle cx='120' cy='130' r='95' stroke-width='1' stroke-dasharray='3 6' opacity='0.5'/%3E%3C/g%3E%3C/svg%3E");
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    /* deck type scales with viewport height so the preview and a 1920x1080
+       projection have identical proportions (16px at 1080px tall and above) */
+    html { font-size: clamp(11px, 1.85vh, 20px); }
+
+    html, body {
+      height: 100%;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--font-ui);
+      overflow: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      background:
+        radial-gradient(1100px 620px at 8% -12%, rgba(63,214,195,0.10), transparent 60%),
+        radial-gradient(900px 520px at 108% 108%, rgba(238,177,133,0.05), transparent 55%),
+        #0a0f12;
+    }
+
+    a { color: var(--teal-ink); text-decoration: none; }
+    a:hover { color: var(--ink); }
+
+    .deck { height: 100vh; width: 100vw; position: relative; }
+
+.slide {
+  position: absolute;
+  inset: 0;
+  padding: clamp(1.4rem, 2.6vw, 2.9rem) clamp(1.6rem, 3.4vw, 3.4rem) clamp(3.2rem, 5vh, 4.6rem);
+  display: none;
+  flex-direction: column;
+  justify-content: space-between; /* Mantiene topbar arriba y centra la stage */
+  gap: var(--s2);
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.45s ease, transform 0.45s ease;
+}
+
+    .slide.active { display: flex; opacity: 1; transform: none; }
+
+    /* —— header —— */
+    .topbar {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: var(--s4);
+      flex-wrap: wrap;
+      padding-bottom: var(--s2);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .eyebrow {
+      font-size: var(--t-label);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--faint);
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+    }
+
+    .slide-title {
+      font-family: var(--font-display);
+      font-size: var(--t-display);
+      font-weight: 700;
+      line-height: 1.02;
+      letter-spacing: -0.015em;
+      max-width: 20ch;
+    }
+
+    .meta {
+      color: var(--muted);
+      font-size: var(--t-small);
+      text-align: right;
+      max-width: 44ch;
+      line-height: 1.5;
+    }
+
+    .slide[data-slide="0"] .meta { max-width: none; white-space: nowrap; }
+
+    .stage { 
+  flex: 1; 
+  min-height: 0; 
+  display: grid; 
+  gap: var(--s3); 
+  align-content: center; /* Centra el contenido en pantallas grandes */
+  margin: auto 0;       /* Balancea el espacio vertical */
+}
+    /* —— slide 1 —— */
+    .s1-stage {
+      grid-template-columns: 1.08fr 1fr;
+      grid-template-rows: auto 1fr auto;
+      column-gap: var(--s4);
+      align-items: stretch;
+    }
+
+    .s1-stage > .continuum { grid-column: 1 / -1; }
+
+    .s1-left, .s1-right {
+      display: flex;
+      flex-direction: column;
+      gap: var(--s2);
+      min-height: 0;
+    }
+
+    .s1-left > * { flex: 0 0 auto; }
+
+    .s1-left { justify-content: flex-start; }
+
+    @media (max-width: 820px) {
+      .s1-stage { grid-template-columns: 1fr; grid-template-rows: auto auto auto auto; }
+      .s1-right .panel { position: static; height: auto; }
+      .s1-panels { min-height: 16rem; }
+      .stage { overflow: auto; }
+      .slide-title { max-width: none; }
+      .meta { text-align: left; }
+      .topbar { align-items: flex-start; }
+    }
+
+    /* section labels — the only structural marker, no boxes needed */
+    .continuum-label {
+      font-size: var(--t-label);
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--faint);
+      font-weight: 600;
+      margin-bottom: var(--s2);
+    }
+
+    /* —— reality continuum: one rail, one highlighted node —— */
+    .continuum { position: relative; padding: 0; }
+
+    .continuum-track {
+      display: grid;
+      grid-template-columns: 1fr 1.25fr 1fr;
+      gap: 0;
+      align-items: stretch;
+      position: relative;
+      padding-top: 0.9rem;
+    }
+
+    .continuum-track::before {
+      content: "";
+      position: absolute;
+      left: 8%;
+      right: 8%;
+      top: 0.9rem;
+      height: 2px;
+      background: linear-gradient(90deg, rgba(255,255,255,0.14), var(--teal) 50%, rgba(238,177,133,0.5));
+      border-radius: 99px;
+    }
+
+    .c-node {
+      position: relative;
+      text-align: center;
+      padding: 0.95rem 0.75rem 0;
+      background: none;
+      border: 0;
+    }
+
+    .c-node::before {
+      content: "";
+      position: absolute;
+      top: -4px;
+      left: 50%;
+      width: 9px;
+      height: 9px;
+      margin-left: -4.5px;
+      border-radius: 50%;
+      background: #26343a;
+      border: 2px solid rgba(255,255,255,0.22);
+    }
+
+    .c-node strong {
+      display: block;
+      font-family: var(--font-display);
+      font-size: clamp(1.1rem, 1.7vw, 1.42rem);
+      font-weight: 700;
+      color: var(--ink-2);
+      margin-bottom: 0.18rem;
+    }
+
+    .c-node span { font-size: var(--t-small); color: var(--faint); }
+
+    .c-node.ra::before {
+      background: var(--teal);
+      border-color: rgba(63,214,195,0.28);
+      width: 13px; height: 13px; margin-left: -6.5px; top: -6px;
+      box-shadow: 0 0 0 5px rgba(63,214,195,0.10);
+    }
+
+    .c-node.ra strong { color: var(--teal-ink); font-size: clamp(1.3rem, 2.1vw, 1.75rem); }
+    .c-node.ra span { color: var(--ink-2); }
+
+    /* —— flow rows (arquitectura / ciclo) —— */
+    .pipeline, .cycle {
+      border: 0;
+      border-radius: var(--radius);
+      padding: var(--s2) var(--s3);
+      background: var(--surface-1);
+      display: flex;
+      flex-direction: column;
+      gap: var(--s2);
+      min-height: 0;
+    }
+
+    .pipeline-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(6.4rem, 1fr));
+      gap: 0.3rem 0.15rem;
+      align-items: stretch;
+    }
+
+    .cycle .pipeline-row { grid-template-columns: repeat(auto-fit, minmax(6.4rem, 1fr)); }
+
+    .pipe-unit { display: flex; align-items: center; gap: 0.2rem; min-width: 0; }
+    .pipe-unit .pipe-chip { flex: 1 1 auto; min-width: 0; }
+
+    .pipe-chip {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.38rem;
+      text-align: center;
+      padding: 0.52rem 0.5rem;
+      border-radius: var(--radius-sm);
+      background: var(--surface-2);
+      border: 0;
+      font-size: var(--t-small);
+      font-weight: 600;
+      color: var(--ink-2);
+      white-space: nowrap;
+      overflow: visible;
+    }
+
+    .pipe-chip svg { flex: 0 0 auto; color: var(--teal); opacity: 0.9; }
+
+    .pipe-arrow {
+      color: rgba(255,255,255,0.22);
+      font-size: 0.85rem;
+      flex: 0 0 auto;
+      width: 1rem;
+      text-align: center;
+    }
+
+    .pipeline h4 {
+      font-size: var(--t-small);
+      font-weight: 600;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: 0.1rem;
+    }
+
+    .pipeline h4::before {
+      content: "";
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--teal);
+      flex: 0 0 auto;
+    }
+
+    /* —— pills / tabs —— */
+    .detail-row { display: flex; flex-wrap: wrap; gap: 0.35rem; align-items: stretch; }
+
+    .pill {
+      appearance: none;
+      border: 1px solid var(--line-2);
+      background: var(--surface-2);
+      color: var(--ink-2);
+      font: inherit;
+      font-size: var(--t-small);
+      font-weight: 600;
+      padding: 0.45rem 0.85rem;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: color 0.18s, background 0.18s;
+    }
+
+    .pill:hover { color: var(--ink); border-color: rgba(63,214,195,0.45); }
+    .pill[aria-expanded="true"] {
+      background: var(--teal-dim);
+      border-color: rgba(63,214,195,0.55);
+      color: var(--teal-ink);
+    }
+
+    /* —— content panels —— */
+    .panel {
+  display: none;
+  border: 0;
+  border-radius: var(--radius);
+  background: var(--surface-1);
+  padding: var(--s3); /* Aumenta ligeramente el padding interno para aprovechar mejor el espacio */
+  max-height: 100%;
+  overflow: auto;
+  animation: rise 0.28s ease;
+}
+
+    .panel.open { display: block; }
+
+    .s1-right .detail-row { flex: 0 0 auto; padding-bottom: 0.1rem; }
+    .s1-panels { 
+  position: relative; 
+  flex: 1; 
+  min-height: 22rem; /* Garantiza una altura mínima adecuada para las tarjetas */
+}
+
+
+    .s1-right .panel {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: auto;
+      margin-top: 0;
+      height: auto;
+      max-height: 100%;
+    }
+
+    .panel h3 {
+      font-family: var(--font-display);
+      font-size: var(--t-h2);
+      font-weight: 700;
+      margin-bottom: var(--s2);
+      color: var(--ink);
+      letter-spacing: -0.01em;
+    }
+
+    .panel ul, .panel ol {
+      padding-left: 1.1rem;
+      display: grid;
+      gap: 0.32rem;
+      font-size: var(--t-body);
+      line-height: 1.45;
+      color: var(--ink-2);
+    }
+
+    .panel p {
+      font-size: var(--t-body);
+      line-height: 1.5;
+      color: var(--ink-2);
+      margin-bottom: var(--s2);
+    }
+
+    .sources { margin-top: var(--s2); font-size: 0.7rem; color: var(--faint); line-height: 1.4; }
+
+    .panel.panel-fill.open { display: flex; flex-direction: column; justify-content: flex-start; gap: var(--s3); }
+
+    /* —— mini card grid —— */
+    .mini-cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0 1.4rem; }
+
+    .mini-card {
+      display: flex;
+      gap: 0.7rem;
+      align-items: flex-start;
+      border: 0;
+      border-radius: 0;
+      padding: 0.5rem 0;
+      background: none;
+      border-top: 1px solid var(--line);
+    }
+
+    .mini-cards .mini-card:nth-child(1),
+    .mini-cards .mini-card:nth-child(2) { border-top: 0; }
+
+    .mini-icon {
+      width: 1.85rem;
+      height: 1.85rem;
+      border-radius: 8px;
+      display: grid;
+      place-items: center;
+      flex: 0 0 auto;
+      background: none;
+      color: var(--teal);
+      margin-left: -0.25rem;
+    }
+
+    .mini-card b {
+      display: block;
+      font-size: var(--t-body);
+      font-weight: 600;
+      margin-bottom: 0.12rem;
+      color: var(--ink);
+    }
+
+    .mini-card span {
+      font-size: var(--t-small);
+      color: var(--muted);
+      line-height: 1.42;
+      display: block;
+    }
+
+    /* —— stepper —— */
+    .stepper { display: flex; flex-direction: column; gap: 0.1rem; }
+
+    .step-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      padding: 0.42rem 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .stepper .step-item:first-child { border-top: 0; }
+
+    .step-num {
+      width: 1.35rem;
+      height: 1.35rem;
+      border-radius: 50%;
+      background: none;
+      color: var(--teal);
+      display: grid;
+      place-items: center;
+      font-size: 0.7rem;
+      font-weight: 700;
+      flex: 0 0 auto;
+      border: 1px solid rgba(63,214,195,0.35);
+      margin-top: 0.12rem;
+    }
+
+    .step-item p { font-size: var(--t-body); color: var(--ink-2); line-height: 1.4; margin: 0; }
+
+    /* —— chips —— */
+    .source-chips { display: flex; flex-wrap: wrap; gap: 0.32rem; }
+    .source-chip {
+      font-size: 0.68rem;
+      padding: 0.26rem 0.55rem;
+      border-radius: 999px;
+      background: var(--surface-2);
+      color: var(--muted);
+    }
+
+    /* —— references —— */
+    .refs-panel { max-height: min(46vh, 420px); }
+
+    .cite-group-title {
+      font-size: var(--t-label);
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--faint);
+      font-weight: 700;
+      margin: 0.75rem 0 0.25rem;
+    }
+
+    .cite-group-title:first-of-type { margin-top: 0.1rem; }
+
+    .panel .cite-list, .cite-list {
+      list-style: decimal;
+      padding-left: 1.3rem;
+      margin-top: 0.2rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(24rem, 1fr));
+      gap: 0.25rem 2rem;
+    }
+
+    .cite-list li { font-size: 0.75rem; line-height: 1.45; color: var(--muted); }
+    .cite-list li::marker { color: var(--faint); font-weight: 600; }
+    .cite-list em { font-style: italic; color: var(--ink-2); }
+
+    /* —— quad card previews —— */
+    .quad-preview-row { display: flex; flex-direction: column; gap: 0.25rem; margin-top: 0.35rem; }
+
+    .quad-preview-label {
+      font-size: var(--t-label);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--faint);
+    }
+
+    .quad-preview-chips { display: flex; flex-wrap: wrap; align-items: center; gap: 0.28rem; }
+
+    .quad-preview-chip {
+      font-size: 0.7rem;
+      font-weight: 600;
+      padding: 0.22rem 0.5rem;
+      border-radius: 7px;
+      background: var(--surface-2);
+      border: 0;
+      color: var(--muted);
+    }
+
+    .quad-preview-arrow { color: rgba(255,255,255,0.25); font-size: 0.66rem; }
+
+    /* —— definition callout —— */
+    .quote-box {
+      border: 0;
+      border-left: 2px solid var(--teal);
+      background: none;
+      border-radius: 0;
+      padding: 0.1rem 0 0.1rem 1.15rem;
+      font-size: var(--t-body);
+      line-height: 1.5;
+      color: var(--ink);
+    }
+
+    .quote-box strong { color: var(--teal-ink); }
+
+    .quote-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.35rem; }
+    .quote-list li { padding-left: 0; position: relative; font-size: clamp(0.94rem, 1.2vw, 1.12rem); line-height: 1.3; }
+    .quote-list li::before { display: none; }
+
+    /* —— footer references toggle —— */
+    .refs-toggle { grid-column: 1 / -1; position: relative; }
+    .refs-toggle > .detail-row { opacity: 0.75; }
+    .refs-toggle > .detail-row:hover { opacity: 1; }
+
+    .refs-toggle .refs-panel {
+      position: fixed;
+      top: auto;
+      bottom: 4.6rem;
+      left: clamp(1.8rem, 3.6vw, 3.4rem);
+      right: clamp(1.8rem, 3.6vw, 3.4rem);
+      margin-top: 0;
+      max-height: min(56vh, 520px);
+      overflow-y: auto;
+      background: var(--panel);
+      border: 1px solid var(--line-2);
+      box-shadow: 0 30px 80px rgba(0,0,0,0.6);
+      z-index: 60;
+    }
+
+    /* —— approach switcher —— */
+    .approach-switch { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+
+    .switch-btn {
+      appearance: none;
+      border: 1px solid var(--line-2);
+      background: var(--surface-2);
+      color: var(--muted);
+      font: inherit;
+      font-size: var(--t-small);
+      font-weight: 600;
+      padding: 0.34rem 0.75rem;
+      border-radius: 999px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      transition: color 0.2s, background 0.2s;
+    }
+
+    .switch-btn:hover { color: var(--ink); border-color: rgba(255,255,255,0.28); }
+    .switch-btn .dot { width: 0.45rem; height: 0.45rem; border-radius: 50%; background: var(--sc, var(--teal)); flex: 0 0 auto; opacity: 0.5; }
+    .switch-btn.active {
+      color: var(--ink);
+      background: color-mix(in srgb, var(--sc, var(--teal)) 16%, transparent);
+      border-color: color-mix(in srgb, var(--sc, var(--teal)) 55%, transparent);
+    }
+    .switch-btn.active .dot { opacity: 1; }
+
+    /* —— mini flow —— */
+    .mini-flow { display: flex; flex-wrap: wrap; align-items: center; gap: 0.28rem; margin-top: 0.2rem; }
+
+    .mini-flow-chip {
+      padding: 0.26rem 0.55rem;
+      border-radius: 8px;
+      background: var(--surface-2);
+      border: 0;
+      font-size: var(--t-small);
+      font-weight: 600;
+      color: var(--ink-2);
+    }
+
+    .mini-flow-arrow { color: rgba(255,255,255,0.25); font-size: 0.75rem; flex: 0 0 auto; }
+    .mini-note { margin-top: 0.4rem; font-size: var(--t-small); color: var(--faint); line-height: 1.4; }
+
+    /* —— tags —— */
+    .tag-group { display: flex; flex-wrap: wrap; gap: 0.28rem; }
+    .tag-group + .tag-group { margin-top: 0.3rem; }
+
+    .tag-chip {
+      padding: 0.24rem 0.55rem;
+      border-radius: 999px;
+      background: var(--surface-2);
+      border: 0;
+      font-size: var(--t-small);
+      font-weight: 600;
+      color: var(--muted);
+    }
+
+    /* —— compact maturity summary (icon + value, no repeated label) —— */
+    .maturity-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.3rem 1.1rem;
+      margin: 0.3rem 0 0.6rem;
+    }
+
+    .maturity-chip {
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-size: var(--t-body);
+      font-weight: 600;
+      color: var(--ink-2);
+    }
+
+    .maturity-ic { display: inline-flex; flex: 0 0 auto; }
+
+    /* —— axis rows —— */
+    .axis-list { display: flex; flex-direction: column; gap: 0.1rem; }
+
+    .axis-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.6rem;
+      font-size: var(--t-body);
+      color: var(--ink-2);
+      line-height: 1.4;
+      padding: 0.42rem 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .axis-list .axis-row:first-child { border-top: 0; }
+
+    .axis-dot { width: 0.5rem; height: 0.5rem; border-radius: 50%; flex: 0 0 auto; margin-top: 0.45rem; }
+    .axis-row svg { flex: 0 0 auto; margin-top: 0.2rem; }
+    .axis-row-icon { flex: 0 0 auto; display: inline-flex; margin-top: 0.15rem; }
+    .axis-row.good svg { color: var(--teal); }
+    .axis-row.bad svg { color: var(--amber); }
+
+    /* —— slide 2 —— */
+    .s2-stage { grid-template-rows: 1fr auto; }
+    .slide[data-slide="1"] .meta { text-align: right; }
+
+    .quads {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: repeat(2, 1fr);
+      gap: var(--s3);
+      min-height: 0;
+    }
+
+    @media (max-width: 800px) {
+      .quads { grid-template-columns: 1fr; grid-template-rows: none; overflow: auto; }
+    }
+
+    .quad {
+      position: relative;
+      isolation: isolate;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: var(--s4);
+      background: var(--surface-1);
+      cursor: pointer;
+      text-align: left;
+      color: inherit;
+      font: inherit;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: var(--s2);
+      transition: transform 0.22s ease, border-color 0.22s, background 0.22s;
+      min-height: 0;
+    }
+
+    .quad::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-repeat: no-repeat;
+      background-position: 112% 122%;
+      background-size: 58%;
+      opacity: 0.3;
+      z-index: -2;
+      transition: transform 0.35s ease, opacity 0.35s ease;
+    }
+
+    .quad::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(160deg, rgba(10,15,18,0.2) 0%, rgba(10,15,18,0.72) 62%, rgba(10,15,18,0.88) 100%);
+      z-index: -1;
+    }
+
+    .quad:hover::before { transform: scale(1.06); opacity: 0.5; }
+    .quad:hover { transform: translateY(-3px); background: var(--surface-2); border-color: var(--line-2); }
+
+    .quad[data-key="genia"]::before  { background-image: var(--motif-genia); }
+    .quad[data-key="devops"]::before { background-image: var(--motif-devops); }
+    .quad[data-key="eda"]::before    { background-image: var(--motif-eda); }
+    .quad[data-key="hcd"]::before    { background-image: var(--motif-hcd); }
+
+    .quad.active { box-shadow: 0 14px 36px rgba(0,0,0,0.3); }
+    .quad[data-key="genia"].active { border-color: rgba(123,166,245,0.6); }
+    .quad[data-key="devops"].active { border-color: rgba(63,214,195,0.6); }
+    .quad[data-key="eda"].active { border-color: rgba(238,177,133,0.6); }
+    .quad[data-key="hcd"].active { border-color: rgba(143,220,195,0.6); }
+
+    .quad-top { display: flex; align-items: center; gap: 0.8rem; }
+
+    .quad-icon {
+      width: 2.4rem;
+      height: 2.4rem;
+      border-radius: 11px;
+      display: grid;
+      place-items: center;
+      flex: 0 0 auto;
+    }
+
+    .quad[data-key="genia"] .quad-icon { background: rgba(123,166,245,0.14); color: var(--genia); }
+    .quad[data-key="devops"] .quad-icon { background: var(--teal-dim); color: var(--devops); }
+    .quad[data-key="eda"] .quad-icon { background: var(--amber-dim); color: var(--eda); }
+    .quad[data-key="hcd"] .quad-icon { background: rgba(143,220,195,0.14); color: var(--hcd); }
+
+    .quad h3 {
+      font-family: var(--font-display);
+      font-size: clamp(1.35rem, 2.3vw, 1.85rem);
+      font-weight: 700;
+      line-height: 1.05;
+      letter-spacing: -0.015em;
+    }
+
+    .quad p { color: var(--muted); font-size: var(--t-body); line-height: 1.45; max-width: 46ch; }
+
+    .hint {
+      font-size: var(--t-label);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--faint);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: color 0.2s;
+    }
+
+    .hint::after { content: "→"; letter-spacing: 0; }
+    .quad:hover .hint { color: var(--teal-ink); }
+
+    .drawer {
+      display: none;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--panel);
+      padding: var(--s3);
+      max-height: min(34vh, 320px);
+      overflow: auto;
+      animation: rise 0.28s ease;
+    }
+
+    .drawer.open { display: block; }
+
+    /* —— E4 grid —— */
+    .e4-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.55rem; }
+
+    @media (max-width: 900px) { .e4-grid { grid-template-columns: 1fr 1fr; } }
+
+    .e4-item {
+      border: 0;
+      border-radius: var(--radius-sm);
+      padding: 0.7rem 0.8rem;
+      background: var(--surface-1);
+    }
+
+    .e4-item b {
+      display: block;
+      font-size: var(--t-label);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--faint);
+      margin-bottom: 0.3rem;
+      font-weight: 700;
+    }
+
+    .e4-item span { font-size: var(--t-small); line-height: 1.45; color: var(--ink-2); }
+
+    .eda-flow {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+      align-items: center;
+      border: 0;
+      border-radius: var(--radius-sm);
+      background: var(--amber-dim);
+      padding: 0.55rem 0.8rem;
+      font-size: var(--t-small);
+      font-weight: 600;
+      color: var(--ink-2);
+    }
+
+    .eda-flow i {
+      font-style: normal;
+      padding: 0.3rem 0.55rem;
+      border-radius: 8px;
+      background: rgba(0,0,0,0.28);
+    }
+
+    .reason { margin-top: 0.55rem; display: grid; grid-template-columns: 1fr 1fr; gap: 0.55rem; }
+
+    .reason > div {
+      border-radius: var(--radius-sm);
+      padding: 0.7rem 0.85rem;
+      border: 0;
+      font-size: var(--t-small);
+      line-height: 1.45;
+      color: var(--ink-2);
+    }
+
+    .reason .aport { background: rgba(63,214,195,0.08); }
+    .reason .uso { background: rgba(238,177,133,0.08); }
+
+    .reason strong {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: var(--t-label);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 0.3rem;
+      color: var(--faint);
+    }
+
+    /* —— expand overlay —— */
+    .expand-overlay {
+      position: absolute;
+      z-index: 25;
+      overflow: hidden;
+      border: 1px solid var(--line-2);
+      border-radius: var(--radius);
+      background: #0d151a;
+      box-shadow: 0 30px 90px rgba(0,0,0,0.6);
+      display: flex;
+      flex-direction: column;
+      will-change: top, left, width, height;
+      transition:
+        top 0.44s cubic-bezier(0.22,0.61,0.36,1),
+        left 0.44s cubic-bezier(0.22,0.61,0.36,1),
+        width 0.44s cubic-bezier(0.22,0.61,0.36,1),
+        height 0.44s cubic-bezier(0.22,0.61,0.36,1),
+        border-radius 0.44s ease;
+    }
+
+    .expand-overlay.full { border-radius: 0; }
+
+    .expand-overlay[data-key="genia"]  { border-color: rgba(123,166,245,0.45); }
+    .expand-overlay[data-key="devops"] { border-color: rgba(63,214,195,0.45); }
+    .expand-overlay[data-key="eda"]    { border-color: rgba(238,177,133,0.45); }
+    .expand-overlay[data-key="hcd"]    { border-color: rgba(143,220,195,0.45); }
+
+    .expand-overlay::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-repeat: no-repeat;
+      background-position: 100% 100%;
+      background-size: 42%;
+      opacity: 0.14;
+      z-index: 0;
+    }
+
+    .expand-overlay::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(170deg, rgba(10,15,18,0.4) 0%, rgba(10,15,18,0.9) 60%);
+      z-index: 0;
+    }
+
+    .expand-overlay[data-key="genia"]::before  { background-image: var(--motif-genia); }
+    .expand-overlay[data-key="devops"]::before { background-image: var(--motif-devops); }
+    .expand-overlay[data-key="eda"]::before    { background-image: var(--motif-eda); }
+    .expand-overlay[data-key="hcd"]::before    { background-image: var(--motif-hcd); }
+
+    .expand-inner {
+      position: flex-start;
+      z-index: 1;
+      flex: 1;
+      min-height: 0;
+      overflow: auto;
+      padding: clamp(1.4rem, 3vw, 2.6rem) clamp(1.8rem, 4vw, 3.4rem);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: var(--s3);
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 0.3s ease 0.16s, transform 0.3s ease 0.16s;
+    }
+
+    .expand-overlay.full .expand-inner { opacity: 1; transform: none; }
+
+    .expand-head { display: flex; align-items: center; gap: 0.95rem; }
+    .expand-head .quad-icon { width: 2.9rem; height: 2.9rem; }
+
+    .expand-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.7rem, 3.6vw, 2.7rem);
+      font-weight: 700;
+      line-height: 1.02;
+      letter-spacing: -0.015em;
+    }
+
+    .expand-close { flex: 0 0 auto; }
+
+    .expand-head-right {
+      margin-left: auto;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 0.35rem;
+    }
+
+    .referent-note {
+      font-size: var(--t-label);
+      color: var(--faint);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      cursor: default;
+    }
+    .expand-inner .e4-grid { grid-template-columns: repeat(2, 1fr); gap: 0.6rem 1rem; }
+
+    @media (max-width: 760px) { .expand-inner .e4-grid { grid-template-columns: 1fr; } }
+
+    .expand-inner .e4-item { padding: 0.8rem 0.95rem; display: flex; align-items: flex-start; gap: 0.7rem; }
+
+    .expand-inner .e4-item .e4-ic {
+      width: 1.8rem;
+      height: 1.8rem;
+      border-radius: 8px;
+      display: grid;
+      place-items: center;
+      flex: 0 0 auto;
+      background: rgba(255,255,255,0.05);
+    }
+
+    .expand-inner .e4-item b { display: block; margin-bottom: 0.25rem; }
+    .expand-inner .e4-item span { font-size: var(--t-small); }
+    .expand-inner .reason { margin-top: 0.2rem; }
+
+    /* —— slide 3 —— */
+    .s3-stage {
+      grid-template-columns: 1fr 1.15fr;
+      grid-template-rows: 1fr auto;
+      column-gap: var(--s4);
+      align-items: stretch;
+    }
+
+    @media (max-width: 820px) { .s3-stage { grid-template-columns: 1fr; } }
+
+    .fish-wrap {
+      position: relative;
+      overflow: hidden;
+      border: 0;
+      border-radius: var(--radius);
+      background: var(--surface-1);
+      padding: var(--s3);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: var(--s2);
+      min-height: 0;
+    }
+
+    .fish-wrap .meta {
+      position: absolute;
+      top: var(--s3);
+      left: var(--s4);
+      text-align: left;
+      font-size: var(--t-label);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--faint);
+      max-width: 32ch;
+    }
+
+    .fish-wrap::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(rgba(255,255,255,0.05) 1px, transparent 1px);
+      background-size: 26px 26px;
+      pointer-events: none;
+    }
+
+    .fish-wrap svg { position: relative; width: 100%; height: auto; max-height: min(54vh, 470px); transition: max-height 0.3s ease; flex: 0 0 auto; }
+
+    .fish-wrap.show-phases svg { max-height: min(26vh, 210px); }
+
+    /* —— F1→F7 phase model with return gates, revealed under the fishbone —— */
+    .phase-diagram {
+      display: none;
+      width: 100%;
+      flex: 1;
+      min-height: 0;
+      overflow: auto;
+      position: relative;
+    }
+
+    .fish-wrap.show-phases .phase-diagram { display: block; animation: rise 0.28s ease; }
+
+    .pd-label {
+      font-size: var(--t-label);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--faint);
+      margin-bottom: var(--s2);
+    }
+
+    .pd-flow {
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      padding-left: 1.5rem;
+    }
+
+    .pd-flow::before {
+      content: "";
+      position: absolute;
+      left: 0.51rem;
+      top: 0.5rem;
+      bottom: 0.5rem;
+      width: 2px;
+      background: linear-gradient(180deg, var(--teal), rgba(255,255,255,0.08));
+    }
+
+    .pd-step {
+      position: relative;
+      display: flex;
+      align-items: baseline;
+      gap: 0.5rem;
+      padding: 0.2rem 0;
+    }
+
+    .pd-step::before {
+      content: "";
+      position: absolute;
+      left: -1.1rem;
+      top: 0.45rem;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--teal);
+    }
+
+    .pd-num { font-weight: 700; color: var(--teal-ink); font-size: var(--t-small); flex: 0 0 auto; }
+    .pd-name { font-size: var(--t-small); color: var(--ink-2); line-height: 1.3; }
+
+    .pd-gate {
+      position: relative;
+      margin: 0.15rem 0 0.15rem 0.9rem;
+      padding: 0.28rem 0.6rem;
+      border-left: 2px solid var(--amber);
+      background: var(--amber-dim);
+      border-radius: 0 8px 8px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.05rem;
+    }
+
+    .pd-gate-tag { font-size: var(--t-label); font-weight: 700; color: var(--amber); text-transform: uppercase; letter-spacing: 0.03em; }
+    .pd-gate-cond { font-size: var(--t-label); color: var(--faint); }
+
+    .engine-legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.3rem 1.1rem;
+      font-size: var(--t-small);
+      padding: 0.1rem 0;
+    }
+
+    .engine-legend span { display: flex; align-items: center; gap: 0.4rem; font-weight: 600; }
+    .engine-legend svg { flex: 0 0 auto; }
+
+    .bone { cursor: pointer; transition: opacity 0.2s; }
+    .bone:hover .bone-hit, .bone.active .bone-hit { fill: rgba(63,214,195,0.12); }
+    .bone text { font-family: var(--font-ui); font-size: 13px; font-weight: 600; fill: var(--ink-2); }
+    .bone:hover text, .bone.active text { fill: var(--ink); }
+
+    .side-col { display: flex; flex-direction: column; gap: var(--s3); min-height: 0; }
+
+    .diff {
+      border: 0;
+      border-left: 2px solid var(--amber);
+      border-radius: 0;
+      padding: 0.2rem 0 0.2rem 1.2rem;
+      background: none;
+    }
+
+    .diff h3 {
+      font-family: var(--font-display);
+      font-size: var(--t-h2);
+      font-weight: 700;
+      margin-bottom: 0.4rem;
+      color: var(--ink);
+      letter-spacing: -0.01em;
+    }
+
+    .diff p { font-size: var(--t-body); line-height: 1.55; color: var(--ink-2); }
+    .diff strong { color: var(--amber); font-weight: 600; }
+
+    .diff-list {
+      list-style: none;
+      padding: 0;
+      margin: 0.5rem 0 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .diff-list li {
+      padding-left: 1.1rem;
+      position: relative;
+      font-size: var(--t-body);
+      line-height: 1.42;
+      color: var(--ink-2);
+    }
+
+    .diff-list li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.55em;
+      width: 0.4rem;
+      height: 0.4rem;
+      border-radius: 50%;
+      background: var(--amber);
+    }
+
+    .diff-list strong { color: var(--amber); font-weight: 600; }
+
+    .axis-panel {
+      display: none;
+      border: 0;
+      border-radius: var(--radius);
+      background: var(--surface-1);
+      padding: var(--s3) var(--s4);
+      flex: 1;
+      min-height: 0;
+      overflow: auto;
+      animation: rise 0.28s ease;
+    }
+
+    .axis-panel.open { display: flex; flex-direction: column; justify-content: center; }
+
+    .axis-panel h3 {
+      font-family: var(--font-display);
+      color: var(--ink);
+      margin-bottom: var(--s2);
+      font-size: var(--t-h2);
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+
+    .axis-panel p { font-size: var(--t-body); line-height: 1.5; color: var(--muted); }
+
+    /* —— nav —— */
+    .nav {
+      position: fixed;
+      left: 50%;
+      bottom: 1.1rem;
+      transform: translateX(-50%);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      z-index: 40;
+      padding: 0.3rem 0.5rem;
+      border-radius: 999px;
+      background: rgba(12,18,22,0.7);
+      border: 1px solid var(--line);
+      backdrop-filter: blur(12px);
+    }
+
+    .nav button {
+      appearance: none;
+      border: 1px solid transparent;
+      background: transparent;
+      color: var(--muted);
+      width: 2rem;
+      height: 2rem;
+      border-radius: 999px;
+      cursor: pointer;
+      font-size: 1.05rem;
+      transition: color 0.18s, background 0.18s;
+    }
+
+    .nav button:hover { background: rgba(255,255,255,0.06); color: var(--ink); border-color: var(--line-2); }
+
+    .dots { display: flex; gap: 0.32rem; }
+    .dot {
+      width: 0.42rem;
+      height: 0.42rem;
+      border-radius: 99px;
+      background: rgba(255,255,255,0.2);
+      border: 0;
+      cursor: pointer;
+      padding: 0;
+      transition: width 0.25s ease, background 0.25s ease;
+    }
+    .dot.on { background: var(--teal); width: 1.35rem; }
+
+    .fs-hint {
+      position: fixed;
+      top: 0.9rem;
+      right: 1.1rem;
+      font-size: var(--t-label);
+      color: rgba(139,160,169,0.45);
+      z-index: 30;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: none; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .slide, .panel, .drawer, .axis-panel { transition: none; animation: none; }
+    }
+  
+  
+    /* ============ Slide 4 · modelo de proceso ARCA ============ */
+    .s4-stage {
+      display: grid;
+      grid-template-columns: minmax(0, 1.32fr) minmax(0, 1fr);
+      gap: var(--s3);
+      align-items: start;
+      min-height: 0;
+    }
+    @media (max-width: 900px) { .s4-stage { grid-template-columns: 1fr; } }
+
+    .arca-map {
+      position: relative;
+      background: var(--surface-1);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: var(--s3) var(--s3) var(--s2);
+      display: flex; flex-direction: column; gap: var(--s2);
+      min-width: 0;
+    }
+    .arca-map svg { width: 100%; height: auto; max-height: min(48vh, 430px); display: block; }
+
+    .arca-node { cursor: pointer; }
+    .arca-node .nd-box {
+      fill: rgba(255,255,255,0.045);
+      stroke: var(--line-2); stroke-width: 1.2;
+      transition: fill .18s ease, stroke .18s ease;
+    }
+    .arca-node:hover .nd-box { fill: rgba(63,214,195,0.10); stroke: rgba(63,214,195,0.5); }
+    .arca-node.on .nd-box { fill: rgba(63,214,195,0.17); stroke: var(--teal); stroke-width: 1.9; }
+    .arca-node .nd-code {
+      fill: var(--teal-ink); font-family: var(--font-ui);
+      font-size: 13px; font-weight: 700;
+    }
+    .arca-node .nd-name {
+      fill: var(--ink-2); font-family: var(--font-ui); font-size: 9.2px; font-weight: 500;
+    }
+    .arca-node.on .nd-name { fill: var(--ink); }
+    .arca-node .nd-mil {
+      fill: var(--muted); font-family: var(--font-ui); font-size: 8px; font-weight: 700;
+      letter-spacing: .04em;
+    }
+
+    .arca-gate { cursor: pointer; }
+    .arca-gate .gt-box {
+      fill: rgba(238,177,133,0.13); stroke: rgba(238,177,133,0.55); stroke-width: 1.2;
+      transition: fill .18s ease;
+    }
+    .arca-gate:hover .gt-box, .arca-gate.on .gt-box { fill: rgba(238,177,133,0.3); stroke: var(--amber); stroke-width: 1.8; }
+    .arca-gate .gt-txt { fill: var(--amber); font-family: var(--font-ui); font-size: 9.5px; font-weight: 700; }
+
+    .arca-band { cursor: pointer; }
+    .arca-band .bd-box {
+      fill: rgba(123,166,245,0.08); stroke: rgba(123,166,245,0.35);
+      stroke-width: 1.1; stroke-dasharray: 5 4; transition: fill .18s ease;
+    }
+    .arca-band:hover .bd-box, .arca-band.on .bd-box { fill: rgba(123,166,245,0.18); stroke: var(--genia); }
+    .arca-band .bd-txt { fill: #a9c2f8; font-family: var(--font-ui); font-size: 9.5px; font-weight: 600; }
+
+    .arca-flow { stroke: rgba(63,214,195,0.55); stroke-width: 1.8; fill: none; }
+    .arca-loop { stroke: rgba(238,177,133,0.5); stroke-width: 1.5; fill: none; stroke-dasharray: 5 4; }
+    .arca-cap  { fill: var(--muted); font-family: var(--font-ui); font-size: 8.4px; font-weight: 600; }
+
+    .arca-moments {
+      display: flex; flex-wrap: wrap; gap: 0.36rem;
+      border-top: 1px solid var(--line); padding-top: var(--s2);
+    }
+    .arca-moments .mchip {
+      font-family: var(--font-ui); font-size: var(--t-label); font-weight: 600;
+      letter-spacing: .02em; color: var(--ink-2);
+      background: var(--surface-2); border: 1px solid var(--line-2);
+      border-radius: 999px; padding: 0.32rem 0.68rem; cursor: pointer;
+      transition: all .16s ease;
+    }
+    .arca-moments .mchip:hover { border-color: rgba(63,214,195,0.5); color: var(--ink); }
+    .arca-moments .mchip.on { background: var(--teal-dim); border-color: var(--teal); color: var(--teal-ink); }
+
+    .arca-side { display: flex; flex-direction: column; gap: var(--s2); min-width: 0; }
+
+    .arca-panel {
+      background: var(--panel); border: 1px solid var(--line-2);
+      border-radius: var(--radius); padding: var(--s3);
+      display: flex; flex-direction: column; gap: 0.55rem;
+      max-height: min(62vh, 560px); overflow-y: auto;
+    }
+    .arca-panel::-webkit-scrollbar { width: 6px; }
+    .arca-panel::-webkit-scrollbar-thumb { background: var(--line-2); border-radius: 3px; }
+
+    .ap-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 0.6rem; }
+    .ap-title { font-family: var(--font-display); font-size: var(--t-h2); color: var(--ink); line-height: 1.15; }
+    .ap-kicker { font-size: var(--t-label); letter-spacing: .12em; text-transform: uppercase; color: var(--teal-ink); font-weight: 700; }
+    .ap-lead { font-size: var(--t-small); color: var(--ink-2); line-height: 1.5; }
+
+    .ap-sec { display: flex; flex-direction: column; gap: 0.28rem; }
+    .ap-sec > h4 {
+      font-size: var(--t-label); letter-spacing: .1em; text-transform: uppercase;
+      color: var(--muted); font-weight: 700;
+    }
+    .ap-act {
+      display: flex; gap: 0.5rem; align-items: flex-start;
+      background: var(--surface-1); border: 1px solid var(--line);
+      border-radius: var(--radius-sm); padding: 0.42rem 0.6rem;
+    }
+    .ap-act .ap-id {
+      flex: 0 0 auto; font-family: var(--font-ui); font-weight: 700;
+      font-size: var(--t-label); color: var(--teal-ink);
+      background: var(--teal-dim); border-radius: 6px; padding: 0.12rem 0.34rem;
+    }
+    .ap-act .ap-body { font-size: var(--t-small); color: var(--ink-2); line-height: 1.42; }
+    .ap-act .ap-body b { color: var(--ink); font-weight: 600; }
+    .ap-act .ap-role { display: block; color: var(--muted); font-size: var(--t-label); margin-top: 0.1rem; }
+
+    .ap-tags { display: flex; flex-wrap: wrap; gap: 0.26rem; }
+    .ap-tags span {
+      font-size: var(--t-label); color: var(--ink-2); background: var(--surface-2);
+      border: 1px solid var(--line); border-radius: 999px; padding: 0.18rem 0.5rem;
+    }
+    .ap-tags.out span { border-color: rgba(63,214,195,0.35); color: var(--teal-ink); }
+
+    .ap-note {
+      font-size: var(--t-small); color: var(--ink-2); line-height: 1.45;
+      border-left: 2px solid var(--amber); padding-left: 0.6rem;
+    }
+    .ap-note b { color: var(--amber); }
+    .ap-gate {
+      font-size: var(--t-small); color: var(--ink-2); line-height: 1.45;
+      background: rgba(238,177,133,0.09); border: 1px solid rgba(238,177,133,0.3);
+      border-radius: var(--radius-sm); padding: 0.45rem 0.6rem;
+    }
+    .ap-gate b { color: var(--amber); }
+
+    .ap-actions { display: flex; gap: 0.4rem; align-items: center; }
+    .ap-zoom {
+      font-family: var(--font-ui); font-size: var(--t-label); font-weight: 600;
+      color: var(--teal-ink); background: var(--teal-dim);
+      border: 1px solid rgba(63,214,195,0.4); border-radius: 999px;
+      padding: 0.3rem 0.7rem; cursor: pointer; transition: all .16s ease;
+    }
+    .ap-zoom:hover { background: rgba(63,214,195,0.22); }
+
+    /* zoom overlay de la diapositiva 4 */
+    .arca-zoom {
+      position: fixed; inset: 0; z-index: 90;
+      background: rgba(6,10,12,0.93); backdrop-filter: blur(8px);
+      display: none; padding: clamp(1rem, 4vh, 3rem);
+      overflow-y: auto;
+    }
+    .arca-zoom.open { display: block; animation: rise .24s ease; }
+    .arca-zoom-inner {
+      max-width: 1180px; margin: 0 auto;
+      background: var(--panel); border: 1px solid var(--line-2);
+      border-radius: var(--radius); padding: var(--s4);
+      display: flex; flex-direction: column; gap: var(--s3);
+    }
+    .arca-zoom .az-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: var(--s3); }
+    .arca-zoom .az-grid.one { grid-template-columns: 1fr; }
+    @media (max-width: 820px) { .arca-zoom .az-grid { grid-template-columns: 1fr; } }
+    .arca-zoom .ap-title { font-size: clamp(1.5rem, 2.6vw, 2.1rem); }
+    .arca-zoom-close {
+      align-self: flex-end; font-family: var(--font-ui); font-size: var(--t-small);
+      color: var(--ink-2); background: var(--surface-2); border: 1px solid var(--line-2);
+      border-radius: 999px; padding: 0.3rem 0.8rem; cursor: pointer;
+    }
+
+  
+    /* —— mini-diagrama de entradas / interior / salidas (slide 4) —— */
+    .io-map {
+      display: grid;
+      grid-template-columns: minmax(0,1fr) auto minmax(0,1.05fr) auto minmax(0,1fr);
+      align-items: stretch; gap: 0.3rem;
+      background: rgba(255,255,255,0.022);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-sm);
+      padding: 0.5rem 0.55rem;
+    }
+    .io-col { display: flex; flex-direction: column; gap: 0.24rem; min-width: 0; }
+    .io-col > h5 {
+      font-size: 0.58rem; letter-spacing: .13em; text-transform: uppercase;
+      color: var(--muted); font-weight: 700; margin-bottom: 0.08rem;
+    }
+    .io-chip {
+      font-size: 0.66rem; line-height: 1.28; color: var(--ink-2);
+      background: var(--surface-2); border: 1px solid var(--line);
+      border-left: 2px solid var(--muted);
+      border-radius: 5px; padding: 0.2rem 0.34rem;
+    }
+    .io-chip em { display: block; font-style: normal; color: var(--muted); font-size: 0.58rem; margin-top: 0.05rem; }
+    .io-chip.out { border-left-color: var(--teal); }
+    .io-chip.out em { color: var(--teal-ink); }
+    .io-chip.gate { border-left-color: var(--amber); background: rgba(238,177,133,0.1); }
+    .io-chip.gate em { color: var(--amber); }
+
+    .io-arrow {
+      align-self: center; color: var(--teal);
+      font-size: 1.25rem; font-weight: 700; line-height: 1; padding: 0 0.1rem;
+      text-shadow: 0 0 10px rgba(63,214,195,0.35);
+    }
+    .io-core {
+      display: flex; flex-direction: column; gap: 0.22rem; min-width: 0;
+      background: rgba(63,214,195,0.08);
+      border: 1px solid rgba(63,214,195,0.34);
+      border-radius: 7px; padding: 0.34rem 0.4rem;
+    }
+    .io-core-head {
+      font-size: 0.62rem; font-weight: 700; letter-spacing: .05em;
+      color: var(--teal-ink); text-transform: uppercase;
+    }
+    .io-act {
+      font-size: 0.66rem; line-height: 1.25; color: var(--ink);
+      background: rgba(255,255,255,0.05); border-radius: 5px;
+      padding: 0.18rem 0.32rem;
+    }
+    .io-act b { color: var(--teal-ink); font-weight: 700; }
+    .io-ret {
+      font-size: 0.64rem; line-height: 1.35; color: var(--amber);
+      border: 1px dashed rgba(238,177,133,0.4); border-radius: 6px;
+      padding: 0.24rem 0.44rem; margin-top: 0.3rem;
+    }
+    @media (max-width: 900px) {
+      .io-map { grid-template-columns: 1fr; }
+      .io-arrow { display: none; }
+    }
+
+    /* esquemas de los momentos clave */
+    .io-sch { display: flex; flex-direction: column; gap: 0.34rem; }
+    .io-lane { display: flex; align-items: center; gap: 0.3rem; flex-wrap: wrap; }
+    .io-nest {
+      border: 1px solid rgba(63,214,195,0.35); border-radius: 8px;
+      padding: 0.3rem 0.4rem; font-size: 0.66rem; color: var(--ink-2);
+    }
+    .io-nest > b { color: var(--teal-ink); display: block; font-size: 0.6rem; letter-spacing: .06em; text-transform: uppercase; margin-bottom: 0.18rem; }
+    .io-nest .io-nest { margin-top: 0.26rem; background: rgba(255,255,255,0.03); }
+    .io-pill {
+      font-size: 0.64rem; color: var(--ink-2); background: var(--surface-2);
+      border: 1px solid var(--line-2); border-radius: 999px; padding: 0.16rem 0.44rem;
+    }
+    .io-pill.g { border-color: rgba(238,177,133,0.5); color: var(--amber); }
+    .io-pill.t { border-color: rgba(63,214,195,0.45); color: var(--teal-ink); }
+
+  
+    /* —— actividades clicables dentro del mini-diagrama —— */
+    .io-act {
+      cursor: pointer; border: 1px solid transparent;
+      transition: background .15s ease, border-color .15s ease;
+      display: flex; align-items: center; gap: 0.24rem;
+    }
+    .io-act:hover { background: rgba(63,214,195,0.16); border-color: rgba(63,214,195,0.4); }
+    .io-act.on { background: rgba(63,214,195,0.24); border-color: var(--teal); }
+    .io-act::after {
+      content: "›"; margin-left: auto; color: var(--muted);
+      font-size: 0.8rem; line-height: 1;
+    }
+    .io-act.on::after { content: "▾"; color: var(--teal-ink); }
+
+    .io-hint {
+      font-size: 0.62rem; color: var(--muted); font-style: italic;
+      padding: 0.1rem 0.1rem 0;
+    }
+
+    /* —— roles · herramientas · tareas —— */
+    .rt-map {
+      display: flex; flex-direction: column; gap: 0.34rem;
+      background: rgba(255,255,255,0.022);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-sm);
+      padding: 0.55rem 0.6rem;
+    }
+    .rt-head {
+      font-size: 0.58rem; letter-spacing: .13em; text-transform: uppercase;
+      color: var(--muted); font-weight: 700;
+    }
+    .rt-row {
+      display: grid;
+      grid-template-columns: minmax(0,0.92fr) auto minmax(0,0.78fr) auto minmax(0,1.15fr);
+      gap: 0.28rem; align-items: center;
+      padding: 0.24rem 0; border-top: 1px solid var(--line);
+    }
+    .rt-row:first-of-type { border-top: 0; }
+    .rt-cell { display: flex; flex-wrap: wrap; gap: 0.2rem; min-width: 0; }
+    .rt-tool {
+      font-size: 0.6rem; color: var(--ink-2);
+      background: rgba(255,255,255,0.04); border: 1px dashed var(--line-2);
+      border-radius: 4px; padding: 0.12rem 0.3rem;
+    }
+    .rt-role {
+      font-size: 0.65rem; font-weight: 600; color: var(--amber);
+      background: rgba(238,177,133,0.12); border: 1px solid rgba(238,177,133,0.4);
+      border-radius: 5px; padding: 0.18rem 0.34rem; width: 100%;
+    }
+    .rt-task {
+      font-size: 0.62rem; color: var(--ink-2);
+      background: rgba(63,214,195,0.08); border: 1px solid rgba(63,214,195,0.28);
+      border-radius: 4px; padding: 0.12rem 0.32rem;
+    }
+    .rt-ar { color: var(--muted); font-size: 0.8rem; line-height: 1; text-align: center; }
+    .rt-ar.solid { color: rgba(63,214,195,0.85); font-weight: 700; }
+    @media (max-width: 900px) {
+      .rt-row { grid-template-columns: 1fr; }
+      .rt-ar { display: none; }
+    }
+
+    /* —— esquemas de momentos: más aire —— */
+    .io-sch { gap: 0.55rem; padding: 0.2rem 0.1rem; }
+    .io-sch .io-lane { gap: 0.42rem; row-gap: 0.34rem; padding: 0.1rem 0; }
+    .io-sch .io-pill { padding: 0.28rem 0.6rem; font-size: 0.68rem; line-height: 1.3; }
+    .io-sch .io-nest { padding: 0.5rem 0.6rem; font-size: 0.68rem; line-height: 1.4; }
+    .io-sch .io-nest > b { margin-bottom: 0.3rem; }
+    .io-sch .io-nest .io-nest { margin-top: 0.4rem; }
+    .io-sch .io-ret { margin-top: 0.15rem; padding: 0.4rem 0.55rem; line-height: 1.45; }
+    .io-sch .io-arrow { font-size: 1.05rem; }
+
+    /* destinos de retorno por compuerta */
+    .gt-dest { display: flex; flex-direction: column; gap: 0.26rem; }
+    .gt-line {
+      display: grid; grid-template-columns: minmax(0,1fr) auto auto;
+      gap: 0.32rem; align-items: center;
+    }
+    .gt-cause {
+      font-size: 0.64rem; color: var(--ink-2);
+      background: rgba(238,177,133,0.09); border: 1px solid rgba(238,177,133,0.28);
+      border-radius: 5px; padding: 0.2rem 0.4rem;
+    }
+    .gt-to {
+      font-size: 0.66rem; font-weight: 700; color: var(--teal-ink);
+      background: var(--teal-dim); border: 1px solid rgba(63,214,195,0.42);
+      border-radius: 5px; padding: 0.2rem 0.5rem; white-space: nowrap;
+    }
+
+  
+    /* —— visor del diagrama SPEM a pantalla completa —— */
+    .dg-open {
+      font-family: var(--font-ui); font-size: var(--t-label); font-weight: 600;
+      color: var(--amber); background: rgba(238,177,133,0.12);
+      border: 1px solid rgba(238,177,133,0.45); border-radius: 999px;
+      padding: 0.3rem 0.7rem; cursor: pointer; transition: all .16s ease;
+    }
+    .dg-open:hover { background: rgba(238,177,133,0.24); }
+
+    .dg-view {
+      position: fixed; inset: 0; z-index: 95; display: none;
+      background: #06090b;
+    }
+    .dg-view.open { display: block; }
+    .dg-stage {
+      position: absolute; inset: 0; overflow: hidden; cursor: grab;
+      background:
+        linear-gradient(rgba(255,255,255,0.028) 1px, transparent 1px) 0 0 / 40px 40px,
+        linear-gradient(90deg, rgba(255,255,255,0.028) 1px, transparent 1px) 0 0 / 40px 40px,
+        #06090b;
+    }
+    .dg-stage.drag { cursor: grabbing; }
+    .dg-stage img {
+      position: absolute; top: 0; left: 0;
+      background: #ffffff; border-radius: 4px;
+      transform-origin: 0 0; image-rendering: auto;
+      max-width: none; user-select: none; -webkit-user-drag: none;
+    }
+    .dg-bar {
+      position: absolute; left: 0; right: 0; top: 0; z-index: 2;
+      display: flex; align-items: center; gap: 0.4rem; flex-wrap: wrap;
+      padding: 0.7rem 1rem;
+      background: linear-gradient(#06090b 55%, rgba(6,9,11,0));
+    }
+    .dg-title {
+      font-family: var(--font-display); font-size: 1.05rem; color: var(--ink);
+      margin-right: 0.4rem;
+    }
+    .dg-chip {
+      font-family: var(--font-ui); font-size: var(--t-label); font-weight: 600;
+      color: var(--ink-2); background: var(--surface-2);
+      border: 1px solid var(--line-2); border-radius: 999px;
+      padding: 0.26rem 0.6rem; cursor: pointer; transition: all .15s ease;
+    }
+    .dg-chip:hover { border-color: rgba(63,214,195,0.5); color: var(--ink); }
+    .dg-chip.on { background: var(--teal-dim); border-color: var(--teal); color: var(--teal-ink); }
+    .dg-chip.gate { border-color: rgba(238,177,133,0.45); color: var(--amber); }
+    .dg-chip.gate.on { background: rgba(238,177,133,0.2); }
+    .dg-spacer { flex: 1 1 auto; }
+    .dg-hint {
+      position: absolute; left: 1rem; bottom: 0.9rem; z-index: 2;
+      font-size: var(--t-label); color: var(--muted);
+      background: rgba(6,9,11,0.8); border: 1px solid var(--line);
+      border-radius: 999px; padding: 0.24rem 0.7rem;
+    }
+    .dg-miss {
+      position: absolute; inset: 0; display: none;
+      align-items: center; justify-content: center; padding: 2rem;
+    }
+    .dg-miss.show { display: flex; }
+    .dg-miss > div {
+      max-width: 640px; background: var(--panel);
+      border: 1px solid var(--line-2); border-radius: var(--radius);
+      padding: var(--s4); color: var(--ink-2); font-size: var(--t-small); line-height: 1.55;
+    }
+    .dg-miss h4 { font-family: var(--font-display); font-size: 1.2rem; color: var(--ink); margin-bottom: 0.6rem; }
+    .dg-miss code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0.85em;
+      background: var(--surface-2); border-radius: 4px; padding: 0.1rem 0.3rem; color: var(--teal-ink);
+    }
+    .dg-miss ol { margin: 0.6rem 0 0 1.1rem; display: flex; flex-direction: column; gap: 0.3rem; }
+
+  </style>
+  <template id="__bundler_thumbnail" data-bg-color="#0a0f12">
+    <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+      <rect width="1200" height="800" fill="#0a0f12"/>
+      <line x1="220" y1="400" x2="980" y2="400" stroke="#3fd6c3" stroke-width="14" stroke-linecap="round"/>
+      <circle cx="320" cy="400" r="20" fill="#26343a" stroke="#8ba0a9" stroke-width="8"/>
+      <circle cx="600" cy="400" r="42" fill="#3fd6c3"/>
+      <circle cx="880" cy="400" r="20" fill="#26343a" stroke="#eeb185" stroke-width="8"/>
+      <text x="600" y="290" fill="#eaf1f4" font-family="Georgia, serif" font-size="112" font-weight="700" text-anchor="middle">RA</text>
+    </svg>
+  </template>
+</head>
+<body>
+  <div class="fs-hint">← → · Espacio · F pantalla completa</div>
+
+  <div class="deck" id="deck">
+    <!-- ================= SLIDE 1 ================= -->
+    <section class="slide active" data-slide="0" aria-label="Dominio RA">
+      <header class="topbar">
+        <div>
+          <div class="eyebrow">Equipo 2 · EAFIT</div>
+          <h1 class="slide-title">Realidad aumentada</h1>
+        </div>
+        <p class="meta"><strong>ARCA</strong> · Augmented Reality Continuous Assurance<br />Quinnie · Manuel · Jonathan · Lina · Alejandro</p>
+      </header>
+
+      <div class="stage s1-stage">
+        <div class="continuum" aria-label="Continuo de realidad mixta">
+          <div class="continuum-label">Continuo RM | Realidad → virtualidad</div>
+          <div class="continuum-track">
+            <div class="c-node"><strong>Mundo real</strong><span>Entorno físico</span></div>
+            <div class="c-node ra"><strong>RA</strong><span>Real enriquecido con digital</span></div>
+            <div class="c-node"><strong>RV</strong><span>Entorno sintético</span></div>
+          </div>
+        </div>
+
+        <div class="s1-left">
+          <div class="pipeline" aria-label="Arquitectura en capas">
+            <div class="continuum-label">Arquitectura típica</div>
+          
+            <div class="pipeline-row">
+              <span class="pipe-unit"><div class="pipe-chip"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7l2-3h4l2 3"/><circle cx="12" cy="13.5" r="3.2"/></svg>Captura</div><span class="pipe-arrow">→</span></span>
+              <span class="pipe-unit"><div class="pipe-chip"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="2.4" fill="currentColor" stroke="none"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg>Tracking</div><span class="pipe-arrow">→</span></span>
+              <span class="pipe-unit"><div class="pipe-chip"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9L12 3z"/><path d="M4 7.5L12 12l8-4.5M12 12v9"/></svg>Modelo</div><span class="pipe-arrow">→</span></span>
+              <span class="pipe-unit"><div class="pipe-chip"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M9 9h6v6H9z"/></svg>Lógica</div><span class="pipe-arrow">→</span></span>
+              <span class="pipe-unit"><div class="pipe-chip"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 15l5-5 4 4 5-6 4 5"/></svg>Render</div><span class="pipe-arrow">→</span></span>
+              <span class="pipe-unit"><div class="pipe-chip"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 12l2 2 4-5"/><circle cx="12" cy="12" r="9"/></svg>Interacción</div></span>
+            </div>
+            <h4>Tiempo real y baja latencia E2E</h4>
+          </div>
+          <div class="cycle" aria-label="Ciclo de vida">
+            <div class="continuum-label">Ciclo de vida · iterativo, 7 pasos</div>
+            <div class="pipeline-row" role="img" aria-label="Ideación, Requisitos, Diseño, Prototipo, Implementación, Evaluación, Deploy — vuelve a Ideación">
+              <span class="pipe-unit"><div class="pipe-chip">1 Ideación</div><span class="pipe-arrow">→</span></span>
+              <span class="pipe-unit"><div class="pipe-chip">2 Requisitos</div><span class="pipe-arrow">→</span></span>
+              <span class="pipe-unit"><div class="pipe-chip">3 Diseño</div><span class="pipe-arrow">→</span></span>
+              <span class="pipe-unit"><div class="pipe-chip">4 Prototipo</div><span class="pipe-arrow">→</span></span>
+              <span class="pipe-unit"><div class="pipe-chip">5 Impl.</div><span class="pipe-arrow">→</span></span>
+              <span class="pipe-unit"><div class="pipe-chip">6 Eval.</div><span class="pipe-arrow">→</span></span>
+              <span class="pipe-unit"><div class="pipe-chip">7 Deploy</div><span class="pipe-arrow" title="Vuelve a Ideación">↺</span></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="s1-right">
+          <div class="detail-row" id="s1-pills" role="toolbar" aria-label="Detalle dominio">
+            <button class="pill" data-panel="def" aria-expanded="true">Qué es · estado</button>
+            <button class="pill" data-panel="abordaje" aria-expanded="false">Abordaje</button>
+            <button class="pill" data-panel="metodos" aria-expanded="false">Metodologías</button>
+            <button class="pill" data-panel="principios" aria-expanded="false">Principios</button>
+          </div>
+
+          <div class="s1-panels">
+          <div class="panel panel-fill open" id="panel-def">
+            <div class="quote-box">
+              <ul class="quote-list">
+                <li>Combina objetos reales y virtuales en un entorno real</li>
+                <li>Interactúa en tiempo real</li>
+                <li>Registra (alinea) objetos reales y virtuales en 3D</li>
+              </ul>
+            </div>
+            <div class="mini-cards">
+              <div class="mini-card">
+                <div class="mini-icon"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="7" width="18" height="13" rx="2"/><circle cx="12" cy="13.5" r="3.2"/></svg></div>
+                <div><b>De laboratorio a producto</b><span>Hoy en móviles y wearables</span></div>
+              </div>
+              <div class="mini-card">
+                <div class="mini-icon"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 6h16M4 12h16M4 18h10"/></svg></div>
+                <div><b>ISMAR</b><span>tracking → interacción → display → evaluación →  rendering</span></div>
+              </div>
+              <div class="mini-card">
+                <div class="mini-icon"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 11h1v6h1"/></svg></div>
+                <div><b>Retos hoy</b><span>Adopción, ética, accesibilidad; display, tracking e interacción</span></div>
+              </div>
+              <div class="mini-card">
+                <div class="mini-icon"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 12l2 2 4-5"/><circle cx="12" cy="12" r="9"/></svg></div>
+                <div><b>Viabilidad</b><span>Móvil e industria/educación; see-through “indistinguible”</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="panel panel-fill" id="panel-abordaje">
+            <h3>Cómo se abordan proyectos</h3>
+            <p>Sistemas socio-técnicos: hardware + software + contenido.</p>
+            <div class="stepper">
+              <div class="step-item"><span class="step-num">1</span><p>Caso de uso y contexto</p></div>
+              <div class="step-item"><span class="step-num">2</span><p>Plataforma / display (móvil, HMD, colaborativo)</p></div>
+              <div class="step-item"><span class="step-num">3</span><p>Anclaje espacial (marcadores, SLAM, VIO…)</p></div>
+              <div class="step-item"><span class="step-num">4</span><p>Interfaz espacial e interacción</p></div>
+              <div class="step-item"><span class="step-num">5</span><p>Implementación iterativa + evaluación con usuarios</p></div>
+            </div>
+          </div>
+          <div class="panel panel-fill" id="panel-metodos">
+            <h3>Metodologías (no hay una única estándar)</h3>
+            <div class="mini-cards">
+              <div class="mini-card">
+                <div class="mini-icon"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 5.5A2.5 2.5 0 016.5 3H20v15.5A2.5 2.5 0 0117.5 21H4V5.5z"/><path d="M4 18.5A2.5 2.5 0 016.5 16H20"/></svg></div>
+                <div><b>MDLC adaptado a RA</b><span>Ciclo de vida de desarrollo multimedia ajustado a RA</span></div>
+              </div>
+              <div class="mini-card">
+                <div class="mini-icon"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="3.2"/><path d="M5 19c1.5-3.5 4-5 7-5s5.5 1.5 7 5"/></svg></div>
+                <div><b>HCD / ISO 9241-210</b><span>+ usabilidad RA</span></div>
+              </div>
+              <div class="mini-card">
+                <div class="mini-icon"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 12l2 2 4-5"/><circle cx="12" cy="12" r="9"/></svg></div>
+                <div><b>HCI / evaluación específica</b><span>Métodos propios de evaluación de RA</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="panel panel-fill" id="panel-principios">
+            <h3>Principios de diseño</h3>
+            <div class="mini-cards">
+              <div class="mini-card">
+                <div class="mini-icon"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><circle cx="12" cy="12" r="8"/></svg></div>
+                <div><b>Registro espacial</b><span>Estable, baja latencia percibida</span></div>
+              </div>
+              <div class="mini-card">
+                <div class="mini-icon"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="2.6"/></svg></div>
+                <div><b>Claridad visual</b><span>Aumento sin ocluir lo relevante</span></div>
+              </div>
+              <div class="mini-card">
+                <div class="mini-icon"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="6" width="8" height="12" rx="1.5"/><path d="M15 8h6M15 12h6M15 16h4"/></svg></div>
+                <div><b>Interacción</b><span>Alineada a dispositivo y usuario</span></div>
+              </div>
+              <div class="mini-card">
+                <div class="mini-icon"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l7 3.5v5c0 5-3 8-7 9.5-4-1.5-7-4.5-7-9.5v-5L12 3z"/></svg></div>
+                <div><b>Confort y seguridad</b><span>Privacidad y continuidad</span></div>
+              </div>
+              <div class="mini-card">
+                <div class="mini-icon"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="8" cy="9" r="3"/><circle cx="17" cy="9" r="3"/><path d="M2 20c0-3 2.5-5 6-5s6 2 6 5M13 20c0-2.5 1.8-4.2 4.5-4.2S22 17.5 22 20"/></svg></div>
+                <div><b>Awareness</b><span>Coordinación en escenarios colaborativos</span></div>
+              </div>
+            </div>
+          </div>
+          </div>
+        </div>
+
+        <div class="refs-toggle">
+          <div class="detail-row">
+            <button class="pill refs-open" aria-expanded="false">Referencias</button>
+          </div>
+          <div class="panel refs-panel">
+            <h3>Referencias · dominio RA</h3>
+            <ol class="cite-list">
+              <li>R. T. Azuma, "A survey of augmented reality," <em>Presence</em>, 1997.</li>
+              <li>R. Azuma et al., "Recent advances in augmented reality," <em>IEEE CG&amp;A</em>, 2001.</li>
+              <li>P. Milgram and F. Kishino, "A taxonomy of mixed reality visual displays," <em>IEICE</em>, 1994.</li>
+              <li>M. Billinghurst, A. Clark, and G. Lee, "A survey of augmented reality," <em>Found. Trends HCI</em>, 2015.</li>
+              <li>F. Zhou et al., "Trends in AR tracking, interaction and display," <em>IEEE ISMAR</em>, 2008.</li>
+              <li>K. Kim et al., "Revisiting trends in AR research (2008–2017)," <em>IEEE TVCG</em>, 2018.</li>
+              <li>Y. Goh et al., "Wearable augmented reality…," <em>IEEE TVCG</em>, 2023.</li>
+              <li>T. A. Syed et al., "In-depth review of augmented reality…," <em>Sensors</em>, 2023.</li>
+              <li>J. S. Devagiri et al., "The essentials… get started in AR," <em>IEEE Access</em>, 2024.</li>
+              <li>D. Schmalstieg and T. Höllerer, <em>Augmented Reality: Principles and Practice</em>, 2016.</li>
+              <li>M. Billinghurst and H. Kato, "Collaborative augmented reality," <em>CACM</em>, 2002.</li>
+              <li>M. Sereno et al., "Collaborative work in augmented reality," <em>IEEE TVCG</em>, 2022.</li>
+              <li>R. Roedavan et al., "A framework… MDLC," <em>JIIG</em>, 2025.</li>
+              <li>Y.-Y. Cho et al., <em>AR Usability Evaluation Framework</em> (NIST IR 8422), 2022.</li>
+              <li>ISO 9241-210:2019, <em>Human-centred design for interactive systems</em>.</li>
+              <li>A. Dünser and M. Billinghurst, "Evaluating AR systems," in <em>Handbook of AR</em>, 2011.</li>
+              <li>A. Dünser et al., "Applying HCI principles to AR systems design," 2007.</li>
+              <li>T. C. Endsley et al., "AR design heuristics…," <em>HFES</em>, 2017.</li>
+              <li>P. E. Kourouthanassis et al., "Demystifying the design of mobile AR…," <em>MTA</em>, 2015.</li>
+              <li>T. Reicher et al., "Software architectures for AR systems," 2003.</li>
+              <li>A. MacWilliams et al., "Design patterns for AR systems," <em>MIXER</em>, 2004.</li>
+              <li>ETSI GS ARF 003, <em>AR framework architecture</em>, 2023.</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= SLIDE 2 ================= -->
+    <section class="slide" data-slide="1" aria-label="Enfoques">
+      <header class="topbar">
+        <div>
+          <div class="eyebrow">Equipo 2 · EAFIT</div>
+          <h1 class="slide-title">Cuatro enfoques</h1>
+        </div>
+        <p class="meta">HCD · DevOps · EDA · GenIA<br />HCD y DevOps obligatorios · EDA y GenIA condicionales</p>
+      </header>
+
+      <div class="stage s2-stage">
+        <div class="quads" id="quads">
+          <button class="quad" data-key="genia" type="button">
+            <div class="quad-top">
+              <div class="quad-icon" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3v3M12 18v3M3 12h3M18 12h3"/><circle cx="12" cy="12" r="4"/><path d="M7.5 7.5l1.5 1.5M15 15l1.5 1.5M16.5 7.5L15 9M9 15l-1.5 1.5"/></svg>
+              </div>
+              <h3>GenIA</h3>
+            </div>
+            <p>Modelos que generan contenido nuevo a partir de patrones en grandes volúmenes de datos.</p>
+            <span class="hint">Abrir E4</span>
+          </button>
+
+          <button class="quad" data-key="devops" type="button">
+            <div class="quad-top">
+              <div class="quad-icon" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 12h4l2-6 4 12 2-6h4"/><circle cx="5" cy="18" r="2"/><circle cx="19" cy="18" r="2"/></svg>
+              </div>
+              <h3>DevOps</h3>
+            </div>
+            <p>Acorta el tiempo cambio → producción con calidad: colaboración, automatización y CI/CD.</p>
+            <span class="hint">Abrir E4</span>
+          </button>
+
+          <button class="quad" data-key="eda" type="button">
+            <div class="quad-top">
+              <div class="quad-icon" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="6" r="2.5"/><circle cx="18" cy="18" r="2.5"/><path d="M8.5 11.2L15.2 7.2M8.5 12.8L15.2 16.8"/></svg>
+              </div>
+              <h3>EDA</h3>
+            </div>
+            <p>Eventos asíncronos entre componentes desacoplados (productor–consumidor vía bus).</p>
+            <span class="hint">Abrir E4</span>
+          </button>
+
+          <button class="quad" data-key="hcd" type="button">
+            <div class="quad-top">
+              <div class="quad-icon" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="3.2"/><path d="M5 19c1.5-3.5 4-5 7-5s5.5 1.5 7 5"/></svg>
+              </div>
+              <h3>HCD</h3>
+            </div>
+            <p>Diseño centrado en usuarios y contexto; normalizado en ISO 9241-210.</p>
+            <span class="hint">Abrir E4</span>
+          </button>
+        </div>
+
+        <div class="refs-toggle">
+          <div class="detail-row">
+            <button class="pill refs-open" aria-expanded="false">Referencias</button>
+          </div>
+          <div class="panel refs-panel">
+            <h3>Referencias · cuatro enfoques</h3>
+            <div class="cite-group-title">GenIA</div>
+            <ol class="cite-list" start="23">
+              <li>NIST, <em>AI Risk Management Framework: Generative Artificial Intelligence Profile</em>.</li>
+              <li>Google, <em>Retrieval-Augmented Generation (RAG)</em> — documentación / guía.</li>
+            </ol>
+            <div class="cite-group-title">DevOps</div>
+            <ol class="cite-list" start="25">
+              <li>L. Bass, I. Weber, and L. Zhu, <em>DevOps: A Software Architect's Perspective</em>, 2015.</li>
+              <li>R. Jabbari et al., "What is DevOps? A systematic mapping study…," <em>XP Workshops</em>, 2016.</li>
+              <li>D. Vaquero-Melchor et al., "SARA: … collaborative augmented reality," <em>Appl. Sci.</em>, 2020.</li>
+            </ol>
+            <div class="cite-group-title">EDA</div>
+            <ol class="cite-list" start="28">
+              <li>H. Cabane and K. Farias, "On the impact of event-driven architecture…," <em>FGCS</em>, 2024.</li>
+              <li>J. Rosa-Bilbao et al., "CEPEDALoCo…," <em>Internet of Things</em>, 2023.</li>
+              <li>R. Oberhauser, "VR-EDStream+EDA…," <em>eKNOW</em>, 2023.</li>
+              <li>AsyncAPI Initiative, <em>AsyncAPI Specification v3.x</em>.</li>
+            </ol>
+            <div class="cite-group-title">HCD</div>
+            <ol class="cite-list" start="32">
+              <li>ISO 9241-210:2019 (también dominio).</li>
+              <li>A. Seffah et al., Eds., <em>Human-Centered Software Engineering</em>, 2005.</li>
+              <li>X. Ferre et al., "Which, when and how usability techniques…," 2005.</li>
+              <li>S. Graser et al., "UX evaluation of AR: a systematic literature review," <em>CENTRIC</em>, 2024.</li>
+              <li>A. Picardi and G. Caruso, "User-centered evaluation framework… AR," <em>MTI</em>, 2024.</li>
+              <li>J. Nielsen, "Heuristic evaluation," 1994.</li>
+              <li>F. Paternò, <em>Model-Based Design…</em> (ConcurTaskTrees), 200f0.</li>
+              <li>OMG, <em>IFML 1.0</em>, 2015.</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= SLIDE 3 ================= -->
+    <section class="slide" data-slide="2" aria-label="Espina y valor diferencial">
+      <header class="topbar">
+        <div>
+          <div class="eyebrow">Equipo 2 · EAFIT</div>
+          <h1 class="slide-title">Espina de pescado</h1>
+        </div>
+      </header>
+
+      <div class="stage s3-stage">
+        <div class="fish-wrap">
+          <p class="meta">Seis ejes de Céret et al. · de la espina al modelo de proceso <strong>ARCA</strong><br /></p>
+          <svg viewBox="0 0 720 360" role="img" aria-label="Diagrama de espina de pescado con seis ejes">
+            <!-- spine -->
+            <line x1="70" y1="180" x2="600" y2="180" stroke="#2ec4b6" stroke-width="6" stroke-linecap="round"/>
+            <polygon points="600,180 655,155 655,205" fill="#2ec4b6"/>
+            <text x="40" y="186" fill="#9aafb8" font-family="Sora,sans-serif" font-size="12" font-weight="700">RA</text>
+            <text x="668" y="186" fill="#e8a87c" font-family="Sora,sans-serif" font-size="11" font-weight="700">Método</text>
+
+            <!-- bones top -->
+            <g class="bone" data-axis="ciclo">
+              <rect class="bone-hit" x="140" y="40" width="150" height="120" rx="8" fill="transparent"/>
+              <line x1="180" y1="180" x2="230" y2="70" stroke="#9aafb8" stroke-width="3"/>
+              <circle cx="230" cy="70" r="7" fill="#2ec4b6"/>
+              <text x="242" y="66">Ciclo</text>
+            </g>
+            <g class="bone" data-axis="artefactos">
+              <rect class="bone-hit" x="300" y="40" width="160" height="120" rx="8" fill="transparent"/>
+              <line x1="320" y1="180" x2="370" y2="70" stroke="#9aafb8" stroke-width="3"/>
+              <circle cx="370" cy="70" r="7" fill="#2ec4b6"/>
+              <text x="382" y="66">Artefactos</text>
+            </g>
+            <g class="bone" data-axis="madurez">
+              <rect class="bone-hit" x="460" y="40" width="140" height="120" rx="8" fill="transparent"/>
+              <line x1="460" y1="180" x2="510" y2="70" stroke="#9aafb8" stroke-width="3"/>
+              <circle cx="510" cy="70" r="7" fill="#2ec4b6"/>
+              <text x="522" y="66">Madurez</text>
+            </g>
+
+            <!-- bones bottom -->
+            <g class="bone" data-axis="colaboracion">
+              <rect class="bone-hit" x="140" y="200" width="170" height="120" rx="8" fill="transparent"/>
+              <line x1="200" y1="180" x2="250" y2="290" stroke="#9aafb8" stroke-width="3"/>
+              <circle cx="250" cy="290" r="7" fill="#e8a87c"/>
+              <text x="262" y="294">Colaboración</text>
+            </g>
+            <g class="bone" data-axis="uso">
+              <rect class="bone-hit" x="300" y="200" width="180" height="120" rx="8" fill="transparent"/>
+              <line x1="340" y1="180" x2="390" y2="290" stroke="#9aafb8" stroke-width="3"/>
+              <circle cx="390" cy="290" r="7" fill="#e8a87c"/>
+              <text x="402" y="294">Uso recomendado</text>
+            </g>
+            <g class="bone" data-axis="flexibilidad">
+              <rect class="bone-hit" x="460" y="200" width="160" height="120" rx="8" fill="transparent"/>
+              <line x1="480" y1="180" x2="530" y2="290" stroke="#9aafb8" stroke-width="3"/>
+              <circle cx="530" cy="290" r="7" fill="#e8a87c"/>
+              <text x="542" y="294">Flexibilidad</text>
+            </g>
+          </svg>
+
+          <div class="phase-diagram" id="phase-diagram" aria-hidden="true">
+            <div class="pd-flow">
+              <div class="pd-step"><span class="pd-num">F1</span><span class="pd-name">Encuadre y contexto de uso</span></div>
+              <div class="pd-step"><span class="pd-num">F2</span><span class="pd-name">Requisitos y contratos</span></div>
+              <div class="pd-step"><span class="pd-num">F3</span><span class="pd-name">Diseño y arquitectura</span></div>
+              <div class="pd-step"><span class="pd-num">F4</span><span class="pd-name">Activos y prototipado</span></div>
+              <div class="pd-gate g3"><span class="pd-gate-tag">G3 · Generación *</span><span class="pd-gate-cond">Condicional — retorna a F4 si falla procedencia o calidad</span></div>
+              <div class="pd-step"><span class="pd-num">F5</span><span class="pd-name">Construcción — doble pipeline (código + contenido)</span></div>
+              <div class="pd-step"><span class="pd-num">F6</span><span class="pd-name">Verificación</span></div>
+              <div class="pd-gate g1"><span class="pd-gate-tag">G1 · Rendimiento</span><span class="pd-gate-cond">Retorna a F2, F3 o F5 según la causa</span></div>
+              <div class="pd-gate g2"><span class="pd-gate-tag">G2 · Experiencia y resp. social</span><span class="pd-gate-cond">Retorna a F1, F2, F3 o F4 según la causa</span></div>
+              <div class="pd-step"><span class="pd-num">F7</span><span class="pd-name">Despliegue, operación y evolución</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="side-col">
+          <div class="diff">
+            <h3>Valor diferencial</h3>
+            <p>Frente a Spiral, RAD y XP — mismos ejes, comparación explícita:</p>
+            <ul class="diff-list">
+              <li><strong>Compuertas de retorno</strong> — no solo bloquean: prescriben la fase de destino y tienen un rol nominado</li>
+              <li><strong>Autoridad separada</strong> — el PO decide el <em>qué</em>; el líder técnico, el <em>cómo</em></li>
+              <li><strong>Frontera declarada</strong> — se formaliza lo que cruza entre equipos o entra al producto</li>
+              <li><strong>Doble pipeline</strong> — código y contenido, ambos de primera clase, convergentes en A5.3</li>
+              <li><strong>Variabilidad configurable</strong> — HCD y DevOps obligatorios; EDA y GenIA condicionales</li>
+            </ul>
+          </div>
+          <div class="engine-legend" aria-hidden="true">
+            <span style="color:var(--genia)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3v3M12 18v3M3 12h3M18 12h3"/><circle cx="12" cy="12" r="4"/><path d="M7.5 7.5l1.5 1.5M15 15l1.5 1.5M16.5 7.5L15 9M9 15l-1.5 1.5"/></svg>GenIA</span>
+            <span style="color:var(--devops)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 12h4l2-6 4 12 2-6h4"/><circle cx="5" cy="18" r="2"/><circle cx="19" cy="18" r="2"/></svg>DevOps</span>
+            <span style="color:var(--eda)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="6" r="2.5"/><circle cx="18" cy="18" r="2.5"/><path d="M8.5 11.2L15.2 7.2M8.5 12.8L15.2 16.8"/></svg>EDA</span>
+            <span style="color:var(--hcd)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="3.2"/><path d="M5 19c1.5-3.5 4-5 7-5s5.5 1.5 7 5"/></svg>HCD</span>
+          </div>
+          <div class="axis-panel open" id="axis-panel">
+            <h3>Toca una espina</h3>
+            <p>Cada eje consolida el aporte de los cuatro enfoques. Selecciona Ciclo, Colaboración, Artefactos, Uso, Madurez o Flexibilidad.</p>
+          </div>
+        </div>
+
+        <div class="refs-toggle">
+          <div class="detail-row">
+            <button class="pill refs-open" aria-expanded="false">Referencias</button>
+          </div>
+          <div class="panel refs-panel">
+            <h3>Referencias · espina / propuesta</h3>
+            <ol class="cite-list" start="40">
+              <li>E. Céret et al., "A taxonomy of design methods process models," <em>Inf. Softw. Technol.</em>, 2013. doi:10.1016/j.infsof.2012.11.002</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide" data-slide="3" aria-label="Modelo de proceso ARCA en SPEM 2.0">
+      <header class="topbar">
+        <div>
+          <div class="eyebrow">Equipo 2 · EAFIT</div>
+          <h1 class="slide-title">ARCA · modelo de proceso</h1>
+        </div>
+        <p class="meta">Especificado en <strong>SPEM 2.0</strong> · 7 fases · 18 actividades · 11 roles<br />Toca una fase o un momento del proceso</p>
+      </header>
+
+      <div class="stage s4-stage">
+        <div class="arca-map">
+          <svg viewBox="0 0 680 336" role="img" aria-label="Mapa del modelo de proceso ARCA: siete fases, compuertas, hitos y actividades de apoyo">
+            <!-- cadencias -->
+            <g class="arca-band" data-node="cadencias" tabindex="0" role="button" aria-label="Cadencias anidadas">
+              <rect class="bd-box" x="20" y="6" width="640" height="26" rx="8"/>
+              <text class="bd-txt" x="32" y="23">↻ Entrega continua  ›  Microciclo 2 semanas  ›  Incremento validado 1–3 meses</text>
+            </g>
+
+            <!-- flechas fila 1 -->
+            <path class="arca-flow" d="M140 78 L155 78" marker-end="url(#arw)"/>
+            <path class="arca-flow" d="M275 78 L290 78" marker-end="url(#arw)"/>
+            <path class="arca-flow" d="M410 78 L425 78" marker-end="url(#arw)"/>
+            <!-- bajada F4 -> F5 -->
+            <path class="arca-flow" d="M485 111 L485 138 L485 160" marker-end="url(#arw)"/>
+            <!-- flechas fila 2 (derecha a izquierda) -->
+            <path class="arca-flow" d="M425 193 L410 193" marker-end="url(#arw)"/>
+            <path class="arca-flow" d="M290 193 L275 193" marker-end="url(#arw)"/>
+            <!-- retorno / nuevo microciclo -->
+            <path class="arca-loop" d="M155 210 L92 210 L92 95 L20 95" marker-end="url(#arwo)"/>
+            <text class="arca-cap" x="98" y="150">nuevo microciclo</text>
+
+            <defs>
+              <marker id="arw" markerWidth="7" markerHeight="7" refX="5.5" refY="3" orient="auto">
+                <path d="M0 0 L6 3 L0 6 z" fill="rgba(63,214,195,0.75)"/>
+              </marker>
+              <marker id="arwo" markerWidth="7" markerHeight="7" refX="5.5" refY="3" orient="auto">
+                <path d="M0 0 L6 3 L0 6 z" fill="rgba(238,177,133,0.7)"/>
+              </marker>
+            </defs>
+
+            <!-- fila 1 -->
+            <g class="arca-node" data-node="f1" tabindex="0" role="button" aria-label="Fase 1">
+              <rect class="nd-box" x="20" y="46" width="120" height="65" rx="11"/>
+              <text class="nd-code" x="31" y="66">F1</text>
+              <text class="nd-mil" x="118" y="66" text-anchor="end">M1</text>
+              <text class="nd-name" x="31" y="82">Encuadre y</text>
+              <text class="nd-name" x="31" y="94">contexto de uso</text>
+            </g>
+            <g class="arca-node" data-node="f2" tabindex="0" role="button" aria-label="Fase 2">
+              <rect class="nd-box" x="155" y="46" width="120" height="65" rx="11"/>
+              <text class="nd-code" x="166" y="66">F2</text>
+              <text class="nd-mil" x="253" y="66" text-anchor="end">M2</text>
+              <text class="nd-name" x="166" y="82">Requisitos y</text>
+              <text class="nd-name" x="166" y="94">contratos</text>
+            </g>
+            <g class="arca-node" data-node="f3" tabindex="0" role="button" aria-label="Fase 3">
+              <rect class="nd-box" x="290" y="46" width="120" height="65" rx="11"/>
+              <text class="nd-code" x="301" y="66">F3</text>
+              <text class="nd-mil" x="388" y="66" text-anchor="end">M3</text>
+              <text class="nd-name" x="301" y="82">Diseño y</text>
+              <text class="nd-name" x="301" y="94">arquitectura</text>
+            </g>
+            <g class="arca-node" data-node="f4" tabindex="0" role="button" aria-label="Fase 4">
+              <rect class="nd-box" x="425" y="46" width="120" height="65" rx="11"/>
+              <text class="nd-code" x="436" y="66">F4</text>
+              <text class="nd-name" x="436" y="82">Activos y</text>
+              <text class="nd-name" x="436" y="94">prototipado</text>
+            </g>
+            <g class="arca-gate" data-node="g3" tabindex="0" role="button" aria-label="Compuerta G3">
+              <rect class="gt-box" x="560" y="60" width="52" height="24" rx="6"/>
+              <text class="gt-txt" x="586" y="76" text-anchor="middle">G3.1 *</text>
+            </g>
+
+            <!-- fila 2 -->
+            <g class="arca-node" data-node="f5" tabindex="0" role="button" aria-label="Fase 5">
+              <rect class="nd-box" x="425" y="161" width="120" height="65" rx="11"/>
+              <text class="nd-code" x="436" y="181">F5</text>
+              <text class="nd-name" x="436" y="197">Construcción</text>
+              <text class="nd-name" x="436" y="209">doble pipeline</text>
+            </g>
+            <g class="arca-gate" data-node="g3" tabindex="0" role="button" aria-label="Compuerta G3 en F5">
+              <rect class="gt-box" x="560" y="182" width="52" height="24" rx="6"/>
+              <text class="gt-txt" x="586" y="198" text-anchor="middle">G3.2 *</text>
+            </g>
+            <g class="arca-node" data-node="f6" tabindex="0" role="button" aria-label="Fase 6">
+              <rect class="nd-box" x="290" y="161" width="120" height="65" rx="11"/>
+              <text class="nd-code" x="301" y="181">F6</text>
+              <text class="nd-mil" x="388" y="181" text-anchor="end">M4</text>
+              <text class="nd-name" x="301" y="197">Verificación</text>
+            </g>
+            <g class="arca-gate" data-node="g1" tabindex="0" role="button" aria-label="Compuerta G1">
+              <rect class="gt-box" x="290" y="232" width="56" height="23" rx="6"/>
+              <text class="gt-txt" x="318" y="247" text-anchor="middle">G1</text>
+            </g>
+            <g class="arca-gate" data-node="g2" tabindex="0" role="button" aria-label="Compuerta G2">
+              <rect class="gt-box" x="354" y="232" width="56" height="23" rx="6"/>
+              <text class="gt-txt" x="382" y="247" text-anchor="middle">G2</text>
+            </g>
+            <g class="arca-node" data-node="f7" tabindex="0" role="button" aria-label="Fase 7">
+              <rect class="nd-box" x="155" y="161" width="120" height="65" rx="11"/>
+              <text class="nd-code" x="166" y="181">F7</text>
+              <text class="nd-name" x="166" y="197">Despliegue,</text>
+              <text class="nd-name" x="166" y="209">operación, evol.</text>
+            </g>
+
+            <!-- banda de apoyo -->
+            <g class="arca-band" data-node="apoyo" tabindex="0" role="button" aria-label="Actividades de apoyo">
+              <rect class="bd-box" x="20" y="278" width="640" height="42" rx="9"/>
+              <text class="bd-txt" x="32" y="296">S1–S7 · actividades de apoyo transversales</text>
+              <text class="arca-cap" x="32" y="311">configuración dual · derechos · GenIA * · compuertas · riesgos · medición · conocimiento</text>
+            </g>
+          </svg>
+
+          <div class="arca-moments" id="arca-moments" role="toolbar" aria-label="Momentos del proceso">
+            <button type="button" class="mchip" data-node="cadencias">Cadencias</button>
+            <button type="button" class="mchip" data-node="pipelines">Doble pipeline</button>
+            <button type="button" class="mchip" data-node="compuertas">Compuertas y retornos</button>
+            <button type="button" class="mchip" data-node="roles">11 roles</button>
+            <button type="button" class="mchip" data-node="hitos">Hitos M1–M4</button>
+            <button type="button" class="mchip" data-node="apoyo">Apoyo S1–S7</button>
+            <button type="button" class="mchip" data-node="patrones">Patrones CP1–CP4</button>
+            <button type="button" class="mchip" data-node="medicion">Medición y valor neto</button>
+            <button type="button" class="dg-open" id="dg-open-all" style="margin-left:auto">◱ Ver el diagrama SPEM completo</button>
+          </div>
+        </div>
+
+        <div class="arca-side">
+          <div class="arca-panel" id="arca-panel"></div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <nav class="nav" aria-label="Navegación de diapositivas">
+    <button type="button" id="prev" aria-label="Anterior">‹</button>
+    <div class="dots" id="dots"></div>
+    <button type="button" id="next" aria-label="Siguiente">›</button>
+  </nav>
+
+  <script>
+    const approaches = {
+      genia: {
+        title: "GenIA",
+        color: "#5b8def",
+        e4: [
+          ["Qué es", "Regla de oro: no es un bloque aislado de código, sino un flujo dinámico de contenido e instrucciones. Apoya requisitos, diseño, código, pruebas, documentación y mantenimiento."],
+          ["Relación con IS", "Apoya etapas del ciclo de vida; no sustituye ingeniería — exige datos, evaluación, trazabilidad y supervisión humana."],
+          ["Ejecución", { type: "flow", steps: ["Problema", "Validar datos", "Diseñar", "MVP", "Evaluar", "Desplegar/Monitorear"], note: "RAG fundamenta respuestas en datos reales; gobernanza NIST AI 600-1 para mitigar sesgos y alucinaciones" }],
+          ["Técnicas / herramientas", { type: "tags", groups: [["Prompt engineering", "RAG", "Guardrails", "HITL", "Eval auto/humana", "NIST AI 600-1"], ["Python", "TypeScript", "Java", "DBs vectoriales", "Git", "Docker"]] }],
+          ["Modelado", { type: "tags", groups: [["UML", "BPMN", "C4", "ERD", "OpenAPI", "JSON Schema"]], note: "Sin lenguaje de modelado exclusivo" }],
+          ["Métodos", { type: "tags", groups: [["Agile / Scrum-Kanban", "MLOps / DevSecOps", "Design Thinking", "Lean Startup", "TDD", "AI Risk Management"]] }]
+        ],
+        aport: "Ciclo Problema→Datos→MVP→Evaluación→Despliegue; HITL permanente; adopción gradual.",
+        uso: "Datos confiables y actualizados · RAG · gestión de riesgos; productividad con control.",
+        referent: "Genius Sports",
+        referentNote: "Datos e IA deportiva, sin citar infra interna",
+        startNum: 23,
+        fullSources: [
+          "NIST, <em>AI Risk Management Framework: Generative Artificial Intelligence Profile</em>.",
+          "Google, <em>Retrieval-Augmented Generation (RAG)</em> — documentación / guía."
+        ]
+      },
+      devops: {
+        title: "DevOps",
+        color: "#2ec4b6",
+        e4: [
+          ["Qué es", "Acorta el tiempo entre un cambio y su operación en producción, manteniendo calidad, vía colaboración dev–ops, automatización y entrega continua."],
+          ["Relación con IS", "Prácticas CI/CD, IaC y monitoreo que condicionan arquitectura y operación."],
+          ["Ejecución", { type: "flow", steps: ["Lint", "Build", "Test", "Release", "Deploy"], note: "RC + staging/producción; dual pipeline código + contenido." }],
+          ["Técnicas / herramientas", { type: "tags", groups: [["CI/CD", "IaC", "Contenedores", "Observabilidad"], ["GitLab CI", "GitHub Actions", "Docker/Kubernetes", "Terraform", "Prometheus/Grafana"]] }],
+          ["Modelado", { type: "tags", groups: [["YAML de pipelines", "Diagramas de flujo", "IaC", "Esquemas JSON de artefactos"]] }],
+          ["Métodos", { type: "tags", groups: [["Entrega continua con RC", "Commits convencionales", "QA operacional previo a producción"]] }]
+        ],
+        aport: "Ciclos más cortos y repetibles; menos fricción dev/ops; calidad en el pipeline.",
+        uso: "Iterar con seguridad operativa sobre software y contenido gráfico (tiempo real, componentes heterogéneos).",
+        referent: "Genius Sports",
+        referentNote: "Augmentación broadcast en tiempo real, sin citar infra interna",
+        startNum: 25,
+        fullSources: [
+          "L. Bass, I. Weber, and L. Zhu, <em>DevOps: A Software Architect's Perspective</em>, 2015.",
+          "R. Jabbari et al., \"What is DevOps? A systematic mapping study…,\" <em>XP Workshops</em>, 2016.",
+          "D. Vaquero-Melchor et al., \"SARA: … collaborative augmented reality,\" <em>Appl. Sci.</em>, 2020."
+        ]
+      },
+      eda: {
+        title: "Event Driven Architecture",
+        color: "#e8a87c",
+        showFlow: true,
+        e4: [
+          ["Qué es", "Componentes desacoplados producen, reciben y procesan eventos de forma asíncrona (productor–consumidor vía bus/broker)."],
+          ["Relación con IS", "Afecta diseño, calidad, despliegue y observabilidad; combinable con microservicios/DDD-CQRS; no garantiza por sí sola mejor latencia — evaluar por contexto."],
+          ["Ejecución", { type: "flow", steps: ["Identificar eventos", "Contratos", "Implementar", "Validar latencia/resiliencia", "Desplegar", "Monitorear"], note: "Productores y consumidores se definen desde el inicio" }],
+          ["Técnicas / herramientas", { type: "tags", groups: [["Publish/Subscribe", "Event Streaming", "CEP"], ["Kafka", "RabbitMQ", "Azure Service Bus", "Node-RED", "AsyncAPI"]] }],
+          ["Modelado", { type: "tags", groups: [["UML secuencia/componentes", "Modelos de eventos", "AsyncAPI (JSON/YAML)"]] }],
+          ["Métodos", { type: "tags", groups: [["Diseño orientado a contratos", "Patrones CEP", "Validación iterativa"]] }]
+        ],
+        aport: "Escalabilidad, modularidad y reacción rápida ante cambios del sistema.",
+        uso: "Experiencias distribuidas, colaborativas y en tiempo real.",
+        startNum: 28,
+        fullSources: [
+          "H. Cabane and K. Farias, \"On the impact of event-driven architecture…,\" <em>FGCS</em>, 2024.",
+          "J. Rosa-Bilbao et al., \"CEPEDALoCo…,\" <em>Internet of Things</em>, 2023.",
+          "R. Oberhauser, \"VR-EDStream+EDA…,\" <em>eKNOW</em>, 2023.",
+          "AsyncAPI Initiative, <em>AsyncAPI Specification v3.x</em>."
+        ]
+      },
+      hcd: {
+        title: "Human-Centered Design",
+        color: "#7dcfb6",
+        e4: [
+          ["Qué es", "Diseño de sistemas interactivos centrado en usuarios, necesidades y contexto; ISO 9241-210 (6 principios + 4 actividades cíclicas)."],
+          ["Relación con IS", "Human-Centered Software Engineering: usabilidad en el ciclo de vida, no cosmética final; NFR medible con retorno a etapas anteriores."],
+          ["Ejecución", { type: "flow", steps: ["Entender contexto", "Especificar requisitos", "Producir soluciones", "Evaluar", "Iterar"], note: "Retorno explícito a etapas anteriores si no cumple" }],
+          ["Técnicas / herramientas", { type: "tags", groups: [["Entrevistas contextuales", "Personas y escenarios", "Prototipado", "Pruebas de usabilidad", "Heurísticas"], ["SUS", "NASA-TLX"]] }],
+          ["Modelado", { type: "tags", groups: [["ConcurTaskTrees", "IFML"]], note: "+ personas, journeys y storyboards en la práctica" }],
+          ["Métodos", { type: "tags", groups: [["Prototipado de fidelidad creciente", "Evaluación heurística y empírica", "Retorno explícito desde evaluación"]] }]
+        ],
+        aport: "Usabilidad como requisito medible; evaluación que puede devolver el diseño a etapas anteriores.",
+        uso: "Requisitos inmaduros y contexto de uso incierto — típico de RA; déficit de métricas/validación de usuario.",
+        startNum: 32,
+        fullSources: [
+          "ISO 9241-210:2019 (también dominio).",
+          "A. Seffah et al., Eds., <em>Human-Centered Software Engineering</em>, 2005.",
+          "X. Ferre et al., \"Which, when and how usability techniques…,\" 2005.",
+          "S. Graser et al., \"UX evaluation of AR: a systematic literature review,\" <em>CENTRIC</em>, 2024.",
+          "A. Picardi and G. Caruso, \"User-centered evaluation framework… AR,\" <em>MTI</em>, 2024.",
+          "J. Nielsen, \"Heuristic evaluation,\" 1994.",
+          "F. Paternò, <em>Model-Based Design…</em> (ConcurTaskTrees), 2000.",
+          "OMG, <em>IFML 1.0</em>, 2015."
+        ]
+      }
+    };
+
+    const axes = {
+      ciclo: {
+        title: "Ciclo · tres cadencias anidadas",
+        items: [
+          { tag: "devops", text: "Integración y entrega continua — por cada cambio" },
+          { tag: "base", text: "Microciclo de 2 semanas — unidad de planificación; no recorre las siete fases" },
+          { tag: "base", text: "Incremento validado — 2 a 6 microciclos (1 a 3 meses); lo acepta el product owner" },
+          { tag: "eda", text: "G1 rendimiento — obligatoria aunque EDA no esté activo" },
+          { tag: "hcd", text: "G2 experiencia y responsabilidad social — obligatoria" },
+          { tag: "genia", text: "G3 generación — condicional; se aplica en F4 y en F5" },
+          { tag: "base", text: "Desplegado y validado no son lo mismo: por eso las cadencias van separadas" }
+        ]
+      },
+      colaboracion: {
+        title: "Colaboración · 11 roles con decisión delimitada",
+        items: [
+          { tag: "base", text: "Cada rol tiene una decisión que le pertenece en exclusiva: ninguna queda sin dueño y ninguna tiene dos" },
+          { tag: "base", text: "Autoridad separada — PO decide el qué; líder técnico, el cómo" },
+          { tag: "devops", text: "Calidad multi-rol; firma de los roles implicados antes de producción" },
+          { tag: "eda", text: "Contrato de frontera compartido; el líder técnico absorbe la arquitectura de eventos" },
+          { tag: "hcd", text: "El usuario final es rol externo formal, no un insumo" }
+        ],
+        roleGroups: [
+          [["PO", "Product owner — acepta el incremento validado"], ["LT", "Líder técnico — contrato de frontera y destino de G1"], ["DEV-RA", "Desarrollador RA"], ["DEV-SVC", "Desarrollador de servicios"]],
+          [["DEVOPS", "Ingeniero DevOps"], ["UX", "Especialista en experiencia de usuario"], ["QA", "Resp. de calidad de integración y rendimiento"], ["DER", "Resp. de derechos y licencias"], ["CONT", "Responsable de contenido"]]
+        ],
+        externalRoles: [["USER", "Usuario final — participa en A1.1, A4.2 y G2"], ["DATA", "Responsable de los datos — solo si GenIA está activo"]]
+      },
+      artefactos: {
+        title: "Artefactos",
+        items: [
+          { tag: "base", text: "Doble pipeline en F5: código + contenido, convergentes en A5.3" },
+          { tag: "base", text: "Tipado SPEM: Artefacto (versionable y auditable) · Deliverable · Outcome" },
+          { tag: "base", text: "Frontera explícita: se formaliza lo que cruza entre equipos o entra al producto; lo exploratorio queda semi-formal" },
+          { tag: "devops", text: "Pipelines y esquemas formales, ejecutables" },
+          { tag: "eda", text: "Contratos de eventos formales" },
+          { tag: "hcd", text: "Artefactos semi-formales (personas, journeys)" },
+          { tag: "genia", text: "Prompts y datasets versionados" }
+        ]
+      },
+      uso: {
+        title: "Uso recomendado",
+        items: [
+          { tag: "good", text: "Entrega frecuente" },
+          { tag: "good", text: "Componentes heterogéneos" },
+          { tag: "good", text: "Incertidumbre de requisitos" },
+          { tag: "bad", text: "No usar en AR pequeña/local (EDA de más)" },
+          { tag: "bad", text: "No usar con requisitos cerrados y contexto conocido (HCD de más)" }
+        ]
+      },
+      madurez: {
+        title: "Madurez",
+        items: [
+          { tag: "base", text: "Primera aproximación: sin validación empírica aún" }
+        ],
+        maturity: [
+          { tag: "hcd", value: "Alta" },
+          { tag: "devops", value: "Alta" },
+          { tag: "eda", value: "Media-alta" },
+          { tag: "genia", value: "Emergente" }
+        ],
+        validation: {
+          proceso: "Instrumentación · ingeniería y operación · producto · coste de coordinación",
+          producto: "Defectos escapados · retrabajo tras retorno · SUS · latencia percibida",
+          note: "Criterio de valor neto: el beneficio debe superar el coste de coordinación que ARCA introduce. Validación: estudio de caso múltiple con introducción escalonada de las compuertas."
+        }
+      },
+      flexibilidad: {
+        title: "Flexibilidad",
+        items: [
+          { tag: "hcd", text: "Obligatorio — admite al menos 4 modelos de proceso bajo el mismo marco" },
+          { tag: "devops", text: "Obligatorio — plantillas reutilizables + caminos de excepción (hotfix, one-off)" },
+          { tag: "eda", text: "Condicional — se activa con distribución de eventos multi-cliente o tiempo real" },
+          { tag: "genia", text: "Condicional — se activa con datos confiables; activa G3 y el rol de datos" },
+          { tag: "base", text: "Configurable, no fija — a diferencia de Waterfall, Spiral o el modelo en V" }
+        ]
+      }
+    };
+
+    const approachIcons = {
+      genia: '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3v3M12 18v3M3 12h3M18 12h3"/><circle cx="12" cy="12" r="4"/><path d="M7.5 7.5l1.5 1.5M15 15l1.5 1.5M16.5 7.5L15 9M9 15l-1.5 1.5"/></svg>',
+      devops: '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 12h4l2-6 4 12 2-6h4"/><circle cx="5" cy="18" r="2"/><circle cx="19" cy="18" r="2"/></svg>',
+      eda: '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="6" r="2.5"/><circle cx="18" cy="18" r="2.5"/><path d="M8.5 11.2L15.2 7.2M8.5 12.8L15.2 16.8"/></svg>',
+      hcd: '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="3.2"/><path d="M5 19c1.5-3.5 4-5 7-5s5.5 1.5 7 5"/></svg>'
+    };
+
+    function axisItemsHTML(items) {
+      return `<div class="axis-list">${items
+        .map((it) => {
+          if (it.tag === "good") return `<div class="axis-row good"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12l5 5L20 7"/></svg><span>${it.text}</span></div>`;
+          if (it.tag === "bad") return `<div class="axis-row bad"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 6l12 12M18 6L6 18"/></svg><span>${it.text}</span></div>`;
+          const color = it.tag === "base" ? "var(--muted)" : `var(--${it.tag})`;
+          const icon = approachIcons[it.tag];
+          const marker = icon
+            ? `<span class="axis-row-icon" style="color:${color}">${icon}</span>`
+            : `<i class="axis-dot" style="background:${color}"></i>`;
+          return `<div class="axis-row">${marker}<span>${it.text}</span></div>`;
+        })
+        .join("")}</div>`;
+    }
+
+    const slides = [...document.querySelectorAll(".slide")];
+    let index = 0;
+    const dots = document.getElementById("dots");
+
+    slides.forEach((_, i) => {
+      const b = document.createElement("button");
+      b.className = "dot" + (i === 0 ? " on" : "");
+      b.type = "button";
+      b.setAttribute("aria-label", "Ir a diapositiva " + (i + 1));
+      b.addEventListener("click", () => go(i));
+      dots.appendChild(b);
+    });
+
+    function go(i) {
+      if (typeof closeExpand === "function") closeExpand();
+      if (typeof arcaCloseZoom === "function") arcaCloseZoom();
+      if (typeof dgClose === "function") dgClose();
+      index = (i + slides.length) % slides.length;
+      slides.forEach((s, n) => s.classList.toggle("active", n === index));
+      [...dots.children].forEach((d, n) => d.classList.toggle("on", n === index));
+    }
+
+    document.getElementById("prev").addEventListener("click", () => go(index - 1));
+    document.getElementById("next").addEventListener("click", () => go(index + 1));
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowRight" || e.key === " " || e.key === "PageDown") {
+        e.preventDefault();
+        go(index + 1);
+      } else if (e.key === "ArrowLeft" || e.key === "PageUp") {
+        e.preventDefault();
+        go(index - 1);
+      } else if (e.key === "f" || e.key === "F") {
+        if (!document.fullscreenElement) document.documentElement.requestFullscreen?.();
+        else document.exitFullscreen?.();
+      } else if (e.key === "Escape") {
+        if (typeof arcaCloseZoom === "function") arcaCloseZoom();
+        if (typeof dgClose === "function") dgClose();
+        closeS1Panels();
+        closeDrawer();
+        closeRefs();
+      }
+    });
+
+    /* Slide 1 panels */
+    const s1Pills = document.querySelectorAll("#s1-pills .pill");
+    function selectS1(key) {
+      s1Pills.forEach((p) => p.setAttribute("aria-expanded", p.dataset.panel === key ? "true" : "false"));
+      document
+        .querySelectorAll(".slide[data-slide='0'] .panel")
+        .forEach((p) => p.classList.toggle("open", p.id === "panel-" + key));
+    }
+    function closeS1Panels() {
+      selectS1("def");
+    }
+    s1Pills.forEach((btn) => {
+      btn.addEventListener("click", () => selectS1(btn.dataset.panel));
+    });
+    selectS1("def");
+
+    /* Slide 2 — expand a card to full screen from its clicked position (FLIP) */
+    const slide2 = document.querySelector(".slide[data-slide='1']");
+    const quads = document.querySelectorAll(".quad");
+    let overlay = null;
+    let originQuad = null;
+
+    /* Give each closed card a small preview of what's inside (fills the empty space, teases content) */
+    function quadPreviewHTML(a) {
+      const exec = a.e4.find(([k]) => k === "Ejecución")?.[1];
+      const tech = a.e4.find(([k]) => k === "Técnicas / herramientas")?.[1];
+      let html = "";
+      if (exec && exec.type === "flow") {
+        const steps = exec.steps.slice(0, 4);
+        const more = exec.steps.length > steps.length ? '<span class="quad-preview-arrow">…</span>' : "";
+        html += `<div class="quad-preview-row"><span class="quad-preview-label">Ejecución</span><div class="quad-preview-chips">${steps
+          .map((s, i) => `<span class="quad-preview-chip">${s}</span>${i < steps.length - 1 ? '<span class="quad-preview-arrow">→</span>' : ""}`)
+          .join("")}${more}</div></div>`;
+      }
+      if (tech && tech.type === "tags") {
+        const tags = tech.groups[0].slice(0, 4);
+        html += `<div class="quad-preview-row"><span class="quad-preview-label">Técnicas</span><div class="quad-preview-chips">${tags
+          .map((t) => `<span class="quad-preview-chip">${t}</span>`)
+          .join("")}</div></div>`;
+      }
+      return html;
+    }
+
+    quads.forEach((q) => {
+      const a = approaches[q.dataset.key];
+      const hint = q.querySelector(".hint");
+      const preview = document.createElement("div");
+      preview.innerHTML = quadPreviewHTML(a);
+      while (preview.firstChild) hint.before(preview.firstChild);
+    });
+
+    const e4Icons = {
+      "Qué es": '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 11h1v6h1"/></svg>',
+      "Relación con IS": '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 15l6-6M10 6l1-1a3.5 3.5 0 015 5l-1 1M14 18l-1 1a3.5 3.5 0 01-5-5l1-1"/></svg>',
+      "Ejecución": '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 3l14 9-14 9V3z"/></svg>',
+      "Técnicas / herramientas": '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14.7 6.3a4 4 0 00-5.4 5.4L4 17v3h3l5.3-5.3a4 4 0 005.4-5.4l-2.6 2.6-2-2z"/></svg>',
+      "Modelado": '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l8 4.5-8 4.5-8-4.5L12 3z"/><path d="M4 12l8 4.5 8-4.5M4 16.5L12 21l8-4.5"/></svg>',
+      "Métodos": '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 6h16M4 12h16M4 18h10"/><circle cx="20" cy="18" r="1.6" fill="currentColor" stroke="none"/></svg>'
+    };
+
+    function renderE4Value(val) {
+      if (typeof val === "string") return `<span>${val}</span>`;
+      if (val.type === "flow") {
+        const chips = val.steps
+          .map((s, i) => `<span class="mini-flow-chip">${s}</span>${i < val.steps.length - 1 ? '<span class="mini-flow-arrow">→</span>' : ""}`)
+          .join("");
+        return `<div class="mini-flow">${chips}</div>${val.note ? `<div class="mini-note">${val.note}</div>` : ""}`;
+      }
+      if (val.type === "tags") {
+        const groups = val.groups.map((g) => `<div class="tag-group">${g.map((t) => `<span class="tag-chip">${t}</span>`).join("")}</div>`).join("");
+        return `${groups}${val.note ? `<div class="mini-note">${val.note}</div>` : ""}`;
+      }
+      return "";
+    }
+
+    function switchRowHTML(activeKey) {
+      return `<div class="approach-switch" role="tablist" aria-label="Cambiar de enfoque">
+        ${Object.keys(approaches)
+          .map((k) => `<button type="button" class="switch-btn${k === activeKey ? " active" : ""}" data-switch="${k}" style="--sc:${approaches[k].color}"><span class="dot"></span>${approaches[k].title === "Event Driven Architecture" ? "EDA" : approaches[k].title === "Human-Centered Design" ? "HCD" : approaches[k].title}</button>`)
+          .join("")}
+      </div>`;
+    }
+
+    function approachHTML(quad, key) {
+      const a = approaches[key];
+      const icon = quad.querySelector(".quad-icon").outerHTML;
+      const flow = a.showFlow
+        ? `<div class="eda-flow" aria-hidden="true"><i>Producer</i> → <i>Event bus</i> → <i>Render AR</i> · <i>Analítica</i> · <i>Estado</i></div>`
+        : "";
+      return `
+        <div class="expand-inner">
+          ${switchRowHTML(key)}
+          <div class="expand-head">
+            ${icon}
+            <h2 class="expand-title" style="color:${a.color}">${a.title}</h2>
+            <div class="expand-head-right">
+              ${a.referent ? `<span class="referent-note" title="${a.referentNote || ""}">Referente: ${a.referent}</span>` : ""}
+              <button type="button" class="pill expand-close" aria-label="Cerrar">Cerrar ✕</button>
+            </div>
+          </div>
+          ${flow}
+          <div class="e4-grid">
+            ${a.e4.map(([k, v]) => `<div class="e4-item"><div class="e4-ic" style="color:${a.color}">${e4Icons[k] || ""}</div><div><b>${k}</b>${renderE4Value(v)}</div></div>`).join("")}
+          </div>
+          <div class="reason">
+            <div class="aport"><strong><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12l5 5L20 7"/></svg>Aporta</strong>${a.aport}</div>
+            <div class="uso"><strong><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9L12 3z"/></svg>Uso en RA</strong>${a.uso}</div>
+          </div>
+          <div class="refs-toggle">
+            <div class="detail-row">
+              <button type="button" class="pill refs-open" aria-expanded="false">Referencias</button>
+            </div>
+            <div class="panel refs-panel">
+              <h3>Referencias · ${a.title}</h3>
+              <ol class="cite-list" start="${a.startNum}">${a.fullSources.map((c) => `<li>${c}</li>`).join("")}</ol>
+            </div>
+          </div>
+        </div>`;
+    }
+
+    function switchApproach(key) {
+      if (!overlay || overlay.dataset.key === key) return;
+      const newQuad = document.querySelector(`.quad[data-key="${key}"]`);
+      if (originQuad) originQuad.classList.remove("active");
+      originQuad = newQuad;
+      originQuad.classList.add("active");
+      overlay.dataset.key = key;
+      overlay.innerHTML = approachHTML(newQuad, key);
+      overlay.querySelector(".expand-close").addEventListener("click", closeExpand);
+    }
+
+    document.addEventListener("click", (e) => {
+      const sb = e.target.closest(".switch-btn");
+      if (!sb) return;
+      switchApproach(sb.dataset.switch);
+    });
+
+    function frameFromQuad(quad) {
+      const s = slide2.getBoundingClientRect();
+      const q = quad.getBoundingClientRect();
+      return {
+        top: q.top - s.top,
+        left: q.left - s.left,
+        width: q.width,
+        height: q.height,
+      };
+    }
+
+    function openExpand(quad) {
+      if (overlay) return;
+      const key = quad.dataset.key;
+      originQuad = quad;
+      const f = frameFromQuad(quad);
+
+      overlay = document.createElement("div");
+      overlay.className = "expand-overlay";
+      overlay.dataset.key = key;
+      overlay.style.top = f.top + "px";
+      overlay.style.left = f.left + "px";
+      overlay.style.width = f.width + "px";
+      overlay.style.height = f.height + "px";
+      overlay.innerHTML = approachHTML(quad, key);
+      slide2.appendChild(overlay);
+      quad.classList.add("active");
+
+      overlay.querySelector(".expand-close").addEventListener("click", closeExpand);
+
+      // commit the start frame, then animate to fill the whole slide (FLIP)
+      void overlay.offsetWidth;
+      overlay.classList.add("full");
+      overlay.style.top = "0px";
+      overlay.style.left = "0px";
+      overlay.style.width = "100%";
+      overlay.style.height = "100%";
+    }
+
+    function closeExpand() {
+      if (!overlay) return;
+      const o = overlay;
+      overlay = null;
+      const f = frameFromQuad(originQuad);
+      o.classList.remove("full");
+      o.style.top = f.top + "px";
+      o.style.left = f.left + "px";
+      o.style.width = f.width + "px";
+      o.style.height = f.height + "px";
+      const done = () => {
+        o.remove();
+        if (originQuad) originQuad.classList.remove("active");
+      };
+      o.addEventListener("transitionend", done, { once: true });
+      setTimeout(done, 650);
+    }
+
+    function closeDrawer() {
+      closeExpand();
+    }
+
+    quads.forEach((q) => q.addEventListener("click", () => openExpand(q)));
+
+    /* Slide 3 fishbone */
+    const axisPanel = document.getElementById("axis-panel");
+    const fishWrap = document.querySelector(".fish-wrap");
+
+    function roleChip([short, full]) {
+      return `<span class="tag-chip" title="${full}">${short}</span>`;
+    }
+
+    function roleGroupsHTML(ax) {
+      if (!ax.roleGroups) return "";
+      let html = `<div class="tag-group">${ax.roleGroups.flat().map(roleChip).join("")}</div>`;
+      if (ax.externalRoles) {
+        html += `<p class="mini-note">Roles externos</p><div class="tag-group">${ax.externalRoles.map(roleChip).join("")}</div>`;
+      }
+      return html;
+    }
+
+    function maturityHTML(ax) {
+      if (!ax.maturity) return "";
+      return `<div class="maturity-row">${ax.maturity
+        .map((m) => {
+          const color = `var(--${m.tag})`;
+          const icon = approachIcons[m.tag] || "";
+          return `<span class="maturity-chip"><span class="maturity-ic" style="color:${color}">${icon}</span>${m.value}</span>`;
+        })
+        .join("")}</div>`;
+    }
+
+    function validationHTML(ax) {
+      if (!ax.validation) return "";
+      return `<div class="reason">
+        <div class="aport"><strong>Instrumentación (proceso)</strong>${ax.validation.proceso}</div>
+        <div class="uso"><strong>Resultado (producto)</strong>${ax.validation.producto}</div>
+      </div>
+      <p class="mini-note">${ax.validation.note}</p>`;
+    }
+
+    document.querySelectorAll(".bone").forEach((bone) => {
+      bone.addEventListener("click", () => {
+        document.querySelectorAll(".bone").forEach((b) => b.classList.remove("active"));
+        bone.classList.add("active");
+        const key = bone.dataset.axis;
+        const ax = axes[key];
+        axisPanel.classList.add("open");
+        axisPanel.innerHTML = `<h3>${ax.title}</h3>${axisItemsHTML(ax.items)}${maturityHTML(ax)}${roleGroupsHTML(ax)}${validationHTML(ax)}`;
+        fishWrap.classList.toggle("show-phases", key === "ciclo");
+      });
+    });
+
+    function closeRefs() {
+      document.querySelectorAll(".refs-open[aria-expanded='true']").forEach((btn) => {
+        btn.setAttribute("aria-expanded", "false");
+        btn.closest(".refs-toggle")?.querySelector(".refs-panel")?.classList.remove("open");
+      });
+    }
+
+    /* Generic footer "Referencias" toggle, reused on every slide/card */
+    document.addEventListener("click", (e) => {
+      const btn = e.target.closest(".refs-open");
+      if (!btn) return;
+      const panel = btn.closest(".refs-toggle")?.querySelector(".refs-panel");
+      if (!panel) return;
+      const open = btn.getAttribute("aria-expanded") === "true";
+      btn.setAttribute("aria-expanded", String(!open));
+      panel.classList.toggle("open", !open);
+    });
+  
+    /* ================= Slide 4 · modelo de proceso ARCA ================= */
+    const arca = {
+      f1: {
+        kicker: "Fase 1 · activo: HCD",
+        title: "Encuadre y contexto de uso",
+        lead: "Delimita para quién, dónde y con qué restricciones se construye. Es la única fase sin nada construido todavía, por eso no lleva compuerta: sería ceremonia sin evidencia.",
+        acts: [
+          { id: "A1.1", text: "<b>Comprender el contexto de uso</b> — usuarios, tareas y entorno físico; observación contextual y entrevistas in situ; declarar las capacidades sensoriales y motoras que la experiencia supone; levantar restricciones de seguridad física y privacidad de terceros.", role: "primario: especialista en experiencia, con el usuario final" },
+          { id: "A1.2", text: "<b>Acordar alcance y criterios de éxito</b> — personas y escenarios; objetivos medibles de experiencia y técnicos (latencia, error de registro, autonomía).", role: "primario: product owner" }
+        ],
+        outputs: ["Especificación del contexto de uso", "Declaración de accesibilidad", "Backlog inicial priorizado"],
+        tech: ["Indagación contextual", "Observación en entorno real", "Personas y escenarios", "Análisis de riesgo de privacidad de terceros"],
+        tools: ["Repositorios de hallazgos", "Mapeo colaborativo", "Gestores de backlog", "Grabación con consentimiento"],
+        gate: "Cierra con el hito <b>M1</b>. Sin compuerta propia.",
+        note: "Es la fase de <b>destino</b> de los retornos de G2 atribuidos a un supuesto erróneo sobre el contexto o los usuarios."
+      },
+      f2: {
+        kicker: "Fase 2 · activos: HCD, EDA *",
+        title: "Requisitos y contratos",
+        lead: "Traduce escenarios en requisitos verificables y fija la frontera entre componentes. Aquí se reparte el presupuesto de latencia que después verifica G1.",
+        acts: [
+          { id: "A2.1", text: "<b>Especificar requisitos</b> — deriva los requisitos de los escenarios, traduce los objetivos de experiencia en requisitos verificables y <b>reparte el presupuesto de latencia por etapa del pipeline</b>.", role: "primario: especialista en experiencia" },
+          { id: "A2.2", text: "<b>Definir el contrato de frontera</b> — fronteras entre captura, lógica, contenido y presentación según ETSI ARF; con EDA modela eventos, productores y consumidores en AsyncAPI; sin EDA especifica interfaces de datos y esquemas JSON; fija la política de versionado.", role: "primario: líder técnico" }
+        ],
+        outputs: ["Especificación de requisitos con presupuesto de latencia", "Contrato de frontera v1"],
+        tech: ["Requisitos verificables", "Presupuesto de latencia por etapa", "Diseño orientado a contratos", "Event storming y matriz productor–consumidor *"],
+        tools: ["AsyncAPI y validadores de esquema", "JSON Schema", "Gestores de requisitos", "Control de versiones"],
+        gate: "Cierra con el hito <b>M2</b>. Sin compuerta propia.",
+        note: "Un <b>presupuesto de latencia mal fijado</b> devuelve exactamente aquí desde G1."
+      },
+      f3: {
+        kicker: "Fase 3 · activos: HCD, DevOps, EDA *",
+        title: "Diseño y arquitectura",
+        lead: "Decide cómo se sostiene el registro espacial y cómo se entrega. Su hito marca el punto en que el proceso deja de ser secuencial.",
+        acts: [
+          { id: "A3.1", text: "<b>Diseñar la arquitectura</b> — selecciona la estrategia de anclaje espacial (marcadores fiduciales, SLAM o localización visual-inercial), decide el despliegue en dispositivo, nube o híbrido, y <b>registra cada decisión junto con la alternativa descartada</b>.", role: "primario: líder técnico" },
+          { id: "A3.2", text: "<b>Diseñar la interacción espacial</b> — storyboards y prototipos de baja fidelidad; evaluación heurística específica de RA.", role: "primario: especialista en experiencia" },
+          { id: "A3.3", text: "<b>Especificar el doble pipeline</b> — pipeline de código, pipeline de contenido con el esquema del manifiesto, ambientes y política de promoción.", role: "primario: ingeniero DevOps" }
+        ],
+        outputs: ["Registro de decisiones arquitectónicas (ADR)", "Especificación de los dos pipelines"],
+        tech: ["Descomposición según arquitectura de referencia", "ADR con alternativa descartada", "Evaluación heurística de RA", "Prototipado de baja fidelidad"],
+        tools: ["Editores UML y C4", "Figma / Adobe XD", "Repositorio de ADR junto al código"],
+        gate: "Cierra con el hito <b>M3</b>.",
+        note: "<b>M3 marca el fin de la precedencia estricta</b>: a partir de aquí el microciclo extrae trabajo de las fases activas y las fases pasan a ser reservorios, no etapas en fila."
+      },
+      f4: {
+        kicker: "Fase 4 · activos: HCD, GenIA *",
+        title: "Activos y prototipado",
+        lead: "Produce el contenido de augmentación y lo integra en un prototipo ejecutable. Es el cuello de botella más caro del dominio: en RA no se despliega solo código.",
+        acts: [
+          { id: "A4.1", text: "<b>Producir y aclarar activos</b> — modela o adquiere activos 3D, audio y anotaciones; con GenIA genera candidatos mediante prompts versionados bajo guardrails; y <b>registra procedencia, licencia y derechos de cada activo</b>.", role: "primario: responsable de contenido" },
+          { id: "A4.2", text: "<b>Prototipar la experiencia</b> — integra los activos en un prototipo ejecutable, aplica Wizard of Oz a lo aún no implementado y ejecuta una prueba de usabilidad formativa.", role: "primario: especialista en experiencia" }
+        ],
+        outputs: ["Manifiesto de contenido", "Registro de derechos", "Prototipo de la experiencia", "Informe formativo"],
+        tech: ["Modelado y adquisición de activos", "Prompt engineering con guardrails *", "RAG sobre fuentes autorizadas *", "Wizard of Oz", "Usabilidad formativa"],
+        tools: ["Unity con componentes de realidad mixta", "Autoría 3D", "Servicios de IA con versionamiento de prompts", "Bases de datos vectoriales"],
+        gate: "Primera aparición de <b>G3</b>. Sin el registro de derechos, <b>ningún activo entra a la cadena de contenido</b>.",
+        note: "Es el destino de <b>todos</b> los retornos de G3 y de los de G2 atribuidos a los activos."
+      },
+      f5: {
+        kicker: "Fase 5 · activos: DevOps, EDA *, GenIA *",
+        title: "Construcción — doble pipeline",
+        lead: "Conviven los dos pipelines: código y contenido de augmentación, cada uno con su versionado y sus pruebas. La convergencia no es opcional.",
+        acts: [
+          { id: "A5.1", text: "<b>Construir el incremento de código</b> — tracking, render e interacción; productores y consumidores conforme al contrato cuando EDA está activo; integración continua con pruebas, análisis estático y empaquetado.", role: "primario: desarrollador RA + desarrollador de servicios" },
+          { id: "A5.2", text: "<b>Construir el incremento de contenido</b> — empaqueta y versiona los activos según el manifiesto, valida el manifiesto contra su esquema y, con GenIA activo, evalúa automática y humanamente el contenido generado.", role: "primario: responsable de contenido" },
+          { id: "A5.3", text: "<b>Integrar ambos pipelines</b> — verifica la compatibilidad entre la versión del manifiesto y la del binario, y publica el candidato de versión.", role: "primario: ingeniero DevOps" }
+        ],
+        outputs: ["Incremento de código compilado", "Manifiesto de contenido versionado", "Candidato de versión"],
+        tech: ["Desarrollo guiado por pruebas y por comportamiento", "Integración continua con análisis estático", "Validación del manifiesto contra su esquema", "Evaluación automática y humana del contenido generado *"],
+        tools: ["Jenkins / GitLab CI / GitHub Actions", "Docker", "Kafka / RabbitMQ *", "Registros de activos versionados"],
+        gate: "<b>G3.2</b> verifica todo contenido generado antes de que entre a la cadena de despliegue.",
+        note: "<b>La existencia de A5.3 es lo que impide que los dos pipelines deriven a versiones incompatibles</b>: sin ese punto de convergencia, la dualidad sería una separación sin reencuentro. Un pipeline puede estar listo mientras el otro bloquea el incremento — esa espera es la métrica que hay que vigilar."
+      },
+      f6: {
+        kicker: "Fase 6 · activos: DevOps, HCD, EDA *",
+        title: "Verificación",
+        lead: "Donde ARCA concentra su aporte: es la fase que ejecuta G1 y G2, y la única que puede declarar validado un incremento.",
+        acts: [
+          { id: "A6.1", text: "<b>Verificar rendimiento</b> — mide latencia de extremo a extremo y error de registro; pruebas de carga, throughput y resiliencia ante degradación de red y pérdida de tracking; pruebas de contrato.", role: "primario: resp. de calidad de integración y rendimiento" },
+          { id: "A6.2", text: "<b>Verificar experiencia y responsabilidad social</b> — sesiones con consentimiento informado; SUS, NASA-TLX y tasa de finalización de tarea; verifica la accesibilidad declarada en F1, la seguridad física y la privacidad de terceros.", role: "coejecutan: especialista en experiencia + resp. de derechos, con el usuario final" },
+          { id: "A6.3", text: "<b>Decidir avance o retorno</b> — contrasta la evidencia contra los criterios de aceptación, <b>registra la causa del retorno y su fase de destino</b>, y acepta el incremento cuando procede.", role: "ejecutan: product owner + líder técnico" }
+        ],
+        outputs: ["Evidencia de G1", "Informe de evaluación con usuarios", "Evidencia de G2", "Causa de retorno registrada"],
+        tech: ["Latencia de extremo a extremo y error de registro", "Carga, throughput, resiliencia y contrato", "Usabilidad sumativa con SUS y NASA-TLX", "Listas de accesibilidad, seguridad física y privacidad"],
+        tools: ["Bancos de prueba de rendimiento", "Instrumentación de latencia en el dispositivo", "Plataformas de prueba de usabilidad", "Formularios de instrumentos estandarizados"],
+        gate: "Ejecuta <b>G1</b> y <b>G2</b>. Cierra con el hito <b>M4</b>. Solo si ambas pasan el incremento avanza a F7.",
+        note: "Un incremento que supera G1 y falla G2 <b>no es un producto exitoso</b>: es un retorno. En RA, calidad técnica sin experiencia humana validada no es calidad completa."
+      },
+      f7: {
+        kicker: "Fase 7 · activo: DevOps",
+        title: "Despliegue, operación y evolución",
+        lead: "Promueve lo que ya superó las compuertas, observa el comportamiento en campo y convierte esos hallazgos en trabajo nuevo.",
+        acts: [
+          { id: "A7.1", text: "<b>Promover a producción</b> — promueve el candidato con la firma de los roles implicados y ejecuta un despliegue progresivo con <b>plan de reversión independiente para el código y para el contenido</b>.", role: "primario: ingeniero DevOps" },
+          { id: "A7.2", text: "<b>Operar y observar</b> — recoge la telemetría de campo (latencia percibida, pérdidas de tracking, errores), gestiona incidentes y mide el tiempo de restauración.", role: "primario: ingeniero DevOps" },
+          { id: "A7.3", text: "<b>Alimentar la evolución</b> — convierte los hallazgos de campo en ítems de backlog y revisa la vigencia de las licencias y la caducidad de los activos del manifiesto.", role: "coejecutan: product owner + resp. de derechos" }
+        ],
+        outputs: ["Release en producción", "Telemetría de campo y registro de incidentes", "Backlog actualizado"],
+        tech: ["Promoción por candidatos de versión con firma multi-rol", "Despliegue progresivo con reversión independiente", "Gestión de incidentes", "Conversión de telemetría en backlog"],
+        tools: ["Kubernetes con Helm", "Terraform, Ansible, Vault", "Prometheus, Grafana"],
+        gate: "Sin compuerta: lo que se despliega <b>ya superó G1 y G2</b>. Una tercera verificación aquí duplicaría evidencia sin producir información nueva.",
+        note: "Si aparece un incidente en campo, DevOps y el líder técnico responden; si el problema es de producto o experiencia, el PO y UX reabren el backlog."
+      },
+
+      cadencias: {
+        kicker: "Momento clave",
+        title: "Tres cadencias anidadas",
+        lead: "La respuesta de ARCA a una confusión frecuente: desplegado y validado no son lo mismo, y medir solo la frecuencia de despliegue premia lo primero e ignora lo segundo.",
+        acts: [
+          { id: "↻", text: "<b>Integración y entrega continua</b> — cada cambio dispara el pipeline correspondiente y puede desplegarse automáticamente en ambientes de integración o validación.", role: "automático · ingeniero DevOps" },
+          { id: "2 sem", text: "<b>Microciclo</b> — unidad de planificación y coordinación. Abre con una sesión donde el PO y el líder técnico seleccionan trabajo del backlog, y cierra con entregables fijos y una revisión.", role: "product owner + líder técnico" },
+          { id: "1–3 m", text: "<b>Incremento validado</b> — agrupa de dos a seis microciclos. Solo se declara completo cuando G1 y G2 se han superado sobre el conjunto acumulado.", role: "lo acepta el product owner" }
+        ],
+        outputs: ["Compilación desplegable", "Manifiesto versionado", "Contrato de frontera si cambió", "Evidencia de compuertas y causa de retorno", "ADR", "Backlog repriorizado"],
+        gate: "Un despliegue a validación <b>no</b> es un microciclo, y un microciclo <b>no</b> es por sí solo un incremento validado.",
+        note: "El microciclo <b>no recorre las siete fases</b>: selecciona trabajo de las fases activas. Por eso ARCA no es una cascada en miniatura. Y al menos un microciclo de cada incremento debe incluir sesiones con usuarios y entregar su informe."
+      },
+      pipelines: {
+        kicker: "Momento clave · CP3",
+        title: "Doble pipeline de construcción",
+        lead: "En RA no se despliega solo software: se despliegan activos, instrucciones de augmentación y reglas de interacción, con su propio versionado y sus propias pruebas.",
+        acts: [
+          { id: "A5.1", text: "<b>Pipeline de código</b> — tracking, render, interacción, eventos * y empaquetado del candidato.", role: "desarrollador RA · desarrollador de servicios · DevOps" },
+          { id: "A5.2", text: "<b>Pipeline de contenido</b> — activos, manifiesto versionado y registro de derechos.", role: "responsable de contenido · resp. de derechos" },
+          { id: "A5.3", text: "<b>Convergencia</b> — verifica la compatibilidad manifiesto ⇄ binario y publica el candidato de versión.", role: "ingeniero DevOps" }
+        ],
+        gate: "Se aplica en <b>F4, F5 y F7</b>: la reversión en producción también es independiente para código y para contenido.",
+        note: "El cuello de botella: <b>un pipeline puede estar listo mientras el otro bloquea el incremento</b>. Se mide en horas de espera entre ambos, coste de build fallido y coste de contenido bloqueado en G3."
+      },
+      compuertas: {
+        kicker: "Momento clave · CP2",
+        title: "Compuertas de retorno",
+        lead: "No se llaman puertas de calidad porque no solo autorizan o bloquean: prescriben la fase de destino del retroceso según la causa registrada. La puerta convencional dice que algo no pasó; la compuerta dice además a dónde volver y quién lo decide.",
+        acts: [
+          { id: "G1", text: "<b>Rendimiento</b> — latencia, throughput y resiliencia. Obligatoria aunque EDA no esté activo: la latencia de registro es una restricción inherente a la RA, no una consecuencia de la comunicación asíncrona.", role: "ejecuta: resp. de calidad · el líder técnico decide el destino" },
+          { id: "G2", text: "<b>Experiencia y responsabilidad social</b> — requisitos de uso mediante evaluación con usuarios, más accesibilidad, seguridad física, privacidad de terceros y derechos.", role: "ejecutan: especialista en experiencia + resp. de derechos, con el usuario final" },
+          { id: "G3 *", text: "<b>Generación</b> — calidad, trazabilidad y procedencia del contenido generado. Una sola compuerta con dos puntos de aplicación: la salida de F4 y la de F5.", role: "coejecutan: resp. de contenido + resp. de derechos, con el resp. de los datos" }
+        ],
+        dest: [
+          ["G1 · presupuesto de latencia", "F2"],
+          ["G1 · anclaje espacial o despliegue", "F3"],
+          ["G1 · implementación", "F5"],
+          ["G2 · supuesto erróneo de contexto o usuarios", "F1"],
+          ["G2 · requisitos de uso mal traducidos", "F2"],
+          ["G2 · diseño de interacción", "F3"],
+          ["G2 · activos", "F4"],
+          ["G3 · cualquier causa", "F4"]
+        ],
+        gate: "G3 puede dispararse varias veces dentro de un microciclo; G1 y G2 se ejecutan al menos una vez por incremento validado.",
+        note: "Las tres comparten estructura idéntica y difieren en criterios y roles — y <b>esa identidad estructural es lo que permite medirlas de forma homogénea</b>."
+      },
+      roles: {
+        kicker: "Momento clave",
+        title: "Once roles con decisión delimitada",
+        lead: "Un modelo que solo lista roles no delimita responsabilidad. Nombrar la decisión que cada rol posee obliga a comprobar que ninguna quede sin dueño y que ninguna tenga dos.",
+        acts: [
+          { id: "PO", text: "<b>Product owner</b> — qué se construye y en qué orden; cuándo un incremento se declara validado.", role: "primario en A1.2, A6.3, A7.3" },
+          { id: "LT", text: "<b>Líder técnico</b> — cómo se construye; compromisos entre latencia, calidad visual y coste; fase de destino cuando G1 falla.", role: "primario en A2.2, A3.1, A6.3" },
+          { id: "UX", text: "<b>Especialista en experiencia</b> — actividades de HCD y protocolo de evaluación; veredicto de experiencia en G2.", role: "primario en A1.1, A2.1, A3.2, A4.2, A6.2" },
+          { id: "DER", text: "<b>Resp. de derechos y licencias</b> — si un activo puede entrar a la cadena de contenido; veredicto de derechos en G2 y G3.", role: "una figura que Spiral, RAD y XP no contemplan" },
+          { id: "+7", text: "<b>Desarrollador RA · desarrollador de servicios · ingeniero DevOps · resp. de calidad · responsable de contenido</b>, más dos externos: <b>usuario final</b> y <b>responsable de los datos *</b>.", role: "el rol de datos interviene solo si GenIA está activo" }
+        ],
+        gate: "<b>Autoridad separada</b>: el PO decide el <i>qué</i>, el líder técnico el <i>cómo</i>. Sin esa separación, la decisión de producto tiende a recaer en quien implementa.",
+        note: "Un rol de arquitecto de eventos se <b>descartó</b> a propósito: su responsabilidad se agota en el contrato de frontera, del que ya responde el líder técnico, y un rol permanente atado a un enfoque condicional obligaría a redefinir la plantilla cada vez que EDA se desactive."
+      },
+      hitos: {
+        kicker: "Momento clave",
+        title: "Hitos M1 a M4",
+        lead: "Cuatro puntos de control que marcan el avance del proceso; el tercero cambia la naturaleza del modelo.",
+        acts: [
+          { id: "M1", text: "<b>Contexto y alcance acordados</b> — cierra F1.", role: "" },
+          { id: "M2", text: "<b>Requisitos y contrato de frontera v1</b> — cierra F2.", role: "" },
+          { id: "M3", text: "<b>Arquitectura y pipelines definidos</b> — cierra F3 y marca el <b>fin de la precedencia estricta entre fases</b>.", role: "" },
+          { id: "M4", text: "<b>Incremento validado</b> — cierra F6, solo con G1 y G2 superadas.", role: "lo acepta el product owner" }
+        ],
+        gate: "Hasta M3 el plano de fases tiene precedencia estricta. Después, las fases dejan de recorrerse en secuencia y pasan a ser reservorios de trabajo.",
+        note: "Esa es la diferencia entre un modelo iterativo de verdad y una cascada disfrazada."
+      },
+      apoyo: {
+        kicker: "Momento clave",
+        title: "Actividades de apoyo S1 a S7",
+        lead: "Un modelo de proceso no se agota en el flujo principal: requiere actividades que atraviesan todas las fases y sin las cuales la evidencia que las compuertas exigen no existiría. Están alineadas con ISO/IEC/IEEE 12207:2017 para no reinventar vocabulario ya normalizado.",
+        acts: [
+          { id: "S1", text: "<b>Gestión de configuración dual</b> — versionado independiente y compatible de código y contenido; política de compatibilidad manifiesto–binario; reversión selectiva.", role: "ingeniero DevOps · gestión de la configuración" },
+          { id: "S2", text: "<b>Gobierno de derechos y licencias</b> — procedencia, licencia, derechos de imagen, vigencia y caducidad.", role: "resp. de derechos · sin equivalente en el estándar: es específica del dominio" },
+          { id: "S3", text: "<b>Gobernanza de GenIA *</b> — versionamiento de prompts, guardrails, evaluación automática y humana, trazabilidad de cada salida.", role: "resp. de contenido + resp. de los datos" },
+          { id: "S4", text: "<b>Aseguramiento de calidad y operación de compuertas</b> — criterios, ejecución, registro de evidencia y causa; auditoría de que ninguna promoción ocurrió sin compuerta.", role: "resp. de calidad" },
+          { id: "S5", text: "<b>Gestión de riesgos</b> — tracking y latencia, seguridad física, privacidad de terceros y de IA.", role: "líder técnico + product owner" },
+          { id: "S6", text: "<b>Medición del proceso y del producto</b> — recolección de las cuatro familias de indicadores bajo meta–pregunta–métrica.", role: "ingeniero DevOps + product owner" },
+          { id: "S7", text: "<b>Gestión del conocimiento y de decisiones</b> — ADR, lecciones de retorno de compuerta, incorporación al contenido de método reutilizable.", role: "líder técnico" }
+        ],
+        gate: "Dos no tienen equivalente directo en el estándar y son específicas del dominio: el <b>gobierno de derechos</b> y la <b>gobernanza de GenIA</b>.",
+        note: "Operan de forma continua bajo los tres planos, y son las que producen la evidencia sin la cual las compuertas no podrían decidir."
+      },
+      patrones: {
+        kicker: "Momento clave · SPEM 2.0",
+        title: "Patrones de proceso reutilizables",
+        lead: "SPEM 2.0 permite empaquetar fragmentos de proceso reutilizables como Capability Patterns, aplicables en distintos puntos del ciclo de vida sin redefinirlos. ARCA define cuatro — y son precisamente los elementos donde reside su aporte estructural.",
+        acts: [
+          { id: "CP1", text: "<b>Microciclo ARCA</b> — apertura con selección de trabajo, ejecución sobre las fases activas, cierre con los seis elementos de control y revisión.", role: "se aplica de forma continua" },
+          { id: "CP2", text: "<b>Compuerta de retorno</b> — entrada de evidencia, evaluación por el rol nominado contra criterios declarados, decisión de avanzar o retornar, registro obligatorio de la causa y de la fase de destino.", role: "se instancia tres veces: G1, G2 y G3" },
+          { id: "CP3", text: "<b>Doble pipeline de construcción</b> — dos pipelines en paralelo con su propio versionado y sus pruebas, convergentes en un punto de integración.", role: "se aplica en F4, F5 y F7" },
+          { id: "CP4", text: "<b>Ciclo HCD anidado</b> — contexto, requisitos, diseño y evaluación, con retorno a cualquiera de los tres anteriores.", role: "se aplica dentro de F1 a F4 y se reactiva desde G2" }
+        ],
+        gate: "CP2 es el más rentable: tres compuertas con <b>estructura idéntica</b> y distintos criterios, lo que permite medirlas y compararlas de forma homogénea.",
+        note: "Empaquetar estos cuatro fragmentos es lo que convierte a ARCA en contenido de método reutilizable y no en un diagrama de un solo proyecto."
+      },
+      medicion: {
+        kicker: "Momento clave",
+        title: "Medición y criterio de valor neto",
+        lead: "Una solución que funciona no demuestra que la metodología que la produjo sea mejor. ARCA separa ambas afirmaciones y deja definido cómo se contrastaría la segunda.",
+        acts: [
+          { id: "1", text: "<b>Proceso</b> — ¿se ejecuta como está definido? Frecuencia de integración y entrega, promociones a producción, entregables completos por microciclo, retornos por compuerta, cobertura de contratos versionados.", role: "indicadores de instrumentación, no de calidad" },
+          { id: "2", text: "<b>Ingeniería y operación</b> — ¿produce mejor ingeniería? Métricas de desempeño de entrega consolidadas en la literatura DevOps.", role: "" },
+          { id: "3", text: "<b>Producto</b> — ¿el resultado es bueno? Ancladas en ISO/IEC 25010:2023, cuya revisión incorpora <i>safety</i> como característica de primer nivel.", role: "SUS · latencia percibida · defectos escapados" },
+          { id: "4", text: "<b>Coste de coordinación</b> — ¿cuánto cuesta el método? Horas de compuertas, mantenimiento de contratos, entregables de microciclo y coordinación multi-rol.", role: "la familia que responde a la crítica recibida" }
+        ],
+        gate: "<b>Balance neto = beneficio − coste.</b> La hipótesis falsable de ARCA es que el balance es positivo frente a un proceso ágil sin compuertas diferenciadas.",
+        note: "Validación propuesta: <b>estudio de caso múltiple con introducción escalonada de las compuertas</b>. ARCA es una propuesta no validada: los umbrales que declara son parámetros de diseño, no resultados empíricos."
+      }
+    };
+    arca.g1 = {
+      kicker: "Compuerta · se ejecuta en F6",
+      title: "G1 · Rendimiento",
+      lead: "Verifica latencia, throughput y resiliencia sobre el flujo de datos y el renderizado. Es obligatoria aunque EDA no esté activo: la latencia de registro es una restricción inherente a la RA, no una consecuencia de la comunicación asíncrona.",
+      acts: [
+        { id: "Mide", text: "Latencia de extremo a extremo y error de registro; pruebas de carga, throughput y resiliencia ante degradación de red y pérdida de tracking; pruebas de contrato.", role: "A6.1 · resp. de calidad de integración y rendimiento" },
+        { id: "Registra", text: "La evidencia de G1 y, cuando falla, <b>la causa</b> del fallo.", role: "resp. de calidad" },
+        { id: "Decide", text: "<b>El líder técnico</b> elige la fase de destino según esa causa. Quien detecta no es quien decide a dónde volver.", role: "autoridad técnica" }
+      ],
+      gsch: { evid: "Evidencia técnica de F6", exec: "G1 · ejecuta resp. de calidad", ok: "[ok] sigue a G2" },
+      dest: [["Presupuesto de latencia mal repartido", "F2"], ["Estrategia de anclaje o despliegue", "F3"], ["Implementación", "F5"]],
+      gate: "Se ejecuta al menos una vez por incremento validado. <b>Sin G1 ∧ G2 no hay incremento.</b>",
+      note: "En RA el coste de un defecto de rendimiento no es una queja de usabilidad: es mareo, pérdida de tracking y una experiencia inutilizable."
+    };
+    arca.g2 = {
+      kicker: "Compuerta · se ejecuta en F6",
+      title: "G2 · Experiencia y responsabilidad social",
+      lead: "Verifica los requisitos de uso mediante evaluación con usuarios, más las obligaciones de responsabilidad social: accesibilidad, seguridad física, privacidad de terceros y derechos del contenido desplegado.",
+      acts: [
+        { id: "Mide", text: "SUS, NASA-TLX y tasa de finalización de tarea, en sesiones con <b>consentimiento informado</b>.", role: "A6.2 · especialista en experiencia" },
+        { id: "Verifica", text: "La accesibilidad declarada en F1, la seguridad física y la privacidad de terceros; y los derechos del contenido desplegado.", role: "resp. de derechos y licencias" },
+        { id: "Aporta", text: "El juicio de uso que la compuerta evalúa. No decide sobre el producto.", role: "usuario final (externo)" }
+      ],
+      gsch: { evid: "Informe de evaluación con usuarios", exec: "G2 · ejecutan UX + derechos, con el usuario final", ok: "[ok] avanza a F7" },
+      dest: [["Supuesto erróneo sobre el contexto o los usuarios", "F1"], ["Requisitos de uso mal traducidos", "F2"], ["Diseño de interacción", "F3"], ["Activos", "F4"]],
+      gate: "Al menos un microciclo de cada incremento debe incluir sesiones con usuarios y entregar su informe: es lo que impide diferir indefinidamente la validación.",
+      note: "Un incremento que supera G1 y falla G2 <b>no es un producto exitoso</b>: es un retorno."
+    };
+    arca.g3 = {
+      kicker: "Compuerta condicional · se aplica en F4 y F5",
+      title: "G3 · Generación *",
+      lead: "Solo existe cuando GenIA está activo. Verifica calidad, trazabilidad y procedencia del contenido generado. A diferencia de G1 y G2, no vive en una fase única: se aplica a la salida de toda fase donde GenIA produzca contenido destinado al producto.",
+      acts: [
+        { id: "Evalúa", text: "La calidad del contenido generado, con evaluación automática y humana.", role: "responsable de contenido" },
+        { id: "Acredita", text: "Procedencia, licencia y derechos. <b>Sin ese registro el activo no entra a la cadena de contenido.</b>", role: "resp. de derechos y licencias" },
+        { id: "Aporta", text: "Idoneidad, procedencia y vigencia de los datos que alimentan la generación.", role: "responsable de los datos (externo)" }
+      ],
+      gsch: { evid: "Contenido generado en F4 o F5", exec: "G3 · contenido + derechos, con el resp. de los datos", ok: "[ok] entra a la cadena de despliegue" },
+      dest: [["Cualquier causa — calidad, trazabilidad o derechos", "F4"]],
+      gate: "Puede dispararse <b>varias veces dentro de un mismo microciclo</b>. Ningún contenido generado alcanza la cadena de despliegue sin superarla.",
+      note: "Al ser condicional, su ausencia es el estado normal cuando no hay GenIA: la parsimonia está en el modelo, no solo en el discurso."
+    };
+
+
+    /* ---- entradas / interior / salidas por fase ---- */
+    const arcaIO = {
+      f1: {
+        core: "F1 · dentro de la fase",
+        acts: ["<b>A1.1</b> Comprender el contexto de uso", "<b>A1.2</b> Acordar alcance y criterios de éxito"],
+        in: [["Idea de producto o necesidad", "origen: negocio"], ["Hallazgos de campo", "de F7 · nuevo microciclo"]],
+        out: [["Especificación del contexto de uso", "→ F2"], ["Declaración de accesibilidad", "→ verifica G2"], ["Backlog inicial priorizado", "→ microciclo"]],
+        ret: "↺ Entra retorno desde G2 cuando la causa es un supuesto erróneo sobre el contexto o los usuarios."
+      },
+      f2: {
+        core: "F2 · dentro de la fase",
+        acts: ["<b>A2.1</b> Especificar requisitos", "<b>A2.2</b> Definir el contrato de frontera"],
+        in: [["Especificación del contexto de uso", "de F1"], ["Backlog priorizado", "de F1"]],
+        out: [["Especificación de requisitos con presupuesto de latencia", "→ F3 · la verifica G1"], ["Contrato de frontera v1", "→ F3 y F5"]],
+        ret: "↺ Entra retorno desde G1 si el presupuesto de latencia estaba mal repartido, y desde G2 si los requisitos de uso se tradujeron mal."
+      },
+      f3: {
+        core: "F3 · dentro de la fase",
+        acts: ["<b>A3.1</b> Diseñar la arquitectura", "<b>A3.2</b> Diseñar la interacción espacial", "<b>A3.3</b> Especificar el doble pipeline"],
+        in: [["Especificación de requisitos", "de F2"], ["Contrato de frontera", "de F2"]],
+        out: [["Registro de decisiones (ADR)", "→ F5"], ["Especificación de los dos pipelines", "→ F5 y F7"], ["Storyboards y prototipos de baja fidelidad", "→ F4"]],
+        ret: "↺ Entra retorno desde G1 si la causa es el anclaje espacial o el despliegue, y desde G2 si es el diseño de interacción."
+      },
+      f4: {
+        core: "F4 · dentro de la fase",
+        acts: ["<b>A4.1</b> Producir y aclarar activos", "<b>A4.2</b> Prototipar la experiencia"],
+        in: [["Requisitos de experiencia", "de F2"], ["Arquitectura y storyboards", "de F3"]],
+        out: [["Manifiesto de contenido", "→ F5"], ["Registro de derechos", "→ condición de entrada a la cadena"], ["Prototipo de la experiencia", "→ F5"], ["Informe formativo", "→ F6"]],
+        gate: ["G3.1 · Generación *", "todo lo generado pasa antes de salir"],
+        ret: "↺ Es el destino de todos los retornos de G3 y de los de G2 atribuidos a los activos."
+      },
+      f5: {
+        core: "F5 · dentro de la fase",
+        acts: ["<b>A5.1</b> Incremento de código", "<b>A5.2</b> Incremento de contenido", "<b>A5.3</b> Integrar ambos pipelines"],
+        in: [["ADR y especificación de pipelines", "de F3"], ["Activos con derechos y manifiesto", "de F4"]],
+        out: [["Incremento de código compilado", "→ A5.3"], ["Manifiesto versionado", "→ A5.3"], ["Candidato de versión", "→ F6"]],
+        gate: ["G3.2 · Generación *", "sobre el contenido generado en esta fase"],
+        ret: "↺ Entra retorno desde G1 cuando la causa se atribuye a la implementación."
+      },
+      f6: {
+        core: "F6 · dentro de la fase",
+        acts: ["<b>A6.1</b> Verificar rendimiento", "<b>A6.2</b> Verificar experiencia y resp. social", "<b>A6.3</b> Decidir avance o retorno"],
+        in: [["Candidato de versión", "de F5"], ["Criterios de aceptación", "de F1 y F2"]],
+        out: [["Evidencia de G1", "→ decisión A6.3"], ["Informe de evaluación con usuarios", "→ evidencia de G2"], ["Causa de retorno registrada", "→ F1…F5"], ["Incremento validado", "→ F7 · hito M4"]],
+        gate: ["G1 y G2", "solo si ambas pasan se avanza"],
+        ret: "↺ Es la fase que produce los retornos: la causa registrada determina si vuelve a F1, F2, F3, F4 o F5."
+      },
+      f7: {
+        core: "F7 · dentro de la fase",
+        acts: ["<b>A7.1</b> Promover a producción", "<b>A7.2</b> Operar y observar", "<b>A7.3</b> Alimentar la evolución"],
+        in: [["Incremento validado", "de F6 · con G1 ∧ G2 superadas"]],
+        out: [["Release en producción", "→ campo"], ["Telemetría e incidentes", "→ A7.3"], ["Backlog actualizado", "→ F1 · nuevo microciclo"]],
+        ret: "↺ Sin compuerta: lo que se despliega ya superó G1 y G2. Un incidente en campo lo toman DevOps y el líder técnico; si es de producto o experiencia, el PO y UX reabren el backlog."
+      }
+    };
+
+
+    /* ---- roles · herramientas · tareas, por fase ---- */
+    const arcaRT = {
+      f1: [
+        ["Especialista en experiencia (UX)", ["Repositorio de hallazgos", "Mapeo colaborativo", "Figma"], ["Entrevistas y observación contextual", "Declarar accesibilidad e inclusión", "Delimitar el contexto de uso"]],
+        ["Product owner", ["Gestor de backlog"], ["Acordar alcance y criterios de éxito"]],
+        ["Usuario final (externo)", ["Grabación con consentimiento"], ["Participa en la observación y las entrevistas"]]
+      ],
+      f2: [
+        ["Especialista en experiencia (UX)", ["Gestor de requisitos"], ["Especificar requisitos F/NF", "Definir RNF medibles: latencia, precisión de registro"]],
+        ["Líder técnico", ["AsyncAPI", "JSON Schema", "OpenAPI", "UML · C4 · BPMN"], ["Definir el contrato de frontera", "Fijar la política de versionado"]],
+        ["Desarrollador de servicios *", ["Validadores de esquema"], ["Catalogar eventos y matriz productor–consumidor *"]]
+      ],
+      f3: [
+        ["Líder técnico", ["Editor UML / C4", "Repositorio de ADR"], ["Decidir la arquitectura funcional (ETSI ARF)", "Definir el anclaje espacial"]],
+        ["Especialista en experiencia (UX)", ["Figma / Adobe XD"], ["Diseñar la interfaz espacial", "Evaluación heurística de RA"]],
+        ["Ingeniero DevOps", ["Jenkins / GitLab CI", "Terraform", "Ansible", "Docker"], ["Diseñar el pipeline CI/CD", "Definir ambientes y política de promoción"]],
+        ["Desarrollador RA", ["Unity"], ["Prototipos técnicos de anclaje"]]
+      ],
+      f4: [
+        ["Responsable de contenido", ["Unity", "Autoría 3D", "Git"], ["Producir y versionar activos 3D", "Generar contenido con GenIA *"]],
+        ["Resp. de derechos y licencias", ["Registro de derechos"], ["Verificar procedencia y licencias"]],
+        ["Especialista en experiencia (UX)", ["Figma / Adobe XD"], ["Prototipar la experiencia", "Prueba de usabilidad formativa"]],
+        ["Responsable de los datos (externo) *", ["Bases de datos vectoriales", "Servicios de IA"], ["Fichas de datos y trazabilidad de la generación *"]]
+      ],
+      f5: [
+        ["Desarrollador RA", ["Unity", "Git"], ["Tracking, render e interacción"]],
+        ["Desarrollador de servicios", ["Kafka / RabbitMQ *", "Motores CEP *"], ["Implementar productores y consumidores de eventos *"]],
+        ["Ingeniero DevOps", ["Docker", "K8s + Helm", "Jenkins / GitLab CI"], ["Aplicar TDD y pruebas de integración", "Empaquetar el candidato de versión", "Integrar ambos pipelines"]],
+        ["Responsable de contenido", ["Registro de activos versionados"], ["Preparar, versionar y probar el contenido"]]
+      ],
+      f6: [
+        ["Resp. de calidad de integración y rendimiento", ["Bancos de prueba de rendimiento", "Instrumentación de latencia en el dispositivo"], ["Pruebas de rendimiento y resiliencia", "Pruebas de contrato"]],
+        ["Especialista en experiencia (UX)", ["Plataformas de prueba de usabilidad", "Formularios estandarizados"], ["Evaluación con usuarios (SUS, NASA-TLX)", "Consentimiento informado"]],
+        ["Resp. de derechos y licencias", ["Listas de verificación"], ["Verificar privacidad, accesibilidad y seguridad física"]],
+        ["Product owner + líder técnico", ["Registro de evidencias"], ["Decidir avance o retorno y registrar la causa"]]
+      ],
+      f7: [
+        ["Ingeniero DevOps", ["Kubernetes", "HashiCorp Vault", "Prometheus / Grafana"], ["Promover a producción por ambientes", "Monitorear la telemetría de campo"]],
+        ["Product owner", ["Gestor de backlog"], ["Aceptar el incremento y repriorizar el backlog"]],
+        ["Resp. de derechos y licencias", ["Registro de derechos"], ["Revisar vigencia de licencias y caducidad de activos"]]
+      ]
+    };
+
+    function arcaRTBlock(key) {
+      const rows = arcaRT[key];
+      if (!rows) return "";
+      return `<div class="rt-map">
+        <div class="rt-head">Herramienta ⇢ rol → tarea</div>
+        ${rows.map(([rol, tools, tasks]) => `
+          <div class="rt-row">
+            <div class="rt-cell">${tools.map((t) => `<span class="rt-tool">${t}</span>`).join("")}</div>
+            <div class="rt-ar">⇢</div>
+            <div class="rt-cell"><span class="rt-role">${rol}</span></div>
+            <div class="rt-ar solid">→</div>
+            <div class="rt-cell">${tasks.map((t) => `<span class="rt-task">${t}</span>`).join("")}</div>
+          </div>`).join("")}
+      </div>`;
+    }
+
+    const arcaSchema = {
+      cadencias: `<div class="io-sch"><div class="io-nest"><b>Incremento validado · 1 a 3 meses</b>
+        <div class="io-nest"><b>Microciclo · 2 semanas</b>
+          <div class="io-nest"><b>Entrega continua · por cada cambio</b>
+            cada commit dispara su pipeline y puede desplegarse a integración o validación</div>
+          abre con selección de trabajo · cierra con los seis elementos de control</div>
+        agrupa de 2 a 6 microciclos · se cierra solo con G1 ∧ G2 · lo acepta el product owner</div>
+        <div class="io-ret">↺ Un despliegue a validación no es un microciclo, y un microciclo no es por sí solo un incremento validado.</div></div>`,
+      pipelines: `<div class="io-sch">
+        <div class="io-lane"><span class="io-pill">Activos aprobados</span><span class="io-arrow">→</span>
+          <span class="io-pill t">A5.2 · pipeline de contenido</span><span class="io-arrow">→</span><span class="io-pill">Manifiesto versionado</span></div>
+        <div class="io-lane"><span class="io-pill">Arquitectura y contrato</span><span class="io-arrow">→</span>
+          <span class="io-pill t">A5.1 · pipeline de código</span><span class="io-arrow">→</span><span class="io-pill">Binario compilado</span></div>
+        <div class="io-lane" style="justify-content:center"><span class="io-arrow">↓</span><span class="io-pill t"><b>A5.3 · convergencia</b> — compatibilidad manifiesto ⇄ binario</span><span class="io-arrow">→</span><span class="io-pill">Candidato de versión</span></div>
+        <div class="io-ret">↺ Un pipeline puede estar listo mientras el otro bloquea el incremento: esa espera es la métrica que hay que vigilar.</div></div>`,
+      compuertas: `<div class="io-sch">
+        <div class="io-lane"><span class="io-pill">Evidencia</span><span class="io-arrow">→</span>
+          <span class="io-pill g">Rol nominado evalúa contra criterios declarados</span><span class="io-arrow">→</span>
+          <span class="io-pill t">[ok] avanza</span></div>
+        <div class="io-lane" style="padding-left:1.2rem"><span class="io-arrow">↳</span>
+          <span class="io-pill g">[falla] registra la causa</span><span class="io-arrow">→</span>
+          <span class="io-pill g">prescribe la fase de destino</span><span class="io-arrow">→</span>
+          <span class="io-pill">F1 … F5</span></div>
+        <div class="io-ret">↺ La puerta de calidad convencional dice que algo no pasó; la compuerta de retorno dice además a dónde volver y quién lo decide.</div></div>`,
+      hitos: `<div class="io-sch"><div class="io-lane">
+          <span class="io-pill t">M1</span><span class="io-pill">cierra F1 · contexto y alcance</span><span class="io-arrow">→</span>
+          <span class="io-pill t">M2</span><span class="io-pill">cierra F2 · requisitos y contrato v1</span></div>
+        <div class="io-lane"><span class="io-pill t">M3</span><span class="io-pill">cierra F3 · arquitectura y pipelines</span>
+          <span class="io-arrow">→</span><span class="io-pill t">M4</span><span class="io-pill">cierra F6 · incremento validado</span></div>
+        <div class="io-ret">↺ Hasta M3 las fases van en secuencia estricta. Después dejan de recorrerse en orden y pasan a ser reservorios de trabajo del microciclo.</div></div>`,
+      apoyo: `<div class="io-sch">
+        <div class="io-lane"><span class="io-pill">F1</span><span class="io-pill">F2</span><span class="io-pill">F3</span><span class="io-pill">F4</span><span class="io-pill">F5</span><span class="io-pill">F6</span><span class="io-pill">F7</span></div>
+        <div class="io-nest"><b>S1 … S7 · atraviesan todas las fases</b>
+          configuración dual · derechos y licencias · gobernanza de GenIA * · operación de compuertas · riesgos · medición · conocimiento</div>
+        <div class="io-ret">↺ Producen la evidencia sin la cual las compuertas no podrían decidir.</div></div>`,
+      patrones: `<div class="io-sch">
+        <div class="io-lane"><span class="io-pill t">CP1</span><span class="io-pill">se aplica de forma continua</span>
+          <span class="io-pill t">CP2</span><span class="io-pill">se instancia en G1, G2 y G3</span></div>
+        <div class="io-lane"><span class="io-pill t">CP3</span><span class="io-pill">se aplica en F4, F5 y F7</span>
+          <span class="io-pill t">CP4</span><span class="io-pill">se aplica en F1–F4 y se reactiva desde G2</span></div>
+        <div class="io-ret">↺ Empaquetarlos como Capability Patterns es lo que convierte a ARCA en contenido de método reutilizable y no en el diagrama de un solo proyecto.</div></div>`,
+      medicion: `<div class="io-sch">
+        <div class="io-lane"><span class="io-pill">1 · proceso</span><span class="io-arrow">→</span>
+          <span class="io-pill">2 · ingeniería y operación</span><span class="io-arrow">→</span>
+          <span class="io-pill">3 · producto</span></div>
+        <div class="io-lane"><span class="io-pill g">4 · coste de coordinación</span>
+          <span class="io-arrow">→</span><span class="io-pill t">Balance neto = beneficio − coste</span></div>
+        <div class="io-ret">↺ Cada familia alimenta a la siguiente. La hipótesis falsable de ARCA es que el balance es positivo frente a un proceso ágil sin compuertas diferenciadas.</div></div>`,
+      roles: `<div class="io-sch">
+        <div class="io-lane"><span class="io-pill t">Product owner</span><span class="io-pill">decide el QUÉ · acepta el incremento validado</span></div>
+        <div class="io-lane"><span class="io-pill t">Líder técnico</span><span class="io-pill">decide el CÓMO · elige la fase de destino cuando G1 falla</span></div>
+        <div class="io-nest"><b>+ 7 internos y 2 externos</b>
+          desarrollador RA · desarrollador de servicios · ingeniero DevOps · especialista en experiencia · resp. de calidad · resp. de derechos · responsable de contenido — y fuera del equipo: usuario final y responsable de los datos *</div>
+        <div class="io-ret">↺ Cada rol tiene una decisión que le pertenece en exclusiva: ninguna queda sin dueño y ninguna tiene dos.</div></div>`
+    };
+    function gateSchema(d) {
+      const g = d.gsch;
+      return `<div class="io-sch">
+        <div class="io-lane"><span class="io-pill">${g.evid}</span><span class="io-arrow">→</span>
+          <span class="io-pill g">${g.exec}</span><span class="io-arrow">→</span>
+          <span class="io-pill t">${g.ok}</span></div>
+        <div class="io-lane" style="padding-left:1rem"><span class="io-arrow">↳</span>
+          <span class="io-pill g">[falla] se registra la causa</span><span class="io-arrow">→</span>
+          <span class="io-pill">y prescribe la fase de destino</span></div>
+        <div class="gt-dest">${d.dest.map(([c, f]) => `
+          <div class="gt-line"><span class="gt-cause">${c}</span><span class="io-arrow">→</span><span class="gt-to">${f}</span></div>`).join("")}
+        </div></div>`;
+    }
+
+    function arcaActCard(key) {
+      const d = arca[key];
+      if (!d || !d.acts) return "";
+      if (arcaActSel === null) {
+        return `<p class="io-hint">Toca una actividad dentro de la fase para ver qué hace y quién la ejecuta.</p>`;
+      }
+      const a = d.acts[arcaActSel];
+      if (!a) return "";
+      return `<div class="ap-act" style="border-color:rgba(63,214,195,0.4)"><span class="ap-id">${a.id}</span><div class="ap-body">${a.text}${
+        a.role ? `<span class="ap-role">${a.role}</span>` : ""}</div></div>`;
+    }
+
+    function arcaMini(key) {
+      if (arca[key] && arca[key].gsch) return gateSchema(arca[key]);
+      if (arcaSchema[key]) return arcaSchema[key];
+      const io = arcaIO[key];
+      if (!io) return "";
+      const chips = (list, cls) => list.map(([l, m]) =>
+        `<div class="io-chip ${cls}">${l}${m ? `<em>${m}</em>` : ""}</div>`).join("");
+      const outs = chips(io.out, "out") +
+        (io.gate ? `<div class="io-chip gate">${io.gate[0]}<em>${io.gate[1]}</em></div>` : "");
+      const acts = io.acts.map((a, n) => {
+        const id = (arca[key].acts[n] || {}).id || "";
+        return `<div class="io-act${arcaActSel === n ? " on" : ""}" data-act="${n}" role="button" tabindex="0">${a}</div>`;
+      }).join("");
+      return `
+        <div class="io-map">
+          <div class="io-col"><h5>Entra</h5>${chips(io.in, "")}</div>
+          <div class="io-arrow">&#8594;</div>
+          <div class="io-core">
+            <div class="io-core-head">${io.core}</div>
+            ${acts}
+          </div>
+          <div class="io-arrow">&#8594;</div>
+          <div class="io-col"><h5>Sale</h5>${outs}</div>
+        </div>
+        ${arcaActCard(key)}
+        ${io.ret ? `<div class="io-ret">${io.ret}</div>` : ""}
+        ${arcaRTBlock(key)}`;
+    }
+
+
+    /* ================= visor del diagrama SPEM completo ================= */
+    const arcaFocus = {
+      f1: [0.1338, 0.0815, 0.3174, 0.2052],
+      f2: [0.4543, 0.0815, 0.3174, 0.2441],
+      f3: [0.7019, 0.2555, 0.2981, 0.2281],
+      f4: [0.5822, 0.4434, 0.3174, 0.2247],
+      f5: [0.2942, 0.7177, 0.3216, 0.249],
+      f6: [0.2024, 0.443, 0.3383, 0.2052],
+      f7: [0.0933, 0.2313, 0.3174, 0.1857],
+      g1: [0.4473, 0.3967, 0.2695, 0.1849],
+      g2: [0.3614, 0.326, 0.2695, 0.1849],
+      g3: [0.4704, 0.6356, 0.2695, 0.1849]
+    };
+    const arcaFocusName = {
+      f1: "F1", f2: "F2", f3: "F3", f4: "F4", f5: "F5", f6: "F6", f7: "F7",
+      g1: "G1", g2: "G2", g3: "G3"
+    };
+    const ARCA_DG_SRC = "reto2/diagrama/arca-general4.svg";
+
+    let dgView = null, dgImg = null, dgStage = null;
+    let dgS = 1, dgX = 0, dgY = 0, dgNat = [0, 0];
+
+    function dgApply() {
+      if (dgImg) dgImg.style.transform = `translate(${dgX}px, ${dgY}px) scale(${dgS})`;
+    }
+    function dgFit() {
+      if (!dgStage || !dgNat[0]) return;
+      const vw = dgStage.clientWidth, vh = dgStage.clientHeight - 40;
+      dgS = Math.min(vw / dgNat[0], vh / dgNat[1]) * 0.96;
+      dgX = (dgStage.clientWidth - dgNat[0] * dgS) / 2;
+      dgY = 46 + (vh - dgNat[1] * dgS) / 2;
+      dgApply();
+    }
+    function dgFocus(key) {
+      const r = arcaFocus[key];
+      if (!r || !dgStage || !dgNat[0]) return dgFit();
+      const [fx, fy, fw, fh] = r;
+      const vw = dgStage.clientWidth, vh = dgStage.clientHeight - 60;
+      dgS = Math.min(vw / (fw * dgNat[0]), vh / (fh * dgNat[1])) * 0.92;
+      dgX = -fx * dgNat[0] * dgS + (vw - fw * dgNat[0] * dgS) / 2;
+      dgY = 56 - fy * dgNat[1] * dgS + (vh - fh * dgNat[1] * dgS) / 2;
+      dgApply();
+      dgView.querySelectorAll(".dg-chip[data-focus]").forEach((c) =>
+        c.classList.toggle("on", c.getAttribute("data-focus") === key));
+    }
+
+    function dgOpen(key) {
+      if (!dgView) dgBuild();
+      dgView.classList.add("open");
+      requestAnimationFrame(() => { if (dgNat[0]) { key && arcaFocus[key] ? dgFocus(key) : dgFit(); } });
+    }
+    function dgClose() { if (dgView) dgView.classList.remove("open"); }
+
+    function dgBuild() {
+      dgView = document.createElement("div");
+      dgView.className = "dg-view";
+      dgView.innerHTML = `
+        <div class="dg-stage" id="dg-stage">
+          <img id="dg-img" alt="Modelo de proceso ARCA en SPEM 2.0" />
+          <div class="dg-miss" id="dg-miss"><div>
+            <h4>Falta exportar el diagrama</h4>
+            <p>Este visor muestra el diagrama SPEM real. Para activarlo hay que dejar una imagen en
+            <code>${ARCA_DG_SRC}</code>.</p>
+            <ol>
+              <li>Abrir <code>reto2/diagrama/Diagrama-SPEM2.0-ARCA.drawio</code> en draw.io y situarse en la página <b>General 4</b>.</li>
+              <li><b>Archivo › Exportar como › SVG…</b> con “Solo página actual” y sin recortar la selección.</li>
+              <li>Guardar el archivo con el nombre <code>arca-general4.svg</code> dentro de <code>reto2/diagrama/</code>.</li>
+            </ol>
+            <p style="margin-top:0.7rem">Mientras tanto, el resto de la diapositiva funciona igual.</p>
+          </div></div>
+        </div>
+        <div class="dg-bar">
+          <span class="dg-title">Modelo de proceso ARCA · SPEM 2.0</span>
+          <button type="button" class="dg-chip" data-fit>Ver todo</button>
+          ${Object.keys(arcaFocusName).map((k) =>
+            `<button type="button" class="dg-chip ${k[0] === "g" ? "gate" : ""}" data-focus="${k}">${arcaFocusName[k]}</button>`).join("")}
+          <span class="dg-spacer"></span>
+          <button type="button" class="dg-chip" data-close>Cerrar ✕</button>
+        </div>
+        <div class="dg-hint">Rueda para acercar · arrastra para mover · Esc para salir</div>`;
+      document.body.appendChild(dgView);
+
+      dgStage = dgView.querySelector("#dg-stage");
+      dgImg = dgView.querySelector("#dg-img");
+      const miss = dgView.querySelector("#dg-miss");
+      dgImg.addEventListener("load", () => {
+        dgNat = [dgImg.naturalWidth, dgImg.naturalHeight];
+        miss.classList.remove("show");
+        dgFit();
+      });
+      dgImg.addEventListener("error", () => { miss.classList.add("show"); dgImg.style.display = "none"; });
+      dgImg.src = ARCA_DG_SRC;
+
+      dgView.querySelector("[data-close]").addEventListener("click", dgClose);
+      dgView.querySelector("[data-fit]").addEventListener("click", () => {
+        dgFit();
+        dgView.querySelectorAll(".dg-chip[data-focus]").forEach((c) => c.classList.remove("on"));
+      });
+      dgView.querySelectorAll(".dg-chip[data-focus]").forEach((c) =>
+        c.addEventListener("click", () => dgFocus(c.getAttribute("data-focus"))));
+
+      dgStage.addEventListener("wheel", (e) => {
+        e.preventDefault();
+        const r = dgStage.getBoundingClientRect();
+        const mx = e.clientX - r.left, my = e.clientY - r.top;
+        const f = e.deltaY < 0 ? 1.16 : 1 / 1.16;
+        const ns = Math.min(Math.max(dgS * f, 0.05), 12);
+        dgX = mx - (mx - dgX) * (ns / dgS);
+        dgY = my - (my - dgY) * (ns / dgS);
+        dgS = ns; dgApply();
+      }, { passive: false });
+
+      let drag = false, px = 0, py = 0;
+      dgStage.addEventListener("pointerdown", (e) => {
+        drag = true; px = e.clientX; py = e.clientY;
+        dgStage.classList.add("drag"); dgStage.setPointerCapture(e.pointerId);
+      });
+      dgStage.addEventListener("pointermove", (e) => {
+        if (!drag) return;
+        dgX += e.clientX - px; dgY += e.clientY - py;
+        px = e.clientX; py = e.clientY; dgApply();
+      });
+      const up = () => { drag = false; dgStage.classList.remove("drag"); };
+      dgStage.addEventListener("pointerup", up);
+      dgStage.addEventListener("pointercancel", up);
+      window.addEventListener("resize", () => { if (dgView.classList.contains("open")) dgFit(); });
+    }
+
+    const arcaPanel = document.getElementById("arca-panel");
+    const arcaMap = document.querySelector(".arca-map");
+
+    function arcaTags(label, list, cls) {
+      if (!list || !list.length) return "";
+      return `<div class="ap-sec"><h4>${label}</h4><div class="ap-tags ${cls || ""}">${list
+        .map((t) => `<span>${t}</span>`).join("")}</div></div>`;
+    }
+    function arcaDest(rows) {
+      if (!rows) return "";
+      return `<div class="ap-sec"><h4>Si falla → a dónde vuelve</h4><div class="ap-tags">${rows
+        .map(([c, d]) => `<span>${c} <b style="color:var(--teal-ink)">→ ${d}</b></span>`).join("")}</div></div>`;
+    }
+    function arcaBody(d, key) {
+      const hasIO = !!arcaIO[key];
+      let actsHTML = "";
+      if (d.acts) {
+        if (hasIO) {
+          actsHTML = "";
+        } else {
+          actsHTML = `<div class="ap-sec"><h4>${d.gsch ? "Quién hace qué" : "Actividades"}</h4>${d.acts.map((a) => `
+            <div class="ap-act"><span class="ap-id">${a.id}</span><div class="ap-body">${a.text}${
+              a.role ? `<span class="ap-role">${a.role}</span>` : ""}</div></div>`).join("")}</div>`;
+        }
+      }
+      return `
+        ${arcaMini(key)}
+        ${d.lead ? `<p class="ap-lead">${d.lead}</p>` : ""}
+        ${actsHTML}
+        ${d.gsch ? "" : arcaDest(d.dest)}
+        ${arcaTags("Productos de trabajo", d.outputs, "out")}
+        ${arcaTags("Métodos y técnicas", d.tech)}
+        ${arcaRT[key] ? "" : arcaTags("Herramientas", d.tools)}
+        ${d.gate ? `<div class="ap-gate">${d.gate}</div>` : ""}
+        ${d.note ? `<p class="ap-note">${d.note}</p>` : ""}`;
+    }
+
+    let arcaCurrent = "f1";
+    let arcaActSel = null;
+    function arcaRender(key, keepScroll) {
+      const d = arca[key];
+      if (!d) return;
+      if (key !== arcaCurrent) arcaActSel = null;
+      arcaCurrent = key;
+      arcaPanel.innerHTML = `
+        <div class="ap-head">
+          <div>
+            <div class="ap-kicker">${d.kicker}</div>
+            <h3 class="ap-title">${d.title}</h3>
+          </div>
+          <div class="ap-actions">
+            ${arcaFocus[key] ? `<button type="button" class="dg-open" id="ap-dg">Ver en el diagrama</button>` : ""}
+            <button type="button" class="ap-zoom" id="ap-zoom">Ampliar</button>
+          </div>
+        </div>
+        ${arcaBody(d, key)}`;
+      if (!keepScroll) arcaPanel.scrollTop = 0;
+      document.getElementById("ap-zoom").addEventListener("click", () => arcaOpenZoom(arcaCurrent));
+      const dgBtn = document.getElementById("ap-dg");
+      if (dgBtn) dgBtn.addEventListener("click", () => dgOpen(arcaCurrent));
+      arcaPanel.querySelectorAll(".io-act[data-act]").forEach((el) => {
+        const n = parseInt(el.getAttribute("data-act"), 10);
+        const pick = () => {
+          const top = arcaPanel.scrollTop;
+          arcaActSel = arcaActSel === n ? null : n;
+          arcaRender(arcaCurrent, true);
+          arcaPanel.scrollTop = top;
+        };
+        el.addEventListener("click", pick);
+        el.addEventListener("keydown", (e) => {
+          if (e.key === "Enter" || e.key === " ") { e.preventDefault(); pick(); }
+        });
+      });
+      arcaMap.querySelectorAll("[data-node]").forEach((n) =>
+        n.classList.toggle("on", n.getAttribute("data-node") === key));
+      document.querySelectorAll("#arca-moments .mchip").forEach((c) =>
+        c.classList.toggle("on", c.getAttribute("data-node") === key));
+    }
+
+    let arcaZoom = null;
+    function arcaOpenZoom(key) {
+      const d = arca[key];
+      arcaCloseZoom();
+      arcaZoom = document.createElement("div");
+      arcaZoom.className = "arca-zoom open";
+      arcaZoom.innerHTML = `
+        <div class="arca-zoom-inner">
+          <button type="button" class="arca-zoom-close">Cerrar ✕</button>
+          <div>
+            <div class="ap-kicker">${d.kicker}</div>
+            <h3 class="ap-title">${d.title}</h3>
+          </div>
+          ${d.lead ? `<p class="ap-lead">${d.lead}</p>` : ""}
+          ${arcaMini(key)}
+          <div class="az-grid${arcaIO[key] ? ' one' : ''}">
+            <div class="ap-sec">
+              ${d.acts ? (arcaIO[key]
+                ? ""
+                : `<h4>${d.gsch ? "Quién hace qué" : "Actividades"}</h4>${d.acts.map((a) => `
+                    <div class="ap-act"><span class="ap-id">${a.id}</span><div class="ap-body">${a.text}${
+                      a.role ? `<span class="ap-role">${a.role}</span>` : ""}</div></div>`).join("")}`) : ""}
+            </div>
+            <div class="ap-sec" style="gap:0.6rem">
+              ${d.gsch ? "" : arcaDest(d.dest)}
+              ${arcaTags("Productos de trabajo", d.outputs, "out")}
+              ${arcaTags("Métodos y técnicas", d.tech)}
+              ${arcaRT[key] ? "" : arcaTags("Herramientas", d.tools)}
+              ${d.gate ? `<div class="ap-gate">${d.gate}</div>` : ""}
+              ${d.note ? `<p class="ap-note">${d.note}</p>` : ""}
+            </div>
+          </div>
+        </div>`;
+      document.body.appendChild(arcaZoom);
+      arcaZoom.querySelector(".arca-zoom-close").addEventListener("click", arcaCloseZoom);
+      arcaZoom.addEventListener("click", (e) => { if (e.target === arcaZoom) arcaCloseZoom(); });
+      arcaZoom.querySelectorAll(".io-act[data-act]").forEach((el) => {
+        el.addEventListener("click", () => {
+          const n = parseInt(el.getAttribute("data-act"), 10);
+          arcaActSel = arcaActSel === n ? null : n;
+          const sc = arcaZoom.scrollTop;
+          arcaOpenZoom(key);
+          if (arcaZoom) arcaZoom.scrollTop = sc;
+          arcaRender(arcaCurrent, true);
+        });
+      });
+    }
+    function arcaCloseZoom() {
+      if (arcaZoom) { arcaZoom.remove(); arcaZoom = null; }
+    }
+
+    if (arcaPanel && arcaMap) {
+      arcaMap.querySelectorAll("[data-node]").forEach((n) => {
+        const key = n.getAttribute("data-node");
+        n.addEventListener("click", () => arcaRender(key));
+        n.addEventListener("keydown", (e) => {
+          if (e.key === "Enter" || e.key === " ") { e.preventDefault(); arcaRender(key); }
+        });
+      });
+      document.querySelectorAll("#arca-moments .mchip").forEach((c) =>
+        c.addEventListener("click", () => arcaRender(c.getAttribute("data-node"))));
+      const dgAll = document.getElementById("dg-open-all");
+      if (dgAll) dgAll.addEventListener("click", () => dgOpen(null));
+      arcaRender("f1");
+    }
+
+  </script>
+</body>
+</html>
