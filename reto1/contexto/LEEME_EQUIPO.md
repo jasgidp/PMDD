@@ -1,4 +1,7 @@
-# LEEME_EQUIPO.md — Cómo usar este repo
+# LEEME_EQUIPO.md — Cómo usar este repo (Reto #1)
+
+> **Reto #1 cerrado.** Versión final en [`reto1/entrega-final/`](../entrega-final/).
+> El trabajo continúa en el **Reto #2** → [`reto2/contexto/LEEME_RETO2.md`](../../reto2/contexto/LEEME_RETO2.md)
 
 **Curso:** Universidad EAFIT — Procesos Modernos de Desarrollo de Software  
 **Reto #1:** Dominio, Enfoque y Espina de Pescado  

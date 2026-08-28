@@ -4,15 +4,31 @@
     {
       "name": "presentacion",
       "runtimeExecutable": "sh",
-      "runtimeArgs": ["-c", "python3 -m http.server \"$PORT\" --directory presentacion"],
+      "runtimeArgs": [
+        "-c",
+        "python3 -m http.server \"$PORT\" --directory presentacion"
+      ],
       "port": 8777,
       "autoPort": true
     },
     {
       "name": "root",
       "runtimeExecutable": "sh",
-      "runtimeArgs": ["-c", "python3 -m http.server \"$PORT\""],
+      "runtimeArgs": [
+        "-c",
+        "python3 -m http.server \"$PORT\""
+      ],
       "port": 8778,
+      "autoPort": true
+    },
+    {
+      "name": "arca-ppt",
+      "runtimeExecutable": "sh",
+      "runtimeArgs": [
+        "-c",
+        "python3 -m http.server \"$PORT\""
+      ],
+      "port": 8781,
       "autoPort": true
     }
   ]

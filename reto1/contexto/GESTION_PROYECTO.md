@@ -1,5 +1,33 @@
 # GESTION_PROYECTO — estado, decisiones, glosario y bitácora
 
+> ## ⛔ RETO #1 CERRADO — versión final entregada
+>
+> **Versión final:** [`reto1/entrega-final/Equipo2_2026_Metodologia_AR_EAFIT.pdf`](../entrega-final/Equipo2_2026_Metodologia_AR_EAFIT.pdf)
+> (paper IEEE completo: título, abstract EN, §I–§V, Cuadros I–III, Fig. 1 y 30 referencias).
+>
+> Las tablas de estado que siguen quedan como **registro histórico del proceso**; ya no reflejan pendientes.
+> Lo que dice el PDF final prevalece sobre cualquier estado "pendiente" listado más abajo.
+>
+> **Continuación del trabajo → [`reto2/contexto/LEEME_RETO2.md`](../../reto2/contexto/LEEME_RETO2.md)**
+> (Reto #2: modelo de proceso en SPEM 2.0, vence 30-ago-2026).
+>
+> ### Qué quedó fijado en la versión final
+>
+> | Elemento | Valor definitivo |
+> |----------|------------------|
+> | Título | *Primera aproximación a una metodología de desarrollo de software para realidad aumentada basada en taxonomía de procesos* |
+> | Enfoques | GenIA · DevOps · EDA · HCD (HCD y DevOps obligatorios; EDA y GenIA condicionales) |
+> | Modelo | **7 fases** (F1 encuadre → F7 despliegue), microciclo de **2 semanas**, incremento validado de **1–3 meses** |
+> | Compuertas | **G1** rendimiento · **G2** experiencia y responsabilidad social · **G3** generación (condicional) |
+> | Roles | **9 internos + 2 externos** (usuario final, responsable de los datos) |
+> | Distintivos | cadencias anidadas · compuertas con rol y fase de destino · autoridad separada PO/líder técnico · doble cadena código+contenido · responsabilidad social verificable en compuerta |
+> | Nombre propio de la metodología | **ARCA — Augmented Reality Continuous Assurance** — decidido el 2026-08-27, ya en el Reto #2 (cierra D15). El paper del Reto #1 la llama "la propuesta" |
+> | Referencias | 30, IEEE, por orden de aparición |
+>
+> **Feedback del profesor:** *"Trabajo sobresaliente y excelente evolución frente a la socialización"* —
+> texto completo y análisis en [`reto2/contexto/FEEDBACK_RETO1.md`](../../reto2/contexto/FEEDBACK_RETO1.md).
+
+
 Archivo operativo del equipo. Al integrar texto nuevo: actualizar **Estado** + **Bitácora**.
 
 ---

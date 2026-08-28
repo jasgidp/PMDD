@@ -1,53 +1,75 @@
-# PMDD — Reto #1 (Equipo 2)
+# PMDD — Equipo 2
 
-Universidad EAFIT — **Procesos Modernos de Desarrollo de Software**  
-Dominio: **Realidad aumentada**
+Universidad EAFIT — **Procesos Modernos de Desarrollo de Software**
+Dominio asignado: **Realidad aumentada (RA)**
 
-## Empieza aquí
+**Equipo:** Quinnie Villarreal · José Manuel Carvajal · Jonathan Sandoval · Lina Ballesteros · Alejandro Ríos
 
-1. Entra a [`contexto/LEEME_EQUIPO.md`](contexto/LEEME_EQUIPO.md)  
-2. Lee requisitos en [`contexto/REQUISITOS.md`](contexto/REQUISITOS.md)  
-3. Escribe en [`contexto/BORRADOR_MAESTRO.md`](contexto/BORRADOR_MAESTRO.md)
+---
 
-La carpeta **`contexto/`** es la única fuente de verdad del trabajo en equipo.
-
-## Estructura del repositorio
+## Estructura
 
 ```
 PMDD/
-├── README.md                          ← este archivo
-├── contexto/
-│   ├── LEEME_EQUIPO.md                ← mapa + protocolo de ingesta
-│   ├── REQUISITOS.md                  ← enunciado, condiciones, rúbrica
-│   ├── PLANTILLA_PAPER.md             ← outline IEEE aprobado
-│   ├── BORRADOR_MAESTRO.md            ← paper en construcción
-│   ├── FUENTES.md                     ← bibliografía pública
-│   ├── GESTION_PROYECTO.md            ← estado, decisiones, glosario, bitácora
-│   ├── PRESENTACION.md                ← PPT socialización + corregida
-│   └── privado/                       ← SOLO LOCAL (gitignored)
-├── estado-arte-realidad-aumentada/    ← estado del arte AR (Quinnie)
-│   ├── estado_arte_RA.pdf
-│   ├── estado_arte_RA.tex
-│   └── preview_IEEE.html
-├── formato-presentacion-documentos-ieee-es.doc
-├── A taxonomy of design methods process models (1).pdf
-├── Ejemplo formato IEEE diligenciado.pdf
-└── (otros PDFs de apoyo del curso)
+├── reto1/                              ← Reto #1 — CERRADO
+│   ├── contexto/                       ← fuente de verdad del Reto #1
+│   ├── entrega-final/
+│   │   └── Equipo2_2026_Metodologia_AR_EAFIT.pdf   ← VERSIÓN FINAL ENTREGADA
+│   ├── paper/                          ← LaTeX
+│   ├── presentacion/                   ← v1 socialización · v2 corregida (HTML)
+│   ├── estado-arte-realidad-aumentada/
+│   └── apoyos/                         ← material del profesor
+└── reto2/                              ← Reto #2 — EN CURSO (vence 30-ago-2026)
+    ├── contexto/                       ← fuente de verdad del Reto #2  ← EMPIEZA AQUÍ
+    ├── diagrama/                       ← Diagrama-SPEM2.0-PMDS.drawio
+    └── apoyos/                         ← guía SPEM 2.0, plantilla, referencias
 ```
 
-## Entregables
+---
 
-| Entregable | Peso |
-|------------|------|
-| Socialización (presentación) | 40% |
-| Paper IEEE + PPT corregida | 60% |
+## Reto #1 — Dominio, enfoque y espina de pescado · **cerrado**
 
-Trabajo en **Markdown**; al final se convierte a formato IEEE.
+Paper IEEE: *"Primera aproximación a una metodología de desarrollo de software para realidad aumentada basada
+en taxonomía de procesos"*. Combina cuatro enfoques (**GenIA, DevOps, EDA, HCD**) sobre los seis ejes de la
+taxonomía de Céret et al. (ciclo, colaboración, artefactos, uso recomendado, madurez, flexibilidad).
+
+**Versión final:** [`reto1/entrega-final/Equipo2_2026_Metodologia_AR_EAFIT.pdf`](reto1/entrega-final/Equipo2_2026_Metodologia_AR_EAFIT.pdf)
+
+## Reto #2 — **ARCA** · modelo de procesos en SPEM 2.0 · en curso
+
+**ARCA — Augmented Reality Continuous Assurance** (*Aseguramiento Continuo para Realidad Aumentada*).
+
+Formalizar la metodología del Reto #1 como modelo de proceso ejecutable en SPEM 2.0: actividades, roles,
+métodos, técnicas, artefactos, herramientas y actividades transversales de soporte.
+
+**Empieza aquí:** [`reto2/contexto/LEEME_RETO2.md`](reto2/contexto/LEEME_RETO2.md)
+**Presentación:** [`index.html`](index.html) — 4 diapositivas, ábrela en el navegador
+
+| Documento | Para qué |
+|-----------|----------|
+| [`REQUISITOS.md`](reto2/contexto/REQUISITOS.md) | Enunciado, fechas y checklist de cumplimiento |
+| [`FEEDBACK_RETO1.md`](reto2/contexto/FEEDBACK_RETO1.md) | Feedback del profesor: qué defender, qué corregir, qué exige como siguiente nivel |
+| [`MODELO_PROCESO.md`](reto2/contexto/MODELO_PROCESO.md) | **Especificación canónica** del modelo (F1–F7, roles, compuertas, métricas) |
+| [`AUDITORIA_DIAGRAMA.md`](reto2/contexto/AUDITORIA_DIAGRAMA.md) | **Qué falta en el diagrama actual** para cumplir el enunciado |
+| [`SPEM_CONVENCIONES.md`](reto2/contexto/SPEM_CONVENCIONES.md) | Notación acordada |
+| [`ASIGNACION_EQUIPO.md`](reto2/contexto/ASIGNACION_EQUIPO.md) | Quién modela qué |
+| [`PRESENTACION.md`](reto2/contexto/PRESENTACION.md) | 4 slides + guion de 5 minutos |
+| [`PAPER_SECCION_MODELO.md`](reto2/contexto/PAPER_SECCION_MODELO.md) | Cómo entra el modelo al paper |
+
+### Fechas
+
+| Entregable | Fecha |
+|------------|-------|
+| Presentación (4 slides) + socialización ≤5 min | sábado 29-ago-2026 |
+| Modelo incorporado al paper | domingo 30-ago-2026, 23:59 |
+
+---
 
 ## Privacidad
 
-`contexto/privado/` **no se sube a GitHub** (está en `.gitignore`). Ahí vive detalle industrial del empleador para uso local.
+`reto1/contexto/privado/` **no se sube a GitHub** (está en `.gitignore`): contiene detalle industrial del
+empleador para uso local.
 
-## Enlace remoto
+## Remoto
 
 https://github.com/jasgidp/PMDD

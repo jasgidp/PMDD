@@ -19,6 +19,6 @@ Thumbs.db
 *.swp
 
 # --- Información industrial / empleador: NO publicar ---
-contexto/privado/
+reto1/contexto/privado/
 **/GeniusRepositories/
 /tmp/genius-ar-probe/
