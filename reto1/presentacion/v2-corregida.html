@@ -616,6 +616,23 @@
 
     .mini-flow-arrow { color: rgba(255,255,255,0.25); font-size: 0.75rem; flex: 0 0 auto; }
     .mini-note { margin-top: 0.4rem; font-size: var(--t-small); color: var(--faint); line-height: 1.4; }
+    .metric-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.45rem 0.8rem;
+      margin-top: 0.45rem;
+    }
+    .metric-card {
+      border-top: 1px solid var(--line);
+      padding-top: 0.42rem;
+      color: var(--ink-2);
+      font-size: var(--t-small);
+    }
+    .metric-card b {
+      display: block;
+      color: var(--faint);
+      margin-bottom: 0.18rem;
+    }
 
     /* —— tags —— */
     .tag-group { display: flex; flex-wrap: wrap; gap: 0.28rem; }
@@ -1044,6 +1061,21 @@
     }
 
     .fish-wrap.show-phases .phase-diagram { display: block; animation: rise 0.28s ease; }
+    .social-strip {
+      margin-top: 0.7rem;
+      padding: 0.65rem 0.8rem;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: rgba(255,255,255,0.03);
+      color: var(--ink-2);
+      font-size: var(--t-small);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem 0.7rem;
+      align-items: baseline;
+    }
+    .social-strip strong { color: var(--sand); }
+    .social-strip small { color: var(--faint); margin-left: auto; }
 
     .pd-label {
       font-size: var(--t-label);
@@ -1288,7 +1320,7 @@
           <div class="eyebrow">Equipo 2 · EAFIT</div>
           <h1 class="slide-title">Realidad aumentada</h1>
         </div>
-        <p class="meta">Primera aproximación metodológica basada en taxonomía de procesos<br />Quinnie · Manuel · Jonathan · Lina · Alejandro</p>
+        <p class="meta">Primera aproximación metodológica basada en taxonomía de procesos<br />Quinnie · José · Lina · Jhonnatan · Alejo</p>
       </header>
 
       <div class="stage s1-stage">
@@ -1316,15 +1348,15 @@
             <h4>Tiempo real y baja latencia E2E</h4>
           </div>
           <div class="cycle" aria-label="Ciclo de vida">
-            <div class="continuum-label">Ciclo de vida · iterativo, 7 pasos</div>
-            <div class="pipeline-row" role="img" aria-label="Ideación, Requisitos, Diseño, Prototipo, Implementación, Evaluación, Deploy — vuelve a Ideación">
-              <span class="pipe-unit"><div class="pipe-chip">1 Ideación</div><span class="pipe-arrow">→</span></span>
-              <span class="pipe-unit"><div class="pipe-chip">2 Requisitos</div><span class="pipe-arrow">→</span></span>
-              <span class="pipe-unit"><div class="pipe-chip">3 Diseño</div><span class="pipe-arrow">→</span></span>
-              <span class="pipe-unit"><div class="pipe-chip">4 Prototipo</div><span class="pipe-arrow">→</span></span>
-              <span class="pipe-unit"><div class="pipe-chip">5 Impl.</div><span class="pipe-arrow">→</span></span>
-              <span class="pipe-unit"><div class="pipe-chip">6 Eval.</div><span class="pipe-arrow">→</span></span>
-              <span class="pipe-unit"><div class="pipe-chip">7 Deploy</div><span class="pipe-arrow" title="Vuelve a Ideación">↺</span></span>
+            <div class="continuum-label">Ciclo de vida · ARCA en 7 fases</div>
+            <div class="pipeline-row" role="img" aria-label="F1 Contexto, F2 Requisitos, F3 Arquitectura, F4 Activos, F5 Construcción, F6 Verificación, F7 Operación — vuelve a Contexto">
+              <span class="pipe-unit"><div class="pipe-chip">F1 Contexto</div><span class="pipe-arrow">→</span></span>
+              <span class="pipe-unit"><div class="pipe-chip">F2 Requisitos</div><span class="pipe-arrow">→</span></span>
+              <span class="pipe-unit"><div class="pipe-chip">F3 Arquitectura</div><span class="pipe-arrow">→</span></span>
+              <span class="pipe-unit"><div class="pipe-chip">F4 Activos</div><span class="pipe-arrow">→</span></span>
+              <span class="pipe-unit"><div class="pipe-chip">F5 Construcción</div><span class="pipe-arrow">→</span></span>
+              <span class="pipe-unit"><div class="pipe-chip">F6 Verificación</div><span class="pipe-arrow">→</span></span>
+              <span class="pipe-unit"><div class="pipe-chip">F7 Operación</div><span class="pipe-arrow" title="Vuelve a Contexto">↺</span></span>
             </div>
           </div>
         </div>
@@ -1570,7 +1602,8 @@
             <line x1="70" y1="180" x2="600" y2="180" stroke="#2ec4b6" stroke-width="6" stroke-linecap="round"/>
             <polygon points="600,180 655,155 655,205" fill="#2ec4b6"/>
             <text x="40" y="186" fill="#9aafb8" font-family="Sora,sans-serif" font-size="12" font-weight="700">RA</text>
-            <text x="668" y="186" fill="#e8a87c" font-family="Sora,sans-serif" font-size="11" font-weight="700">Método</text>
+            <text x="664" y="176" fill="#e8a87c" font-family="Sora,sans-serif" font-size="15" font-weight="800">ARCA</text>
+            <text x="622" y="198" fill="#9aafb8" font-family="Sora,sans-serif" font-size="8.5" font-weight="600">Done: validado técnica + humanamente</text>
 
             <!-- bones top -->
             <g class="bone" data-axis="ciclo">
@@ -1615,29 +1648,35 @@
 
           <div class="phase-diagram" id="phase-diagram" aria-hidden="true">
             <div class="pd-flow">
-              <div class="pd-step"><span class="pd-num">F1</span><span class="pd-name">Concepto / Requisitos</span></div>
-              <div class="pd-step"><span class="pd-num">F2</span><span class="pd-name">Arquitectura y Contratos</span></div>
-              <div class="pd-step"><span class="pd-num">F3</span><span class="pd-name">Desarrollo Dual Pipeline (Código + Prompts/RAG)</span></div>
-              <div class="pd-gate g3"><span class="pd-gate-tag">G3 · Generación</span><span class="pd-gate-cond">Retorno si la IA alucina o falla</span></div>
-              <div class="pd-step"><span class="pd-num">F4</span><span class="pd-name">Integración de Overlays y Servicios</span></div>
-              <div class="pd-gate g1"><span class="pd-gate-tag">G1 · Rendimiento</span><span class="pd-gate-cond">Retorno si la latencia/FPS falla</span></div>
-              <div class="pd-step"><span class="pd-num">F5</span><span class="pd-name">Pruebas y Validación UX</span></div>
-              <div class="pd-gate g2"><span class="pd-gate-tag">G2 · UX/Usabilidad</span><span class="pd-gate-cond">Retorno si la experiencia es deficiente</span></div>
-              <div class="pd-step"><span class="pd-num">F6</span><span class="pd-name">Despliegue e Instrumentación</span></div>
-              <div class="pd-step"><span class="pd-num">F7</span><span class="pd-name">Monitoreo y Evolución Empírica</span></div>
+              <div class="pd-step"><span class="pd-num">F1</span><span class="pd-name">Encuadre y contexto de uso</span></div>
+              <div class="pd-step"><span class="pd-num">F2</span><span class="pd-name">Requisitos y contratos</span></div>
+              <div class="pd-step"><span class="pd-num">F3</span><span class="pd-name">Diseño y arquitectura</span></div>
+              <div class="pd-step"><span class="pd-num">F4</span><span class="pd-name">Activos y prototipado</span></div>
+              <div class="pd-gate g3"><span class="pd-gate-tag">G3* · Generación</span><span class="pd-gate-cond">Calidad · trazabilidad · derechos</span></div>
+              <div class="pd-step"><span class="pd-num">F5</span><span class="pd-name">Construcción · doble cadena código + contenido</span></div>
+              <div class="pd-step"><span class="pd-num">F6</span><span class="pd-name">Verificación técnica y humana</span></div>
+              <div class="pd-gate g1"><span class="pd-gate-tag">G1 · Rendimiento</span><span class="pd-gate-cond">Retorno a F3 o F5 según causa</span></div>
+              <div class="pd-gate g2"><span class="pd-gate-tag">G2 · UX + responsabilidad social</span><span class="pd-gate-cond">Retorno a F1, F2 o F4 según causa</span></div>
+              <div class="pd-step"><span class="pd-num">F7</span><span class="pd-name">Despliegue, operación y evolución</span></div>
             </div>
+          </div>
+          <div class="social-strip">
+            <strong>Responsabilidad social transversal</strong>
+            <span>Privacidad · Accesibilidad · Seguridad física · Derechos y licencias</span>
+            <small>* Elemento condicional</small>
           </div>
         </div>
 
         <div class="side-col">
           <div class="diff">
             <h3>Valor diferencial</h3>
-            <p>Frente a Spiral, RAD y XP — mismos ejes, comparación explícita:</p>
+            <p>ARCA convierte los enfoques en decisiones metodológicas verificables y con responsables explícitos.</p>
             <ul class="diff-list">
-              <li><strong>Compuertas nominadas</strong> — G1 y G2*, G3 condicional; en qué fase se regresa </li>
-              <li><strong>Frontera declarada</strong> — se formaliza lo que cruza entre equipos o al producto</li>
-              <li><strong>Variabilidad configurable</strong> — HCD y DevOps obligatorios, EDA y GenIA condicionales</li>
-              <li><strong>Doble pipeline</strong> — código y contenido de augmentación, ambos de primera clase, con su propio versionado</li>
+              <li><strong>HCD como método</strong> — el usuario participa durante el ciclo y G2 puede detener el incremento.</li>
+              <li><strong>Tres cadencias + compuertas</strong> — entrega técnica continua, microciclo e incremento validado; G1/G2 obligatorias y G3* condicional.</li>
+              <li><strong>Doble cadena</strong> — código y contenido son productos de primera clase.</li>
+              <li><strong>Formalización + accountability</strong> — se formaliza lo que cruza fronteras y existen responsables claros.</li>
+              <li><strong>Valor medible</strong> — proceso, ingeniería, producto y negocio permiten evaluar beneficio frente al costo de coordinación.</li>
             </ul>
           </div>
           <div class="engine-legend" aria-hidden="true">
@@ -1769,74 +1808,77 @@
 
     const axes = {
       ciclo: {
-        title: "Ciclo (1–3 meses) entregables continuos",
+        title: "Ciclo · tres cadencias y retorno",
         items: [
-          { tag: "base", text: "Incremental, con tres compuertas de retorno" },
-          { tag: "eda", text: "G1 rendimiento — obligatoria: latencia, throughput y resiliencia" },
-          { tag: "hcd", text: "G2 experiencia de usuario — obligatoria: validación con usuarios" },
-          { tag: "genia", text: "G3 generación — condicional: solo si GenIA está activo" },
-          { tag: "devops", text: "RC + promoción por ambientes" }
+          { tag: "base", text: "Iterativo local/regional con retornos explícitos G1 / G2 / G3*" },
+          { tag: "devops", text: "Entrega técnica continua — CI/CD e integración continua" },
+          { tag: "base", text: "Microciclo — 2 semanas; activa solo las fases necesarias" },
+          { tag: "base", text: "Incremento validado — 1–3 meses" },
+          { tag: "hcd", text: "Desplegado ≠ validado: Done exige G1 + G2 (+ G3* si aplica)" }
         ]
       },
       colaboracion: {
-        title: "Colaboración",
+        title: "Colaboración · accountability explícita",
         items: [
-          { tag: "base", text: "6 roles internos + 2 externos — mismo grado que RAD" },
-          { tag: "devops", text: "QA multi-rol; firmas separadas antes de producción" },
-          { tag: "eda", text: "Contrato de eventos compartido entre equipos" }
+          { tag: "base", text: "Product Owner decide qué se construye; Líder Técnico decide cómo" },
+          { tag: "hcd", text: "UX + Usuario final sostienen la validación humana de G2" },
+          { tag: "base", text: "Calidad registra G1; Líder Técnico decide la fase de retorno" },
+          { tag: "genia", text: "Contenido + Derechos (+ Datos*) gobiernan G3" }
         ],
         roleGroups: [
-          [["ARQ", "Arquitecto de software/eventos"], ["DEV-RA", "Desarrollador RA"], ["DEV-SVC", "Desarrollador de servicios"]],
-          [["DEVOPS", "Ingeniero DevOps"], ["UX", "Especialista en experiencia de usuario"], ["QA", "QA de integración y rendimiento"]]
+          [["PO", "Product Owner"], ["LT", "Líder Técnico"], ["DEV-RA", "Desarrollador RA"], ["DEV-SVC", "Desarrollador de servicios"], ["DEVOPS", "DevOps"]],
+          [["UX", "Especialista UX"], ["CAL", "Calidad de integración y rendimiento"], ["CONT", "Responsable de contenido"], ["DER", "Responsable de derechos y licencias"]]
         ],
-        externalRoles: [["USER", "Usuario final (participa en F1–F2)"], ["DATA", "Responsable de los datos (si GenIA activo)"]]
+        externalRoles: [["USER", "Usuario final"], ["DATA*", "Responsable de datos — solo si GenIA aplica"]]
       },
       artefactos: {
-        title: "Artefactos",
+        title: "Artefactos · formalización por frontera",
         items: [
-          { tag: "base", text: "Dual Pipeline en F3: código + contenido de augmentación" },
-          { tag: "base", text: "Frontera explícita: se formaliza lo que cruza entre equipos o entra al producto; lo exploratorio queda semi-formal" },
-          { tag: "devops", text: "Pipelines y esquemas formales, ejecutables" },
-          { tag: "eda", text: "Contratos de eventos formales" },
-          { tag: "hcd", text: "Artefactos semi-formales (personas, journeys)" },
-          { tag: "genia", text: "Prompts y datasets versionados" }
+          { tag: "base", text: "Criterio: si cruza una frontera entre equipos o entra al producto → se formaliza" },
+          { tag: "base", text: "Formales: contrato de frontera versionado · especificación de pipeline · manifiesto + registro de derechos · informe de evaluación" },
+          { tag: "hcd", text: "Semi-formales: personas · escenarios · storyboards · prototipos" },
+          { tag: "genia", text: "Prompts + ficha de datos* versionados cuando GenIA está activa" }
         ]
       },
       uso: {
         title: "Uso recomendado",
         items: [
-          { tag: "good", text: "Entrega frecuente" },
-          { tag: "good", text: "Componentes heterogéneos" },
-          { tag: "good", text: "Incertidumbre de requisitos" },
-          { tag: "bad", text: "No usar en AR pequeña/local (EDA de más)" },
-          { tag: "bad", text: "No usar con requisitos cerrados y contexto conocido (HCD de más)" }
+          { tag: "good", text: "Proyectos de RA con incertidumbre y cambio frecuente" },
+          { tag: "good", text: "Equipos multidisciplinarios y requisitos de baja madurez" },
+          { tag: "good", text: "Entrega frecuente y búsqueda de valor continuo" },
+          { tag: "eda", text: "EDA* — activar si hay distribución, colaboración o tiempo real" },
+          { tag: "genia", text: "GenIA* — activar con datos confiables + necesidad real de generación" },
+          { tag: "bad", text: "No recomendado cuando el costo de coordinación supera el beneficio" }
         ]
       },
       madurez: {
-        title: "Madurez",
+        title: "Madurez · medir método y producto por separado",
         items: [
-          { tag: "base", text: "Primera aproximación: sin validación empírica aún" }
+          { tag: "base", text: "ARCA no está validada empíricamente" },
+          { tag: "base", text: "Diseño de validación definido" }
         ],
         maturity: [
-          { tag: "hcd", value: "Alta" },
-          { tag: "devops", value: "Alta" },
-          { tag: "eda", value: "Media-alta" },
-          { tag: "genia", value: "Emergente" }
+          { tag: "hcd", value: "HCD alta" },
+          { tag: "devops", value: "DevOps alta" },
+          { tag: "eda", value: "EDA media-alta (evidencia RA limitada)" },
+          { tag: "genia", value: "GenIA emergente" }
         ],
         validation: {
-          proceso: "Frecuencia de despliegue · incrementos validados · rebote por compuerta",
-          producto: "Defectos en producción · latencia percibida · puntuación SUS",
-          note: "Validación futura: estudio de caso múltiple en escenarios reales."
+          proceso: "Retornos por compuerta · cobertura de contratos · completitud de entregables",
+          ingenieria: "Lead time · retrabajo · frecuencia de despliegue · defectos escapados",
+          producto: "SUS · NASA-TLX · latencia percibida · seguridad",
+          negocio: "Time-to-value · costo de coordinación · riesgo evitado",
+          note: "Valor neto a contrastar: ΔR + ΔD > ΔC"
         }
       },
       flexibilidad: {
-        title: "Flexibilidad",
+        title: "Flexibilidad · adaptación al contexto",
         items: [
-          { tag: "hcd", text: "Obligatorio — admite al menos 4 modelos de proceso bajo el mismo marco" },
-          { tag: "devops", text: "Obligatorio — plantillas reutilizables + caminos de excepción (hotfix, one-off)" },
-          { tag: "eda", text: "Condicional — se activa con distribución de eventos multi-cliente o tiempo real" },
-          { tag: "genia", text: "Condicional — se activa con datos confiables; activa G3 y el rol de datos" },
-          { tag: "base", text: "Configurable, no fija — a diferencia de Waterfall, Spiral o el modelo en V" }
+          { tag: "hcd", text: "Obligatorio — HCD" },
+          { tag: "devops", text: "Obligatorio — DevOps" },
+          { tag: "eda", text: "Condicional — EDA* si hay distribución, eventos o tiempo real" },
+          { tag: "genia", text: "Condicional — GenIA* si existen datos confiables y necesidad de generación" },
+          { tag: "base", text: "La adaptación depende de las condiciones del contexto" }
         ]
       }
     };
@@ -2133,9 +2175,11 @@
 
     function validationHTML(ax) {
       if (!ax.validation) return "";
-      return `<div class="reason">
-        <div class="aport"><strong>Instrumentación (proceso)</strong>${ax.validation.proceso}</div>
-        <div class="uso"><strong>Resultado (producto)</strong>${ax.validation.producto}</div>
+      return `<div class="metric-grid">
+        <div class="metric-card"><b>Proceso</b>${ax.validation.proceso}</div>
+        <div class="metric-card"><b>Ingeniería</b>${ax.validation.ingenieria}</div>
+        <div class="metric-card"><b>Producto</b>${ax.validation.producto}</div>
+        <div class="metric-card"><b>Negocio</b>${ax.validation.negocio}</div>
       </div>
       <p class="mini-note">${ax.validation.note}</p>`;
     }
